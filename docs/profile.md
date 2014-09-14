@@ -8,9 +8,10 @@
 ## Group Members
 
 ### Daniel Choi
-<p>CS Courses : </p>
-<p>Other Courses: </p>
-<p></p>
+<p>CS Courses : 121, 187, 220, 230, 240, 250, 390DB, 377, 473CG, 320, 311(current), 521(current)</p>
+<p>Other Courses: JAPANESE 246, PHYSICS 151</p>
+<p>Hi, my name is Daniel Choi. I am a senior at the University of Massachusetts: Amherst and majoring in Computer Science. I am currently working part time for a healthcare company called [McKesson](http://www.mckesson.com/). I have worked with mainly Java and C# programs but I am also really excited to be trying out web programming for the first time.</p>
+<p>If you would like to contact me, here is my [email](mailto:dchoi@umass.edu). </p>
 
 ### Robert Hromada
 <p>CS Courses : </p>
