@@ -19,9 +19,9 @@
 <p></p>
 
 ### Sean Kelley
-<p>CS Courses : </p>
-<p>Other Courses: </p>
-<p></p>
+<p>CS Courses : 121, 187, 220, 230, 240, 250, 377, 311, 453</p>
+<p>Other Courses: Linear Algebra</p>
+<p> Hi I'm Sean, I'm a senior here at UMass. Mostly experienced with languages taught here at school(java/C++) but have worked in many other languages on many occasions. Time to add javascript to that list.... I check my Gmail (Seankly@gmail.com) all the time, so if you want to find me, thats the place.</p>
 
 ### David Su
 <p>CS Courses : </p>
