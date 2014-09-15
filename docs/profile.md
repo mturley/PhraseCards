@@ -1,4 +1,4 @@
-![alt text](https://github.com/colbyjstone/UMassFall14/blob/master/326/logo.png "Phrase Cards Logo")
+![alt text](https://github.com/umass-cs-326/team-phrase-cards/docs/logo.png "Phrase Cards Logo")
 
 ### An Online Party Game
 <p>Intro paragraph here...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque in velit vel justo convallis efficitur eu in lectus. Nulla sit amet orci non velit interdum hendrerit eu ut ipsum. Pellentesque tempor, sapien ac pharetra gravida, mauris est tincidunt turpis, non aliquam enim lorem non ante. Curabitur dignissim, elit eu faucibus cursus, est dolor tempor ex, vestibulum aliquam metus nisi ac risus. Sed ut dignissim nibh. Morbi tincidunt scelerisque purus, sed accumsan velit facilisis in. Integer et lectus ac nisi egestas viverra. Quisque et dapibus nisi, blandit dictum felis. Ut volutpat consequat quam, egestas ultrices sapien.</p>
