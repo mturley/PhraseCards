@@ -14,9 +14,9 @@
 <p>If you would like to contact me, here is my [email](mailto:dchoi@umass.edu). </p>
 
 ### Robert Hromada
-<p>CS Courses : </p>
-<p>Other Courses: </p>
-<p></p>
+<p>CS Courses : 187, 220, 230, 240, 250, 311, 320, 383, 197JA, 197C</p>
+<p>Other Courses: Philosophy 334&360, (almost done with Philosophy minor)</p>
+<p>Good day all I'm Robert Hromada but many people call me Pippin or Pip.  Im a senior AI compsci major and this class should be awesome for me to not nly learn JavaScript and web development but enforce my skill in group developing.  I have classes all day till this class on Tuesdays and Thursdays but I am free on the other 3 days (weekends sometimes).  Most of my skill is in the develompent and structuring aspects of making a project not so much the hard coding so I hope to utilize those skills in this team.  </p>
 
 ### Sean Kelley
 <p>CS Courses : 121, 187, 220, 230, 240, 250, 377, 311, 453</p>
