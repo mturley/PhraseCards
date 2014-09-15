@@ -2,7 +2,7 @@
 
 ### An Online Party Game
 
-Intro paragraph here...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque in velit vel justo convallis efficitur eu in lectus. Nulla sit amet orci non velit interdum hendrerit eu ut ipsum. Pellentesque tempor, sapien ac pharetra gravida, mauris est tincidunt turpis, non aliquam enim lorem non ante. Curabitur dignissim, elit eu faucibus cursus, est dolor tempor ex, vestibulum aliquam metus nisi ac risus. Sed ut dignissim nibh. Morbi tincidunt scelerisque purus, sed accumsan velit facilisis in. Integer et lectus ac nisi egestas viverra. Quisque et dapibus nisi, blandit dictum felis. Ut volutpat consequat quam, egestas ultrices sapien.
+PhraseCards is an online game inspired by Apples to Apples and Cards Against Humanity.  Users can spectate ongoing public games, host their own private or public games, invite friends to join and/or spectate, and chat in real time with others in a game room.  Players can use pre-built decks, or create and share their own decks for others to use.
 
 <br /><br />
 
