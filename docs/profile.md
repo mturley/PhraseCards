@@ -40,12 +40,11 @@ Hi I'm Sean, I'm a senior here at UMass. Mostly experienced with languages taugh
 
 ### David Su
 
-CS Courses: TODO
+CS Courses: 121, 187, 220, 230, 240, 250, 377, 311, 383, 453
 
-Other Courses: TODO
+Other Courses: Comparative Politics, Anthropology
 
-TODO
-
+Hello everyone, I'm David. I'm a Senior majoring in Computer Science and I'm looking forward to working with you all this semester. I have some experience with Java, Javascript, SQL, and other languages so perhaps my job will be either coding the application or setting up the server and databases on the back end. Although I don't have much experience with the latter, I'd certainly be more than happy to research and set it up if need be.
 
 ### Yue Shing
 
