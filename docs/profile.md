@@ -48,11 +48,11 @@ Hello everyone, I'm David. I'm a Senior majoring in Computer Science and I'm loo
 
 ### Yue Shing
 
-CS Courses: TODO
+CS Courses: 121, 187, 220, 230, 240, 250, 305, 311, 320, 377, 390DB, 383, 403, 473, 585
 
-Other Courses: TODO
+Other Courses: Physics 151, Linear Algebra
 
-TODO
+Hello, my name is Yue Shing. I am a senior majoring in Computer Science. Most of my coding experience is with Java and C++. I've wanted to take a web programming course for a while, so I'm happy to meet and work with you guys this semester. 
 
 
 ### Colby Stone
