@@ -48,7 +48,7 @@ Hello everyone, I'm David. I'm a Senior majoring in Computer Science and I'm loo
 
 ### Yue Shing
 
-CS Courses: 121, 187, 220, 230, 240, 250, 305, 311, 320, 377, 390DB, 383, 403, 473, 585
+CS Courses: 121, 187, 220, 230, 240, 250, 305, 311, 320, 377, 390DB, 383, 403(current), 473, 585(current)
 
 Other Courses: Physics 151, Linear Algebra
 
