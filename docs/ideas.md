@@ -5,6 +5,6 @@
 - PostShowConversations - a place for tv viewers to discuss episodes of tv shows. (Colby)
 - gameHelpForum - a site that helps or gives suggestions on how to help or improve game expirience (Pippin)
 - lifeTracker - web app that times what you have done everyday and makes stats on it. (Daniel)
--  
-- Pippin vote-  I like Daniel's idea as well as the original mad lib idea
+
+ Pippin vote-  I like Daniel's idea as well as the original mad lib idea
 
