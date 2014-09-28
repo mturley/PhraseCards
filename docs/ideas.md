@@ -12,5 +12,6 @@ Me and Dsu have run this at various parties, and it's always a hit. http://derai
 
  Pippin vote-  I like Daniel's idea as well as the original mad lib idea
 
+ Yue- I like the Telephone Pictionary and PostShowConversations ideas. I don't really mind doing either one so I'll put my vote toward the one with more votes at the end.
 
 http://strawpoll.me/2661163
