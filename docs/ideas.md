@@ -12,3 +12,5 @@ Me and Dsu have run this at various parties, and it's always a hit. http://derai
 
  Pippin vote-  I like Daniel's idea as well as the original mad lib idea
 
+
+http://strawpoll.me/2661163
