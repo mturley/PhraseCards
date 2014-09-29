@@ -1,4 +1,23 @@
-<b>Project Timeline</b> (draft)
+# Project Title
+<br>
+
+<br>
+## Project Description
+
+<p>Description here...</p>
+
+<br>
+## Team Roles
+
+<p>Roles here...</p>
+
+<br>
+## Project Budget
+
+<p>Budget here...</p>
+
+<br>
+## Project Timeline (draft)
 
 <table>
     <tr>
