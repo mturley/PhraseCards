@@ -10,6 +10,7 @@
 ## Team Roles
 
 <p>Roles here...</p>
+<p>Daniel Choi - Backend/server-side developer.  </p>
 
 <br>
 ## Project Budget
