@@ -14,10 +14,17 @@
 
 <br>
 ## Project Budget
+| Item           | Description     | Cost    |
+| :------------- | :------------- | :------ |
+| Hosting       | Heroku  Standard 0 — 1 GB RAM, 64 GB storage, 120 connections       | $50 per month |
+| Development  | 4 Developers @ $30-40 per hour X 120 hours | $16,800 |
+| Design | 1 Designer @ 25 per hour X 60 hours | $1,500 |
+| Equipment | 6 laptops X $1,200  | $7,200 |
 
-<p>Budget here...</p>
 
-<br>
+
+
+
 ## Project Timeline (draft)
 
 <table>
