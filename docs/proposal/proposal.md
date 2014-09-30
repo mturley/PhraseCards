@@ -81,6 +81,7 @@ Hi, my name is Mike and I'm a senior Computer Science major here at UMass Amhers
 <br>
 ## Project Budget
 [Colby Stone 9-30]
+
 | Item           | Description     | Cost    |
 | :------------- | :------------- | :------ |
 | Hosting       | Heroku  Standard 0 — 1 GB RAM, 64 GB storage, 120 connections       | $50 per month |
