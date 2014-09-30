@@ -7,7 +7,7 @@
 <p>Description here...</p>
 
 ## Meet the Team
-
+[All team members 9-25]
 ### Daniel Choi
 
 CS Courses : 121, 187, 220, 230, 240, 250, 390DB, 377, 473CG, 320, 311(current), 521(current)
@@ -73,12 +73,14 @@ Hi, my name is Mike and I'm a senior Computer Science major here at UMass Amhers
 
 <br>
 ## Team Roles
+[All team members 9-30]
 
 <p>Roles here...</p>
 <p>Daniel Choi - Backend/server-side developer.  </p>
 
 <br>
 ## Project Budget
+[Colby Stone 9-30]
 | Item           | Description     | Cost    |
 | :------------- | :------------- | :------ |
 | Hosting       | Heroku  Standard 0 — 1 GB RAM, 64 GB storage, 120 connections       | $50 per month |
@@ -91,7 +93,7 @@ Hi, my name is Mike and I'm a senior Computer Science major here at UMass Amhers
 
 
 ## Project Timeline (draft)
-
+[Daniel Choi 9-29]
 <table>
     <tr>
         <td>Deadline</td>
