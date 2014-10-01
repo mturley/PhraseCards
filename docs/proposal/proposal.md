@@ -3,7 +3,7 @@
 
 <br>
 ## Project Description
-<p><b>CrazyLibs(Might need new name)</b></p>>
+<p><b>CrazyLibs(Might need new name)</b></p>
 <p>Although MadLibs is a great classic, there is little to no variety in the game. Once you've played one, you've played them all.</p>
 <p>This project will be a unique variation of the classic mad libs, where users are able to play a variety of game modes, create their own stories, or play another user's story. Features that we might include are massive multiplayer games, user stat tracking, image based stories, competitive(?) games, and many other modes.</p>
 
