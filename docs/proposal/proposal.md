@@ -1,4 +1,4 @@
-# Project Title
+![alt text](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/logo.png "Phrase Cards Logo")
 <br>
 
 <br>
