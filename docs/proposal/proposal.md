@@ -3,7 +3,7 @@
 
 <br>
 ## Project Description 
-[Daniel Choi 10-2]
+[Daniel Choi, Sean Kelly 10-2]
 <p><b>PhraseCards</b></p>
 <p>Phrase Cards is a free-to-play, online game based on the 1960’s classic Mad Libs, packed with new features that brings one of America’s favorite party games to the 21st century. This isn’t the same game your parents played, Phrase Cards gives users the power to host massively multiplayer games, create stories for other users to play, and participate in a variety of game modes. If you have a favorite Phrase Cards story, let everyone know by voting it up, it could end up on the fan-favorites leaderboard. Phrase Cards is a great activity to include at any event, with a variety of story themes to fit with your Halloween party, Star-Trek marathon, Friday afternoon cookout, Book-club meeting, or secret cult ritual. So when you can’t get all your friends in one place, or want to make a few more, log on to the Phrase Cards chat room and start up a game!  </p>
 <p>Although MadLibs is a great classic, there is little to no variety in the game. Once you've played one, you've played them all.</p>
