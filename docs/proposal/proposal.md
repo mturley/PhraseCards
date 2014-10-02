@@ -7,7 +7,7 @@
 <p><b>PhraseCards</b></p>
 <p>Although MadLibs is a great classic, there is little to no variety in the game. Once you've played one, you've played them all.</p>
 <p>This project will be a unique variation of the classic mad libs, where users are able to play a variety of game modes, create their own stories, or play another user's story. Features that we might include are massive multiplayer games, user stat tracking, image based stories, competitive matches, spectating, and many other upcoming features.</p>
-
+<p>Our game will be turned based in which the player whose turn it is to go will get to fill a blank word of the madlibs story and afterwards the turn will pass to the next player. There will be a chatroom for the other players who are spectating in the meantime to give them time to communicate and connect. Other features of the site will be to provide saved instances of games between participants to reminisce and perhaps share with others.</p>
 
 
 ## Group Members
