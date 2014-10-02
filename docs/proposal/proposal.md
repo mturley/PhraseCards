@@ -2,7 +2,8 @@
 <br>
 
 <br>
-## Project Description
+## Project Description 
+[Daniel Choi 10-2]
 <p><b>PhraseCards</b></p>
 <p>Although MadLibs is a great classic, there is little to no variety in the game. Once you've played one, you've played them all.</p>
 <p>This project will be a unique variation of the classic mad libs, where users are able to play a variety of game modes, create their own stories, or play another user's story. Features that we might include are massive multiplayer games, user stat tracking, image based stories, competitive matches, spectating, and many other upcoming features.</p>
@@ -11,7 +12,7 @@
 
 ## Group Members
 
-
+[All group members 9-25]
 ### Daniel Choi
 
 CS Courses : 121, 187, 220, 230, 240, 250, 390DB, 377, 473CG, 320, 311(current), 521(current)
