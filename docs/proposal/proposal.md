@@ -3,9 +3,9 @@
 
 <br>
 ## Project Description
-<p><b>CrazyLibs(Might need new name)</b></p>
+<p><b>PhraseCards</b></p>
 <p>Although MadLibs is a great classic, there is little to no variety in the game. Once you've played one, you've played them all.</p>
-<p>This project will be a unique variation of the classic mad libs, where users are able to play a variety of game modes, create their own stories, or play another user's story. Features that we might include are massive multiplayer games, user stat tracking, image based stories, competitive(?) games, and many other modes.</p>
+<p>This project will be a unique variation of the classic mad libs, where users are able to play a variety of game modes, create their own stories, or play another user's story. Features that we might include are massive multiplayer games, user stat tracking, image based stories, competitive matches, spectating, and many other upcoming features.</p>
 
 ## Meet the Team
 [All team members 9-25]
@@ -76,7 +76,6 @@ Hi, my name is Mike and I'm a senior Computer Science major here at UMass Amhers
 ## Team Roles
 [All team members 9-30]
 
-<p>Roles here...</p>
 <p>Daniel Choi - Backend/server-side developer.  </p>
 
 <br>
@@ -94,7 +93,7 @@ Hi, my name is Mike and I'm a senior Computer Science major here at UMass Amhers
 
 
 
-## Project Timeline (draft)
+## Project Timeline
 [Daniel Choi 9-29]
 <table>
     <tr>
@@ -103,41 +102,43 @@ Hi, my name is Mike and I'm a senior Computer Science major here at UMass Amhers
     </tr>
     <tr>
         <td>10/9/2014</td>
-        <td>Gathering up requirements for application.</td>
+        <td>Gathering up requirements for application.
+            Building skeletal framework for backend and frontend. Creating the database. Testing.
+        </td>
     </tr>
     <tr>
         <td>10/16/2014</td>
         <td>
-        Designing the web application.
-        Building skeletal framework for backend and frontend. Testing.
+            Begin developing front end and backend features: User accounts, homepage, etc.
         </td>
     </tr>
     <tr>
         <td>10/23/2014</td>
-        <td>developing front end and backend features: User accounts, homepage, etc</td>
+        <td>
+        Developing front end and backend features: Basic game mechanics and online features. Testing.
+        </td>
     </tr>
     <tr>
         <td>10/30/2014</td>
-        <td>developing front end and backend features: Basic web app mechanics. Testing.</td>
+        <td>Continue developing front end and backend features: Basic game mechanics and online features. Testing.</td>
     </tr>
     <tr>
         <td>11/6/2014</td>
-        <td>developing front end and backend features: Basic web app mechanics.
-        Testing.</td>
+        <td>Continue developing front end and backend features: Basic game mechanics and online features. Testing.</td>
     </tr>
       <tr>
         <td>11/13/2014</td>
-        <td>developing front end and backend features: Advanced web app mechanics.
-        Testing.</td>
+        <td>Have a functional web application. Test web application for robustness and/or finishing up basic features.</td>
     </tr>
     <tr>
         <td>11/13/2014</td>
-        <td>developing front end and backend features: Advanced web app mechanics.
+        <td>developing front end and backend features: Advanced game mechanics.
         Testing.</td>
     </tr>
     <tr>
         <td>11/20/2014</td>
-        <td>Stretch goals, additional features.</td>
+        <td>developing front end and backend features: Advanced game mechanics.
+        Testing.</td>
     </tr>
     <tr>
         <td>11/27/2014</td>
