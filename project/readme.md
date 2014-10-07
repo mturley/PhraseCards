@@ -35,6 +35,8 @@ sudo mongod
 
 and then setting your path
 
+At the moment, we will be using the name data as out name for the db.
+
 ```
 
 
