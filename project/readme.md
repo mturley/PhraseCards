@@ -16,6 +16,29 @@ npm start
 mocha
 ```
 
+#### To run mongodb
+```
+install at website:
+http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
+
+just in case do sudo apt-get update
+
+go to project directory
+npm install
+
+Set your data directory do the path it would be for your computer
+e.g mongod --dbpath /home/student/team-phrase-cards/project/data
+
+if you get an addr already in user error, try
+sudo service mongodb stop
+sudo mongod
+
+and then setting your path
+
+```
+
+
+
 
 ### Links to technologies
 [Express](http://expressjs.com/) (Web App Framework)<br>
