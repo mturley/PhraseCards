@@ -18,12 +18,16 @@ mocha
 
 #### To run mongodb
 ```
+copied alot of snippets from 
+http://cwbuecheler.com/web/tutorials/2013/node-express-mongo/
+
+Starting out-
+
 install at website:
 http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
+just in case do sudo apt-get update after you do an install
 
-just in case do sudo apt-get update
-
-go to project directory
+go to project directory and do
 npm install
 
 Set your data directory do the path it would be for your computer
@@ -35,8 +39,11 @@ sudo mongod
 
 and then setting your path
 
-At the moment, we will be using the name data as out name for the db.
-
+In the mongo terminal, 
+type 'use data' to make a database called data
+Try inserting 
+db.usercollection.insert({ "username" : "testuser1", "email" : "testuser1@testdomain.com" })
+If done everything correctly, the /about should have a testuser1 printed on front screen.
 ```
 
 

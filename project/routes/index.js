@@ -6,10 +6,16 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
 });
 
-/* GET home page. */
 router.get('/about', function(req, res) {
-  res.render('index', { title: 'Express' });
-});
+	var db = req.db;
 
+	var test;
+   	var collection = db.get('usercollection');
+    collection.find({},{},function(e,docs){
+    	res.render('about', { title: 'Express', 'listOfUsers': docs });
+    });
+
+    
+});
 
 module.exports = router;
