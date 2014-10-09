@@ -37,13 +37,17 @@ if you get an addr already in user error, try
 sudo service mongodb stop
 sudo mongod
 
-and then setting your path
+and then setting your path ^
 
 In the mongo terminal, 
 type 'use data' to make a database called data
-Try inserting 
+Try inserting into the database
 db.usercollection.insert({ "username" : "testuser1", "email" : "testuser1@testdomain.com" })
+You can try printing it out by using this command
+db.usercollection.find()
 If done everything correctly, the /about should have a testuser1 printed on front screen.
+
+Colby is going to make a centralized database so this is just for testing purposes.
 ```
 
 
