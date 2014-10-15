@@ -1,3 +1,15 @@
-Really cool idea and I am looking forward to seeing this project unfold over the course of the semester. The team logo looks great and is simple but very effective.
+Project 1:
+Really cool idea and I am looking forward to seeing this project unfold over the course of the semester. 
+The team logo looks great and is simple but very effective.
 
 I'd like to see a bit more activity on the Trello board as it is a requirement for the course.
+[Thumbs Up]
+
+Project 2:
+Its good to see you guys are willing to alter your first idea after finding another site that performs a similar
+function to what you originally had in mind. However, team members don't seem to relate their outside courses to
+the project or address any sort of problem statement.
+
+Good job using git properly, and its good to see you guys are actively utilizing Trello and meeting regularly,
+keep it up! Frequent meetings and collaberation between group members is vital to succeeding in the course.
+[Thumbs Up]
