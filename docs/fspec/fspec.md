@@ -2,6 +2,13 @@
 
 ### Name
 ### Team Organization
+- Colby: Project/Program Manager
+- Sean: Creative Director
+- Robert: Documentation
+- Daniel: Back End Programmer
+- Mike: Back End Programmer
+- David: Front End Programmer
+- Yue: Front End Programming
 ### Overview
 ### Scenarios
 
