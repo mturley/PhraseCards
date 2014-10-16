@@ -2,7 +2,7 @@
 
 ### Name
 ### Team Organization
-- Colby: Project/Program Manager
+- Colby: Program Manager
 - Sean: Creative Director
 - Robert: Documentation
 - Daniel: Back End Programmer
