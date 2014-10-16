@@ -45,6 +45,7 @@ This document was last updated on 10/16/2014.
 3. Mobil platform development.  Allow compatibility on android and iOS platforms
 4. Profanity filter.  A system that deals with profanity in chat and in card creation 
 5. Karma rating.  A score associated with each player's profile that gives to negative points for quitting goals early and using banned conduct and positive points for completing games and being social.  
+6. Global leader board.  A list of the top players in PhraseCards
 
 ### Flowchart
 
