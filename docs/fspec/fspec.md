@@ -28,7 +28,7 @@ For designing and implementing the web app, we wanted to build a simple interfac
 1. The user will come to the home page which will display snippets of the game and a login/sign up prompt.
 2. The user can sign up in which they are prompted with a window asking to provide their email address, a password, and perhaps other information.
 3. The user can then login and will then be brought to the lobby.
-4. The lobby page will present a list of their online friends, a button to join a random game, create a room with their friends, view their past games, or a leaderboard of the community's favorite madlibs stories.
+4. The lobby page will present a list of their online friends, a button to join a random game, create a room with their friends, or view their past gamess.
 5. Pressing the create room buttom will prompt the user to invite friends to his room and have a button to search for a game/players if the room isn't full or a button to start the game.
 6. After pressing the search for game/players buttons, the room will wait while the search commences for potential joiners.
 7. When the game starts the players will see a page where those present will appear in a list, a chat window, and a line for them to make their story. The Card Czar will begin at random and the game will commence.
@@ -38,7 +38,7 @@ For designing and implementing the web app, we wanted to build a simple interfac
 11. Users will be able to log out at any time
 12. There will be profile pages where users can see their or other users' profiles in pop-up windows which display their recent games.
 13. Viewing an old game will open the completed story and users can hover their cursor over inputted words to see whose word that was.
-
+14. Users can send a friend request at any time, in which the the added friend must accept the request before they're both added to each other's friend list.
 ### Non-Goals
 
 1. Log in through facebook.  This will link with facebook and post game events and progress
