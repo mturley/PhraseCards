@@ -19,6 +19,7 @@ This document was last updated on 10/16/2014.
 - Yue: Front End Programming
 
 ### Overview
+For designing and implementing the web app, we wanted to build a simple interface that optimizes the player's experience without cluttering the webpage or screen. The interface contains the bare essentials for the game, such as player-account creation, as well as features to enhance the player's in-game experience. These features include chatrooms, custom stories, and a community leaderboard.
 
 **Disclaimer**: This spec discusses what the users see and interact with while using the application, and it does not discuss underlying implementation details.  The design mockup components are included to illustrate the look and feel the authors currently envision, and are subject to change as the development process goes on and iterations are made based on user experience and practical concerns.
 
@@ -44,7 +45,7 @@ This document was last updated on 10/16/2014.
 1. Log in through facebook.  This will link with facebook and post game events and progress
 2. Write your own story.  Allows players to write their own story and submit to play with friends
 3. Mobil platform development.  Allow compatibility on android and iOS platforms
-4. Profanity filter.  A system that deals with profanity in chat and in card creation 
+4. Profanity filter.  A system that deals with profanity in chat and in card creation
 5. Karma rating.  A score associated with each player's profile that gives to negative points for quitting goals early and using banned conduct and positive points for completing games and being social.  
 6. Global leader board.  A list of the top players in PhraseCards
 
@@ -74,3 +75,7 @@ This document was last updated on 10/16/2014.
 
 #### Card Czar View
 ![Card Czar View ](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/fspec/images/czar.png "Card Czar View")
+
+
+#### End Game Screen
+![End Game Screen ](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/fspec/images/endgame.png "End Game Screen")
