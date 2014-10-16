@@ -2,7 +2,8 @@
 
 ### Name
 
-**PhraseCards**
+**PhraseCards** is an online multiplayer "Mad Libs"-inspired story building game played in a web browser.
+
 This document was last updated on 10/16/2014.
 This spec discusses what the users see and interact with while using the application, and it does not discuss underlying implementation details.  The design mockup components are included to illustrate the look and feel the authors currently envision, and are subject to change as the development process goes on and iterations are made based on user experience and practical concerns.
 
