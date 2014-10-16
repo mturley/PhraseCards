@@ -28,6 +28,7 @@
 
 1. Log in through facebook.  This will link with facebook and post game events and progress
 2. Write your own story.  Allows players to write their own story and submit to play with friends
+3. Mobil platform development.  Allow compatibility on android and iOS platforms
 
 ### Flowchart
 
