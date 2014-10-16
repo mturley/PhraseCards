@@ -1,6 +1,12 @@
-# Functional Specifications
+# PhraseCards
+## Functional Specifications
 
 ### Name
+
+**PhraseCards** is an online multiplayer "Mad Libs"-inspired story building game played in a web browser.
+
+This document was last updated on 10/16/2014.
+
 ### Team Organization
 - Colby: Program Manager
 - Sean: Creative Director
@@ -11,6 +17,9 @@
 - Yue: Front End Programming
 
 ### Overview
+
+**Disclaimer**: This spec discusses what the users see and interact with while using the application, and it does not discuss underlying implementation details.  The design mockup components are included to illustrate the look and feel the authors currently envision, and are subject to change as the development process goes on and iterations are made based on user experience and practical concerns.
+
 ### Scenarios
 
 1. The user will come to the home page which will display a login/sign up prompt.
@@ -33,6 +42,9 @@
 1. Log in through facebook.  This will link with facebook and post game events and progress
 2. Write your own story.  Allows players to write their own story and submit to play with friends
 3. Mobil platform development.  Allow compatibility on android and iOS platforms
+4. Profanity filter.  A system that deals with profanity in chat and in card creation 
+5. Karma rating.  A score associated with each player's profile that gives to negative points for quitting goals early and using banned conduct and positive points for completing games and being social.  
+6. Global leader board.  A list of the top players in PhraseCards
 
 ### Flowchart
 
