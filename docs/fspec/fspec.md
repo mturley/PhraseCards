@@ -17,5 +17,9 @@
 10. After the game ends, the players will be left in the game room to chat or have the option to return to the lobby and look for a new game.
 
 ### Non-Goals
+
+1. Log in through facebook.  This will link with facebook and post game events and progress
+2. Write your own story.  Allows players to write their own story and submit to play with friends
+
 ### Flowchart
 ### Screen-by-Screen
