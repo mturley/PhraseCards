@@ -1,5 +1,5 @@
-## PhraseCards
-# Functional Specifications
+# PhraseCards
+## Functional Specifications
 
 ### Name
 
