@@ -28,6 +28,9 @@ This spec discusses what the users see and interact with while using the applica
 8. The first round will consist of everyone but the Card Czar choosing a word to fit a blank of the line and the Card Czar will choose his/her favorite.
 9. The Card Czar will shift to another player and the game will continue in this manner until the story is complete and is shown or perhaps will always be shown to the players.
 10. After the game ends, the players will be left in the game room to chat or have the option to return to the lobby and look for a new game.
+11. Users will be able to log out at any time
+12. there will be profile pages where users can see their or other profiles in pop-up windows which display their recent games.
+13. Viewing an old game will open the completed story and users can hover their cursor over inputted words to see whose word that was.
 
 ### Non-Goals
 
