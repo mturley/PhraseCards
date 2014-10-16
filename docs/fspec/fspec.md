@@ -5,6 +5,8 @@
 
 **PhraseCards** is an online multiplayer "Mad Libs"-inspired story building game played in a web browser.
 
+**Authors**: Daniel Choi, Robert Hromada, Sean Kelley, David Su, Yue Shing, Colby Stone, Mike Turley
+
 This document was last updated on 10/16/2014.
 
 ### Team Organization
