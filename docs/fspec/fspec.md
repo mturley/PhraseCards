@@ -44,7 +44,7 @@ For designing and implementing the web app, we wanted to build a simple interfac
 1. Log in through facebook.  This will link with facebook and post game events and progress
 2. Write your own story.  Allows players to write their own story and submit to play with friends
 3. Mobil platform development.  Allow compatibility on android and iOS platforms
-4. Profanity filter.  A system that deals with profanity in chat and in card creation 
+4. Profanity filter.  A system that deals with profanity in chat and in card creation
 5. Karma rating.  A score associated with each player's profile that gives to negative points for quitting goals early and using banned conduct and positive points for completing games and being social.  
 6. Global leader board.  A list of the top players in PhraseCards
 
@@ -74,3 +74,7 @@ For designing and implementing the web app, we wanted to build a simple interfac
 
 #### Card Czar View
 ![Card Czar View ](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/fspec/images/czar.png "Card Czar View")
+
+
+#### End Game Screen
+![End Game Screen ](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/fspec/images/endgame.png "End Game Screen")
