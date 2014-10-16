@@ -20,6 +20,7 @@ This document was last updated on 10/16/2014.
 
 ### Overview
 For designing and implementing the web app, we wanted to build a simple interface that optimizes the player's experience without cluttering the webpage or screen. The interface contains the bare essentials for the game, such as player-account creation, as well as features to enhance the player's in-game experience. These features include chatrooms, custom stories, and a community leaderboard.
+
 **Disclaimer**: This spec discusses what the users see and interact with while using the application, and it does not discuss underlying implementation details.  The design mockup components are included to illustrate the look and feel the authors currently envision, and are subject to change as the development process goes on and iterations are made based on user experience and practical concerns.
 
 ### Scenarios
