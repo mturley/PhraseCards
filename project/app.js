@@ -9,9 +9,9 @@ var mongoose = require('mongoose');
 var monk = require('monk');
 //var db = monk('localhost:27017/data');
 var db = mongoose.connect('mongodb://localhost:27017/data');
-
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var userSchema = require('./schemas/userSchema');
 
 var app = express();
 
@@ -27,6 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+db.model('user', userSchema,'user');
 
 // Make our db accessible to our router
 app.use(function(req,res,next){
@@ -37,7 +38,6 @@ app.use(function(req,res,next){
 
 app.use('/', routes);
 app.use('/users', users);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

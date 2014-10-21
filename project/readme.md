@@ -42,7 +42,7 @@ and then setting your path ^
 In the mongo terminal, 
 type 'use data' to make a database called data
 Try inserting into the database
-db.usercollection.insert({ "username" : "testuser1", "email" : "testuser1@testdomain.com" })
+db.user.insert({ "username" : "testuser1", "email" : "testuser1@testdomain.com" })
 You can try printing it out by using this command
 db.usercollection.find()
 If done everything correctly, the /about should have a testuser1 printed on front screen.

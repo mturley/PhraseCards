@@ -8,13 +8,18 @@ router.get('/', function(req, res) {
 
 router.get('/about', function(req, res) {
 
-	var mongoose = req.db;
+	var db = req.db;
 
+	  db.model('user').find(function(err, users) {
+    res.send(users);
+  });
+	  /*
     mongoose.connection.db.collection("usercollection", function (err, collection) {
             collection.find().toArray(function(err, results) {
                 res.render('about', { title: 'Express', 'listOfUsers': results });
             });
         });
+*/
 });
 
 module.exports = router;
