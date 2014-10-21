@@ -1,28 +1,21 @@
-var express = require('express'),
-    app = express(),
-    api = require('./api'),
-    path = require('path'),
+var express      = require('express'),
+    app          = express(),
+    api          = require('./api'),
+    path         = require('path'),
     cookieParser = require('cookie-parser'),
-    bodyParser = require('body-parser'),
-    routes = require('./app/routes'),
-    port           = process.env.PORT || 8080;
+    bodyParser   = require('body-parser'),
+    routes       = require('./app/routes'),
+    port         = process.env.PORT || 8080;
 
+app.set('views', path.join(__dirname, 'views'))
+   .set('view engine', 'ejs')
+   .use(express.static(path.join(__dirname, 'public')))
+   .use(bodyParser.json())
+   .use(bodyParser.urlencoded({ extended: false }))
+   .use(cookieParser())
+   .use('/api', api);
 
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/api', api);
 require('./app/routes.js')(app);
 
 app.listen(port);
 console.log('Magic happens on port ' + port);
-
-module.exports = app;
