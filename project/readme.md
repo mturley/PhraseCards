@@ -42,9 +42,9 @@ and then setting your path ^
 In the mongo terminal, 
 type 'use data' to make a database called data
 Try inserting into the database
-db.user.insert({ "username" : "testuser1", "email" : "testuser1@testdomain.com" })
+db.users.insert({ "username" : "testuser1", "email" : "testuser1@testdomain.com" })
 You can try printing it out by using this command
-db.usercollection.find()
+db.users.find()
 If done everything correctly, the /about should have a testuser1 printed on front screen.
 
 Mongoose npm packages now installed. Will need to create schemas.
