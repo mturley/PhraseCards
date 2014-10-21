@@ -7,15 +7,14 @@ router.get('/', function(req, res) {
 });
 
 router.get('/about', function(req, res) {
-	var db = req.db;
 
-	var test;
-   	var collection = db.get('usercollection');
-    collection.find({},{},function(e,docs){
-    	res.render('about', { title: 'Express', 'listOfUsers': docs });
-    });
+	var mongoose = req.db;
 
-    
+    mongoose.connection.db.collection("usercollection", function (err, collection) {
+            collection.find().toArray(function(err, results) {
+                res.render('about', { title: 'Express', 'listOfUsers': results });
+            });
+        });
 });
 
 module.exports = router;

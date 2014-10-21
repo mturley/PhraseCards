@@ -47,6 +47,8 @@ You can try printing it out by using this command
 db.usercollection.find()
 If done everything correctly, the /about should have a testuser1 printed on front screen.
 
+Mongoose npm packages now installed. Will need to create schemas.
+
 Colby is going to make a centralized database so this is just for testing purposes.
 ```
 
