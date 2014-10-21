@@ -1,5 +1,6 @@
 var express = require('express'),
-    app            = express(),
+    api = require('./api'),
+    app = express(),
     path = require('path'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
@@ -18,7 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use('/api', api);
 require('./app/routes.js')(app);
 
 app.listen(port);
