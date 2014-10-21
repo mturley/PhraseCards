@@ -20,4 +20,4 @@ router.route('/players')
 
 			});
 
-		});
+		})
