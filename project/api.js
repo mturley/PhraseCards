@@ -27,6 +27,18 @@ router
 			})
 		});
 
+router
+	.route('/players/:player_id')
+		.get(function(req,res){
+			Player.findById(req.params.player_id,function(err,players){
+				if(err)
+					res.send(err);
+				res.json(players);
+			})
+		});
 
+
+
+//5446abfd63c97dd4ae28f021
 
 module.exports = router;
