@@ -18,9 +18,6 @@ mocha
 
 #### To run mongodb
 ```
-copied alot of snippets from 
-http://cwbuecheler.com/web/tutorials/2013/node-express-mongo/
-
 Starting out-
 
 install at website:
@@ -30,26 +27,9 @@ just in case do sudo apt-get update after you do an install
 go to project directory and do
 npm install
 
-Set your data directory do the path it would be for your computer
-e.g mongod --dbpath /home/student/team-phrase-cards/project/data
-
-if you get an addr already in user error, try
-sudo service mongodb stop
-sudo mongod
-
-and then setting your path ^
-
-In the mongo terminal, 
-type 'use data' to make a database called data
-Try inserting into the database
-db.users.insert({ "username" : "testuser1", "email" : "testuser1@testdomain.com" })
-You can try printing it out by using this command
-db.users.find()
-If done everything correctly, the /about should have a testuser1 printed on front screen.
-
 Mongoose npm packages now installed. Will need to create schemas.
 
-Colby is going to make a centralized database so this is just for testing purposes.
+Ask for the database connection
 ```
 
 

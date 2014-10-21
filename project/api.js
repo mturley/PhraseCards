@@ -9,7 +9,7 @@ var express = require('express'),
 	router = express.Router();
 
 router
-	.route('/players')
+	.route('/players')//chaining post and get
 		.post(function(req, res){
 			var player = new Player();
 			player.email = req.body.email;
@@ -21,6 +21,13 @@ router
 
 			});
 
+		})
+		.get(function(req,res){
+			Player.find(function(err,players){
+				if(err)
+					res.send(err);
+				res.json(players);
+			})
 		});
 
 
