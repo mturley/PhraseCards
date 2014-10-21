@@ -1,6 +1,6 @@
 var express = require('express'),
-    api = require('./api'),
     app = express(),
+    api = require('./api'),
     path = require('path'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),

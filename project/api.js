@@ -8,7 +8,8 @@ var express = require('express'),
 	Game = require('./app/models/game'),
 	router = express.Router();
 
-router.route('/players')
+router
+	.route('/players')
 		.post(function(req, res){
 			var player = new Player();
 			player.email = req.body.email;
@@ -20,4 +21,9 @@ router.route('/players')
 
 			});
 
-		})
+
+		});
+
+
+
+module.exports = router;
