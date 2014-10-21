@@ -10,7 +10,7 @@ router.get('/about', function(req, res) {
 
 	var db = req.db;
 
-	  db.model('user').find(function(err, users) {
+	  db.model('users').find(function(err, users) {
     res.send(users);
   });
 	  /*
