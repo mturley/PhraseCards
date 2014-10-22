@@ -29,16 +29,43 @@ router
 
 router
 	.route('/players/:player_id')
-		.get(function(req,res){
-			Player.findById(req.params.player_id,function(err,players){
+		.get(function(req,res){	//get the player given the id
+			Player.findById(req.params.player_id,function(err,player){
 				if(err)
 					res.send(err);
-				res.json(players);
-			})
+				res.json(player);
+			});
+		})
+		.put(function(req,res){	//remove the player given the id
+			Player.findById(req.params.player_id,function(err,player){
+				if(err)
+					res.send(err);
+
+				player.email = req.body.email;
+				player.username = req.body.username;
+				
+				// save the player
+				player.save(function(err) {
+				if (err)
+					res.send(err);
+
+				res.json({ message: 'Player updated!' });
+				});
+			});
+		})
+		.delete(function(req,res){	//remove the player given the id
+			Player.remove({
+				_id: req.params.player_id
+			}, function(err, bear) {
+			if (err)
+				res.send(err);
+
+			res.json({ message: 'Successfully deleted' });
+			});
 		});
 
 
 
-//5446abfd63c97dd4ae28f021
+//5446acdfdb16c91faf21cad7
 
 module.exports = router;
