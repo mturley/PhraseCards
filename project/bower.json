@@ -1,0 +1,22 @@
+{
+  "name": "teamphrasecards",
+  "version": "0.0.0",
+  "homepage": "",
+  "authors": [],
+  "main": "server.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests",
+    "config"
+  ],
+  "dependencies": {
+    "foundation": "~5.4.6",
+    "font-awesome": "~4.2.0",
+    "animate.css": "~3.2.0"
+  }
+}
