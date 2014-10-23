@@ -1,14 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel="stylesheet" href="http://cdn.foundation5.zurb.com/foundation.css">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-
-    <script src="http://cdn.foundation5.zurb.com/foundation.js"></script>
-  </body>
-</html>
+<% include partials/header %>
+  <div class="row">
+    <div class="small-6 large-centered columns">
+      <img src="images/logo.png" alt="PhraseCards" class="logo" />
+      <div class="row">
+        <div class="small-12 columns panel login">
+          <form id="form_id" action="index.html" method="post">
+            <input type="email" name="email" value="" placeholder="Email">
+            <input type="password" name="password" value="" placeholder="Passowrd">
+            <a href="#" class="button button-large button-success right">Log In</a>
+            <label><a href="#">Forgot Password ?</a> | <a href="/signup">Sign up</a></label>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<% include partials/footer %>
