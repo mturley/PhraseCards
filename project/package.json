@@ -15,7 +15,12 @@
     "ejs": "~0.8.5",
     "mongodb": "*",
     "monk": "*",
-    "mongoose": "*"
+    "mongoose": "*",
+    "passport" : "*",         
+    "passport-local" : "*",     
+    "bcrypt-nodejs" : "latest",
+    "connect-flash" : "~0.1.1",
+    "express-session": "~1.0.0" 
   },
   "devDependencies": {
     "mocha": "^1.21.4"
