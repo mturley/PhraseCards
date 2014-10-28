@@ -4,6 +4,8 @@
 		<img src="images/logo.png" alt="PhraseCards" class="logo" />
 		<div class="row">
 			<div class="small-12 columns panel login">
+				
+				<!--
 				<form id="form_id" action="index.html" method="post">
 					<input type="email" name="email" value="" placeholder="Email">
 					<input type="password" name="password" value="" placeholder="Passowrd">
@@ -11,6 +13,23 @@
 					<a href="#" class="button button-large button-success right">Sign Up</a>
 					<label><a href="/">Back</a></label>
 				</form>
+				-->
+				<form action="/signup" method="post">
+        		<div class="form-group">
+            	<label>Email</label>
+            	<input type="text" class="form-control" name="email">
+        		</div>
+        		<div class="form-group">
+            	<label>Password</label>
+            	<input type="password" class="form-control" name="password">
+        		</div>
+        		<div class="form-group">
+            	<label>Password Confirmation</label>
+            	<input type="password" class="form-control" name="passwordconfirmation">
+        		</div>
+
+        		<button type="submit" class="button button-large button-success right">Signup</button>
+    			</form>
 			</div>
 		</div>
 	</div>
