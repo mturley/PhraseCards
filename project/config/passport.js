@@ -27,12 +27,6 @@ module.exports = function(passport) {
         });
     });
 
-    // =========================================================================
-    // LOCAL SIGNUP ============================================================
-    // =========================================================================
-    // we are using named strategies since we have one for login and one for signup
-    // by default, if there was no name, it would just be called 'local'
-
     passport.use('local-signup', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
         usernameField : 'email',
@@ -94,9 +88,6 @@ module.exports = function(passport) {
             // if there are any errors, return the error before anything else
             if (err)
                 return done(err);
-
-                console.log('test');
-
             // if no player is found, return the message
             if (!player){
                 return done(null, false, req.flash('loginMessage', 'No player found.')); // req.flash is the way to set flashdata using connect-flash
