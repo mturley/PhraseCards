@@ -36,20 +36,9 @@ In database.js, add the following: module.exports = {'url' : /* the given connec
 
 
 In order to test out mongoose, we are using a RESTful API model. We are currently following this
-http://scotch.io/tutorials/javascript/build-a-restful-api-using-node-and-express-4
+http://scotch.io/tutorials/javascript/build-a-restful-api-using-node-and-express-4 
+plus his tutorial on passport
 
-Install Postman:
-https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?hl=en
-
-At the moment, we have a player schema that fully utilizes the POST, GET, PUT, and DELETE
-
-run node app.js
-Once the app is running, try a GET on the following http://localhost:8080/api/players/
-if you want to try a POST make sure it is using x-www-form-urlencoded 
-then pass it in the forms username /* some name */ and 
-						  email	/* some email */
-
-The schema is subject to change later on
 
 ```
 
