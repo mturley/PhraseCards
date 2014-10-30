@@ -3,10 +3,21 @@ module.exports = function(app,passport) {
     .get('/', function(req, res) {
 		  res.render('index.ejs', { message: req.flash('loginMessage') });
 	   })
-
     .get('/about', function(req, res) {
       res.render('about.ejs');
     })
+		.get('/profile', function(req, res) {
+			res.render('profile.ejs');
+		})
+		.get('/lobby', function(req, res) {
+			res.render('lobby.ejs');
+		})
+		.get('/game', function(req, res) {
+			res.render('game.ejs');
+		})
+		.get('/contact', function(req, res) {
+			res.render('contact.ejs');
+		})
 	.get('/signup', function(req, res) {
 			res.render('signup.ejs');
 		})
@@ -16,7 +27,7 @@ module.exports = function(app,passport) {
     })
 		// process the login form
     .post('/', passport.authenticate('local-login', {
-		successRedirect : '/about', // redirect to the secure profile section
+		successRedirect : '/lobby', // redirect to the secure profile section
 		failureRedirect : '/', // redirect back to the signup page if there is an error
 		failureFlash : true // allow flash messages
 		}))
