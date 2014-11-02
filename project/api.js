@@ -3,59 +3,59 @@ var express = require('express'),
 	mongoose = require('mongoose'),
 	dbURL = require('./config/database.js'),
 	db = mongoose.connect(dbURL.url),
-	Player = require('./app/models/player'),
+	User = require('./app/models/user'),
 	Game = require('./app/models/game'),
 	router = express.Router();
 
 router
-	.route('/players')//chaining post and get
+	.route('/users')//chaining post and get
 		.post(function(req, res){
-			var player = new Player();
-			player.email = req.body.email;
-			player.username = req.body.username;
-			player.save(function(err){
+			var user = new User();
+			user.email = req.body.email;
+			user.username = req.body.username;
+			user.save(function(err){
 				if(err)
 					res.send(err);
-				res.json({message : 'Player created'});
+				res.json({message : 'User created'});
 			});
 		})
 		.get(function(req,res){
-			Player.find(function(err,players){
+			User.find(function(err,users){
 				if(err)
 					res.send(err);
-				res.json(players);
+				res.json(users);
 			})
 		});
 
 router
-	.route('/players/:player_id')
-		.get(function(req,res){	//get the player given the id
-			Player.findById(req.params.player_id,function(err,player){
+	.route('/users/:user_id')
+		.get(function(req,res){	//get the user given the id
+			User.findById(req.params.user_id,function(err,user){
 				if(err)
 					res.send(err);
-				res.json(player);
+				res.json(user);
 			});
 		})
-		.put(function(req,res){	//remove the player given the id
-			Player.findById(req.params.player_id,function(err,player){
+		.put(function(req,res){	//remove the user given the id
+			User.findById(req.params.user_id,function(err,user){
 				if(err)
 					res.send(err);
 
-				player.email = req.body.email;
-				player.username = req.body.username;
+				user.email = req.body.email;
+				user.username = req.body.username;
 				
-				// save the player
-				player.save(function(err) {
+				// save the user
+				user.save(function(err) {
 				if (err)
 					res.send(err);
 
-				res.json({ message: 'Player updated!' });
+				res.json({ message: 'User updated!' });
 				});
 			});
 		})
-		.delete(function(req,res){	//remove the player given the id
-			Player.remove({
-				_id: req.params.player_id
+		.delete(function(req,res){	//remove the user given the id
+			User.remove({
+				_id: req.params.user_id
 			}, function(err, bear) {
 			if (err)
 				res.send(err);
