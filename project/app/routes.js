@@ -19,7 +19,7 @@ module.exports = function(app,passport) {
 			res.render('contact.ejs');
 		})
 	.get('/signup', function(req, res) {
-			res.render('signup.ejs');
+			res.render('signup.ejs', { message: req.flash('signupMessage') });
 		})
 	.get('/logout', function(req, res) {
         req.logout();

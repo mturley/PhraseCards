@@ -4,10 +4,10 @@ var UserSchema = mongoose.Schema({
 
 	local				: {
 		email			: String,
-		password        : String,
-		username		: String,
+		password        : String
+	},
+		nickname		: String,
 		game_history	: [{game_id : String}]
-	}
 });
 
 
@@ -20,11 +20,5 @@ UserSchema.methods.generateHash = function(password) {
 UserSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.local.password);
 };
-/*
-var UserSchema = new Schema({
-	email:  String,
-	username: String,
-});
-*/
 
 module.exports = mongoose.model('User', UserSchema);

@@ -34,7 +34,7 @@ module.exports = function(passport) {
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
     function(req, email, password, done) {
-
+        console.log(req.body.nickname);
         // asynchronous
         // User.findOne wont fire unless data is sent back
         process.nextTick(function() {
@@ -50,20 +50,32 @@ module.exports = function(passport) {
             if (user) {
                 return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
             } else {
+                //check to see if nickname has been taken
+                var nicknameQuery = User.where({ nickname: req.body.nickname });
+                User.findOne(function (err, user) {
+                    if (err) 
+                        return done(err);
+                    if (user) {
+                        return done(null, false, req.flash('signupMessage', 'That nickname is already taken.'));
+                    }else{
 
-                // if there is no user with that email
-                // create the user
-                var newUser            = new User();
+                        // if there is no user with that email or nickname
+                        // create the user
+                        var newUser            = new User();
 
-                // set the user's local credentials
-                newUser.local.email    = email;
-                newUser.local.password = newUser.generateHash(password);
+                        // set the user's local credentials
+                        newUser.nickname = req.body.nickname;
+                        newUser.local.email    = email;
+                        newUser.local.password = newUser.generateHash(password);
 
-                // save the user
-                newUser.save(function(err) {
-                    if (err)
-                        throw err;
-                    return done(null, newUser);
+                        // save the user
+                        newUser.save(function(err) {
+                            if (err)
+                                throw err;
+                            return done(null, newUser);
+                        });
+
+                    }
                 });
             }
 
