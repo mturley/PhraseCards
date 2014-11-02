@@ -34,7 +34,6 @@ module.exports = function(passport) {
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
     function(req, email, password, done) {
-        console.log(req.body.nickname);
         // asynchronous
         // User.findOne wont fire unless data is sent back
         process.nextTick(function() {
@@ -50,15 +49,20 @@ module.exports = function(passport) {
             if (user) {
                 return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
             } else {
+
+        
                 //check to see if nickname has been taken
                 var nicknameQuery = User.where({ nickname: req.body.nickname });
-                User.findOne(function (err, user) {
+                nicknameQuery.find(function (err, users) {
                     if (err) 
                         return done(err);
-                    if (user) {
+                    if (users.length > 0) {
                         return done(null, false, req.flash('signupMessage', 'That nickname is already taken.'));
                     }else{
 
+                        if(req.body.passwordconfirmation != password){
+                            return done(null, false, req.flash('signupMessage', 'Passwords do no match.'));
+                        }
                         // if there is no user with that email or nickname
                         // create the user
                         var newUser            = new User();
