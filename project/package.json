@@ -17,7 +17,10 @@
     "monk": "*",
     "mongoose": "*",
     "passport" : "*",         
-    "passport-local" : "*",     
+    "passport-local" : "*",  
+    "passport-facebook" : "*", 
+    "passport-twitter" : "*",  
+    "passport-google-oauth" : "*",   
     "bcrypt-nodejs" : "latest",
     "connect-flash" : "~0.1.1",
     "express-session": "~1.0.0" 
