@@ -52,7 +52,7 @@ module.exports = function(passport) {
             } else {
         
                 //check to see if nickname has been taken
-                var nicknameQuery = User.where({ nickname: req.body.nickname });
+                var nicknameQuery = User.where({ 'local.nickname': req.body.nickname });
                 nicknameQuery.find(function (err, users) {
                     if (err) 
                         return done(err);
@@ -68,7 +68,7 @@ module.exports = function(passport) {
                         var newUser            = new User();
 
                         // set the user's local credentials
-                        newUser.nickname = req.body.nickname;
+                        newUser.local.nickname = req.body.nickname;
                         newUser.local.email    = email;
                         newUser.local.password = newUser.generateHash(password);
 

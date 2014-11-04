@@ -4,10 +4,10 @@ var UserSchema = mongoose.Schema({
 
 	local				: {
 		email			: String,
-		password        : String
-	},
+		password        : String,
 		nickname		: String,
 		game_history	: [{game_id : String}]
+	},
 });
 
 
