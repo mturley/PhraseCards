@@ -1,3 +1,5 @@
+var gravatar = require('node-gravatar');
+
 module.exports = function(app,passport) {
 	app
     .get('/', function(req, res) {
@@ -6,11 +8,18 @@ module.exports = function(app,passport) {
     .get('/about', function(req, res) {
       res.render('about.ejs');
     })
-		.get('/profile', function(req, res) {
-			res.render('profile.ejs');
+		.get('/profile', isLoggedIn, function(req, res) {
+			res.render('profile.ejs',{
+				// get the user out of session and pass to template
+				user : req.user,
+				avatar : gravatar.get(req.user.local.email)
+			});
 		})
-		.get('/lobby', function(req, res) {
-			res.render('lobby.ejs');
+		.get('/lobby', isLoggedIn, function(req, res) {
+			res.render('lobby.ejs', {
+				user : req.user,
+				avatar : gravatar.get(req.user.local.email)
+			});
 		})
 		.get('/game', function(req, res) {
 			res.render('game.ejs');
@@ -36,4 +45,14 @@ module.exports = function(app,passport) {
         failureRedirect : '/signup', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
+}
+
+// route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on 
+    if (req.isAuthenticated())
+        return next();
+    // if they aren't redirect them to the home page
+    res.redirect('/');
 }
