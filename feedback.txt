@@ -13,3 +13,14 @@ the project or address any sort of problem statement.
 Good job using git properly, and its good to see you guys are actively utilizing Trello and meeting regularly,
 keep it up! Frequent meetings and collaberation between group members is vital to succeeding in the course.
 [Thumbs Up]
+
+Project 3:
+The webpage layout looks really good, I like the colors and simplicity of it all. A few things I am questioning are:
+    - Are you going to have a landing page explaining what the application is? If someone is just greeted with 
+      "Sign up to play!" you're going to turn users away.
+    - The "New Game" button appears twice in some cases and its not as obvious as to what the lobbies are, are these
+      lobbies of your friends? Public lobbies? is there going to be a button that just instantly matches you with strangers?
+Just a few nitpicks here, what you have so far is looking great, but don't be afraid to iterate on it over time.
+
+Your trello board activity has been great, keep it up!
+[Thumbs Up]
