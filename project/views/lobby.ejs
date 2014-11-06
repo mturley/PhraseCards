@@ -1,15 +1,58 @@
 <% include partials/header %>
 
-
   <div class="row">
-    <div class="small-12 medium-12 large-12 columns">
-      <h1>Lobby Page</h1>
-        <p>
-        <strong>Welcome</strong>: <%= user.local.nickname %>
-        <img src= <%= avatar %> />
-        </p>
+    <div class="large-12 columns lobby">
+
+      <div class="large-4 columns">
+        <div class="panel text-center">
+          <div class="row">
+            <div class="large-12 columns game">
+              <h3>Game Title</h3>
+              <ul class="no-bullet">
+                <li>Player 1</li>
+                <li>Player 2</li>
+                <li>Player 3</li>
+                <li>Player 4</li>
+              </ul>
+              <a href="#" class="button button-large expand"> Join </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="large-4 columns">
+        <div class="panel text-center">
+          <div class="row">
+            <div class="large-12 columns game">
+              <h3>Game Title</h3>
+              <ul class="no-bullet">
+                <li>Player 1</li>
+                <li>Player 2</li>
+                <li>Player 3</li>
+                <li>Player 4</li>
+              </ul>
+              <a href="#" class="button button-large expand"> Join </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="large-4 columns">
+        <div class="panel text-center">
+          <div class="row">
+            <div class="large-12 columns new_game">
+              <a href="#">+</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     </div>
   </div>
+
+
 
 
 <% include partials/footer %>
