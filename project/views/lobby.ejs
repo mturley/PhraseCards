@@ -8,6 +8,14 @@
         <strong>Welcome</strong>: <%= user.local.nickname %>
         <img src= <%= avatar %> />
         </p>
+
+    <form action="api/search" method="get">
+	    		<div class="form-group">
+	        	<input type="text" class="form-control" name="nickname">
+	    		</div>
+        	<button type="submit" class="button button-large button-success right">Search</button>
+    		</form>
+
     </div>
   </div>
 

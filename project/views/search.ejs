@@ -1,0 +1,11 @@
+<% include partials/header %>
+
+<h1>Search Results</h1>
+
+
+<% for (i = 0; i < Users.length; i++) { %>
+<p>
+<%= Users[i].local.email %>
+ </p>
+<% } %>
+<% include partials/footer %>

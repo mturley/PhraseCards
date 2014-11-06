@@ -64,6 +64,19 @@ router
 			});
 		});
 
+router
+	.route('/search')
+		.get(function(req,res){			 
+			User.find({ 'local.nickname': req.query['nickname'] }, function (err, users) {
+  				if (err)
+  					res.send(err);
+  				res.render('search.ejs',{
+  				Users : users
+  				});
+			})
+			
+		});
+
 
 
 //5446acdfdb16c91faf21cad7
