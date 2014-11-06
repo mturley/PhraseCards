@@ -6,7 +6,8 @@ var UserSchema = mongoose.Schema({
 		email			: String,
 		password        : String,
 		nickname		: String,
-		game_history	: [{game_id : String}]
+		game_history	: [{game_id : String}],
+		contacts		: [{contact_id : String, isFriend : Boolean}]
 	},
 });
 

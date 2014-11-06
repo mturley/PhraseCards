@@ -1,6 +1,19 @@
 <% include partials/header %>
 
   <div class="row">
+    <div class="small-12 medium-12 large-12 columns">
+      <h1>Lobby Page</h1>
+        <p>
+        <strong>Welcome</strong>: <%= user.local.nickname %>
+        <img src= <%= avatar %> />
+        </p>
+
+    <form action="api/search" method="get">
+	    		<div class="form-group">
+	        	<input type="text" class="form-control" name="nickname">
+	    		</div>
+        	<button type="submit" class="button button-large button-success right">Search</button>
+    		</form>
     <div class="large-12 columns lobby">
 
       <div class="large-4 columns">
@@ -48,6 +61,7 @@
         </div>
       </div>
 
+>>>>>>> 04a4b33ba030022eb1ad856205b74d2cc1b7d95b
 
     </div>
   </div>
