@@ -13,6 +13,18 @@ img {
 	height: auto;
 }
 
+/* LOGIN */
+
+.login input[type="text"],.login input[type="password"]  {
+	font-size: 32px;
+	height: 38px;
+	backgound-color: #45ACF1!important;
+	-webkit-box-shadow: 0 0 0px 1000px #45ACF1 inset;
+	border: none;
+	border-bottom: 2px solid #E4E0E1;
+}
+
+
 /* ABOUT */
 .about {
 	padding: 40px 0 0 0;
