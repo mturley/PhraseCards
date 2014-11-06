@@ -4,9 +4,17 @@
     <div class="small-12 medium-12 large-12 columns">
       <h1>Profile Page</h1>
         <p>
-        
+        <strong>Welcome</strong>: <%= user.local.nickname %>
+        <img src= <%= avatar %> />
         </p>
-    </div>
-  </div>
+
+        <h1>Search Results</h1>
+
+    <form action="api/search" method="get">
+	    		<div class="form-group">
+	        	<input type="text" class="form-control" name="nickname">
+	    		</div>
+        	<button type="submit" class="button button-large button-success right">Search</button>
+    		</form>
 
 <% include partials/footer %>

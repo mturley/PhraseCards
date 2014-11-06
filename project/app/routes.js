@@ -12,7 +12,7 @@ module.exports = function(app,passport) {
 			res.render('profile.ejs',{
 				// get the user out of session and pass to template
 				user : req.user,
-				avatar : gravatar.get(req.user.local.email)
+				avatar : gravatar.get(req.user.local.email, 'R', 120, 'identicon' )
 			});
 		})
 		.get('/lobby', function(req, res) {
