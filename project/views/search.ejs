@@ -1,27 +1,13 @@
-<% include partials/header %>
+<% include ../views/partials/header %>
 
-<h1>Search Results</h1>
-
+  <div class="row">
+    <div class="small-12 medium-12 large-12 columns">
+      <h1>Search Page</h1>
 
 <% for (i = 0; i < Users.length; i++) { %>
 <p>
 <%= Users[i].local.email %>
  </p>
 <% } %>
-<% include partials/footer %>
 
-  <div class="row">
-    <div class="small-12 medium-12 large-12 columns">
-      <h1>Lobby Page</h1>
-        <p>
-        <strong>Welcome</strong>: <%= user.local.nickname %>
-        <img src= <%= avatar %> />
-        </p>
-
-    <form action="api/search" method="get">
-	    		<div class="form-group">
-	        	<input type="text" class="form-control" name="nickname">
-	    		</div>
-        	<button type="submit" class="button button-large button-success right">Search</button>
-    		</form>
-    <div class="large-12 columns lobby">
+<% include ../views/partials/footer %>
