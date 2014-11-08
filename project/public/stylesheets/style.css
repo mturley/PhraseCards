@@ -82,3 +82,23 @@ img {
 .chat {
 
 }
+
+
+
+
+
+/* PROFILE */
+
+.profile {
+	margin-top: 80px;
+}
+.profile h2, .profile h3 {
+	color: white;
+}
+.profile img{
+	border-radius: 100%;
+}
+.friends img {
+	margin: 4px 0;
+	border-radius: 100%;
+}

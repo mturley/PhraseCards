@@ -1,20 +1,57 @@
 <% include partials/header %>
 
-  <div class="row">
-    <div class="small-12 medium-12 large-12 columns">
-      <h1>Profile Page</h1>
-        <p>
-        <strong>Welcome</strong>: <%= user.local.nickname %>
-        <img src= <%= avatar %> style="width:30%;height:auto;"/>
-        </p>
+  <div class="row profile">
+    <div class="small-12 medium-4 large-4 columns">
+      <img src= <%= avatar %> />
+    </div>
+    <div class="small-12 medium-8 large-8 columns">
+      <h2><%= user.local.nickname %> <span class="subheader right">You have won: <span class="win_number">4</span> games</span></h2>
+      <hr>
+      <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+          <a href="/lobby" class="button button-large expand"> Find a Game </a>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="small-12 medium-6 large-6 columns friends">
+          <h2>Your Friends</h2>
+          <!-- Replace with loop through friends -->
+          <div class="small-6 medium-4 large-3 columns left">
+            <img src="http://placehold.it/200x200" alt="" />
+          </div>
+          <div class="small-6 medium-4 large-3 columns left">
+            <img src="http://placehold.it/200x200" alt="" />
+          </div>
+          <div class="small-6 medium-4 large-3 columns left">
+            <img src="http://placehold.it/200x200" alt="" />
+          </div>
+          <div class="small-6 medium-4 large-3 columns left">
+            <img src="http://placehold.it/200x200" alt="" />
+          </div>
+          <div class="small-6 medium-4 large-3 columns left">
+            <img src="http://placehold.it/200x200" alt="" />
+          </div>
+          <div class="small-6 medium-4 large-3 columns left">
+            <img src="http://placehold.it/200x200" alt="" />
+          </div>
+          <div class="small-6 medium-4 large-3 columns left">
+            <img src="http://placehold.it/200x200" alt="" />
+          </div>
+        </div>
+        <div class="small-12 medium-6 large-6 columns">
+          <h2>Find Friends</h2>
+          <form action="api/search" method="get">
+            <div class="form-group">
+              <input type="text" class="form-control" name="nickname">
+            </div>
+            <button type="submit" class="button button-large button-success right">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        <h1>Search Results</h1>
 
-    <form action="api/search" method="get">
-	    		<div class="form-group">
-	        	<input type="text" class="form-control" name="nickname">
-	    		</div>
-        	<button type="submit" class="button button-large button-success right">Search</button>
-    		</form>
 
 <% include partials/footer %>
