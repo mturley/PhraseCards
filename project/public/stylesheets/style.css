@@ -22,10 +22,11 @@ img {
 
 /* LOGIN */
 .home {
-	margin-top: 40px;
+	margin-top: 60px;
 }
 
-.login input[type="text"],.login input[type="password"]  {
+
+.login input[type="text"],.login input[type="password"], .play_area input[type="text"] {
 	font-size: 32px;
 	font-weight: 100;
 	height: 48px;
@@ -36,7 +37,7 @@ img {
 	border-bottom: 2px solid #E4E0E1;
 }
 
-form a {
+form a, form label {
 	color: white;
 	opacity: 0.5;
 }
@@ -44,13 +45,13 @@ form a {
 
 /* ABOUT */
 .about {
-	padding: 60px 0 0 0;
+	padding: 40px 0 0 0;
 }
 
 
 /* LOBBY */
 .lobby {
-	padding: 40px 0 0 0;
+	padding: 80px 0 0 0;
 
 }
 
@@ -108,6 +109,23 @@ form a {
 	min-height: 30%;
 	padding: 10% 0;
 }
+
+.play_area h2 {
+	color: white;
+	font-weight: 100;
+	margin: 80px 0;
+}
+.play_area .button {
+	margin-left: 10px;
+
+}
+
+.play_area input {
+margin-top: 20px;
+}
+
+
+
 
 .blur {
 	color: transparent;
