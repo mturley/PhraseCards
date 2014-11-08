@@ -4,26 +4,23 @@ body {
 	color: white;
 }
 
-
 .debug_icon {
 	color: white;
 	margin-right: 40px;
 	font-size: 32px;
 }
 
-
 .login {
 	padding-top: 40px;
 }
-
 
 img {
 	width: 100%;
 	height: auto;
 }
 
-/* LOGIN */
 
+/* LOGIN */
 .home {
 	margin-top: 40px;
 }
@@ -44,10 +41,12 @@ form a {
 	opacity: 0.5;
 }
 
+
 /* ABOUT */
 .about {
 	padding: 60px 0 0 0;
 }
+
 
 /* LOBBY */
 .lobby {
@@ -61,11 +60,11 @@ form a {
 	color: white;
 }
 
-
 .panel {
 	background: none;
 	padding: 40px;
 }
+
 .lobby .panel .new_game{
 	padding: 20% 0 0 0;
 	min-height: 240px;
@@ -79,7 +78,6 @@ form a {
 .lobby .panel .new_game a {
 	font-size: 82px;
 }
-
 
 
 /* SIDEBAR */
@@ -111,25 +109,29 @@ form a {
 	padding: 10% 0;
 }
 
+.blur {
+	color: transparent;
+  text-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
 .chat {
 
 }
 
 
-
-
-
 /* PROFILE */
-
 .profile {
 	margin-top: 80px;
 }
+
 .profile h2, .profile h3 {
 	color: white;
 }
+
 .profile img{
 	border-radius: 100%;
 }
+
 .friends img {
 	margin: 4px 0;
 	border-radius: 100%;
