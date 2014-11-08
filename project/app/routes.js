@@ -3,11 +3,9 @@ var gravatar = require('node-gravatar');
 module.exports = function(app,passport) {
 	app
     .get('/', function(req, res) {
-		  res.render('index.ejs', { message: req.flash('loginMessage') });
+		  res.render('index.ejs', { message: req.flash('loginMessage')
+			});
 	   })
-    .get('/about', function(req, res) {
-      res.render('about.ejs');
-    })
 		.get('/profile', isLoggedIn, function(req, res) {
 			res.render('profile.ejs',{
 				// get the user out of session and pass to template
@@ -15,16 +13,17 @@ module.exports = function(app,passport) {
 				avatar : gravatar.get(req.user.local.email)
 			});
 		})
-		.get('/lobby', function(req, res) {
+		.get('/lobby', isLoggedIn, function(req, res) {
 			res.render('lobby.ejs', {
-
+				user : req.user,
+				avatar : gravatar.get(req.user.local.email)
 			});
 		})
-		.get('/game', function(req, res) {
-			res.render('game.ejs');
-		})
-		.get('/contact', function(req, res) {
-			res.render('contact.ejs');
+		.get('/game', isLoggedIn, function(req, res) {
+			res.render('game.ejs', {
+				user : req.user,
+				avatar : gravatar.get(req.user.local.email)
+			});
 		})
 	.get('/signup', function(req, res) {
 			res.render('signup.ejs', { message: req.flash('signupMessage') });

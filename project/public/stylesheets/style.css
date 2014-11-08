@@ -30,7 +30,9 @@ img {
 
 .login input[type="text"],.login input[type="password"]  {
 	font-size: 32px;
-	height: 38px;
+	font-weight: 100;
+	height: 48px;
+	color: white;
 	backgound-color: #45ACF1!important;
 	-webkit-box-shadow: 0 0 0px 1000px #45ACF1 inset;
 	border: none;
