@@ -9,23 +9,25 @@ var express = require('express'),
 
 
 router
-  .route('/users')//chaining post and get
+  .route('/users') //chaining post and get
     .post(function(req, res){
       var user = new User();
       user.email = req.body.email;
       user.username = req.body.username;
       user.save(function(err){
-        if(err)
+        if(err) {
           res.send(err);
+        }
         res.json({message : 'User created'});
       });
     })
     .get(function(req,res){
       User.find(function(err,users){
-        if(err)
+        if(err) {
           res.send(err);
+        }
         res.json(users);
-      })
+      });
     });
 
 
@@ -33,25 +35,26 @@ router
   .route('/users/:user_id')
     .get(function(req,res){ //get the user given the id
       User.findById(req.params.user_id,function(err,user){
-        if(err)
+        if(err) {
           res.send(err);
+        }
         res.json(user);
       });
     })
     .put(function(req,res){ //remove the user given the id
       User.findById(req.params.user_id,function(err,user){
-        if(err)
+        if(err) {
           res.send(err);
-
+        }
         user.email = req.body.email;
         user.username = req.body.username;
         
         // save the user
         user.save(function(err) {
-        if (err)
-          res.send(err);
-
-        res.json({ message: 'User updated!' });
+          if (err) {
+            res.send(err);
+          }
+          res.json({ message: 'User updated!' });
         });
       });
     })
@@ -59,10 +62,10 @@ router
       User.remove({
         _id: req.params.user_id
       }, function(err, bear) {
-      if (err)
-        res.send(err);
-
-      res.json({ message: 'Successfully deleted' });
+        if (err) {
+          res.send(err);
+        }
+        res.json({ message: 'Successfully deleted' });
       });
     });
 
@@ -70,12 +73,13 @@ router
   .route('/search')
     .get(function(req,res){      
       User.find({ 'local.nickname': req.query['nickname'] }, function (err, users) {
-          if (err)
-            res.send(err);
-          res.render('search.ejs',{
+        if (err) {
+          res.send(err);
+        }
+        res.render('search.ejs',{
           Users : users
-          });
-      })
+        });
+      });
       
     });
 
