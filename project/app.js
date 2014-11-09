@@ -10,6 +10,7 @@ var express      = require('express'),
     session      = require('express-session');
     port         = process.env.PORT || 8080;
 
+
 app.set('views', path.join(__dirname, 'views'))
    .set('view engine', 'ejs')
    .use(express.static(path.join(__dirname, 'public')))
@@ -25,5 +26,17 @@ require('./config/passport')(passport);
 
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
-app.listen(port);
+var io = require('socket.io').listen(app.listen(port));
+
 console.log('Magic happens on port ' + port);
+
+// Chat
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
+  });
+});
