@@ -8,7 +8,7 @@ $('#chatform').submit(function(){
 });
 
 function updateScroll(){
-  var element = document.getElementById("chat_container");
+  var element = $("#chat_container");
   element.scrollTop = element.scrollHeight;
 }
 
