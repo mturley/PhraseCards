@@ -51,5 +51,5 @@
 	Foundation
 		bootstrap our js
 
-	[progressbar.js](http://kimmobrunfeldt.github.io/progressbar.js/)
+	progressbar.js (http://kimmobrunfeldt.github.io/progressbar.js/)
 		for pretty-looking timers
