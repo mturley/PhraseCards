@@ -8,7 +8,7 @@ module.exports = function(app,passport) {
       });
     })
     .get('/profile', isLoggedIn, function(req, res) {
-      res.render('profile.ejs',{
+      res.render('profile.ejs', {
         // get the user out of session and pass to template
         user : req.user,
         avatar : gravatar.get(req.user.local.email)
