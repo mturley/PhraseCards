@@ -1,28 +1,28 @@
 body {
-	background: #45ACF1;
-	font-family: 'Lato', sans-serif!important;
-	color: white;
+  background: #45ACF1;
+  font-family: 'Lato', sans-serif!important;
+  color: white;
 }
 
 .debug_icon {
-	color: white;
-	margin-right: 40px;
-	font-size: 32px;
+  color: white;
+  margin-right: 40px;
+  font-size: 32px;
 }
 
 .login {
-	padding-top: 40px;
+  padding-top: 40px;
 }
 
 img {
-	width: 100%;
-	height: auto;
+  width: 100%;
+  height: auto;
 }
 
 
 /* LOGIN */
 .home {
-	margin-top: 60px;
+  margin-top: 60px;
 }
 
 
@@ -30,75 +30,75 @@ img {
 .login input[type="password"],
 .play_area input[type="text"],
 .chat input[type="text"] {
-	font-size: 32px;
-	font-weight: 100;
-	height: 48px;
-	color: white;
-	backgound-color: #45ACF1!important;
-	-webkit-box-shadow: 0 0 0px 1000px #45ACF1 inset;
-	border: none;
-	border-bottom: 2px solid #E4E0E1;
+  font-size: 32px;
+  font-weight: 100;
+  height: 48px;
+  color: white;
+  backgound-color: #45ACF1!important;
+  -webkit-box-shadow: 0 0 0px 1000px #45ACF1 inset;
+  border: none;
+  border-bottom: 2px solid #E4E0E1;
 }
 
 form a, form label {
-	color: white;
-	opacity: 0.5;
+  color: white;
+  opacity: 0.5;
 }
 
 
 /* ABOUT */
 .about {
-	padding: 40px 0 0 0;
+  padding: 40px 0 0 0;
 }
 
 
 /* LOBBY */
 .lobby {
-	padding: 80px 0 0 0;
+  padding: 80px 0 0 0;
 
 }
 
 .lobby h3, .lobby li {
-	font-family: 'Lato', sans-serif!important;
-	font-weight: 100;
-	color: white;
+  font-family: 'Lato', sans-serif!important;
+  font-weight: 100;
+  color: white;
 }
 
 .panel {
-	background: none;
-	padding: 40px;
+  background: none;
+  padding: 40px;
 }
 
 .lobby .panel .new_game{
-	padding: 20% 0 0 0;
-	min-height: 240px;
+  padding: 20% 0 0 0;
+  min-height: 240px;
 }
 
 .lobby .panel .game{
-	padding: 10px 0 0 0;
-	min-height: 240px;
+  padding: 10px 0 0 0;
+  min-height: 240px;
 }
 
 .lobby .panel .new_game a {
-	font-size: 82px;
+  font-size: 82px;
 }
 
 
 /* SIDEBAR */
 
 .logo {
-	margin: 40px 0 40px 0;
+  margin: 40px 0 40px 0;
 }
 
 .sidebar {
-	height: 100%;
-	color: #333;
-	padding: 20px;
-	background: white;
+  height: 100%;
+  color: #333;
+  padding: 20px;
+  background: white;
 }
 
 .round {
-	margin: 40px 0 0 0;
+  margin: 40px 0 0 0;
 }
 
 
@@ -108,18 +108,18 @@ form a, form label {
 }
 
 .play_area {
-	font-size: 42px;
-	min-height: 30%;
-	padding: 10% 0;
+  font-size: 42px;
+  min-height: 30%;
+  padding: 10% 0;
 }
 
 .play_area h2 {
-	color: white;
-	font-weight: 100;
-	margin: 80px 0;
+  color: white;
+  font-weight: 100;
+  margin: 80px 0;
 }
 .play_area .button {
-	margin-left: 10px;
+  margin-left: 10px;
 
 }
 
@@ -128,49 +128,53 @@ margin-top: 20px;
 }
 
 .blur {
-	color: transparent;
+  color: transparent;
   text-shadow: 0 0 15px rgba(0,0,0,0.5);
 }
 
 #chat_container {
-	font-size: 18px;
-	font-weight: 100;
-	overflow:   none;
+  font-size: 18px;
+  font-weight: 100;
+  overflow:   none;
   position:   relative;
   width:      100%;
-  height:     100px;
+  height:     140px;
+  overflow: scroll;
+  margin-bottom: 30px;
+  word-wrap: break-word;
 }
 
 .round_img {
-	border-radius: 100%;
-	float: left;
-	max-width: 40px;
-	margin-right: 10px;
+  border-radius: 100%;
+  float: left;
+  max-width: 40px;
+  margin-right: 10px;
 }
-.chat_message {
-	width: 100%;
-	line-height: 44px;
-	margin: 20px 0;
+.chat_row {
+  width: 100%;
+  line-height: 38px;
+  margin: 8px 0;
 }
 
+
 .chat {
-	margin-top: 40px;
+  margin-top: 40px;
 }
 
 /* PROFILE */
 .profile {
-	margin-top: 80px;
+  margin-top: 80px;
 }
 
 .profile h2, .profile h3 {
-	color: white;
+  color: white;
 }
 
 .profile img{
-	border-radius: 100%;
+  border-radius: 100%;
 }
 
 .friends img {
-	margin: 4px 0;
-	border-radius: 100%;
+  margin: 4px 0;
+  border-radius: 100%;
 }

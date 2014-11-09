@@ -7,19 +7,13 @@ $('#chatform').submit(function(){
   return false;
 });
 
+function updateScroll(){
+  var element = document.getElementById("chat_container");
+  element.scrollTop = element.scrollHeight;
+}
+
 socket.on('chat message', function(msg){
-  if (messages.length <=0  || messages.length <= 2) {
-    messages.push(msg);
-  }else {
-    messages.splice(0,1);
-    messages.push(msg);
-  }
   // Replace with user info
-  $('.chat_message1').html('<span class="chat_message"><img src="http://placehold.it/100x100" class="round_img"/> Username:  ' + messages[0] + '</span>');
-  if (messages.length > 1) {
-    $('.chat_message2').html('<span class="chat_message"><img src="http://placehold.it/100x100" class="round_img"/> Username:  ' + messages[1] + '</span>');
-    if (messages.length > 2) {
-      $('.chat_message3').html('<span class="chat_message"><img src="http://placehold.it/100x100" class="round_img"/> Username:  ' + messages[2] + '</span>');
-    }
-  }
+  $('#chat_container').append('<div class="chat_row"><img src="http://placehold.it/200x200" alt="" class="round_img" /> <strong>Username: </strong> ' + msg + "</div>");
+  updateScroll();
 });
