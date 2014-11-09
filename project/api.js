@@ -83,6 +83,31 @@ router
       
     });
 
+// Game/Room/Lobby related API stuff below
+
+router
+  .route('/game')
+    .put(function(req,res) {
+
+    });
+
+router
+  .route('/game/:game_id')
+    .get(function(req,res) {
+      var gameId = req.params.game_id;
+      res.json({ todo: "testing, get game with id: "+gameId});
+      // TODO fetch game details
+    })
+    .post(function(req,res) {
+      var gameId = req.params.game_id;
+      res.json({ todo: "testing, update game with id: "+gameId});
+      // TODO update game details
+    })
+    .delete(function(req,res) {
+      var gameId = req.params.game_id;
+      res.json({ todo: "testing, delete game with id: "+gameId});
+      // TODO delete game
+    });
 
 
 //5446acdfdb16c91faf21cad7
