@@ -8,7 +8,7 @@
 ```
 #### To start server
 ```
-npm start
+node app.js
 ```
 
 #### To run tests (runs the test.js file in the test dir)
@@ -36,7 +36,7 @@ In database.js, add the following: module.exports = {'url' : /* the given connec
 
 
 In order to test out mongoose, we are using a RESTful API model. We are currently following this
-http://scotch.io/tutorials/javascript/build-a-restful-api-using-node-and-express-4 
+http://scotch.io/tutorials/javascript/build-a-restful-api-using-node-and-express-4
 plus his tutorial on passport
 
 
