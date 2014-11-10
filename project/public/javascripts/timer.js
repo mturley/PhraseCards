@@ -1,10 +1,17 @@
-var element = document.getElementById('example-circle-container');
-var circle = new ProgressBar.Circle(element, {
-    color: '#FCB03C',
-    strokeWidth: 2,
-    fill: '#aaa'
+var element = document.getElementById('timer-container');
+element.innerHTML = '<header id="clock-seconds"></header>';
+var textElement = document.getElementById('clock-seconds');
+
+var seconds = new ProgressBar.Circle(element, {
+    duration: 200,
+    color: "#008CBA",
+    trailColor: "#45ACF1",
+    strokeWidth: 5
 });
 
-circle.animate(1, function() {
-    circle.animate(0);
-})
+setInterval(function() {
+    var second = new Date().getSeconds();
+    seconds.animate(second/60, function() {
+
+    });
+}, 1000);

@@ -14,6 +14,6 @@ function updateScroll(){
 
 socket.on('chat message', function(msg){
   // Replace with user info
-  $('#chat_container').append('<div class="chat_row animated zoomIn"><img src="http://placehold.it/200x200" alt="" class="round_img" /> <strong>Username: </strong> ' + msg + "</div>");
+  $('#chat_container').append('<div class="chat_row animated zoomIn"><img src="http://placehold.it/200x200" alt="" class="round_img" />  ' + msg + "</div>");
   updateScroll();
 });
