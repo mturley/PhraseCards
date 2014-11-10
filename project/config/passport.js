@@ -34,7 +34,7 @@ module.exports = function(passport) {
         passwordField : 'password',
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
-    function(req, email, password, done) {      
+    function(req, email, password, done) {
         // asynchronous
         // User.findOne wont fire unless data is sent back
         process.nextTick(function() {
@@ -50,11 +50,11 @@ module.exports = function(passport) {
             if (user) {
                 return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
             } else {
-        
+
                 //check to see if nickname has been taken
                 var nicknameQuery = User.where({ 'local.nickname': req.body.nickname });
                 nicknameQuery.find(function (err, users) {
-                    if (err) 
+                    if (err)
                         return done(err);
                     if (users.length > 0) {
                         return done(null, false, req.flash('signupMessage', 'That nickname is already taken.'));
@@ -83,7 +83,7 @@ module.exports = function(passport) {
                 });
             }
 
-        });    
+        });
 
         });
 
@@ -156,8 +156,8 @@ module.exports = function(passport) {
                     var newUser            = new User();
 
                     // set all of the facebook information in our user model
-                    newUser.facebook.id    = profile.id; // set the users facebook id                   
-                    newUser.facebook.token = token; // we will save the token that facebook provides to the user                    
+                    newUser.facebook.id    = profile.id; // set the users facebook id
+                    newUser.facebook.token = token; // we will save the token that facebook provides to the user
                     newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
                     newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
 
