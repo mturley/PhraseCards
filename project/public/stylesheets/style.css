@@ -19,6 +19,15 @@ img {
   height: auto;
 }
 
+img.clickable {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+img.clickable:hover {
+  opacity: 1.0;
+}
+
 
 /* LOGIN */
 .home {
