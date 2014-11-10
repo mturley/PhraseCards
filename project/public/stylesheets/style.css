@@ -29,7 +29,8 @@ img {
 .login input[type="text"],
 .login input[type="password"],
 .play_area input[type="text"],
-.chat input[type="text"] {
+.chat input[type="text"],
+.back input[type="text"]{
   font-size: 32px;
   font-weight: 100;
   height: 48px;
@@ -87,7 +88,7 @@ form a, form label {
 
 
 .back {
-  margin-top: -280px;
+  margin-top: -320px;
   padding: 40px 10px;
   color: white;
   text-align: center;
