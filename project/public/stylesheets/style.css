@@ -80,18 +80,19 @@ form a, form label {
   min-height: 240px;
 }
 
-.lobby .panel .new_game a {
-  font-size: 82px;
+.new_game {
+  min-height: 323px;
 }
 
 
 
 
 .back {
-  margin-top: -320px;
-  padding: 40px 10px;
+  margin-top: -260px;
+  padding: 40px 10px 0 10px;
   color: white;
   text-align: center;
+  max-height: 323px;
 }
 
 
