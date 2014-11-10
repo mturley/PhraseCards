@@ -1,6 +1,6 @@
 body {
   background: #45ACF1;
-  font-family: 'Lato', sans-serif!important;
+  font-family: 'Lato'!important;
   color: white;
 }
 
@@ -25,11 +25,17 @@ img {
   margin-top: 60px;
 }
 
+.lead {
+  font-family: 'Lato', sans-serif!important;
+  font-weight: 200;
+}
+
 .login input[type="text"],
 .login input[type="password"],
 .play_area input[type="text"],
 .chat input[type="text"],
-.back input[type="text"]{
+.back input[type="text"],
+.search input[type="text"] {
   font-size: 32px;
   font-weight: 100;
   height: 48px;
@@ -205,16 +211,24 @@ margin-top: 20px;
 /* PROFILE */
 .profile {
   margin-top: 80px;
+  font-family: 'Lato', sans-serif!important;
+  font-weight: 100;
 }
 
-.profile h2, .profile h3 {
+.profile h2, .profile h3, .subheader {
+  font-family: 'Lato', sans-serif!important;
+  font-weight: 100;
   color: white;
 }
-
+.profile h2 {
+  font-size: 22px;
+}
 .profile img{
   border-radius: 100%;
 }
-
+.search {
+  padding-top: 40px;
+}
 .friends img {
   margin: 4px 0;
   border-radius: 100%;
