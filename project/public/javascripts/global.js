@@ -5,11 +5,22 @@ $('#debug_icon').click(function(){
   $('#debug_menu').toggle();
 });
 
-$('#new_game_container').click(function(){
-  $('#new_game_card').toggleClass('flip');
+
+
+$('.back').hide();
+
+$('.front').click(function(){
+  $('.front').addClass('zoomOut');
+  $('.back').removeClass('zoomOut');
+  $('.back').show().addClass('zoomIn');
 });
 
-$('.flipback').click(function(e){
-  e.preventDefault();
-  $('#new_game_card').toggleClass('flip');
+
+
+$('.cancel').click(function(event){
+  event.preventDefault();
+  $('.back').addClass('zoomOut');
+  $('.back').hide();
+  $('.front').removeClass('zoomOut');
+  $('.front').addClass('zoomIn');
 });
