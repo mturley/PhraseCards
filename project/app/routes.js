@@ -26,6 +26,12 @@ module.exports = function(app,passport) {
         avatar : gravatar.get(req.user.local.email)
       });
     })
+    .get('/czar', isLoggedIn, function(req, res) {
+      res.render('game_czar_view.ejs', {
+        user : req.user,
+        avatar : gravatar.get(req.user.local.email)
+      });
+    })
     .get('/signup', function(req, res) {
       res.render('signup.ejs', { message: req.flash('signupMessage') });
     })

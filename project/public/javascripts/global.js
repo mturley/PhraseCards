@@ -6,6 +6,12 @@ $('#debug_icon').click(function(){
 });
 
 $('.back').hide();
+$('nav').hide();
+
+$('.fa-bars').click(function(){
+    $('nav').slideToggle( "slow" );
+});
+
 
 $('.front').click(function(){
   $('.front').addClass('zoomOut');

@@ -14,4 +14,5 @@ setInterval(function() {
     seconds.animate(second/60, function() {
 
     });
+    $('.winner').addClass('animated pulse');
 }, 1000);
