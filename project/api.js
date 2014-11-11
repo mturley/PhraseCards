@@ -118,7 +118,6 @@ router
             game.players = [];
             game.story_id = null;
             game.save(function (err, savedGame) {
-              console.log(arguments);
               if(err) {
                 res.send(err);
               } else {
