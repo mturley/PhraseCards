@@ -4,10 +4,9 @@ body {
   color: white;
 }
 
-.debug_icon {
+.fa-bars {
   color: white;
-  margin-right: 40px;
-  font-size: 32px;
+  margin-left: 20px;
 }
 
 .login {
