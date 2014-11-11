@@ -20,6 +20,10 @@ module.exports = function(app,passport) {
         avatar : gravatar.get(req.user.local.email)
       });
     })
+    .get('/story', function(req, res) {
+      res.render('story_picker.ejs', {
+      });
+    })
     .get('/game', isLoggedIn, function(req, res) {
       res.render('game.ejs', {
         user : req.user,
