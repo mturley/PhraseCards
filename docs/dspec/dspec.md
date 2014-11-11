@@ -1,5 +1,11 @@
 # Design Specification
 
+## Views Walkthrough Demo
+
+[Login Here](https://powerful-sands-7248.herokuapp.com/) Email: demo@test.com  Password: 12345
+<p>Once logged in click on the hamburger menu icon in the upper left to reveal the debugging menu that will allow you to easily jump around the views demo.</p>
+![menu demo](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/dspec/images/menu.gif)
+
 <br><br><br>
 ## Database Design
 
