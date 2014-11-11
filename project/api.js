@@ -61,7 +61,7 @@ router
     .delete(function(req,res){  //remove the user given the id
       User.remove({
         _id: req.params.user_id
-      }, function(err, bear) {
+      }, function(err, user) {
         if (err) {
           res.send(err);
         }
@@ -86,29 +86,74 @@ router
 // Game/Room/Lobby related API stuff below
 
 router
-  .route('/game')
-    .put(function(req,res) {
-
+  .route('/games')
+    .get(function(req,res) {
+      // Get a list of games (used on lobby page)
+      Game.find(function(err,games){
+        if(err) {
+          res.send(err);
+        } else {
+          res.json(games);
+        }
+      });
+    })
+    .post(function(req,res) {
+      // Create a new game (used on lobby page)
+      var reqTitle = req.query.title;
+      if(!reqTitle || reqTitle === '') {
+        res.status(400).send("Invalid Request: Game title required");
+      }
+      Game.where({ active: true, title: reqTitle }).count(function (err, count) {
+        if(err) {
+          res.send(err);
+        } else {
+          if(count !== 0) {
+            res.json({ success: false, message: "An active game room with that name already exists" });
+          } else {
+            var game = new Game();
+            game.title = reqTitle;
+            game.active = true;
+            game.currentRound = 0;
+            game.currentPhase = 'setup';
+            game.players = [];
+            game.story_id = null;
+            game.save(function (err, savedGame) {
+              console.log(arguments);
+              if(err) {
+                res.send(err);
+              } else {
+                res.json({ success: true, game_id: savedGame._id });
+              }
+            });
+          }
+        }
+      });
     });
 
 router
-  .route('/game/:game_id')
+  .route('/games/:game_id')
     .get(function(req,res) {
+      // Get a particular game's object
+      // TODO determine what data is loaded based on who is requesting??
       var gameId = req.params.game_id;
       res.json({ todo: "testing, get game with id: "+gameId});
       // TODO fetch game details
     })
-    .post(function(req,res) {
+    .put(function(req,res) {
       var gameId = req.params.game_id;
       res.json({ todo: "testing, update game with id: "+gameId});
       // TODO update game details
     })
     .delete(function(req,res) {
-      var gameId = req.params.game_id;
-      res.json({ todo: "testing, delete game with id: "+gameId});
-      // TODO delete game
+      Game.remove({
+        _id: req.params.game_id
+      }, function(err, game) {
+        if (err) {
+          res.send(err);
+        }
+        res.json({ message: 'Successfully deleted' });
+      });
     });
-
 
 //5446acdfdb16c91faf21cad7
 
