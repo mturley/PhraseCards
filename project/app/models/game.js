@@ -5,7 +5,7 @@ var GameSchema = mongoose.Schema({
   active       : Boolean,
   currentRound : Number,
   numPlayers   : Number,
-  currentPhase : { type: String, enum: ['setup', 'waiting' 'wordSubmission', 'wordSelection', 'review'] },
+  currentPhase : { type: String, enum: ['setup', 'waiting', 'wordSubmission', 'wordSelection', 'review'] },
   players : [{
     user_id    : String,
     score      : Number,

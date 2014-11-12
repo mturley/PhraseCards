@@ -89,17 +89,17 @@ module.exports = function(app,passport) {
 //       });
 //     })
 //     // process the login form
-//     .post('/', passport.authenticate('local-login', {
-//       successRedirect : '/lobby', // redirect to the secure profile section
-//       failureRedirect : '/', // redirect back to the signup page if there is an error
-//       failureFlash : true // allow flash messages
-//     }))
-//     .post('/signup', passport.authenticate('local-signup', {
-//       successRedirect : '/lobby', // redirect to the secure profile section
-//       failureRedirect : '/signup', // redirect back to the signup page if there is an error
-//       failureFlash : true // allow flash messages
-//     }));
-// }
+    .post('/', passport.authenticate('local-login', {
+      successRedirect : '/lobby', // redirect to the secure profile section
+      failureRedirect : '/', // redirect back to the signup page if there is an error
+      failureFlash : true // allow flash messages
+    }))
+    .post('/signup', passport.authenticate('local-signup', {
+      successRedirect : '/lobby', // redirect to the secure profile section
+      failureRedirect : '/signup', // redirect back to the signup page if there is an error
+      failureFlash : true // allow flash messages
+    }));
+}
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
