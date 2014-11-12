@@ -1,10 +1,11 @@
-var gravatar = require('node-gravatar');
+var gravatar = require('node-gravatar'),
+    api          = require('./api');
 
 module.exports = function(app,passport) {
   app
     .get('/', function(req, res) {
       res.render('index.ejs', {
-      	message: req.flash('loginMessage')
+      	message: req.flash('loginMessage'),
       });
     })
     .get('/profile', isLoggedIn, function(req, res) {

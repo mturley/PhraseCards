@@ -7,7 +7,6 @@ var express = require('express'),
   Game = require('./app/models/game'),
   router = express.Router();
 
-
 router
   .route('/users') //chaining post and get
     .post(function(req, res){
