@@ -102,6 +102,7 @@ router
       var reqTitle = req.query.title;
       if(!reqTitle || reqTitle === '') {
         res.status(400).send("Invalid Request: Game title required");
+        return;
       }
       Game.where({ active: true, title: reqTitle }).count(function (err, count) {
         if(err) {
