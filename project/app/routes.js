@@ -18,18 +18,25 @@ module.exports = function(app,passport) {
       res.render('lobby.ejs', {
         user : req.user,
         avatar : gravatar.get(req.user.local.email),
-        pageName : 'lobby'
+        pageName : 'lobby',
+        usingBlaze : true
       });
     })
     .get('/story', function(req, res) {
       res.render('story_picker.ejs', {
       });
     })
-    .get('/game', isLoggedIn, function(req, res) {
+    .get('/game', function(req, res) {
+      // TODO remove this temporary   route, it's just for frontend viewing in no particular game
+      res.redirect('/game/somegameidgoeshere');      
+    })
+    .get('/game/:game_id', isLoggedIn, function(req, res) {
       res.render('game.ejs', {
         user : req.user,
         avatar : gravatar.get(req.user.local.email),
-        pageName : 'game'
+        game_id : req.params.game_id,
+        pageName : 'game',
+        usingBlaze : true
       });
     })
     .get('/czar', isLoggedIn, function(req, res) {
