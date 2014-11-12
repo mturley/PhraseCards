@@ -9,5 +9,12 @@
     <script src="javascripts/chat.js"></script>
     <script src="javascripts/progressbar.js"></script>
     <script src="javascripts/timer.js"></script>
+
+    <% if(locals.pageName === 'lobby') { %>
+        <script src="javascripts/lobby.js"></script>
+    <% } else if (locals.pageName === 'game') { %>
+        <script src="javascripts/game.js"></script>
+    <% } %>
+
   </body>
 </html>

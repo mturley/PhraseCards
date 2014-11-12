@@ -17,7 +17,8 @@ module.exports = function(app,passport) {
     .get('/lobby', isLoggedIn, function(req, res) {
       res.render('lobby.ejs', {
         user : req.user,
-        avatar : gravatar.get(req.user.local.email)
+        avatar : gravatar.get(req.user.local.email),
+        pageName : 'lobby'
       });
     })
     .get('/story', function(req, res) {
@@ -27,7 +28,8 @@ module.exports = function(app,passport) {
     .get('/game', isLoggedIn, function(req, res) {
       res.render('game.ejs', {
         user : req.user,
-        avatar : gravatar.get(req.user.local.email)
+        avatar : gravatar.get(req.user.local.email),
+        pageName : 'game'
       });
     })
     .get('/czar', isLoggedIn, function(req, res) {
