@@ -37,7 +37,7 @@ img.clickable:hover {
   font-family: 'Lato', sans-serif!important;
   font-weight: 200;
 }
-
+input[type="email"], input[type="email"]:focus,
 .login input[type="text"],
 .login input[type="password"],
 .play_area input[type="text"],
