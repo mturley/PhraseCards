@@ -1,5 +1,4 @@
-var gravatar = require('node-gravatar'),
-    api          = require('./api');
+var gravatar = require('node-gravatar');
 
 module.exports = function(app,passport) {
   app
@@ -29,7 +28,7 @@ module.exports = function(app,passport) {
     })
     .get('/game', function(req, res) {
       // TODO remove this temporary   route, it's just for frontend viewing in no particular game
-      res.redirect('/game/somegameidgoeshere');      
+      res.redirect('/game/somegameidgoeshere');
     })
     .get('/game/:game_id', isLoggedIn, function(req, res) {
       res.render('game.ejs', {
@@ -54,7 +53,6 @@ module.exports = function(app,passport) {
       res.redirect('/');
     })
 //     .post('/start_game', function (req, res) {
-//       var alphanum = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
 //       var room    = randomId(),
 //           pid     = randomId(),
