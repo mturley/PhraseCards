@@ -99,7 +99,7 @@ router
     })
     .post(function(req,res) {
       // Create a new game (used on lobby page)
-      var reqTitle = req.query.title;
+      var reqTitle = req.body.title;
       if(!reqTitle || reqTitle === '') {
         res.status(400).send("Invalid Request: Game title required");
         return;
