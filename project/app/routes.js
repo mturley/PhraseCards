@@ -7,9 +7,13 @@ var hostname = "http://localhost:8080";
 module.exports = function(app,passport) {
   app
     .get('/', function(req, res) {
-    res.render('index.ejs', {
-        message: req.flash('loginMessage'),
-      });
+      if (req.isAuthenticated()){
+          res.redirect('/lobby');
+        }else{
+          res.render('index.ejs', {
+            message: req.flash('loginMessage'),
+          });
+        }
     })
     .get('/search', isLoggedIn, function(req, res) {
       var userReq = http.request(getHTTPOptions(hostname + "/api/search/"+ req.query['name_string'], 'GET'), function(resp) {
@@ -63,7 +67,11 @@ module.exports = function(app,passport) {
       });
     })
     .get('/signup', function(req, res) {
-      res.render('signup.ejs', { message: req.flash('signupMessage') });
+        if (req.isAuthenticated()){
+          res.redirect('/lobby');
+        }else{
+          res.render('signup.ejs', { message: req.flash('signupMessage') });
+        }
     })
     .get('/logout', function(req, res) {
       req.logout();
