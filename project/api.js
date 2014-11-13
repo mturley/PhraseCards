@@ -72,7 +72,8 @@ router
 router
   .route('/search/:name_string')
     .get(function(req,res){      
-      User.find({ 'local.nickname': req.params.name_string }, function (err, users) {
+      //utilizes wildcard to find nicknames by anything matching given string
+      User.find({'local.nickname': {$regex: req.params.name_string, $options: 'i'}}, function (err, users) {
         if (err) {
           res.send(err);
         }
