@@ -70,15 +70,13 @@ router
     });
 
 router
-  .route('/search')
+  .route('/search/:name_string')
     .get(function(req,res){      
-      User.find({ 'local.nickname': req.query['nickname'] }, function (err, users) {
+      User.find({ 'local.nickname': req.params.name_string }, function (err, users) {
         if (err) {
           res.send(err);
         }
-        res.render('search.ejs',{
-          Users : users
-        });
+          res.json(users);
       });
       
     });

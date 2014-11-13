@@ -2,32 +2,27 @@ var gravatar = require('node-gravatar');
 var http = require('http');
 var url = require('url');
 
+var hostname = "http://localhost:8080";
+
 module.exports = function(app,passport) {
   app
     .get('/', function(req, res) {
-
-      var URL = url.parse("http://localhost:8080/api/users");
-      var options = {
-        host: URL.hostname,
-        path: URL.path,
-        port: URL.port,
-        method: 'GET'
-      };
-    
-    var userReq = http.request(options, function(resp) {
-      resp.setEncoding('utf8');
-      resp.on('data', function(data){
-      console.log(data);
-    });
-    }).on('error', function(e) {
-      console.log("Got error: " + e.message);
-    });
-    userReq.end();
-
-
     res.render('index.ejs', {
         message: req.flash('loginMessage'),
       });
+    })
+    .get('/search', isLoggedIn, function(req, res) {
+      var userReq = http.request(getHTTPOptions(hostname + "/api/search/"+ req.query['name_string'], 'GET'), function(resp) {
+        resp.setEncoding('utf8');
+        resp.on('data', function(data){
+        var userList = JSON.parse(data);
+           res.render('search.ejs', {Users : userList
+      });
+      });
+    }).on('error', function(e) {console.log("Got error: " + e.message);});
+      userReq.end();
+
+   
     })
     .get('/profile', isLoggedIn, function(req, res) {
       res.render('profile.ejs', {
@@ -127,6 +122,20 @@ module.exports = function(app,passport) {
       failureRedirect : '/signup', // redirect back to the signup page if there is an error
       failureFlash : true // allow flash messages
     }));
+}
+
+//helper method for creating options for HTTP requests 
+//usage: URL and REST method(GET, POST, etc)
+function getHTTPOptions(URL, RESTMethod){
+
+      var parsedURL = url.parse(URL);
+      var options = {
+        host: parsedURL.hostname,
+        path: parsedURL.path,
+        port: parsedURL.port,
+        method: RESTMethod
+      };
+      return options;
 }
 
 // route middleware to make sure a user is logged in
