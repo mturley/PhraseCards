@@ -213,7 +213,6 @@ margin-top: 20px;
 
 .blur {
   color: transparent;
-  unselectable='on';
   text-shadow: 0 0 15px rgba(0,0,0,0.5);
 }
 
