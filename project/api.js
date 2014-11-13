@@ -25,7 +25,8 @@ router
         if(err) {
           res.send(err);
         }
-        res.json(users);
+        Users = JSON.stringify(users);
+       res.json(users);
       });
     });
 

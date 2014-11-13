@@ -1,10 +1,32 @@
 var gravatar = require('node-gravatar');
+var http = require('http');
+var url = require('url');
 
 module.exports = function(app,passport) {
   app
     .get('/', function(req, res) {
-      res.render('index.ejs', {
-      	message: req.flash('loginMessage'),
+
+      var URL = url.parse("http://localhost:8080/api/users");
+      var options = {
+        host: URL.hostname,
+        path: URL.path,
+        port: URL.port,
+        method: 'GET'
+      };
+    
+    var userReq = http.request(options, function(resp) {
+      resp.setEncoding('utf8');
+      resp.on('data', function(data){
+      console.log(data);
+    });
+    }).on('error', function(e) {
+      console.log("Got error: " + e.message);
+    });
+    userReq.end();
+
+
+    res.render('index.ejs', {
+        message: req.flash('loginMessage'),
       });
     })
     .get('/profile', isLoggedIn, function(req, res) {
