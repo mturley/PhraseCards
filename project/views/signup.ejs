@@ -1,13 +1,10 @@
 <% include partials/header %>
+<% include partials/messages %>
 <div class="row">
 	<div class="small-6 large-centered columns">
     <img src="images/logo.png" alt="PhraseCards" class="logo" />
     <div class="row">
       <div class="small-12 columns login">
-        <!-- show any messages that come back with authentication -->
-        <% if (message.length > 0) { %>
-          <div class="alert alert-danger"><%= message %></div>
-        <% } %>
         <form action="/signup" method="post">
           <div class="form-group">
             <label>Email</label>

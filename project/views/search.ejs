@@ -1,15 +1,11 @@
-<!-- <% include ../views/partials/header %> -->
 <% include partials/header %>
-<% include partials/sidebar %>
-
   <div class="row">
     <div class="small-12 medium-12 large-12 columns">
-      <h1>Search Page</h1>
+      <h2>Search Page</h2>
       <% for (i = 0; i < Users.length; i++) { %>
         <p><%= Users[i].local.nickname%></p>
       <% } %>
     </div>
   </div>
 
-<!-- <% include ../views/partials/footer %> -->
 <% include partials/footer %>
