@@ -24,9 +24,7 @@ module.exports = function(app,passport) {
       });
       });
     }).on('error', function(e) {console.log("Got error: " + e.message);});
-      userReq.end();
-
-   
+      userReq.end();  
     })
     .get('/profile', isLoggedIn, function(req, res) {
       res.render('profile.ejs', {

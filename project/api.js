@@ -154,6 +154,24 @@ router
       });
     });
 
+router
+  .route('/friends/:user_id')
+    .put(function(req,res){  
+        connectContact(req.user._id, req.params.user_id,res);
+        //connectContact(req.params.user_id,req.user._id,res);
+         res.json({ message: 'Successfully connected' });
+    });
+
+    function connectContact(firstUserID, secondUserID,res){
+        User.findById(firstUserID,function(err,user){
+           if(err) {
+          res.send(err);
+        }
+        console.log(user.local.email);
+        
+      });
+    }
+
 //5446acdfdb16c91faf21cad7
 
 module.exports = router;
