@@ -59,3 +59,15 @@
 
 	progressbar.js (http://kimmobrunfeldt.github.io/progressbar.js/)
 		for pretty-looking timers
+	
+	Notable node libraries 
+	
+	express General backend framework for our web application
+	
+	passport Used for user authentication (registration, login, logout) 
+
+	mongodb/mongoose NoSQL database and the framework for database design 
+
+	ejs Javascript template that cleans html code 
+
+	gravatar Display profile pictures socket.io
