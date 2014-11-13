@@ -1,20 +1,20 @@
 {
-  name: "Sample",
-  tags: ["Tag1", "Tag2", "Tag3"],
-  storyChunks: [
+  "name": "Sample",
+  "tags": ["Tag1", "Tag2", "Tag3"],
+  "storyChunks": [
     {
-      prefix: "This will be the ",
-      blank: {
-        type: "body part"
+      "prefix": "This will be the ",
+      "blank": {
+        "type": "body part"
       },
-      suffix: " of a madlib."
+      "suffix": " of a madlib."
     },
     {
-      prefix: "They should be written in a ",
-      blank: {
-        type: "adjective"
+      "prefix": "They should be written in a ",
+      "blank": {
+        "type": "adjective"
       },
-      suffix: " to parse format that includes brackets for fill-ins, and pipelines enclosing areas shown in the card-czar view"
+      "suffix": " to parse format that includes brackets for fill-ins, and pipelines enclosing areas shown in the card-czar view"
     },
     ...
   ]
