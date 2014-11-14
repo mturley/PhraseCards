@@ -206,7 +206,7 @@ As a game progresses, its corresponding story object in the database will be mut
 ## In-Game Data Flow and State Transitions
 [Mike 11/14]
 
-*** (Mike is working on this section) ***
+![Flow Chart](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/dspec/images/326_final_flowchart.png "Flow Chart")
 
 <br><br><br>
 
