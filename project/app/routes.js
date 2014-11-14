@@ -26,6 +26,21 @@ module.exports = function(app,passport) {
     }).on('error', function(e) {console.log("Got error: " + e.message);});
       userReq.end();  
     })
+    /*
+    //Search all users
+    //Check what query on empty string returns
+    .get('/searchAll', isLoggedIn, function(req, res) {
+      var userReq = http.request(getHTTPOptions(hostname + "/api/search/"+ req.query[''], 'GET'), function(resp) {
+        resp.setEncoding('utf8');
+        resp.on('data', function(data){
+        var userList = JSON.parse(data);
+           res.render('search.ejs', {Users : userList
+      });
+      });
+    }).on('error', function(e) {console.log("Got error: " + e.message);});
+      userReq.end();
+    })
+    */
     .get('/profile', isLoggedIn, function(req, res) {
       res.render('profile.ejs', {
         // get the user out of session and pass to template

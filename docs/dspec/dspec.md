@@ -1,5 +1,10 @@
 # Design Specification
 
+## Project Idea
+
+This project is a full scale web service which centers around playing games of multiplayer madlibs. The game itself borrows from the idea of apples-to-apples where every turn a player is picked to choose submissions made by other players to fill in the blanks of premade Madlibs stories. The application presents a user friendly gui, a playing area, and an in-game chatroom. 
+ 
+
 ## Views Walkthrough Demo
 
 [Login Here](https://powerful-sands-7248.herokuapp.com/) Email: demo@test.com  Password: 12345
