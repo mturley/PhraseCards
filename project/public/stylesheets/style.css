@@ -222,7 +222,8 @@ margin-top: 20px;
   width:      100%;
   height:     140px;
   /*I want overflow as hidden but still arrow and mouse scrollable*/
-  overflow: auto;
+  /* I will find another way to fix the box showing in firefox if
+  we set overflow to auto it breaks the javascript update scroll. - Colby */
   overflow-x: hidden;
   margin-bottom: 30px;
   word-wrap: break-word;
