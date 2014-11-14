@@ -1,19 +1,19 @@
 # Design Specification
 
 ## Project Idea
-[David 11/13]
+[David 11/13]<br/>
 This project is a full scale web service which centers around playing games of multiplayer madlibs. The game itself borrows from the idea of apples-to-apples where every turn a player is picked to choose submissions made by other players to fill in the blanks of premade Madlibs stories. The application presents a user friendly gui, a playing area, and an in-game chatroom.
 
 
 ## Views Walkthrough Demo
-[Colby 11/12]
+[Colby 11/12]<br/>
 [Login Here](https://powerful-sands-7248.herokuapp.com/) Email: demo@test.com  Password: 12345
 <p>Once logged in click on the hamburger menu icon in the upper left to reveal the debugging menu that will allow you to easily jump around the views demo.</p>
 ![menu demo](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/dspec/images/menu.gif)
 
 <br><br><br>
 ## Database Design
-[Dan 11/13]
+[Dan 11/13]<br/>
 #### User
 
 		local	        : {
@@ -26,7 +26,7 @@ This project is a full scale web service which centers around playing games of m
 
 
 #### Game
-[Mike/Dan 11/8]
+[Mike/Dan 11/8]<br/>
 		title        : String,
 	  active       : Boolean,
 	  currentRound : Number,
@@ -55,7 +55,7 @@ This project is a full scale web service which centers around playing games of m
 
 <br><br><br>
 ## External Libraries
-[Colby 11/8]
+[Colby 11/8]<br/>
 #### CSS
 
 [Foundation](http://foundation.zurb.com/)
@@ -69,7 +69,7 @@ This project is a full scale web service which centers around playing games of m
 
 
 #### Javascripts
-[Colby 11/8]
+[Colby 11/8]<br/>
 [jquery](http://jquery.com/)
 
 [Foundation](http://foundation.zurb.com/)
@@ -80,7 +80,7 @@ This project is a full scale web service which centers around playing games of m
 
 
 ##### Notable node libraries
-[Mike 11/11]
+[Mike 11/11]<br/>
 [Express](http://expressjs.com/)
 	General backend framework for our web application
 
