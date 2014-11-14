@@ -62,36 +62,36 @@ This project is a full scale web service which centers around playing games of m
 
 #### User
 
-		local	        : {
-			email	    : String,
-			password     : String,
-			nickname     : String
-			game_history : [game_id : String]
-			contacts      : [{contact_id : String, isFriend : Boolean}]
-		}
+    local         : {
+      email     : String,
+      password     : String,
+      nickname     : String
+      game_history : [game_id : String]
+      contacts      : [{contact_id : String, isFriend : Boolean}]
+    }
 
 
 #### Game
 [Mike/Dan 11/8]<br/>
 
-		title        : String,
-	  active       : Boolean,
-	  currentRound : Number,
-	  numPlayers   : Number,
-	  currentPhase : { type: String, enum: ['setup', 'waiting', 'wordSubmission', 'wordSelection', 'review'] },
-	  players : [{
-	    user_id    : String,
-	    score      : Number,
-	    isCardCzar : Boolean,
-	    status     : String,
-	    statusDate : Date
-	  }],
-	  rounds : [{
-	    cardCzar : String,
-	    winner   : String,
-	    sentence : String
-	  }],
-	  story_id : String
+    title        : String,
+    active       : Boolean,
+    currentRound : Number,
+    numPlayers   : Number,
+    currentPhase : { type: String, enum: ['setup', 'waiting', 'wordSubmission', 'wordSelection', 'review'] },
+    players : [{
+      user_id    : String,
+      score      : Number,
+      isCardCzar : Boolean,
+      status     : String,
+      statusDate : Date
+    }],
+    rounds : [{
+      cardCzar : String,
+      winner   : String,
+      sentence : String
+    }],
+    story_id : String
 
 
 
@@ -101,16 +101,16 @@ This project is a full scale web service which centers around playing games of m
 Story Schema:
 ```
 {
-	name : String
+  name : String
   tags : [String],
   storyChunks : [{
     prefix: String,
-  	blank: {
+    blank: {
       type: String
       [.. additional state data about the blank will go here ..]
-  	},
-  	suffix: String
-	}]
+    },
+    suffix: String
+  }]
 }
 ```
 
@@ -147,13 +147,13 @@ Example Story Object (to illustrate the schema):
 #### CSS
 
 [Foundation](http://foundation.zurb.com/)
-	bootstrap our css
+  bootstrap our css
 
 [Font-Awesome](http://fortawesome.github.io/Font-Awesome/)
-	icons
+  icons
 
 [Animate.css](http://daneden.github.io/animate.css/)
-	animations
+  animations
 
 
 #### Javascripts
@@ -162,30 +162,30 @@ Example Story Object (to illustrate the schema):
 [jquery](http://jquery.com/)
 
 [Foundation](http://foundation.zurb.com/)
-	bootstrap our js
+  bootstrap our js
 
 [progressbar.js](http://kimmobrunfeldt.github.io/progressbar.js/)
-	for pretty-looking timers
+  for pretty-looking timers
 
 
 ##### Notable node libraries
 [Mike 11/11]<br/>
 
 [Express](http://expressjs.com/)
-	General backend framework for our web application
+  General backend framework for our web application
 
 [Passport](http://passportjs.org/)
-	Used for user authentication (registration, login, logout)
+  Used for user authentication (registration, login, logout)
 
 [mongodb](http://www.mongodb.org/)
-	NoSQL database
+  NoSQL database
 
 [mongoose] (http://mongoosejs.com/)
-	Framework for database design
+  Framework for database design
 
 [ejs](http://www.embeddedjs.com/)
-	Javascript template that cleans html code
+  Javascript template that cleans html code
 
 [Gravatar](https://en.gravatar.com/)
-	Display profile pictures socket.io
+  Display profile pictures socket.io
 
