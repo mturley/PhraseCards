@@ -58,41 +58,43 @@ This project is a full scale web service which centers around playing games of m
 
 
 ## Database Design
-[Dan 11/13]<br/>
+[Dan 11/13, Mike 11/14]<br/>
+
+We are using MongoDB for our database, which will store data about each user, metadata and state of each game (both ongoing and past), and a traversable/structured/stateful form of each "mad-libs" story in the application.
 
 #### User
-
-    local         : {
-      email     : String,
-      password     : String,
-      nickname     : String
-      game_history : [game_id : String]
-      contacts      : [{contact_id : String, isFriend : Boolean}]
-    }
-
+```
+  local          : {
+    email        : String,
+    password     : String,
+    nickname     : String
+    game_history : [game_id : String]
+    contacts     : [{contact_id : String, isFriend : Boolean}]
+  }
+```
 
 #### Game
 [Mike/Dan 11/8]<br/>
-
-    title        : String,
-    active       : Boolean,
-    currentRound : Number,
-    numPlayers   : Number,
-    currentPhase : { type: String, enum: ['setup', 'waiting', 'wordSubmission', 'wordSelection', 'review'] },
-    players : [{
-      user_id    : String,
-      score      : Number,
-      isCardCzar : Boolean,
-      status     : String,
-      statusDate : Date
-    }],
-    rounds : [{
-      cardCzar : String,
-      winner   : String,
-      sentence : String
-    }],
-    story_id : String
-
+```
+  title        : String,
+  active       : Boolean,  // whether or not the game is ongoing
+  currentRound : Number,
+  numPlayers   : Number,
+  currentPhase : { type: String, enum: ['setup', 'waiting', 'wordSubmission', 'wordSelection', 'review'] },
+  players : [{
+    user_id    : String,
+    score      : Number,
+    isCardCzar : Boolean,
+    status     : String,
+    statusDate : Date
+  }],
+  rounds : [{
+    cardCzar : String,
+    winner   : String,
+    sentence : String
+  }],
+  story_id : String
+```
 
 
 #### Story
@@ -100,7 +102,6 @@ This project is a full scale web service which centers around playing games of m
 
 Story Schema:
 ```
-{
   name : String
   tags : [String],
   storyChunks : [{
@@ -111,7 +112,6 @@ Story Schema:
     },
     suffix: String
   }]
-}
 ```
 
 Example Story Object (to illustrate the schema):
