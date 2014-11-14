@@ -5,6 +5,40 @@
 
 This project is a full scale web service which centers around playing games of multiplayer madlibs. The game itself borrows from the idea of apples-to-apples where every turn a player is picked to choose submissions made by other players to fill in the blanks of premade Madlibs stories. The application presents a user friendly gui, a playing area, and an in-game chatroom.
 
+<br><br><br>
+## Birds Eye View
+
+*** Place Flowchart here ***
+
+<br><br><br>
+## Component-by-Component Breakdown
+[Robert, Sean 11/14]
+
+#### /
+<p>*** Breakdown here ***</p>
+
+#### /lobby
+<p>*** Breakdown here ***</p>
+
+#### /story
+<p>*** Breakdown here ***</p>
+
+#### /game
+<p>*** Breakdown here ***</p>
+
+#### /profile
+<p>*** Breakdown here ***</p>
+
+#### /signup
+<p>*** Breakdown here ***</p>
+
+
+<br><br><br>
+## Revision History
+
+*** Place Revision History here ***
+
+
 
 ## Views Walkthrough Demo
 [Colby 11/12]<br/>
@@ -15,13 +49,7 @@ This project is a full scale web service which centers around playing games of m
 
 <br><br><br><br>
 
-## Views Details
-[Robert, Sean 11/14]<br/>
-<p> 
 
-
-
-</p>
 
 ## Database Design
 [Dan 11/13]<br/>
@@ -62,6 +90,7 @@ This project is a full scale web service which centers around playing games of m
 
 
 #### Story
+[Sean, 11/14]
 
 		text : String (?)
 		 "name": "Sample",
@@ -85,8 +114,6 @@ This project is a full scale web service which centers around playing games of m
   	]
 
 <br><br><br>
-
-## Revision History
 
 
 ## External Libraries
