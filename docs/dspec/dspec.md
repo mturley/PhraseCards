@@ -18,6 +18,15 @@ This project is an interactive multiplayer online competitive madlib web service
 [Robert, Yue 11/14]
 <p>The website is scripted using HTML, whereas the game itself is using Javascript. Style.css is used within most of the webpages of the site, and basically contains the unique formats we implement for the webpages. In addition, all of the views of the app uses EJS.The website contains features from the individual aspect, such as personal profile, to the community aspect(ie. lobby and chatroom). The remaining components are focused on the game aspect of the app. Certain components , like stories, are necessary for the game to run properly, while others simply enhance the players' experience.</p>
 
+#### Login
+[Yue 11/14]
+<p>
+</p>
+
+#### Signup
+[Yue 11/14]
+<p>The signup feature allows any person to create an account on the website. The account creation requires an email address, a username, and a password. The feature checks the database and makes sure the username has not been taken already. A validation function will also be implemented to ensure the creation of the account.</p>
+
 #### Lobby
 [Yue 11/14]
 <p> The lobby function is is an essential feature of the web app that allows all users to see the games in progress, games being created, and games being filled up. Players not in a game will spend most of their time here. There will be a list of players currently in the lobby, in which a player can click and view their profiles. Moreover, in the lobby, players will be able to chat with other players in the lobby, create a game, and join a game.  </p>
@@ -48,10 +57,6 @@ This is our main game view for when the mad-lib game is running.  Users enter th
 #### Friends
 [Robert 11/14]
 <p>Friends consists of a list of a persons friends.  It is part of the profile functionality and is used in conjunction with search. </p>
-
-#### Signup
-[Yue 11/14]
-<p>The signup feature allows any person to create an account on the website. The account creation requires an email address, a username, and a password. The feature checks the database and makes sure the username has not been taken already. A validation function will also be implemented to ensure the creation of the account.</p>
 
 #### API
 [Mike 11/14]
