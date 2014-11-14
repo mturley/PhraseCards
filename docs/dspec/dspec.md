@@ -117,7 +117,7 @@ Story Schema:
 Example Story Object (to illustrate the schema):
 ```json
 {
-  "name" : "Sample"
+  "name" : "Sample",
   "tags" : ["Tag1", "Tag2", "Tag3"],
   "storyChunks": [
     {
@@ -138,6 +138,16 @@ Example Story Object (to illustrate the schema):
   ]
 }
 ```
+
+The above JSON object would represent the following "story" written out as text:
+```
+Sample
+------
+
+This will be the [noun] of a madlib.  This will be the text before a blank space [adjective] This will be the text following a blank space.
+```
+
+As a game progresses, its corresponding story object in the database will be mutated / populated with additional data based on the words submitted by players, which of each submission was chosen, etc.  The goal being that this story object (along with a pointer to the current "chunk" being played in a given round) can be used to keep track of the in-game progress through the story, as well as to render the full text of the story when the game is complete.
 <br><br><br>
 
 
