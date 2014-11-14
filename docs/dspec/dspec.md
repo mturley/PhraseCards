@@ -64,21 +64,21 @@ This project is a full scale web service which centers around playing games of m
 
 	##### Notable node libraries
 
-	[Express](http://expressjs.com/)
-		General backend framework for our web application
+[Express](http://expressjs.com/)
+	General backend framework for our web application
 
-	[Passport](http://passportjs.org/)
-		Used for user authentication (registration, login, logout)
+[Passport](http://passportjs.org/)
+	Used for user authentication (registration, login, logout)
 
-	[mongodb](http://www.mongodb.org/)
-		NoSQL database
+[mongodb](http://www.mongodb.org/)
+	NoSQL database
 
-	[mongoose] (http://mongoosejs.com/)
-		Framework for database design
+[mongoose] (http://mongoosejs.com/)
+	Framework for database design
 
-	[ejs](http://www.embeddedjs.com/)
-		Javascript template that cleans html code
+[ejs](http://www.embeddedjs.com/)
+	Javascript template that cleans html code
 
-	[Gravatar](https://en.gravatar.com/)
-		Display profile pictures socket.io
+[Gravatar](https://en.gravatar.com/)
+	Display profile pictures socket.io
 
