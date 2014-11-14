@@ -86,7 +86,25 @@ This project is a full scale web service which centers around playing games of m
 #### Story
 
 		text : String (?)
-
+                "name": "Sample",
+  		"tags": ["Tag1", "Tag2", "Tag3"],
+  		"storyChunks": [
+    		{
+     		  "prefix": "This will be the",
+      		  "blank": {
+        	   "type": "noun"
+                   },
+                "suffix": " of a madlib."
+                },
+               {
+    		"prefix": "Text before the blank will be here",
+      		"blank": {
+        	"type": "adjective"
+      		  },
+      		"suffix": "text following the blank will be here."
+    	        },
+      ...
+    ]
 
 <br><br><br>
 ## External Libraries
