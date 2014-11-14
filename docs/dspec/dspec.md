@@ -19,7 +19,7 @@ This project is a full scale web service which centers around playing games of m
 		local	        : {
 			email	    : String,
 			password     : String,
-			username     : String
+			nickname     : String
 			game_history : [game_id : String]
 			contacts      : [{contact_id : String, isFriend : Boolean}]
 		}
@@ -27,9 +27,24 @@ This project is a full scale web service which centers around playing games of m
 
 #### Game
 
-		players : [{user_id : String, score : Number, isCardCzar : boolean}],
-		rounds  : [{cardCzar : String, winner : String, sentence : String}],
-		story   : [???]
+	title        : String,
+  active       : Boolean,
+  currentRound : Number,
+  numPlayers   : Number,
+  currentPhase : { type: String, enum: ['setup', 'waiting', 'wordSubmission', 'wordSelection', 'review'] },
+  players : [{
+    user_id    : String,
+    score      : Number,
+    isCardCzar : Boolean,
+    status     : String,
+    statusDate : Date
+  }],
+  rounds : [{
+    cardCzar : String,
+    winner   : String,
+    sentence : String
+  }],
+  story_id : String
 
 
 
