@@ -8,7 +8,7 @@ This project is an interactive multiplayer online competitive madlib web service
 <br><br><br>
 ## Birds Eye View
 
-![Flow Chart](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/fspec/images/PhraseCards.png "Flow Chart")
+![Flow Chart](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/dspec/images/bird_eye_flowchart.png "Flow Chart")
 
 <br><br><br>
 ## Component-by-Component Breakdown
