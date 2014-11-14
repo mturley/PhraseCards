@@ -8,7 +8,7 @@ This project is an interactive multiplayer online competitive madlib web service
 <br><br><br>
 ## Birds Eye View
 
-*** Place Flowchart here ***
+![Flow Chart](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/fspec/images/PhraseCards.png "Flow Chart")
 
 <br><br><br>
 ## Component-by-Component Breakdown
@@ -74,6 +74,15 @@ The `/api/*` route space is reserved for a RESTful HTTP API that the application
   /api/friends
     GET    : get all of the current user's friends
 ```
+
+#### Responsiblity Breakdown
+- Colby Stone: Project Manager: Reponsible for final say on all aspects.  Decides what external libraries are used and in charge of their implementation and relaying information to the rest of the team.
+- Sean Kelley: Creative Director: 
+- Robert Hromada: Documentation: 
+- David Su: Frontend Programmer: 
+- Yue Shing: Frontend Programmer: 
+- Daniel Choi: Backend Programmer: 
+- Mike Turley: Backend Programmer: 
 
 <br><br><br>
 ## Revision History
