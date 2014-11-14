@@ -27,24 +27,24 @@ This project is a full scale web service which centers around playing games of m
 
 #### Game
 
-	title        : String,
-  active       : Boolean,
-  currentRound : Number,
-  numPlayers   : Number,
-  currentPhase : { type: String, enum: ['setup', 'waiting', 'wordSubmission', 'wordSelection', 'review'] },
-  players : [{
-    user_id    : String,
-    score      : Number,
-    isCardCzar : Boolean,
-    status     : String,
-    statusDate : Date
-  }],
-  rounds : [{
-    cardCzar : String,
-    winner   : String,
-    sentence : String
-  }],
-  story_id : String
+		title        : String,
+	  active       : Boolean,
+	  currentRound : Number,
+	  numPlayers   : Number,
+	  currentPhase : { type: String, enum: ['setup', 'waiting', 'wordSubmission', 'wordSelection', 'review'] },
+	  players : [{
+	    user_id    : String,
+	    score      : Number,
+	    isCardCzar : Boolean,
+	    status     : String,
+	    statusDate : Date
+	  }],
+	  rounds : [{
+	    cardCzar : String,
+	    winner   : String,
+	    sentence : String
+	  }],
+	  story_id : String
 
 
 
