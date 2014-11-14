@@ -173,7 +173,7 @@ As a game progresses, its corresponding story object in the database will be mut
   for some basic DOM manipulation and event handling
 
 [Blaze](http://meteor.github.io/blaze/)
-  for reactive DOM templating (easily update the DOM with new incoming data)
+  for reactive DOM templating
 
 [Foundation](http://foundation.zurb.com/)
   bootstrap our js
