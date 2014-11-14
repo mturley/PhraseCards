@@ -22,7 +22,7 @@ This project is a full scale web service which centers around playing games of m
 <p> The lobby function is is an essential feature of the web app that allows all users to see the games in progress, games being created, and games being filled up. Players not in a game will spend most of their time here. There will be a list of players currently in the lobby, in which a player can click and view their profiles. Moreover, in the lobby, players will be able to chat with other players in the lobby, create a game, and join a game.  </p>
 
 #### /story
-<p>*** Breakdown here ***</p>
+<p>All Madlib stories will be stored in a JSON object. These objects will contain information about the story like it's name, search tags, and length, as well as the story itself. The stories will be broken into "story chunks", which will provide the pieces of data that the different player views, either submitter or voter, will use inside the game. This object will be updated as the game progresses to store game state, and can be queried for any game information for rendering or other purposes.</p>
 
 #### /game
 <p>*** Breakdown here ***</p>
