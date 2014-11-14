@@ -204,9 +204,11 @@ As a game progresses, its corresponding story object in the database will be mut
 <br><br><br>
 
 ## In-Game Data Flow and State Transitions
-[Mike 11/14]
+[Mike, Sean 11/14]
 
 ![Flow Chart](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/dspec/images/326_final_flowchart.png "Flow Chart")
+
+** Mike will add a description here of the client action -> socket.io -> server -> database -> socket.io -> client render flow **
 
 <br><br><br>
 
