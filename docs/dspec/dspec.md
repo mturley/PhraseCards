@@ -27,12 +27,15 @@ This project is a full scale web service which centers around playing games of m
 <p>*** Breakdown here ***</p>
 
 #### /chat
+[Yue 11/14]
 <p>The chat feature will be implemented within the game function. The chat will run only when the game in running and will end when the game is over. We will be importing and using external APIs for this feature. Anyone participating in that particular game will be able to use the chat feature. For now, we have decided not to implement a profanity filter due to time constraints. This feature is meant to enhance players' game experience by increasing their interaction with each other.</p>
 
 #### /profile
-<p>Profile will hold all the information about the account creator. The information shown includes a Gavator picture, account creation date, total number of games played, and recent game history.</p>
+[Yue 11/14]
+<p>Profile will hold all the information about the account creator. The information shown includes a Gravator picture, account creation date, total number of games played, and recent game history. This feature allows players to distinguish themselves from other players and give their personal profile a unique feel. Furthermore, profiles enables players to view any other player's basic information. </p>
 
 #### /signup
+[Yue 11/14]
 <p>The signup feature allows any person to create an account on the website. The account creation requires an email address, a username, and a password. The feature checks the database and makes sure the username has not been taken already. A validation function will also be implemented to ensure the creation of the account.</p>
 
 
