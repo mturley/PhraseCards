@@ -14,8 +14,9 @@ This project is a full scale web service which centers around playing games of m
 ## Component-by-Component Breakdown
 [Robert, Sean 11/14]
 
-#### /
-<p>*** Breakdown here ***</p>
+#### /Overview
+[Robert, Yue 11/14]
+<p>The website is scripted using HTML, whereas the game itself is using Javascript. Style.css is used within most of the webpages of the site, and basically contains the unique formats we implement for the webpages. In addition, all of the views of the app uses EJS.The website contains features from the individual aspect, such as personal profile, to the community aspect(ie. lobby and chatroom). The remaining components are focused on the game aspect of the app. Certain components , like stories, are necessary for the game to run properly, while others simply enhance the players' experience.</p>
 
 #### /lobby
 [Yue 11/14]
@@ -44,11 +45,16 @@ This project is a full scale web service which centers around playing games of m
 
 <br><br><br>
 ## Revision History
+[Colby 11/14]<br/>
 
-*** Place Revision History here ***
+|Milestone    |Version|
+|--------|:-----:|
+|Project Proposal|0.1|
+|Functional Spec.|0.2|
+|Design Spec.|0.3|
+|Views Mockup|0.4|
 
-
-
+<br><br><br>
 ## Views Walkthrough Demo
 [Colby 11/12]<br/>
 
