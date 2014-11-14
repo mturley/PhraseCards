@@ -1,5 +1,6 @@
 var express = require('express'),
   app = express(),
+  mongodb = require('mongodb');
   mongoose = require('mongoose'),
   dbURL = require('./config/database.js'),
   db = mongoose.connect(dbURL.url),
@@ -46,8 +47,8 @@ router
         if(err) {
           res.send(err);
         }
-        user.email = req.body.email;
-        user.username = req.body.username;
+        user.local.email = req.body.email;
+        user.local.username = req.body.username;
         
         // save the user
         user.save(function(err) {
@@ -158,17 +159,33 @@ router
   .route('/friends/:user_id')
     .put(function(req,res){  
         connectContact(req.user._id, req.params.user_id,res);
-        //connectContact(req.params.user_id,req.user._id,res);
-         res.json({ message: 'Successfully connected' });
+        connectContact(req.params.user_id,res, req.user._id);
+        res.json({ message: 'Successfully connected' });
     });
 
+
     function connectContact(firstUserID, secondUserID,res){
-        User.findById(firstUserID,function(err,user){
-           if(err) {
+        
+      User.findById(firstUserID,function(err,user){
+        if(err) {
           res.send(err);
         }
-        console.log(user.local.email);
-        
+        var isConnected = false;
+        for(i = 0; i < user.local.contacts.length; i++){
+          if(user.local.contacts[i].contact_id == secondUserID){
+            isConnected = true;
+          }
+        }
+
+        if(!isConnected){
+          user.local.contacts.push({contact_id : secondUserID, isFriend : true});
+        }
+        // save the user
+        user.save(function(err) {
+          if (err) {
+            res.send(err);
+          }
+        });
       });
     }
 
