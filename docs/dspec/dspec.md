@@ -18,7 +18,8 @@ This project is a full scale web service which centers around playing games of m
 <p>*** Breakdown here ***</p>
 
 #### /lobby
-<p>*** Breakdown here ***</p>
+[Yue 11/14]
+<p> The lobby function is is an essential feature of the web app that allows all users to see the games in progress, games being created, and games being filled up. Players not in a game will spend most of their time here. There will be a list of players currently in the lobby, in which a player can click and view their profiles. Moreover, in the lobby, players will be able to chat with other players in the lobby, create a game, and join a game.  </p>
 
 #### /story
 <p>*** Breakdown here ***</p>
