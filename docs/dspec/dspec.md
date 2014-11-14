@@ -42,6 +42,7 @@ This project is a full scale web service which centers around playing games of m
 
 <br><br><br>
 ## Revision History
+[Colby 11/14]<br/>
 
 |Milestone    |Version|
 |--------|:-----:|
