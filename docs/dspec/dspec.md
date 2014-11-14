@@ -27,8 +27,11 @@ This project is an interactive multiplayer online competitive madlib web service
 <p>All Madlib stories will be stored in a JSON object. These objects will contain information about the story like it's name, search tags, and length, as well as the story itself. The stories will be broken into "story chunks", which will provide the pieces of data that the different player views, either submitter or voter, will use inside the game. This object will be updated as the game progresses to store game state, and can be queried for any game information for rendering or other purposes.</p>
 
 #### Game
-[Robert 11/14]
-<p>This is our main game view for when the madlib game is running.  This immplements Blaze to combine our game.ejs and game_czar_view.ejs in one reactive template.  The game will support the chat features and contain likes to players profiles through their names or Gravatar.  The game views also contain the progressbar.js library for use during the game's timed turns.  </p>
+[Robert, Mike 11/14]
+
+This is our main game view for when the mad-lib game is running.  Users enter this view when they join a game room from the lobby.  This page implements Blaze to render the current state of a game in real time based on data coming in from socket.io connections and ajax.  The game will support the chat features and contain likes to players profiles through their names or Gravatar.  The game views also contain the progressbar.js library for use during the game's timed turns.
+
+**More details on the Game component are detailed below in the "In-Game Data Flow and State Transitions" section.**
 
 #### Chat
 [Yue 11/14]
@@ -200,6 +203,12 @@ This will be the [noun] of a madlib.  This will be the text before a blank space
 As a game progresses, its corresponding story object in the database will be mutated / populated with additional data based on the words submitted by players, which of each submission was chosen, etc.  The goal being that this story object (along with a pointer to the current "chunk" being played in a given round) can be used to keep track of the in-game progress through the story, as well as to render the full text of the story when the game is complete.
 <br><br><br>
 
+## In-Game Data Flow and State Transitions
+[Mike 11/14]
+
+*** (Mike is working on this section) ***
+
+<br><br><br>
 
 ## External Libraries
 [Colby 11/8]<br/>
