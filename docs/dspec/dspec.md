@@ -43,8 +43,13 @@ This project is a full scale web service which centers around playing games of m
 <br><br><br>
 ## Revision History
 
-*** Place Revision History here ***
-
+================
+|Milestone    |Version|
+|--------|:-----:|
+|Project Proposal|0.1|
+|Functional Spec.|0.2|
+|Design Spec.|0.3|
+|Views Mockup|0.4|
 
 
 ## Views Walkthrough Demo
