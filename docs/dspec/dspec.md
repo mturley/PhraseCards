@@ -42,27 +42,27 @@ This project is a full scale web service which centers around playing games of m
 
 #### CSS
 
-	[Foundation](http://foundation.zurb.com/)
-		bootstrap our css
+[Foundation](http://foundation.zurb.com/)
+	bootstrap our css
 
-	[Font-Awesome](http://fortawesome.github.io/Font-Awesome/)
-		icons
+[Font-Awesome](http://fortawesome.github.io/Font-Awesome/)
+	icons
 
-	[Animate.css](http://daneden.github.io/animate.css/)
-		animations
+[Animate.css](http://daneden.github.io/animate.css/)
+	animations
 
 
 #### Javascripts
 
-	[jquery](http://jquery.com/)
+[jquery](http://jquery.com/)
 
-	[Foundation](http://foundation.zurb.com/)
-		bootstrap our js
+[Foundation](http://foundation.zurb.com/)
+	bootstrap our js
 
-	[progressbar.js](http://kimmobrunfeldt.github.io/progressbar.js/)
-		for pretty-looking timers
+[progressbar.js](http://kimmobrunfeldt.github.io/progressbar.js/)
+	for pretty-looking timers
 
-	##### Notable node libraries
+##### Notable node libraries
 
 [Express](http://expressjs.com/)
 	General backend framework for our web application
