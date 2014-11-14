@@ -1,9 +1,9 @@
 # Design Specification
 
 ## Project Idea
-[David 11/13]<br/>
-
-This project is a full scale web service which centers around playing games of multiplayer madlibs. The game itself borrows from the idea of apples-to-apples where every turn a player is picked to choose submissions made by other players to fill in the blanks of premade Madlibs stories. The application presents a user friendly gui, a playing area, and an in-game chatroom.
+[David Robert 11/13]<br/>
+<p>
+This project is an interactive multiplayer online competitive madlib web service. The game itself borrows from the idea of apples-to-apples where every turn a player is picked to choose submissions made by other players to fill in the blanks of premade Madlibs stories. The application presents a user friendly gui, a playing area, personal profile page with a fiends list, and an in-game chatroom.  Our backend development uses dynamic server storage systems with support from jquery to the front end.</p>
 
 <br><br><br>
 ## Birds Eye View
@@ -28,7 +28,7 @@ This project is a full scale web service which centers around playing games of m
 
 #### /game
 [Robert 11/14]
-<p>This is our main game view for when the mad-lib game is running.  This immplements Blaze to combine our game.ejs and game_czar_view.ejs in one reactive template.  The game will support the chat features and contain likes to players profiles through their names or Gravatar.  The game views also contain the progressbar.js library for use during the game's timed turns.  </p>
+<p>This is our main game view for when the madlib game is running.  This immplements Blaze to combine our game.ejs and game_czar_view.ejs in one reactive template.  The game will support the chat features and contain likes to players profiles through their names or Gravatar.  The game views also contain the progressbar.js library for use during the game's timed turns.  </p>
 
 #### /chat
 [Yue 11/14]
