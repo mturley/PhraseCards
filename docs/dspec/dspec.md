@@ -1,9 +1,9 @@
 # Design Specification
 
 ## Project Idea
-[David 11/13]<br/>
-
-This project is a full scale web service which centers around playing games of multiplayer madlibs. The game itself borrows from the idea of apples-to-apples where every turn a player is picked to choose submissions made by other players to fill in the blanks of premade Madlibs stories. The application presents a user friendly gui, a playing area, and an in-game chatroom.
+[David Robert 11/13]<br/>
+<p>
+This project is an interactive multiplayer online competitive madlib web service. The game itself borrows from the idea of apples-to-apples where every turn a player is picked to choose submissions made by other players to fill in the blanks of premade Madlibs stories. The application presents a user friendly gui, a playing area, personal profile page with a fiends list, and an in-game chatroom.  Our backend development uses dynamic server storage systems with support from jquery to the front end.</p>
 
 <br><br><br>
 ## Birds Eye View
@@ -195,11 +195,11 @@ As a game progresses, its corresponding story object in the database will be mut
 <br><br><br>
 
 ## In-Game Data Flow and State Transitions
-
 [Mike 11/14]
 
 *** (Mike is working on this section) ***
 
+<br><br><br>
 
 ## External Libraries
 [Colby 11/8]<br/>
