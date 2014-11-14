@@ -21,6 +21,7 @@ This project is a full scale web service which centers around playing games of m
 			password     : String,
 			username     : String
 			game_history : [game_id : String]
+			contacts      : [{contact_id : String, isFriend : Boolean}]
 		}
 
 
@@ -34,7 +35,7 @@ This project is a full scale web service which centers around playing games of m
 
 #### Story
 
-		text : [???]
+		text : String (?)
 
 
 <br><br><br>
