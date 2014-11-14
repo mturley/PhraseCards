@@ -20,7 +20,7 @@ This project is an interactive multiplayer online competitive madlib web service
 
 #### Login
 [Yue 11/14]
-<p>
+<p>stuff
 </p>
 
 #### Signup
