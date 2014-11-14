@@ -194,7 +194,7 @@ As a game progresses, its corresponding story object in the database will be mut
 [mongodb](http://www.mongodb.org/)
   NoSQL database
 
-[mongoose] (http://mongoosejs.com/)
+[mongoose](http://mongoosejs.com/)
   Framework for database design
 
 [ejs](http://www.embeddedjs.com/)
