@@ -12,8 +12,8 @@ router
   .route('/users') //chaining post and get
     .post(function(req, res){
       var user = new User();
-      user.email = req.body.email;
-      user.username = req.body.username;
+      user.local.email = req.body.email;
+      user.local.username = req.body.username;
       user.save(function(err){
         if(err) {
           res.send(err);
@@ -156,11 +156,23 @@ router
     });
 
 router
-  .route('/friends/:user_id')
+  .route('/friends/:user_id') //connect the current user and the target user
     .put(function(req,res){  
         connectContact(req.user._id, req.params.user_id,res);
-        connectContact(req.params.user_id,res, req.user._id);
+        connectContact(req.params.user_id,req.user._id,res);
         res.json({ message: 'Successfully connected' });
+    });
+
+
+router
+  .route('/friends/') //get all of the current user's friends
+      .get(function(req,res){  
+        User.find({"local.contacts.contact_id" : req.user._id}, function (err, users) {
+        if (err) {
+          res.send(err);
+          }
+          res.json(users);
+        });
     });
 
 
