@@ -43,7 +43,6 @@ This project is a full scale web service which centers around playing games of m
 <br><br><br>
 ## Revision History
 
-================
 |Milestone    |Version|
 |--------|:-----:|
 |Project Proposal|0.1|
@@ -51,7 +50,7 @@ This project is a full scale web service which centers around playing games of m
 |Design Spec.|0.3|
 |Views Mockup|0.4|
 
-
+<br><br><br>
 ## Views Walkthrough Demo
 [Colby 11/12]<br/>
 
