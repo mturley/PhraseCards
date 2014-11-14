@@ -166,13 +166,14 @@ router
 
 router
   .route('/friends/') //get all of the current user's friends
-      .get(function(req,res){  
-        User.find({"local.contacts.contact_id" : req.user._id}, function (err, users) {
+      .get(function(req,res){       
+        User.find({"local.contacts.contact_id" : req.headers.user_id}, function (err, users) {
         if (err) {
           res.send(err);
           }
           res.json(users);
         });
+        
     });
 
 
