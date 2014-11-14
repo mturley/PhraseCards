@@ -5,7 +5,7 @@
 <p>
 This project is an interactive multiplayer online competitive madlib web service. The game itself borrows from the idea of apples-to-apples where every turn a player is picked to choose submissions made by other players to fill in the blanks of premade Madlibs stories. The application presents a user friendly gui, a playing area, personal profile page with a fiends list, and an in-game chatroom.  Our backend development uses dynamic server storage systems with support from jquery to the front end.</p>
 
-<br><br><br>
+
 ## Birds Eye View
 
 ![Flow Chart](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/dspec/images/bird_eye_flowchart.png "Flow Chart")
@@ -20,8 +20,7 @@ This project is an interactive multiplayer online competitive madlib web service
 
 #### Login
 [Yue 11/14]
-<p>stuff
-</p>
+<p>stuff</p>
 
 #### Signup
 [Yue 11/14]
