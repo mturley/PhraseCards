@@ -20,11 +20,11 @@ This project is an interactive multiplayer online competitive madlib web service
 
 #### Login
 [Yue 11/14]
-<p>stuff</p>
+<p>Login feature allows a user to sign into his/her account by filling in two fields: Username and Password. We use Jqueries to search through the database to ensure the username exists. A validation function through the back-end will also be implemented to ensure the password is correct.</p>
 
 #### Signup
 [Yue 11/14]
-<p>The signup feature allows any person to create an account on the website. The account creation requires an email address, a username, and a password. The feature checks the database and makes sure the username has not been taken already. A validation function will also be implemented to ensure the creation of the account.</p>
+<p>The signup feature allows any person to create an account on the website. The account creation requires an email address, a username, and a password. The feature checks the database and makes sure the username has not been taken already. </p>
 
 #### Lobby
 [Yue 11/14]
