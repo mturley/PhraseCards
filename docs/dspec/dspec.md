@@ -93,29 +93,48 @@ This project is a full scale web service which centers around playing games of m
 
 
 #### Story
-[Sean, 11/14]
+[Sean, Mike 11/14]
 
-		text : String (?)
-		 "name": "Sample",
-                  "tags": ["Tag1", "Tag2", "Tag3"],
-                 "storyChunks": [
-    		{
-                  "prefix": "This will be the ",
-      		  "blank": {
-        	  "type": "noun"
-     		  },
-      		  "suffix": " of a madlib."
-    		},
-    		{
-      		  "prefix": "This will be the text before a blank space",
-      		  "blank": {
-        	     "type": "adjective"
-      		  },
-      		"suffix": "This willbe the text following a blank space"
-    	        },
-   	 ...
-  	]
+Story Schema:
+```
+{
+	name : String
+  tags : [String],
+  storyChunks : [{
+    prefix: String,
+  	blank: {
+      type: String
+      [.. additional state data about the blank will go here ..]
+  	},
+  	suffix: String
+	}]
+}
+```
 
+Example Story Object (to illustrate the schema):
+```json
+{
+  "name" : "Sample"
+  "tags" : ["Tag1", "Tag2", "Tag3"],
+  "storyChunks": [
+    {
+      "prefix": "This will be the ",
+      "blank": {
+        "type": "noun"
+      },
+      "suffix": " of a madlib."
+    },
+    {
+      "prefix": "This will be the text before a blank space",
+      "blank": {
+         "type": "adjective"
+      },
+      "suffix": "This will be the text following a blank space"
+    },
+    ...
+  ]
+}
+```
 <br><br><br>
 
 
