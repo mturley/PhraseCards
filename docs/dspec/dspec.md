@@ -2,8 +2,8 @@
 
 ## Project Idea
 
-This project is a full scale web service which centers around playing games of multiplayer madlibs. The game itself borrows from the idea of apples-to-apples where every turn a player is picked to choose submissions made by other players to fill in the blanks of premade Madlibs stories. The application presents a user friendly gui, a playing area, and an in-game chatroom. 
- 
+This project is a full scale web service which centers around playing games of multiplayer madlibs. The game itself borrows from the idea of apples-to-apples where every turn a player is picked to choose submissions made by other players to fill in the blanks of premade Madlibs stories. The application presents a user friendly gui, a playing area, and an in-game chatroom.
+
 
 ## Views Walkthrough Demo
 
@@ -42,37 +42,43 @@ This project is a full scale web service which centers around playing games of m
 
 #### CSS
 
-	Foundation
+	[Foundation](http://foundation.zurb.com/)
 		bootstrap our css
 
-	Font-Awesome
+	[Font-Awesome](http://fortawesome.github.io/Font-Awesome/)
 		icons
 
-	Animate.css
+	[Animate.css](http://daneden.github.io/animate.css/)
 		animations
 
 
 #### Javascripts
 
-	jquery
+	[jquery](http://jquery.com/)
 
-	fastclick
-		reduce click responce lag on mobile devices
-
-	Foundation
+	[Foundation](http://foundation.zurb.com/)
 		bootstrap our js
 
-	progressbar.js (http://kimmobrunfeldt.github.io/progressbar.js/)
+	[progressbar.js](http://kimmobrunfeldt.github.io/progressbar.js/)
 		for pretty-looking timers
-	
-	Notable node libraries 
-	
-	express General backend framework for our web application
-	
-	passport Used for user authentication (registration, login, logout) 
 
-	mongodb/mongoose NoSQL database and the framework for database design 
+	##### Notable node libraries
 
-	ejs Javascript template that cleans html code 
+	[Express](http://expressjs.com/)
+		General backend framework for our web application
 
-	gravatar Display profile pictures socket.io
+	[Passport](http://passportjs.org/)
+		Used for user authentication (registration, login, logout)
+
+	[mongodb](http://www.mongodb.org/)
+		NoSQL database
+
+	[mongoose] (http://mongoosejs.com/)
+		Framework for database design
+
+	[ejs](http://www.embeddedjs.com/)
+		Javascript template that cleans html code
+
+	[Gravatar](https://en.gravatar.com/)
+		Display profile pictures socket.io
+
