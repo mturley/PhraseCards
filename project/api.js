@@ -167,6 +167,7 @@ router
 router
   .route('/friends/') //get all of the current user's friends
       .get(function(req,res){       
+        //we get the user's id from the request headers
         User.find({"local.contacts.contact_id" : req.headers.user_id}, function (err, users) {
         if (err) {
           res.send(err);
@@ -176,7 +177,7 @@ router
         
     });
 
-
+    //adds add the second user's contact to the first user's list of contacts
     function connectContact(firstUserID, secondUserID,res){
         
       User.findById(firstUserID,function(err,user){

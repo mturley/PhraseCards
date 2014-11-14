@@ -152,6 +152,7 @@ module.exports = function(app,passport) {
 
 //helper method for creating options for HTTP requests 
 //usage: URL and REST method(GET, POST, etc)
+//we need to pass the user's session id so that the api can use it in some instances
 function getHTTPOptions(URL, RESTMethod, session_user){
 
       var parsedURL = url.parse(URL);
@@ -164,7 +165,7 @@ function getHTTPOptions(URL, RESTMethod, session_user){
       };
       return options;
 }
-
+//used to get objects back from the database
 //invokes a callback after getting the list of objects
 function getObjects(HTTPOptions, callback){
  var objReq =  http.request(HTTPOptions, function(resp) {
