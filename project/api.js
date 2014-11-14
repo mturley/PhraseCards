@@ -42,7 +42,7 @@ router
         res.json(user);
       });
     })
-    .put(function(req,res){ //remove the user given the id
+    .put(function(req,res){ //update the user given the id
       User.findById(req.params.user_id,function(err,user){
         if(err) {
           res.send(err);

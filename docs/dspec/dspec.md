@@ -39,6 +39,38 @@ This project is a full scale web service which centers around playing games of m
 [Yue 11/14]
 <p>The signup feature allows any person to create an account on the website. The account creation requires an email address, a username, and a password. The feature checks the database and makes sure the username has not been taken already. A validation function will also be implemented to ensure the creation of the account.</p>
 
+#### /api
+[Mike 11/14]
+
+The `/api/*` route space is reserved for a RESTful HTTP API that the application uses internally via AJAX to interact with the database and perform various functions.  The current API endpoints are:
+```
+  /api/users
+    POST   : create a new user
+    GET    : get a list of all users in the system
+
+  /api/users/:user_id
+    GET    : get a particular user object
+    PUT    : update a user object
+    DELETE : delete a user from the system by id
+
+  /api/search/:name_string
+    GET    : search for users by nickname
+
+  /api/games
+    GET    : get a list of all games / game rooms in the system
+    POST   : create a new game room
+
+  /api/games/:game_id
+    GET    : get the data and state of a particular game room
+    PUT    : update a particular game room object
+    DELETE : delete a game room from the system
+
+  /api/friends/:user_id
+    PUT    : connect the current user and the target user as friends
+
+  /api/friends
+    GET    : get all of the current user's friends
+```
 
 <br><br><br>
 ## Revision History
