@@ -28,7 +28,7 @@ This project is a full scale web service which centers around playing games of m
 
 #### /chat
 [Yue 11/14]
-<p>The chat feature will be implemented within the game function. The chat will run only when the game in running and will end when the game is over. We will be importing and using external APIs for this feature. Anyone participating in that particular game will be able to use the chat feature. For now, we have decided not to implement a profanity filter due to time constraints. This feature is meant to enhance players' game experience by increasing their interaction with each other.</p>
+<p>The chat feature will be implemented within the game function. The chat will run only when the game in running and will end when the game is over. We used socket.io to create the chat. Anyone participating in that particular game will be able to use the chat feature. For now, we have decided not to implement a profanity filter due to time constraints. This feature is meant to enhance players' game experience by increasing their interaction with each other.</p>
 
 #### /profile
 [Yue 11/14]
@@ -197,5 +197,8 @@ As a game progresses, its corresponding story object in the database will be mut
   Javascript template that cleans html code
 
 [Gravatar](https://en.gravatar.com/)
-  Display profile pictures socket.io
+	Display profile pictures
 
+
+[Socket.io](http://socket.io/)
+	Used to create Chat and Rooms
