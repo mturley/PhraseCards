@@ -4,39 +4,8 @@
 [David 11/13]<br/>
 
 This project is a full scale web service which centers around playing games of multiplayer madlibs. The game itself borrows from the idea of apples-to-apples where every turn a player is picked to choose submissions made by other players to fill in the blanks of premade Madlibs stories. The application presents a user friendly gui, a playing area, and an in-game chatroom.
-<br><br><br>
-## Birds Eye View
-
-*** Place Flowchart here ***
-
-<br><br><br>
-## Component-by-Component Breakdown
-
-#### /
-<p>*** Breakdown here ***</p>
-
-#### /lobby
-<p>*** Breakdown here ***</p>
-
-#### /story
-<p>*** Breakdown here ***</p>
-
-#### /game
-<p>*** Breakdown here ***</p>
-
-#### /profile
-<p>*** Breakdown here ***</p>
-
-#### /signup
-<p>*** Breakdown here ***</p>
 
 
-<br><br><br>
-## Revision History
-
-*** Place Revision History here ***
-
-<br><br><br>
 ## Views Walkthrough Demo
 [Colby 11/12]<br/>
 
@@ -44,7 +13,16 @@ This project is a full scale web service which centers around playing games of m
 <p>Once logged in click on the hamburger menu icon in the upper left to reveal the debugging menu that will allow you to easily jump around the views demo.</p>
 ![menu demo](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/dspec/images/menu.gif)
 
-<br><br><br>
+<br><br><br><br>
+
+## Views Details
+[Robert, Sean 11/14]<br/>
+<p> 
+
+
+
+</p>
+
 ## Database Design
 [Dan 11/13]<br/>
 
@@ -86,31 +64,17 @@ This project is a full scale web service which centers around playing games of m
 #### Story
 
 		text : String (?)
-                "name": "Sample",
-  		"tags": ["Tag1", "Tag2", "Tag3"],
-  		"storyChunks": [
-    		{
-     		  "prefix": "This will be the",
-      		  "blank": {
-        	   "type": "noun"
-                   },
-                "suffix": " of a madlib."
-                },
-               {
-    		"prefix": "Text before the blank will be here",
-      		"blank": {
-        	"type": "adjective"
-      		  },
-      		"suffix": "text following the blank will be here."
-    	        },
-      ...
-    ]
+
 
 <br><br><br>
+
+## Revision History
+
+
 ## External Libraries
+[Colby 11/8]<br/>
 
 #### CSS
-[Colby 11/8]<br/>
 
 [Foundation](http://foundation.zurb.com/)
 	bootstrap our css
