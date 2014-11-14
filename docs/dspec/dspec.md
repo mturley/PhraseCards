@@ -42,7 +42,7 @@ This project is a full scale web service which centers around playing games of m
 [Yue 11/14]
 <p>The signup feature allows any person to create an account on the website. The account creation requires an email address, a username, and a password. The feature checks the database and makes sure the username has not been taken already. A validation function will also be implemented to ensure the creation of the account.</p>
 
-#### /api
+#### API
 [Mike 11/14]
 
 The `/api/*` route space is reserved for a RESTful HTTP API that the application uses internally via AJAX to interact with the database and perform various functions.  The current API endpoints are:
