@@ -41,6 +41,14 @@ This is our main game view for when the mad-lib game is running.  Users enter th
 [Yue 11/14]
 <p>Profile will hold all the information about the account creator. The information shown includes a Gravator picture, account creation date, total number of games played, and recent game history. This feature allows players to distinguish themselves from other players and give their personal profile a unique feel. Furthermore, profiles enables players to view any other player's basic information. </p>
 
+#### Search
+[Robert 11/14]
+<p>Search is functionality within profile.  This allows searching for fiends amongst the database of PhraseCards users.  This will allow for dynamic search for adding friends to profile.  This uses jquery to the back end.  </p>
+
+#### Friends
+[Robert 11/14]
+<p>Friends consists of a list of a persons friends.  It is part of the profile functionality and is used in conjunction with search. </p>
+
 #### Signup
 [Yue 11/14]
 <p>The signup feature allows any person to create an account on the website. The account creation requires an email address, a username, and a password. The feature checks the database and makes sure the username has not been taken already. A validation function will also be implemented to ensure the creation of the account.</p>
