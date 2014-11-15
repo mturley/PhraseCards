@@ -36,7 +36,7 @@ Passport also deals with the sign up. The account creation requires an email add
 
 
 #### Lobby
-[Yue 11/14]
+[Yue, Mike 11/14]
 
 The lobby function is is an essential feature of the web app that allows all users to see the games in progress, games being created, and games being filled up. Players not in a game will spend most of their time here.  From the lobby, players can create game rooms and invite other players to join them, and they can join existing game rooms that have slots available.
 
@@ -144,6 +144,8 @@ The `/api/*` route space is reserved for a RESTful HTTP API that the application
 - Mike Turley - Backend Programmer:
   *Lobby
   *Game mechanics
+  *Data structures / Database schema
+  * 
 
 <br><br><br><br>
 ## In-Game Data Flow and State Transitions
