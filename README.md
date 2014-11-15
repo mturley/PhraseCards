@@ -79,3 +79,6 @@ CS Courses: 121, 187, 220, 230, 240, 250, 305, 311, 320, 377, 383, 445, 453, 491
 Other Courses: PHYSICS 151, Linear Algebra
 
 Hi, my name is Mike and I'm a senior Computer Science major here at UMass Amherst.  I have been a freelance web developer off and on since high school, and I took an extended break between my sophomore and junior years of college to work.  While most of my experience is in full-stack web development, I have also worked on mobile and desktop applications as well as some systems programming.  My favorite language is JavaScript, of course, but mostly for its entertainment value.  I also enjoy Python, Ruby, and occasionally Java and C/C++.  This past summer, I was an intern on Amazon's AWS Storage Gateway team.  I will be graduating this February.
+
+# Design Specification
+The dspec.md is located in /team-phrase-cars/docs/dspec along with all of its associted documents.
