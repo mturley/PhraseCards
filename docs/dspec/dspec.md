@@ -4,9 +4,9 @@
 [David Robert 11/13]<br/>
 
 <p>
-This project is an interactive multiplayer online competitive madlib web service. The game is centered around filling in an incomplete story. The players submit words to the "card czar" who chooses which word given is used to fill in the story. The card czar is a role which changes every turn, so every player gets a chance to create the story, using their favorite submitted word given by the others.
+This project is an interactive multiplayer online competitive madlib web service. The game is centered around a group of players filling in an incomplete story together. Each player submits a word on a card to the "Card Czar", who chooses which word will be used to fill in that blank of the story. The Card Czar is a role which changes every turn, so every player participates in creating the story.
  
- The application presents a user friendly gui, a playing area, personal profile page with a fiends list, search functionality for other players profiles and an in-game chatroom.  Our backend development uses dynamic server storage systems with support from jquery to the front end.</p>
+The application presents a user friendly gui, a playing area, personal profile page with a fiends list, search functionality for other player's profiles and an in-game chatroom.  Our backend development uses dynamic server storage systems with support from jquery to the front end.</p>
 
 ## Birds Eye View
 
