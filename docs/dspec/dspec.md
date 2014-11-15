@@ -1,7 +1,6 @@
 # Design Specification
 
 ## Project Idea
-[David Robert 11/13]<br/>
 
 <p>
 This project is an interactive multiplayer online competitive madlib web service. The game is centered around filling in an incomplete story. The players submit words to the "card czar" who chooses which word given is used to fill in the story. The card czar is a role which changes every turn, so every player gets a chance to create the story, using their favorite submitted word given by the others.
@@ -96,25 +95,15 @@ The `/api/*` route space is reserved for a RESTful HTTP API that the application
     GET    : get all of the current user's friends
 ```
 
-#### Responsiblity Breakdown
-- Colby Stone: Project Manager:
-- Sean Kelley: Creative Director:
-- Robert Hromada: Documentation:
-- David Su: Frontend Programmer:
-- Yue Shing: Frontend Programmer:
-- Daniel Choi: Backend Programmer:
-- Mike Turley: Backend Programmer:
+<br><br><br><br>
+## In-Game Data Flow and State Transitions
+[Mike, Sean 11/14]
 
-<br><br><br>
-## Revision History
-[Colby 11/14]<br/>
+![Flow Chart](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/dspec/images/326_final_flowchart.png "Flow Chart")
 
-|Milestone    |Version|
-|--------|:-----:|
-|Project Proposal|0.1|
-|Functional Spec.|0.2|
-|Design Spec.|0.3|
-|Views Mockup|0.4|
+** Mike will add a description here of the client action -> socket.io -> server -> database -> socket.io -> client render flow **
+
+
 
 <br><br><br>
 ## Views Walkthrough Demo
@@ -127,10 +116,8 @@ Email: demo@test.com  <br>Password: 12345<br><br>
 <p>Once logged in click on the hamburger menu icon in the upper left to reveal the debugging menu that will allow you to easily jump around the views demo.</p>
 ![menu demo](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/dspec/images/menu.gif)
 
+
 <br><br><br><br>
-
-
-
 ## Database Design
 [Dan 11/13, Mike 11/14]<br/>
 
@@ -224,15 +211,33 @@ This will be the [noun] of a madlib.  This will be the text before a blank space
 As a game progresses, its corresponding story object in the database will be mutated / populated with additional data based on the words submitted by players, which of each submission was chosen, etc.  The goal being that this story object (along with a pointer to the current "chunk" being played in a given round) can be used to keep track of the in-game progress through the story, as well as to render the full text of the story when the game is complete.
 <br><br><br>
 
-## In-Game Data Flow and State Transitions
-[Mike, Sean 11/14]
-
-![Flow Chart](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/dspec/images/326_final_flowchart.png "Flow Chart")
-
-** Mike will add a description here of the client action -> socket.io -> server -> database -> socket.io -> client render flow **
 
 <br><br><br>
+## Responsiblity Breakdown
+- Colby Stone: Project Manager
+- Sean Kelley: Creative Director
+- Robert Hromada: Documentation
+- David Su: Frontend Programmer
+- Yue Shing: Frontend Programmer
+- Daniel Choi: Backend Programmer
+- Mike Turley: Backend Programmer
 
+<br><br><br>
+## Revision History
+[Colby 11/14]<br/>
+
+|Milestone    |Version|
+|--------|:-----:|
+|Project Proposal|0.1|
+|Functional Spec.|0.2|
+|Design Spec.|0.3|
+|Views Mockup|0.4|
+
+
+
+
+
+<br><br><br>
 ## External Libraries
 [Colby 11/8]<br/>
 
