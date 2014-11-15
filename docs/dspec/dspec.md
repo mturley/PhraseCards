@@ -2,11 +2,15 @@
 
 ## Project Idea
 [David Robert 11/13]<br/>
+
 <p>
-This project is a web application that provides a game of multipler Madlibs. The game is centered around filling in an incomplete story. The players submit words to the "card czar" who chooses which word given is used to fill in the story. The card czar is a role which changes every turn, so every player gets a chance to create the story, using their favorite submitted word given by the others.
+This project is an interactive multiplayer online competitive madlib web service. The game is centered around filling in an incomplete story. The players submit words to the "card czar" who chooses which word given is used to fill in the story. The card czar is a role which changes every turn, so every player gets a chance to create the story, using their favorite submitted word given by the others.
  </p>
+ <p>
+ The application presents a user friendly gui, a playing area, personal profile page with a fiends list, search functionality for other players profiles and an in-game chatroom.  Our backend development uses dynamic server storage systems with support from jquery to the front end.</p>
+</p>
 
-
+<br><br><br>
 ## Birds Eye View
 
 ![Flow Chart](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/dspec/images/flowchart.png "Flow Chart")
@@ -92,7 +96,7 @@ The `/api/*` route space is reserved for a RESTful HTTP API that the application
 ```
 
 #### Responsiblity Breakdown
-- Colby Stone: Project Manager: Reponsible for final say on all aspects.  Decides what external libraries are used and in charge of their implementation and relaying information to the rest of the team.
+- Colby Stone: Project Manager:
 - Sean Kelley: Creative Director:
 - Robert Hromada: Documentation:
 - David Su: Frontend Programmer:
