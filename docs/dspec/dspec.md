@@ -115,7 +115,8 @@ The `/api/*` route space is reserved for a RESTful HTTP API that the application
 
 
 #### Responsiblity Breakdown
-[David]
+[David, Mike, Colby 11/14]
+
 - Colby Stone - Project Manager:
   *Reponsible for final say on all aspects.  Decides what external libraries are used and in charge of their implementation and relaying information to the rest of the team.
 
@@ -144,9 +145,9 @@ The `/api/*` route space is reserved for a RESTful HTTP API that the application
 
 - Mike Turley - Backend Programmer:
   *Lobby
-  *Game mechanics
+  *Game mechanics and phase transitions
   *Data structures / Database schema
-  *
+  *Data flow (sockets and AJAX)
 
 <br><br><br><br>
 ## In-Game Data Flow and State Transitions
