@@ -265,7 +265,6 @@ As a game progresses, its corresponding story object in the database will be mut
 	  	<li>Views Mock-up/Skeleton</li>
 	  </ul>
 	</li>
-
 	<li>Sean Kelley - Creative Director:
 		<ul>
 		  <li>Game and rule design</li>
@@ -273,28 +272,24 @@ As a game progresses, its corresponding story object in the database will be mut
 		  <li>Story - Content creation (writing madlibs and new feature development).</li>
 		</ul>
 	</li>
-
 	<li>Robert Hromada - Documentation:
 		<ul>
   		<li>Team meeting briefings</li>
   		<li>Power point presentation creator</li>
   	</ul>
 	</li>
-
 	<li>David Su: Frontend Programmer:
 		<ul>
   		<li>Game mechanics</li>
   		<li>Debugging</li>
   	</ul>
 	</li>
-
 	<li>Yue Shing - Frontend Programmer:
 		<ul>
   		<li>Game mechanics</li>
   		<li>Sign up</li>
   	</ul>
 	</li>
-
 	<li>Daniel Choi - Backend Programmer:
 		<ul>
   		<li>Database setup and administration</li>
@@ -303,7 +298,6 @@ As a game progresses, its corresponding story object in the database will be mut
   		<li>Login</li>
   	</ul>
 	</li>
-
 	<li>Mike Turley - Backend Programmer:
 		<ul>
   		<li>Lobby</li>
@@ -312,7 +306,7 @@ As a game progresses, its corresponding story object in the database will be mut
   		<li>Data flow (sockets and AJAX)</li>
   	</ul>
 	</li>
-
+</ul>
 
 <br><br><br>
 ## External Libraries
