@@ -259,41 +259,59 @@ As a game progresses, its corresponding story object in the database will be mut
 [David, Mike, Colby 11/14]
 <ul>
 	<li>Colby Stone - Project Manager:
-	<ul>
-  	<li>Oversees the project and delegates tasks to team members. </li>
-  	<li>Helps out where needed in both front and back end.</li>
-  	<li>Views Mock-up/Skeleton</li>
+		<ul>
+	  	<li>Oversees the project and delegates tasks to team members. </li>
+	  	<li>Helps out where needed in both front and back end.</li>
+	  	<li>Views Mock-up/Skeleton</li>
+	  </ul>
+	</li>
+
+	<li>Sean Kelley - Creative Director:
+		<ul>
+		  <li>Game and rule design</li>
+		  <li>Play testing</li>
+		  <li>Story - Content creation (writing madlibs and new feature development).</li>
+		</ul>
+	</li>
+
+	<li>Robert Hromada - Documentation:
+		<ul>
+  		<li>Team meeting briefings</li>
+  		<li>Power point presentation creator</li>
   	</ul>
 	</li>
-	<li>Sean Kelley - Creative Director:
-  <li>Game and rule design</li>
-  <li>Play testing</li>
-  <li>Story - Content creation (writing madlibs and new feature development).</li>
-</li>
-<li>Robert Hromada - Documentation:
-  <li>Team meeting briefings</li>
-  <li>Power point presentation creator</li>
-</li>
-<li>David Su: Frontend Programmer:
-  <li>Game mechanics</li>
-  <li>Debugging</li>
-</li>
-<li>Yue Shing - Frontend Programmer:
-  <li>Game mechanics</li>
-  <li>Sign up</li>
-</li>
-<li>Daniel Choi - Backend Programmer:
-  <li>Database setup and administration</li>
-  <li>Search</li>
-  <li>Profiles</li>
-  <li>Login</li>
-</li>
-<li>Mike Turley - Backend Programmer:
-  <li>Lobby</li>
-  <li>Game mechanics and phase transitions</li>
-  <li>Data structures / Database schema</li>
-  <li>Data flow (sockets and AJAX)</li>
-</li>
+
+	<li>David Su: Frontend Programmer:
+		<ul>
+  		<li>Game mechanics</li>
+  		<li>Debugging</li>
+  	</ul>
+	</li>
+
+	<li>Yue Shing - Frontend Programmer:
+		<ul>
+  		<li>Game mechanics</li>
+  		<li>Sign up</li>
+  	</ul>
+	</li>
+
+	<li>Daniel Choi - Backend Programmer:
+		<ul>
+  		<li>Database setup and administration</li>
+  		<li>Search</li>
+  		<li>Profiles</li>
+  		<li>Login</li>
+  	</ul>
+	</li>
+
+	<li>Mike Turley - Backend Programmer:
+		<ul>
+  		<li>Lobby</li>
+  		<li>Game mechanics and phase transitions</li>
+  		<li>Data structures / Database schema</li>
+  		<li>Data flow (sockets and AJAX)</li>
+  	</ul>
+	</li>
 
 
 <br><br><br>
