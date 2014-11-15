@@ -5,7 +5,7 @@
 <p>
 <<<<<<< HEAD
 This project is an interactive multiplayer online competitive madlib web service. The game is centered around a group of players filling in an incomplete story together. Each player submits a word on a card to the "Card Czar", who chooses which word will be used to fill in that blank of the story. The Card Czar is a role which changes every turn, so every player participates in creating the story.
- 
+
 The application presents a user friendly gui, a playing area, personal profile page with a fiends list, search functionality for other player's profiles and an in-game chatroom.  Our backend development uses dynamic server storage systems with support from jquery to the front end.</p>
 =======
 This project is an interactive multiplayer online competitive madlib web service. The game is centered around filling in an incomplete story. The players submit words to the "card czar" who chooses which word given is used to fill in the story. The card czar is a role which changes every turn, so every player gets a chance to create the story, using their favorite submitted word given by the others.
@@ -53,8 +53,8 @@ This is our main game view for when the mad-lib game is running.  Users enter th
 **More details on the Game component are detailed below in the "In-Game Data Flow and State Transitions" section.**
 
 #### Chat
-[Yue 11/14]
-<p>The chat feature will be implemented within the game function. The chat will run only when the game in running and will end when the game is over. We used socket.io to create the chat. Anyone participating in that particular game will be able to use the chat feature. For now, we have decided not to implement a profanity filter due to time constraints. This feature is meant to enhance players' game experience by increasing their interaction with each other.</p>
+[Yue, Colby 11/14]
+<p>Our chat is built using socket.io. Anyone participating in that particular game will be able to use the chat feature. We also set up a global variable to hold the current users nickname and gravatar and display them when a user is sending a message in chat. This feature is meant to enhance players' game experience by increasing their interaction with each other.</p>
 
 #### Profile
 [Yue 11/14]
@@ -104,15 +104,15 @@ The `/api/*` route space is reserved for a RESTful HTTP API that the application
 <<<<<<< HEAD
 #### Responsiblity Breakdown
 [David]
-- Colby Stone - Project Manager: 
+- Colby Stone - Project Manager:
   *Reponsible for final say on all aspects.  Decides what external libraries are used and in charge of their implementation and relaying information to the rest of the team.
 
-- Sean Kelley - Creative Director: 
+- Sean Kelley - Creative Director:
   *Game and rule design
-  *Play testing 
+  *Play testing
   *Story - Content creation (writing madlibs and new feature development).
 
-- Robert Hromada - Documentation: 
+- Robert Hromada - Documentation:
   *Team meeting briefings
   *Power point presentation creator
 
@@ -120,17 +120,17 @@ The `/api/*` route space is reserved for a RESTful HTTP API that the application
   *Game mechanics
   *Debugging
 
-- Yue Shing - Frontend Programmer: 
+- Yue Shing - Frontend Programmer:
   *Game mechanics
   *Sign up
 
-- Daniel Choi - Backend Programmer: 
+- Daniel Choi - Backend Programmer:
   *Database setup and administration
   *Search
   *Profiles
   *Login
 
-- Mike Turley - Backend Programmer: 
+- Mike Turley - Backend Programmer:
   *Lobby
   *Game mechanics
 =======
@@ -141,7 +141,7 @@ The `/api/*` route space is reserved for a RESTful HTTP API that the application
 
 ![Flow Chart](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/dspec/images/326_final_flowchart.png "Flow Chart")
 
-[Mike 11/14]
+[Mike 11/14]<br>
 As players join a game room by navigating to the `/game/:game_id` route, their browsers will establish socket.io connections with the server.  The server will keep track of the state of each game, which it will keep synchronized to the MongoDB database.  The flow of data during a game is as follows: As each player performs an action, a socket message will be sent to the server with that action's details.  The server will decide how all the players' actions affect the game state, and emit updates to all players' browsers with the updated state.  The browser's javascript environment will then use this new state to update the HTML view via the Blaze reactive templating engine.  Certain resources needed by the browser during the game may also be requested via AJAX.
 
 The game progresses through four phases, detailed in the above flowchart:
