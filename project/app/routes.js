@@ -2,6 +2,7 @@ var gravatar = require('node-gravatar');
 var http = require('http');
 var url = require('url');
 
+// TODO  need a better way to get hostname rather than hardcode
 var hostname = "http://localhost:8080";
 
 module.exports = function(app,passport) {
@@ -16,7 +17,7 @@ module.exports = function(app,passport) {
         }
     })
     .get('/search', isLoggedIn, function(req, res) {
-      var HTTPOptions = getHTTPOptions("/api/search/"+ req.query['name_string'], 'GET',req.user);
+      var HTTPOptions = getHTTPOptions("/api/search/"+ req.query['name_string'], 'GET',{'user_id': req.user._id});
       getObjects(HTTPOptions, function(userList){
         res.render('search.ejs', {Users : userList});
       });
@@ -37,7 +38,7 @@ module.exports = function(app,passport) {
     })
     */
     .get('/profile', isLoggedIn, function(req, res) {
-      var HTTPOptions = getHTTPOptions("/api/friends/", 'GET',req.user);
+      var HTTPOptions = getHTTPOptions("/api/friends/", 'GET',{'user_id': req.user._id});
       getObjects(HTTPOptions, function(friendObjects){
         friendAvatarList = [];
         for(i = 0; i< friendObjects.length; i++){
@@ -53,11 +54,12 @@ module.exports = function(app,passport) {
         });
       });
     })//Gives out the profile of the following user
+      //TODO Needs a better way of getting user profile
     .get('/profile/:user_id', isLoggedIn, function(req, res) {
-      var HTTPOptions = getHTTPOptions("/api/users/"+req.params.user_id, 'GET', req.user);
+      var HTTPOptions = getHTTPOptions("/api/users/"+req.params.user_id, 'GET',  {'user_id': req.user._id});
       //first get the user
      getObjects(HTTPOptions, function(userObject){
-      HTTPOptions = getHTTPOptions("/api/friends/", 'GET', userObject);
+      HTTPOptions = getHTTPOptions("/api/friends/", 'GET',  {'user_id': userObject._id});
       //then get the friends of that user
       getObjects(HTTPOptions, function(friendObjects){
         
@@ -176,7 +178,7 @@ module.exports = function(app,passport) {
 //helper method for creating options for HTTP requests 
 //usage: URL and REST method(GET, POST, etc)
 //we need to pass the user's session id so that the api can use it in some instances
-function getHTTPOptions(URL, RESTMethod, session_user){
+function getHTTPOptions(URL, RESTMethod, optionalHeaders){
 
       var parsedURL = url.parse(hostname + URL);
       var options = {
@@ -184,11 +186,11 @@ function getHTTPOptions(URL, RESTMethod, session_user){
         path: parsedURL.path,
         port: parsedURL.port,
         method: RESTMethod,
-        headers: {'user_id': session_user._id}
+        headers: optionalHeaders
       };
       return options;
 }
-//used to get objects back from the database
+//used to get objects back from the database in json format
 //invokes a callback after getting the list of objects
 function getObjects(HTTPOptions, callback){
  var objReq =  http.request(HTTPOptions, function(resp) {
