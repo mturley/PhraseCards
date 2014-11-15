@@ -68,9 +68,9 @@ Profile will hold all the information about the account creator. The information
 
 
 #### Search
-[Robert 11/14]
+[Robert, Mike 11/14]
 
-Search is functionality within profile. This allows searching for fiends amongst the database of PhraseCards users.  This will allow for dynamic search for adding friends to profile.  This uses jquery to the back end.
+User search functionality is available within the profile page. This functionality allows searching for friends dynamically amongst the database of PhraseCards users.  This feature uses jQuery's AJAX functionality to fetch data from the back-end API.
 
 
 #### Friends
