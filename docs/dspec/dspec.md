@@ -2,12 +2,9 @@
 
 ## Project Idea
 
-<p>
 This project is an interactive multi-player on-line competitive madlib web service. The game is centered around filling in an incomplete story. The players submit words to the "card czar" who chooses which word given is used to fill in the story. The card czar is a role which changes every turn, so every player gets a chance to create the story, using their favorite submitted word given by the others.
- </p>
- <p>
- The application presents a user friendly gui, a playing area, personal profile page with a fiends list, search functionality for other players profiles and an in-game chat room.  Our back end development uses dynamic server storage systems with support from jquery to the front end.</p>
-</p>
+
+The application presents a user friendly gui, a playing area with real-time updates, personal profile page with a fiends list, search functionality for other players profiles and an in-game chat room.  Our back end development uses MongoDB to store user data, game state and structured story data, and shares this data with the client via AJAX and Socket.IO implementations connected to a Blaze-based client-side templating system in the game view, as well as EJS-based server-side templating outside the game view.
 
 
 <br><br><br>
