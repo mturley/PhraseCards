@@ -1,16 +1,25 @@
 # Design Specification
 
 ## Project Idea
-[David Robert 11/13]<br/>
 
 <p>
+<<<<<<< HEAD
 This project is an interactive multiplayer online competitive madlib web service. The game is centered around a group of players filling in an incomplete story together. Each player submits a word on a card to the "Card Czar", who chooses which word will be used to fill in that blank of the story. The Card Czar is a role which changes every turn, so every player participates in creating the story.
  
 The application presents a user friendly gui, a playing area, personal profile page with a fiends list, search functionality for other player's profiles and an in-game chatroom.  Our backend development uses dynamic server storage systems with support from jquery to the front end.</p>
+=======
+This project is an interactive multiplayer online competitive madlib web service. The game is centered around filling in an incomplete story. The players submit words to the "card czar" who chooses which word given is used to fill in the story. The card czar is a role which changes every turn, so every player gets a chance to create the story, using their favorite submitted word given by the others.
+ </p>
+ <p>
+ The application presents a user friendly gui, a playing area, personal profile page with a fiends list, search functionality for other players profiles and an in-game chatroom.  Our backend development uses dynamic server storage systems with support from jquery to the front end.</p>
+</p>
+>>>>>>> 2c73fccc48104da2d0cf7bb6dbcb7324021e5ba5
 
+<br><br><br>
 ## Birds Eye View
+[Colby 11/14]
 
-![Flow Chart](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/dspec/images/bird_eye_flowchart.png "Flow Chart")
+![Flow Chart](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/dspec/images/flowchart.png "Flow Chart")
 
 <br><br><br>
 ## Component-by-Component Breakdown
@@ -21,12 +30,12 @@ The application presents a user friendly gui, a playing area, personal profile p
 <p>Most of the website is scripted in Javascript but the game itself uses Blaze. Style.css is used within most of the webpages of the site, and basically contains the unique formats we implement for the webpages. In addition, all of the views of the app uses EJS. The website contains features from the individual aspect, such as personal profile, to the community aspect(ie. lobby and chatroom). The remaining components are focused on the game aspect of the app. Certain components , like stories, are necessary for the game to run properly, while others simply enhance the players' experience.</p>
 
 #### Login
-[Yue 11/14]
-<p>Login feature allows a user to sign into his/her account by filling in two fields: Username and Password. We use Jqueries to search through the database to ensure the username exists. A validation function through the back-end will also be implemented to ensure the password is correct. Once authentication is completed, the user successfully log in and will be brought to the lobby webpage under that account name. If authentication fails, an error message will appear, and user will be asked to re-enter information into the two fields. There will also be a link to the sign-up function, in case the user trying to log in does not have an account.</p>
+[Yue, Colby 11/14]
+<p>For the player login we used a library called Passport. We set it up to allow users to sign into their account by filling in two fields: Email and Password. We used HTML5 fields to deal with simple validation. Once authentication is completed, the user successfully log in and redirected to the lobby page. If authentication fails, an error message will appear, and user will be asked to re-enter information into the two fields. There is a link to the sign-up page, in case the user trying to log in does not have an account.</p>
 
 #### Signup
-[Yue 11/14]
-<p>The signup feature allows any person to create an account on the website. The account creation requires an email address, a username, and a password. The feature checks the database and makes sure the username has not been taken already. </p>
+[Yue, Colby 11/14]
+<p>Passport also deals with the sign up. The account creation requires an email address, a nickname, a password and a password confirmation. The feature checks the database and makes sure the nickname has not been taken already. Once the account is created the user will be re-directed to the lobby page.</p>
 
 #### Lobby
 [Yue 11/14]
@@ -92,6 +101,7 @@ The `/api/*` route space is reserved for a RESTful HTTP API that the application
     GET    : get all of the current user's friends
 ```
 
+<<<<<<< HEAD
 #### Responsiblity Breakdown
 [David]
 - Colby Stone - Project Manager: 
@@ -123,30 +133,43 @@ The `/api/*` route space is reserved for a RESTful HTTP API that the application
 - Mike Turley - Backend Programmer: 
   *Lobby
   *Game mechanics
+=======
+<br><br><br><br>
+## In-Game Data Flow and State Transitions
+[Sean 11/14]
+>>>>>>> 2c73fccc48104da2d0cf7bb6dbcb7324021e5ba5
 
-<br><br><br>
-## Revision History
-[Colby 11/14]<br/>
+![Flow Chart](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/dspec/images/326_final_flowchart.png "Flow Chart")
 
-|Milestone    |Version|
-|--------|:-----:|
-|Project Proposal|0.1|
-|Functional Spec.|0.2|
-|Design Spec.|0.3|
-|Views Mockup|0.4|
+[Mike 11/14]
+As players join a game room by navigating to the `/game/:game_id` route, their browsers will establish socket.io connections with the server.  The server will keep track of the state of each game, which it will keep synchronized to the MongoDB database.  The flow of data during a game is as follows: As each player performs an action, a socket message will be sent to the server with that action's details.  The server will decide how all the players' actions affect the game state, and emit updates to all players' browsers with the updated state.  The browser's javascript environment will then use this new state to update the HTML view via the Blaze reactive templating engine.  Certain resources needed by the browser during the game may also be requested via AJAX.
+
+The game progresses through four phases, detailed in the above flowchart:
+
+* Setup phase: The creator of the game room chooses a story to play with, and waits for all players to join.  Once everyone agrees to start the game, it moves to the...
+
+* Submission phase: The game loads the first chunk (sentence or phrase) of the story and decides on a player to be "card czar", the player who will be in charge of deciding which word goes in the blank.  The czar gets to see the whole chunk, and all other players just see the type of blank (verb, noun, article of clothing, etc).  All players except the czar submit a word for the blank, which appear as cards on the board.  A time limit for these submissions counts down, after which the game progresses to the...
+
+* Voting phase: The card czar now has to select (vote) for a particular submitted word, based on considering each of them in the context of the story chunk / phrase.  A time limit for this decision also counts down, in case the czar is unresponsive-- if this timer reaches zero, a winning card is chosen at random.  The game progresses to the...
+
+* Review phase: All players will see the results of the submission/voting and points are awarded to the player who submitted the card chosen by the card czar.  After a certain amount of time, the game progresses to the next round, and returns to the submission phase for the next chunk of the story.
+
+One submission -> voting -> review cycle is referred to as a "round", and there is one round for each chunk/blank in the story.  In the last round's review phase, the entire story is revealed to all players with blanks filled in with the winning words.  Players can read through it and mouse over each submitted word to see who submitted it.
+
 
 <br><br><br>
 ## Views Walkthrough Demo
 [Colby 11/12]<br/>
 
-[Login Here](https://powerful-sands-7248.herokuapp.com/) Email: demo@test.com  Password: 12345
+[View Demo Here](https://powerful-sands-7248.herokuapp.com/)
+
+#### Log In Info
+Email: demo@test.com  <br>Password: 12345<br><br>
 <p>Once logged in click on the hamburger menu icon in the upper left to reveal the debugging menu that will allow you to easily jump around the views demo.</p>
 ![menu demo](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/dspec/images/menu.gif)
 
+
 <br><br><br><br>
-
-
-
 ## Database Design
 [Dan 11/13, Mike 11/14]<br/>
 
@@ -240,15 +263,33 @@ This will be the [noun] of a madlib.  This will be the text before a blank space
 As a game progresses, its corresponding story object in the database will be mutated / populated with additional data based on the words submitted by players, which of each submission was chosen, etc.  The goal being that this story object (along with a pointer to the current "chunk" being played in a given round) can be used to keep track of the in-game progress through the story, as well as to render the full text of the story when the game is complete.
 <br><br><br>
 
-## In-Game Data Flow and State Transitions
-[Mike, Sean 11/14]
-
-![Flow Chart](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/dspec/images/326_final_flowchart.png "Flow Chart")
-
-** Mike will add a description here of the client action -> socket.io -> server -> database -> socket.io -> client render flow **
 
 <br><br><br>
+## Responsiblity Breakdown
+- Colby Stone: Project Manager
+- Sean Kelley: Creative Director
+- Robert Hromada: Documentation
+- David Su: Frontend Programmer
+- Yue Shing: Frontend Programmer
+- Daniel Choi: Backend Programmer
+- Mike Turley: Backend Programmer
 
+<br><br><br>
+## Revision History
+[Colby 11/14]<br/>
+
+|Milestone    |Version|
+|--------|:-----:|
+|Project Proposal|0.1|
+|Functional Spec.|0.2|
+|Design Spec.|0.3|
+|Views Mockup|0.4|
+
+
+
+
+
+<br><br><br>
 ## External Libraries
 [Colby 11/8]<br/>
 
