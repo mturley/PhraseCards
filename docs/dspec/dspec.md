@@ -259,9 +259,11 @@ As a game progresses, its corresponding story object in the database will be mut
 [David, Mike, Colby 11/14]
 <ul>
 	<li>Colby Stone - Project Manager:
+	<ul>
   	<li>Oversees the project and delegates tasks to team members. </li>
   	<li>Helps out where needed in both front and back end.</li>
   	<li>Views Mock-up/Skeleton</li>
+  	</ul>
 	</li>
 	<li>Sean Kelley - Creative Director:
   <li>Game and rule design</li>
