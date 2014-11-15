@@ -4,7 +4,7 @@
 
 This project is an interactive multi-player on-line competitive madlib web service. The game is centered around filling in an incomplete story. The players submit words to the "card czar" who chooses which word given is used to fill in the story. The card czar is a role which changes every turn, so every player gets a chance to create the story, using their favorite submitted word given by the others.
 
-The application presents a user friendly gui, a playing area with real-time updates, personal profile page with a fiends list, search functionality for other players profiles and an in-game chat room.  Our back end development uses MongoDB to store user data, game state and structured story data, and shares this data with the client via AJAX and Socket.IO implementations connected to a Blaze-based client-side templating system in the game view, as well as EJS-based server-side templating outside the game view.
+The application presents a user friendly gui, a playing area with real-time updates, personal profile page with a fiends list, search functionality for other players profiles and an in-game chat room.  Our back end development uses MongoDB to store user data, game state and structured story data, and shares this data with the client via AJAX and Socket.IO implementations.
 
 
 <br><br><br>
@@ -18,8 +18,9 @@ The application presents a user friendly gui, a playing area with real-time upda
 [Robert, Sean 11/14]
 
 #### Overview
-[Robert, Yue 11/14]
-<p>Most of the website is scripted in Javascript but the game itself uses Blaze. Style.css is used within most of the web pages of the site, and basically contains the unique formats we implement for the web pages. In addition, all of the views of the app uses EJS. The website contains features from the individual aspect, such as personal profile, to the community aspect(ie. lobby and chat room). The remaining components are focused on the game aspect of the app. Certain components , like stories, are necessary for the game to run properly, while others simply enhance the players' experience.</p>
+[Robert, Yue, Mike 11/14]
+
+The application is built in Javascript on top of a Node.js server environment customized with the ExpressJS web framework for Node.  The server uses EJS to render static pages and initial page templates, and some of the client-side pages use dynamic reactive template updates powered by Blaze.  CSS styles based on Foundation with some customizations are used across all pages of the application for the look and feel. The website contains features from the individual aspect, such as personal profile, to the community aspect (ie. lobby and chat room). The remaining components are focused on the game aspect of the app. Certain components, like stories, are necessary for the game to run properly, while others simply enhance the players' experience.
 
 #### Login
 [Yue, Colby 11/14]
