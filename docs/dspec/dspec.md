@@ -96,7 +96,7 @@ The `/api/*` route space is reserved for a RESTful HTTP API that the application
     GET    : get all of the current user's friends
 ```
 
-<<<<<<< HEAD
+
 #### Responsiblity Breakdown
 [David]
 - Colby Stone - Project Manager:
