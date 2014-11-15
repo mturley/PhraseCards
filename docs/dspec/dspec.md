@@ -22,21 +22,30 @@ The application presents a user friendly gui, a playing area with real-time upda
 
 The application is built in Javascript on top of a Node.js server environment customized with the ExpressJS web framework for Node.  The server uses EJS to render static pages and initial page templates, and some of the client-side pages use dynamic reactive template updates powered by Blaze.  CSS styles based on Foundation with some customizations are used across all pages of the application for the look and feel. The website contains features from the individual aspect, such as personal profile, to the community aspect (ie. lobby and chat room). The remaining components are focused on the game aspect of the app. Certain components, like stories, are necessary for the game to run properly, while others simply enhance the players' experience.
 
+
 #### Login
 [Yue, Colby 11/14]
-<p>For the player login we used a library called Passport. We set it up to allow users to sign into their account by filling in two fields: Email and Password. We used HTML5 fields to deal with simple validation. Once authentication is completed, the user successfully log in and redirected to the lobby page. If authentication fails, an error message will appear, and user will be asked to re-enter information into the two fields. There is a link to the sign-up page, in case the user trying to log in does not have an account.</p>
+
+For the player login we used a library called Passport. We set it up to allow users to sign into their account by filling in two fields: Email and Password. We used HTML5 fields to deal with simple validation. Once authentication is completed, the user successfully log in and redirected to the lobby page. If authentication fails, an error message will appear, and user will be asked to re-enter information into the two fields. There is a link to the sign-up page, in case the user trying to log in does not have an account.
+
 
 #### Signup
 [Yue, Colby 11/14]
-<p>Passport also deals with the sign up. The account creation requires an email address, a nickname, a password and a password confirmation. The feature checks the database and makes sure the nickname has not been taken already. Once the account is created the user will be re-directed to the lobby page.</p>
+
+Passport also deals with the sign up. The account creation requires an email address, a nickname, a password and a password confirmation. The feature checks the database and makes sure the nickname has not been taken already. Once the account is created the user will be re-directed to the lobby page.
+
 
 #### Lobby
 [Yue 11/14]
-<p> The lobby function is is an essential feature of the web app that allows all users to see the games in progress, games being created, and games being filled up. Players not in a game will spend most of their time here. There will be a list of players currently in the lobby, in which a player can click and view their profiles. Moreover, in the lobby, players will be able to chat with other players in the lobby, create a game, and join a game.  </p>
+
+The lobby function is is an essential feature of the web app that allows all users to see the games in progress, games being created, and games being filled up. Players not in a game will spend most of their time here. There will be a list of players currently in the lobby, in which a player can click and view their profiles. Moreover, in the lobby, players will be able to chat with other players in the lobby, create a game, and join a game.
+
 
 #### Story
 [Sean 11/14]
-<p>All Madlib stories will be stored in a JSON object. These objects will contain information about the story like it's name, search tags, and length, as well as the story itself. The stories will be broken into "story chunks", which will provide the pieces of data that the different player views, either submitter or voter, will use inside the game. This object will be updated as the game progresses to store game state, and can be queried for any game information for rendering or other purposes.</p>
+
+All Madlib stories will be stored in a JSON object. These objects will contain information about the story like it's name, search tags, and length, as well as the story itself. The stories will be broken into "story chunks", which will provide the pieces of data that the different player views, either submitter or voter, will use inside the game. This object will be updated as the game progresses to store game state, and can be queried for any game information for rendering or other purposes.
+
 
 #### Game
 [Robert, Mike 11/14]
@@ -45,21 +54,30 @@ This is our main game view for when the mad-lib game is running.  Users enter th
 
 **More details on the Game component are detailed below in the "In-Game Data Flow and State Transitions" section.**
 
+
 #### Chat
 [Yue, Colby 11/14]
-<p>Our chat is built using socket.io. Anyone participating in that particular game will be able to use the chat feature. We also set up a global variable to hold the current users nickname and gravatar and display them when a user is sending a message in chat. This feature is meant to enhance players' game experience by increasing their interaction with each other.</p>
+
+Our chat is built using socket.io. Anyone participating in that particular game will be able to use the chat feature. We also set up a global variable to hold the current users nickname and gravatar and display them when a user is sending a message in chat. This feature is meant to enhance players' game experience by increasing their interaction with each other.
+
 
 #### Profile
 [Yue, Colby 11/14]
-<p>Profile will hold all the information about the account creator. The information shown includes a Gravatar picture, total number of games won, the players friends and a search for friends area. This feature allows players to distinguish themselves from other players and give their personal profile a unique feel. Furthermore, profiles enables players to view any other player's basic information. </p>
+
+Profile will hold all the information about the account creator. The information shown includes a Gravatar picture, total number of games won, the players friends and a search for friends area. This feature allows players to distinguish themselves from other players and give their personal profile a unique feel. Furthermore, profiles enables players to view any other player's basic information.
+
 
 #### Search
 [Robert 11/14]
-<p>Search is functionality within profile. This allows searching for fiends amongst the database of PhraseCards users.  This will allow for dynamic search for adding friends to profile.  This uses jquery to the back end.  </p>
+
+Search is functionality within profile. This allows searching for fiends amongst the database of PhraseCards users.  This will allow for dynamic search for adding friends to profile.  This uses jquery to the back end.
+
 
 #### Friends
 [Robert 11/14]
-<p>Friends consists of a list of a persons friends.  It is part of the profile functionality and is used in conjunction with search. </p>
+
+Friends consists of a list of a persons friends.  It is part of the profile functionality and is used in conjunction with search.
+
 
 #### API
 [Mike 11/14]
