@@ -16,7 +16,7 @@ module.exports = function(app,passport) {
         }
     })
     .get('/search', isLoggedIn, function(req, res) {
-      var HTTPOptions = getHTTPOptions(hostname + "/api/search/"+ req.query['name_string'], 'GET',req.user);
+      var HTTPOptions = getHTTPOptions("/api/search/"+ req.query['name_string'], 'GET',req.user);
       getObjects(HTTPOptions, function(userList){
         res.render('search.ejs', {Users : userList});
       });
@@ -37,37 +37,39 @@ module.exports = function(app,passport) {
     })
     */
     .get('/profile', isLoggedIn, function(req, res) {
-      var HTTPOptions = getHTTPOptions(hostname + "/api/friends/", 'GET',req.user);
-      getObjects(HTTPOptions, function(friendList){
+      var HTTPOptions = getHTTPOptions("/api/friends/", 'GET',req.user);
+      getObjects(HTTPOptions, function(friendObjects){
         friendAvatarList = [];
-        for(i = 0; i< friendList.length; i++){
-          friendAvatarList.push(gravatar.get(friendList[i].local.email))
+        for(i = 0; i< friendObjects.length; i++){
+          friendAvatarList.push(gravatar.get(friendObjects[i].local.email))
         }
 
         res.render('profile.ejs', {
         // get the user out of session and pass to template
         user : req.user,
         avatar : gravatar.get(req.user.local.email),
-        friends : friendList,
+        friends : friendObjects,
         friendAvatars : friendAvatarList
         });
       });
-    })
+    })//Gives out the profile of the following user
     .get('/profile/:user_id', isLoggedIn, function(req, res) {
-      var HTTPOptions = getHTTPOptions(hostname + "/api/users/"+req.params.user_id, 'GET', req.user);
+      var HTTPOptions = getHTTPOptions("/api/users/"+req.params.user_id, 'GET', req.user);
+      //first get the user
      getObjects(HTTPOptions, function(userObject){
-      HTTPOptions = getHTTPOptions(hostname + "/api/friends/", 'GET', userObject);
-      getObjects(HTTPOptions, function(friendList){
+      HTTPOptions = getHTTPOptions("/api/friends/", 'GET', userObject);
+      //then get the friends of that user
+      getObjects(HTTPOptions, function(friendObjects){
         
         friendAvatarList = [];
-        for(i = 0; i< friendList.length; i++){
-          friendAvatarList.push(gravatar.get(friendList[i].local.email))
+        for(i = 0; i< friendObjects.length; i++){
+          friendAvatarList.push(gravatar.get(friendObjects[i].local.email))
         }
         res.render('profile.ejs', {
-        // get the user from the params, pass into the template
+        // get the userObject
         user : userObject,
         avatar : gravatar.get(userObject.local.email),
-        friends : friendList,
+        friends : friendObjects,
         friendAvatars : friendAvatarList
         });
       });
@@ -176,7 +178,7 @@ module.exports = function(app,passport) {
 //we need to pass the user's session id so that the api can use it in some instances
 function getHTTPOptions(URL, RESTMethod, session_user){
 
-      var parsedURL = url.parse(URL);
+      var parsedURL = url.parse(hostname + URL);
       var options = {
         host: parsedURL.hostname,
         path: parsedURL.path,
