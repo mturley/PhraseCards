@@ -97,12 +97,24 @@ The `/api/*` route space is reserved for a RESTful HTTP API that the application
 
 <br><br><br><br>
 ## In-Game Data Flow and State Transitions
-[Mike, Sean 11/14]
+[Sean 11/14]
 
 ![Flow Chart](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/dspec/images/326_final_flowchart.png "Flow Chart")
 
-** Mike will add a description here of the client action -> socket.io -> server -> database -> socket.io -> client render flow **
+[Mike 11/14]
+As players join a game room by navigating to the `/game/:game_id` route, their browsers will establish socket.io connections with the server.  The server will keep track of the state of each game, which it will keep synchronized to the MongoDB database.  The flow of data during a game is as follows: As each player performs an action, a socket message will be sent to the server with that action's details.  The server will decide how all the players' actions affect the game state, and emit updates to all players' browsers with the updated state.  The browser's javascript environment will then use this new state to update the HTML view via the Blaze reactive templating engine.  Certain resources needed by the browser during the game may also be requested via AJAX.
 
+The game progresses through four phases, detailed in the above flowchart:
+
+* Setup phase: The creator of the game room chooses a story to play with, and waits for all players to join.  Once everyone agrees to start the game, it moves to the...
+
+* Submission phase: The game loads the first chunk (sentence or phrase) of the story and decides on a player to be "card czar", the player who will be in charge of deciding which word goes in the blank.  The czar gets to see the whole chunk, and all other players just see the type of blank (verb, noun, article of clothing, etc).  All players except the czar submit a word for the blank, which appear as cards on the board.  A time limit for these submissions counts down, after which the game progresses to the...
+
+* Voting phase: The card czar now has to select (vote) for a particular submitted word, based on considering each of them in the context of the story chunk / phrase.  A time limit for this decision also counts down, in case the czar is unresponsive-- if this timer reaches zero, a winning card is chosen at random.  The game progresses to the...
+
+* Review phase: All players will see the results of the submission/voting and points are awarded to the player who submitted the card chosen by the card czar.  After a certain amount of time, the game progresses to the next round, and returns to the submission phase for the next chunk of the story.
+
+One submission -> voting -> review cycle is referred to as a "round", and there is one round for each chunk/blank in the story.  In the last round's review phase, the entire story is revealed to all players with blanks filled in with the winning words.  Players can read through it and mouse over each submitted word to see who submitted it.
 
 
 <br><br><br>
