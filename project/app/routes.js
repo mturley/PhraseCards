@@ -53,6 +53,27 @@ module.exports = function(app,passport) {
         });
       });
     })
+    .get('/profile/:user_id', isLoggedIn, function(req, res) {
+      var HTTPOptions = getHTTPOptions(hostname + "/api/users/"+req.params.user_id, 'GET', req.user);
+     getObjects(HTTPOptions, function(userObject){
+      HTTPOptions = getHTTPOptions(hostname + "/api/friends/", 'GET', userObject);
+      getObjects(HTTPOptions, function(friendList){
+        
+        friendAvatarList = [];
+        for(i = 0; i< friendList.length; i++){
+          friendAvatarList.push(gravatar.get(friendList[i].local.email))
+        }
+        res.render('profile.ejs', {
+        // get the user from the params, pass into the template
+        user : userObject,
+        avatar : gravatar.get(userObject.local.email),
+        friends : friendList,
+        friendAvatars : friendAvatarList
+        });
+      });
+    });
+
+    })
     .get('/lobby', isLoggedIn, function(req, res) {
       res.render('lobby.ejs', {
         user : req.user,

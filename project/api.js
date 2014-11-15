@@ -158,8 +158,8 @@ router
 router
   .route('/friends/:user_id') //connect the current user and the target user
     .put(function(req,res){  
-        connectContact(req.user._id, req.params.user_id,res);
-        connectContact(req.params.user_id,req.user._id,res);
+        connectContact(req.headers.user_id, req.params.user_id,res);
+        connectContact(req.params.user_id,req.headers.user_id,res);
         res.json({ message: 'Successfully connected' });
     });
 
