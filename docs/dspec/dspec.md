@@ -114,40 +114,6 @@ The `/api/*` route space is reserved for a RESTful HTTP API that the application
 ```
 
 
-#### Responsiblity Breakdown
-[David, Mike, Colby 11/14]
-
-- Colby Stone - Project Manager:
-  *Reponsible for final say on all aspects.  Decides what external libraries are used and in charge of their implementation and relaying information to the rest of the team.
-
-- Sean Kelley - Creative Director:
-  *Game and rule design
-  *Play testing
-  *Story - Content creation (writing madlibs and new feature development).
-
-- Robert Hromada - Documentation:
-  *Team meeting briefings
-  *Power point presentation creator
-
-- David Su: Frontend Programmer:
-  *Game mechanics
-  *Debugging
-
-- Yue Shing - Frontend Programmer:
-  *Game mechanics
-  *Sign up
-
-- Daniel Choi - Backend Programmer:
-  *Database setup and administration
-  *Search
-  *Profiles
-  *Login
-
-- Mike Turley - Backend Programmer:
-  *Lobby
-  *Game mechanics and phase transitions
-  *Data structures / Database schema
-  *Data flow (sockets and AJAX)
 
 <br><br><br><br>
 ## In-Game Data Flow and State Transitions
@@ -278,18 +244,6 @@ This will be the [noun] of a madlib.  This will be the text before a blank space
 As a game progresses, its corresponding story object in the database will be mutated / populated with additional data based on the words submitted by players, which of each submission was chosen, etc.  The goal being that this story object (along with a pointer to the current "chunk" being played in a given round) can be used to keep track of the in-game progress through the story, as well as to render the full text of the story when the game is complete.
 <br><br><br>
 
-
-<br><br><br>
-## Responsibility Breakdown
-- Colby Stone: Project Manager
-- Sean Kelley: Creative Director
-- Robert Hromada: Documentation
-- David Su: Frontend Programmer
-- Yue Shing: Frontend Programmer
-- Daniel Choi: Backend Programmer
-- Mike Turley: Backend Programmer
-
-<br><br><br>
 ## Revision History
 [Colby 11/14]<br/>
 
@@ -300,8 +254,44 @@ As a game progresses, its corresponding story object in the database will be mut
 |Design Spec. |0.3|
 |Views Mockup |0.4|
 
-
-
+<br><br><br>
+#### Responsibility Breakdown
+[David, Mike, Colby 11/14]
+<ul>
+	<li>Colby Stone - Project Manager:
+  	<li>Oversees the project and delegates tasks to team members. </li>
+  	<li>Helps out where needed in both front and back end.</li>
+  	<li>Views Mock-up/Skeleton</li>
+	</li>
+	<li>Sean Kelley - Creative Director:
+  <li>Game and rule design</li>
+  <li>Play testing</li>
+  <li>Story - Content creation (writing madlibs and new feature development).</li>
+</li>
+<li>Robert Hromada - Documentation:
+  <li>Team meeting briefings</li>
+  <li>Power point presentation creator</li>
+</li>
+<li>David Su: Frontend Programmer:
+  <li>Game mechanics</li>
+  <li>Debugging</li>
+</li>
+<li>Yue Shing - Frontend Programmer:
+  <li>Game mechanics</li>
+  <li>Sign up</li>
+</li>
+<li>Daniel Choi - Backend Programmer:
+  <li>Database setup and administration</li>
+  <li>Search</li>
+  <li>Profiles</li>
+  <li>Login</li>
+</li>
+<li>Mike Turley - Backend Programmer:
+  <li>Lobby</li>
+  <li>Game mechanics and phase transitions</li>
+  <li>Data structures / Database schema</li>
+  <li>Data flow (sockets and AJAX)</li>
+</li>
 
 
 <br><br><br>
