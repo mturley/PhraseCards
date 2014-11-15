@@ -5,6 +5,11 @@
 <p>
 This project is an interactive multiplayer online competitive madlib web service. The game itself borrows from the idea of apples-to-apples where every turn a player is picked to choose submissions made by other players to fill in the blanks of premade Madlibs stories. The application presents a user friendly gui, a playing area, personal profile page with a fiends list, and an in-game chatroom.  Our backend development uses dynamic server storage systems with support from jquery to the front end.</p>
 
+<<<<<<< HEAD
+This project is a web application that provides a game of multipler Madlibs. The game is centered around filling in an incomplete story. The players submit words to the "card czar" who chooses which word given is used to fill in the story. The card czar is a role which changes every turn, so every player gets a chance to create the story, using their favorite submitted word given by the others.
+ 
+=======
+>>>>>>> 91add70539a4e004eb823373a71000320c3bd450
 
 ## Birds Eye View
 
@@ -20,7 +25,7 @@ This project is an interactive multiplayer online competitive madlib web service
 
 #### Login
 [Yue 11/14]
-<p>Login feature allows a user to sign into his/her account by filling in two fields: Username and Password. We use Jqueries to search through the database to ensure the username exists. A validation function through the back-end will also be implemented to ensure the password is correct.</p>
+<p>Login feature allows a user to sign into his/her account by filling in two fields: Username and Password. We use Jqueries to search through the database to ensure the username exists. A validation function through the back-end will also be implemented to ensure the password is correct. Once authentication is completed, the user successfully log in and will be brought to the lobby webpage under that account name. If authentication fails, an error message will appear, and user will be asked to re-enter information into the two fields. There will also be a link to the sign-up function, in case the user trying to log in does not have an account.</p>
 
 #### Signup
 [Yue 11/14]
