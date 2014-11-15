@@ -1,5 +1,4 @@
 <% include partials/header %>
-
   <div class="row profile">
     <div class="medium-8 large-centered columns">
 
@@ -21,29 +20,11 @@
         <div class="row">
           <div class="small-12 medium-12 large-12 columns friends">
             <h2>Your Friends</h2>
-
-            <!-- Replace with loop through friends -->
-            <div class="small-6 medium-6 large-3 columns left">
-              <img src="https://placehold.it/200x200" alt="" />
-            </div>
-            <div class="small-6 medium-6 large-3 columns left">
-              <img src="https://placehold.it/200x200" alt="" />
-            </div>
-            <div class="small-6 medium-6 large-3 columns left">
-              <img src="https://placehold.it/200x200" alt="" />
-            </div>
-            <div class="small-6 medium-6 large-3 columns left">
-              <img src="https://placehold.it/200x200" alt="" />
-            </div>
-            <div class="small-6 medium-6 large-3 columns left">
-              <img src="https://placehold.it/200x200" alt="" />
-            </div>
-            <div class="small-6 medium-6 large-3 columns left">
-              <img src="https://placehold.it/200x200" alt="" />
-            </div>
-            <div class="small-6 medium-6 large-3 columns left">
-              <img src="https://placehold.it/200x200" alt="" />
-            </div>
+                  <% for (i = 0; i < friendAvatars.length; i++) { %>
+                      <div class="small-6 medium-6 large-3 columns left">
+                      <img src= <%= friendAvatars[i] %> />
+                      </div>
+                  <% } %>
           </div>
 
           <div class="small-12 medium-12 large-12 columns search">

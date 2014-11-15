@@ -16,17 +16,10 @@ module.exports = function(app,passport) {
         }
     })
     .get('/search', isLoggedIn, function(req, res) {
-      var userReq = http.request(getHTTPOptions(hostname + "/api/search/"+ req.query['name_string'], 'GET'), function(resp) {
-        resp.setEncoding('utf8');
-        resp.on('data', function(data){
-        var userList = JSON.parse(data);
-           res.render('search.ejs', {Users : userList
+      var HTTPOptions = getHTTPOptions(hostname + "/api/search/"+ req.query['name_string'], 'GET',req.user);
+      getObjects(HTTPOptions, function(userList){
+        res.render('search.ejs', {Users : userList});
       });
-      });
-    }).on('error', function(e) {console.log("Got error: " + e.message);});
-      userReq.end();
-
-   
     })
     /*
     //Search all users
@@ -44,10 +37,20 @@ module.exports = function(app,passport) {
     })
     */
     .get('/profile', isLoggedIn, function(req, res) {
-      res.render('profile.ejs', {
+      var HTTPOptions = getHTTPOptions(hostname + "/api/friends/", 'GET',req.user);
+      getObjects(HTTPOptions, function(friendList){
+        friendAvatarList = [];
+        for(i = 0; i< friendList.length; i++){
+          friendAvatarList.push(gravatar.get(friendList[i].local.email))
+        }
+
+        res.render('profile.ejs', {
         // get the user out of session and pass to template
         user : req.user,
-        avatar : gravatar.get(req.user.local.email)
+        avatar : gravatar.get(req.user.local.email),
+        friends : friendList,
+        friendAvatars : friendAvatarList
+        });
       });
     })
     .get('/lobby', isLoggedIn, function(req, res) {
@@ -149,16 +152,30 @@ module.exports = function(app,passport) {
 
 //helper method for creating options for HTTP requests 
 //usage: URL and REST method(GET, POST, etc)
-function getHTTPOptions(URL, RESTMethod){
+//we need to pass the user's session id so that the api can use it in some instances
+function getHTTPOptions(URL, RESTMethod, session_user){
 
       var parsedURL = url.parse(URL);
       var options = {
         host: parsedURL.hostname,
         path: parsedURL.path,
         port: parsedURL.port,
-        method: RESTMethod
+        method: RESTMethod,
+        headers: {'user_id': session_user._id}
       };
       return options;
+}
+//used to get objects back from the database
+//invokes a callback after getting the list of objects
+function getObjects(HTTPOptions, callback){
+ var objReq =  http.request(HTTPOptions, function(resp) {
+        resp.setEncoding('utf8');
+        resp.on('data', function(data){
+        var objectList = JSON.parse(data);
+        callback(objectList);
+      });
+      }).on('error', function(e) {console.log("Got error: " + e.message);});
+      objReq.end();  
 }
 
 // route middleware to make sure a user is logged in
