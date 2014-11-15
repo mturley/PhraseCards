@@ -24,12 +24,12 @@ This project is an interactive multiplayer online competitive madlib web service
 <p>The website is scripted using HTML, whereas the game itself is using Javascript. Style.css is used within most of the webpages of the site, and basically contains the unique formats we implement for the webpages. In addition, all of the views of the app uses EJS.The website contains features from the individual aspect, such as personal profile, to the community aspect(ie. lobby and chatroom). The remaining components are focused on the game aspect of the app. Certain components , like stories, are necessary for the game to run properly, while others simply enhance the players' experience.</p>
 
 #### Login
-[Yue 11/14]
-<p>Login feature allows a user to sign into his/her account by filling in two fields: Username and Password. We use Jqueries to search through the database to ensure the username exists. A validation function through the back-end will also be implemented to ensure the password is correct. Once authentication is completed, the user successfully log in and will be brought to the lobby webpage under that account name. If authentication fails, an error message will appear, and user will be asked to re-enter information into the two fields. There will also be a link to the sign-up function, in case the user trying to log in does not have an account.</p>
+[Yue, Colby 11/14]
+<p>For the player login we used a library called Passport. We set it up to allow users to sign into their account by filling in two fields: Email and Password. We used HTML5 fields to deal with simple validation. Once authentication is completed, the user successfully log in and redirected to the lobby page. If authentication fails, an error message will appear, and user will be asked to re-enter information into the two fields. There is a link to the sign-up page, in case the user trying to log in does not have an account.</p>
 
 #### Signup
-[Yue 11/14]
-<p>The signup feature allows any person to create an account on the website. The account creation requires an email address, a username, and a password. The feature checks the database and makes sure the username has not been taken already. The database will then add the account information to its tables, and the account will be created. The user will be re-directed to the log-in page, where he/she can then log into the new account.</p>
+[Yue, Colby 11/14]
+<p>Passport also deals with the sign up. The account creation requires an email address, a nickname, a password and a password confirmation. The feature checks the database and makes sure the nickname has not been taken already. Once the account is created the user will be re-directed to the lobby page.</p>
 
 #### Lobby
 [Yue 11/14]
