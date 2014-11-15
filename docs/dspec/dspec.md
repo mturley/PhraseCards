@@ -29,7 +29,7 @@ This project is an interactive multiplayer online competitive madlib web service
 
 #### Signup
 [Yue 11/14]
-<p>The signup feature allows any person to create an account on the website. The account creation requires an email address, a username, and a password. The feature checks the database and makes sure the username has not been taken already. </p>
+<p>The signup feature allows any person to create an account on the website. The account creation requires an email address, a username, and a password. The feature checks the database and makes sure the username has not been taken already. The database will then add the account information to its tables, and the account will be created. The user will be re-directed to the log-in page, where he/she can then log into the new account.</p>
 
 #### Lobby
 [Yue 11/14]
