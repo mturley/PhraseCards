@@ -2,7 +2,7 @@
 
 ## Project Idea
 
-This project is a full scale web service which centers around playing games of multiplayer madlibs. The game itself borrows from the idea of apples-to-apples where every turn a player is picked to choose submissions made by other players to fill in the blanks of premade Madlibs stories. The application presents a user friendly gui, a playing area, and an in-game chatroom. 
+This project is a web application that provides a game of multipler Madlibs. The game is centered around filling in an incomplete story. The players submit words to the "card czar" who chooses which word given is used to fill in the story. The card czar is a role which changes every turn, so every player gets a chance to create the story, using their favorite submitted word given by the others.
  
 
 ## Views Walkthrough Demo
