@@ -120,7 +120,10 @@ The `/api/*` route space is reserved for a RESTful HTTP API that the application
 ## Views Walkthrough Demo
 [Colby 11/12]<br/>
 
-[Login Here](https://powerful-sands-7248.herokuapp.com/) Email: demo@test.com  Password: 12345
+[View Demo Here](https://powerful-sands-7248.herokuapp.com/)
+
+#### Log In Info
+<br><br>Email: demo@test.com  <br>Password: 12345<br><br>
 <p>Once logged in click on the hamburger menu icon in the upper left to reveal the debugging menu that will allow you to easily jump around the views demo.</p>
 ![menu demo](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/dspec/images/menu.gif)
 
