@@ -3,11 +3,17 @@
 ## Project Idea
 
 <p>
+<<<<<<< HEAD
+This project is an interactive multiplayer online competitive madlib web service. The game is centered around a group of players filling in an incomplete story together. Each player submits a word on a card to the "Card Czar", who chooses which word will be used to fill in that blank of the story. The Card Czar is a role which changes every turn, so every player participates in creating the story.
+ 
+The application presents a user friendly gui, a playing area, personal profile page with a fiends list, search functionality for other player's profiles and an in-game chatroom.  Our backend development uses dynamic server storage systems with support from jquery to the front end.</p>
+=======
 This project is an interactive multiplayer online competitive madlib web service. The game is centered around filling in an incomplete story. The players submit words to the "card czar" who chooses which word given is used to fill in the story. The card czar is a role which changes every turn, so every player gets a chance to create the story, using their favorite submitted word given by the others.
  </p>
  <p>
  The application presents a user friendly gui, a playing area, personal profile page with a fiends list, search functionality for other players profiles and an in-game chatroom.  Our backend development uses dynamic server storage systems with support from jquery to the front end.</p>
 </p>
+>>>>>>> 2c73fccc48104da2d0cf7bb6dbcb7324021e5ba5
 
 <br><br><br>
 ## Birds Eye View
@@ -21,7 +27,7 @@ This project is an interactive multiplayer online competitive madlib web service
 
 #### Overview
 [Robert, Yue 11/14]
-<p>The website is scripted using HTML, whereas the game itself is using Javascript. Style.css is used within most of the webpages of the site, and basically contains the unique formats we implement for the webpages. In addition, all of the views of the app uses EJS.The website contains features from the individual aspect, such as personal profile, to the community aspect(ie. lobby and chatroom). The remaining components are focused on the game aspect of the app. Certain components , like stories, are necessary for the game to run properly, while others simply enhance the players' experience.</p>
+<p>Most of the website is scripted in Javascript but the game itself uses Blaze. Style.css is used within most of the webpages of the site, and basically contains the unique formats we implement for the webpages. In addition, all of the views of the app uses EJS. The website contains features from the individual aspect, such as personal profile, to the community aspect(ie. lobby and chatroom). The remaining components are focused on the game aspect of the app. Certain components , like stories, are necessary for the game to run properly, while others simply enhance the players' experience.</p>
 
 #### Login
 [Yue, Colby 11/14]
@@ -95,9 +101,43 @@ The `/api/*` route space is reserved for a RESTful HTTP API that the application
     GET    : get all of the current user's friends
 ```
 
+<<<<<<< HEAD
+#### Responsiblity Breakdown
+[David]
+- Colby Stone - Project Manager: 
+  *Reponsible for final say on all aspects.  Decides what external libraries are used and in charge of their implementation and relaying information to the rest of the team.
+
+- Sean Kelley - Creative Director: 
+  *Game and rule design
+  *Play testing 
+  *Story - Content creation (writing madlibs and new feature development).
+
+- Robert Hromada - Documentation: 
+  *Team meeting briefings
+  *Power point presentation creator
+
+- David Su: Frontend Programmer:
+  *Game mechanics
+  *Debugging
+
+- Yue Shing - Frontend Programmer: 
+  *Game mechanics
+  *Sign up
+
+- Daniel Choi - Backend Programmer: 
+  *Database setup and administration
+  *Search
+  *Profiles
+  *Login
+
+- Mike Turley - Backend Programmer: 
+  *Lobby
+  *Game mechanics
+=======
 <br><br><br><br>
 ## In-Game Data Flow and State Transitions
 [Sean 11/14]
+>>>>>>> 2c73fccc48104da2d0cf7bb6dbcb7324021e5ba5
 
 ![Flow Chart](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/dspec/images/326_final_flowchart.png "Flow Chart")
 
