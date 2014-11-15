@@ -93,13 +93,36 @@ The `/api/*` route space is reserved for a RESTful HTTP API that the application
 ```
 
 #### Responsiblity Breakdown
-- Colby Stone: Project Manager: Reponsible for final say on all aspects.  Decides what external libraries are used and in charge of their implementation and relaying information to the rest of the team.
-- Sean Kelley: Creative Director: 
-- Robert Hromada: Documentation: 
-- David Su: Frontend Programmer: 
-- Yue Shing: Frontend Programmer: 
-- Daniel Choi: Backend Programmer: 
-- Mike Turley: Backend Programmer: 
+[David]
+- Colby Stone - Project Manager: 
+  *Reponsible for final say on all aspects.  Decides what external libraries are used and in charge of their implementation and relaying information to the rest of the team.
+
+- Sean Kelley - Creative Director: 
+  *Game and rule design
+  *Play testing 
+  *Story - Content creation (writing madlibs and new feature development).
+
+- Robert Hromada - Documentation: 
+  *Team meeting briefings
+  *Power point presentation creator
+
+- David Su: Frontend Programmer:
+  *Game mechanics
+  *Debugging
+
+- Yue Shing - Frontend Programmer: 
+  *Game mechanics
+  *Sign up
+
+- Daniel Choi - Backend Programmer: 
+  *Database setup and administration
+  *Search
+  *Profiles
+  *Login
+
+- Mike Turley - Backend Programmer: 
+  *Lobby
+  *Game mechanics
 
 <br><br><br>
 ## Revision History
