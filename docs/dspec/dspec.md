@@ -278,7 +278,7 @@ As a game progresses, its corresponding story object in the database will be mut
   		<li>Power point presentation creator</li>
   	</ul>
 	</li>
-	<li><h5>David Su: Frontend Programmer:
+	<li><h5>David Su: Frontend Programmer:</h5>
 		<ul>
   		<li>Game mechanics</li>
   		<li>Debugging</li>
