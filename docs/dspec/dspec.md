@@ -1,6 +1,7 @@
 # Design Specification
 
 ## Project Idea
+[David, Mike 11/14]
 
 This project is an interactive multi-player on-line competitive madlib web service. The game is centered around filling in an incomplete story. The players submit words to the "card czar" who chooses which word given is used to fill in the story. The card czar is a role which changes every turn, so every player gets a chance to create the story, using their favorite submitted word given by the others.
 
@@ -145,7 +146,7 @@ The `/api/*` route space is reserved for a RESTful HTTP API that the application
   *Lobby
   *Game mechanics
   *Data structures / Database schema
-  * 
+  *
 
 <br><br><br><br>
 ## In-Game Data Flow and State Transitions
