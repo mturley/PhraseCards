@@ -3,17 +3,12 @@
 ## Project Idea
 
 <p>
-<<<<<<< HEAD
-This project is an interactive multiplayer online competitive madlib web service. The game is centered around a group of players filling in an incomplete story together. Each player submits a word on a card to the "Card Czar", who chooses which word will be used to fill in that blank of the story. The Card Czar is a role which changes every turn, so every player participates in creating the story.
-
-The application presents a user friendly gui, a playing area, personal profile page with a fiends list, search functionality for other player's profiles and an in-game chatroom.  Our backend development uses dynamic server storage systems with support from jquery to the front end.</p>
-=======
-This project is an interactive multiplayer online competitive madlib web service. The game is centered around filling in an incomplete story. The players submit words to the "card czar" who chooses which word given is used to fill in the story. The card czar is a role which changes every turn, so every player gets a chance to create the story, using their favorite submitted word given by the others.
+This project is an interactive multi-player on-line competitive madlib web service. The game is centered around filling in an incomplete story. The players submit words to the "card czar" who chooses which word given is used to fill in the story. The card czar is a role which changes every turn, so every player gets a chance to create the story, using their favorite submitted word given by the others.
  </p>
  <p>
- The application presents a user friendly gui, a playing area, personal profile page with a fiends list, search functionality for other players profiles and an in-game chatroom.  Our backend development uses dynamic server storage systems with support from jquery to the front end.</p>
+ The application presents a user friendly gui, a playing area, personal profile page with a fiends list, search functionality for other players profiles and an in-game chat room.  Our back end development uses dynamic server storage systems with support from jquery to the front end.</p>
 </p>
->>>>>>> 2c73fccc48104da2d0cf7bb6dbcb7324021e5ba5
+
 
 <br><br><br>
 ## Birds Eye View
@@ -27,7 +22,7 @@ This project is an interactive multiplayer online competitive madlib web service
 
 #### Overview
 [Robert, Yue 11/14]
-<p>Most of the website is scripted in Javascript but the game itself uses Blaze. Style.css is used within most of the webpages of the site, and basically contains the unique formats we implement for the webpages. In addition, all of the views of the app uses EJS. The website contains features from the individual aspect, such as personal profile, to the community aspect(ie. lobby and chatroom). The remaining components are focused on the game aspect of the app. Certain components , like stories, are necessary for the game to run properly, while others simply enhance the players' experience.</p>
+<p>Most of the website is scripted in Javascript but the game itself uses Blaze. Style.css is used within most of the web pages of the site, and basically contains the unique formats we implement for the web pages. In addition, all of the views of the app uses EJS. The website contains features from the individual aspect, such as personal profile, to the community aspect(ie. lobby and chat room). The remaining components are focused on the game aspect of the app. Certain components , like stories, are necessary for the game to run properly, while others simply enhance the players' experience.</p>
 
 #### Login
 [Yue, Colby 11/14]
@@ -57,12 +52,12 @@ This is our main game view for when the mad-lib game is running.  Users enter th
 <p>Our chat is built using socket.io. Anyone participating in that particular game will be able to use the chat feature. We also set up a global variable to hold the current users nickname and gravatar and display them when a user is sending a message in chat. This feature is meant to enhance players' game experience by increasing their interaction with each other.</p>
 
 #### Profile
-[Yue 11/14]
-<p>Profile will hold all the information about the account creator. The information shown includes a Gravator picture, account creation date, total number of games played, and recent game history. This feature allows players to distinguish themselves from other players and give their personal profile a unique feel. Furthermore, profiles enables players to view any other player's basic information. </p>
+[Yue, Colby 11/14]
+<p>Profile will hold all the information about the account creator. The information shown includes a Gravatar picture, total number of games won, the players friends and a search for friends area. This feature allows players to distinguish themselves from other players and give their personal profile a unique feel. Furthermore, profiles enables players to view any other player's basic information. </p>
 
 #### Search
 [Robert 11/14]
-<p>Search is functionality within profile.  This allows searching for fiends amongst the database of PhraseCards users.  This will allow for dynamic search for adding friends to profile.  This uses jquery to the back end.  </p>
+<p>Search is functionality within profile. This allows searching for fiends amongst the database of PhraseCards users.  This will allow for dynamic search for adding friends to profile.  This uses jquery to the back end.  </p>
 
 #### Friends
 [Robert 11/14]
@@ -133,11 +128,11 @@ The `/api/*` route space is reserved for a RESTful HTTP API that the application
 - Mike Turley - Backend Programmer:
   *Lobby
   *Game mechanics
-=======
+
 <br><br><br><br>
 ## In-Game Data Flow and State Transitions
 [Sean 11/14]
->>>>>>> 2c73fccc48104da2d0cf7bb6dbcb7324021e5ba5
+
 
 ![Flow Chart](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/dspec/images/326_final_flowchart.png "Flow Chart")
 
@@ -265,7 +260,7 @@ As a game progresses, its corresponding story object in the database will be mut
 
 
 <br><br><br>
-## Responsiblity Breakdown
+## Responsibility Breakdown
 - Colby Stone: Project Manager
 - Sean Kelley: Creative Director
 - Robert Hromada: Documentation
@@ -280,10 +275,10 @@ As a game progresses, its corresponding story object in the database will be mut
 
 |Milestone    |Version|
 |--------|:-----:|
-|Project Proposal|0.1|
-|Functional Spec.|0.2|
-|Design Spec.|0.3|
-|Views Mockup|0.4|
+|Project Proposal |0.1|
+|Functional Spec. |0.2|
+|Design Spec. |0.3|
+|Views Mockup |0.4|
 
 
 
