@@ -5,6 +5,20 @@
 
 (function() {
 
+
+  var socket = io.connect();
+
+
+  $('#joinRoom').click(function(){
+    console.log("joinRoom Clicked");
+    socket.emit('create', 'room1');
+  });
+
+
+
+
+
+
   var LobbyUI = {
     activeGames: new Blaze.Var([]),
     reloadGames: function() {

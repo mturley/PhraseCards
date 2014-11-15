@@ -17,6 +17,8 @@
 
 
 
+
+
 $(function() {
 
   console.log("game.js is loaded");
