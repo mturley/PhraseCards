@@ -258,39 +258,39 @@ As a game progresses, its corresponding story object in the database will be mut
 #### Responsibility Breakdown
 [David, Mike, Colby 11/14]
 <ul>
-	<li>Colby Stone - Project Manager:
+	<li><h5>Colby Stone - Project Manager:</h5>
 		<ul>
 	  	<li>Oversees the project and delegates tasks to team members. </li>
 	  	<li>Helps out where needed in both front and back end.</li>
 	  	<li>Views Mock-up/Skeleton</li>
 	  </ul>
 	</li>
-	<li>Sean Kelley - Creative Director:
+	<li><h5>Sean Kelley - Creative Director:</h5>
 		<ul>
 		  <li>Game and rule design</li>
 		  <li>Play testing</li>
 		  <li>Story - Content creation (writing madlibs and new feature development).</li>
 		</ul>
 	</li>
-	<li>Robert Hromada - Documentation:
+	<li><h5>Robert Hromada - Documentation:</h5>
 		<ul>
   		<li>Team meeting briefings</li>
   		<li>Power point presentation creator</li>
   	</ul>
 	</li>
-	<li>David Su: Frontend Programmer:
+	<li><h5>David Su: Frontend Programmer:
 		<ul>
   		<li>Game mechanics</li>
   		<li>Debugging</li>
   	</ul>
 	</li>
-	<li>Yue Shing - Frontend Programmer:
+	<li><h5>Yue Shing - Frontend Programmer:</h5>
 		<ul>
   		<li>Game mechanics</li>
   		<li>Sign up</li>
   	</ul>
 	</li>
-	<li>Daniel Choi - Backend Programmer:
+	<li><h5>Daniel Choi - Backend Programmer:</h5>
 		<ul>
   		<li>Database setup and administration</li>
   		<li>Search</li>
@@ -298,7 +298,7 @@ As a game progresses, its corresponding story object in the database will be mut
   		<li>Login</li>
   	</ul>
 	</li>
-	<li>Mike Turley - Backend Programmer:
+	<li><h5>Mike Turley - Backend Programmer:</h5>
 		<ul>
   		<li>Lobby</li>
   		<li>Game mechanics and phase transitions</li>
