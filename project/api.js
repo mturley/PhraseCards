@@ -22,11 +22,11 @@ router
       });
     })
     .get(function(req,res){
+      console.log("test")
       User.find(function(err,users){
         if(err) {
           res.send(err);
         }
-        Users = JSON.stringify(users);
        res.json(users);
       });
     });

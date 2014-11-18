@@ -40,6 +40,10 @@ module.exports = function(app,passport) {
     .get('/profile', isLoggedIn, function(req, res) {
       var HTTPOptions = getHTTPOptions("/api/friends/", 'GET',{'user_id': req.user._id});
       getObjects(HTTPOptions, function(friendObjects){
+        HTTPOptions = getHTTPOptions("/api/users/", 'GET', undefined);
+      //the list of all of the users
+      getObjects(HTTPOptions, function(searchUserObjects){
+        console.log(searchUserObjects);
         friendAvatarList = [];
         for(i = 0; i< friendObjects.length; i++){
           friendAvatarList.push(gravatar.get(friendObjects[i].local.email))
@@ -47,10 +51,12 @@ module.exports = function(app,passport) {
 
         res.render('profile.ejs', {
         // get the user out of session and pass to template
+        searchUsers : searchUserObjects
         user : req.user,
         avatar : gravatar.get(req.user.local.email),
         friends : friendObjects,
         friendAvatars : friendAvatarList
+          });
         });
       });
     })//Gives out the profile of the following user
@@ -59,7 +65,6 @@ module.exports = function(app,passport) {
       var HTTPOptions = getHTTPOptions("/api/users/"+req.params.user_id, 'GET',  {'user_id': req.user._id});
       //first get the user
      getObjects(HTTPOptions, function(userObject){
-      HTTPOptions = getHTTPOptions("/api/friends/", 'GET',  {'user_id': userObject._id});
       //then get the friends of that user
       getObjects(HTTPOptions, function(friendObjects){
         
