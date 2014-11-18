@@ -52,7 +52,7 @@ module.exports = function(app,passport) {
         for(i = 0; i< searchUserObjects.length; i++){
           searchUserAvatarsList.push(gravatar.get(searchUserObjects[i].local.email))
         }
-        console.log(searchUserObjects)
+        //console.log(searchUserObjects)
 
         res.render('profile.ejs', {
         // get the user out of session and pass to template
