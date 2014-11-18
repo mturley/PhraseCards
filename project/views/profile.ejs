@@ -35,7 +35,13 @@
               </div>
               <button type="submit" class="button button-large button-success right">Search</button>
             </form>
-          </div>
+            <div class="small-12 medium-12 large-12 columns">
+              <% for (i = 0; i < searchUsers.length; i++) { %>
+                <p><%= searchUsers[i].local.nickname%></p>
+                <a href=<%="profile/" + searchUsers[i]._id %>><img src= <%= searchUserAvatars[i] %> height="5" width="5"  /><a>
+               <% } %>
+            </div>
+          </div> 
         </div>
       </div>
     </div>

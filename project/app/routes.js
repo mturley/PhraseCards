@@ -44,14 +44,20 @@ module.exports = function(app,passport) {
       //the list of all of the users
       getObjects(HTTPOptions, function(searchUserObjects){
         console.log(searchUserObjects);
-        friendAvatarList = [];
+        var friendAvatarList = [];
         for(i = 0; i< friendObjects.length; i++){
           friendAvatarList.push(gravatar.get(friendObjects[i].local.email))
         }
 
+        var searchUserAvatarsList = [];
+        for(i = 0; i< searchUserObjects.length; i++){
+          searchUserAvatarsList.push(gravatar.get(searchUserObjects[i].local.email))
+        }
+
         res.render('profile.ejs', {
         // get the user out of session and pass to template
-        searchUsers : searchUserObjects
+        searchUsers : searchUserObjects,
+        searchUserAvatars : searchUserAvatarsList,
         user : req.user,
         avatar : gravatar.get(req.user.local.email),
         friends : friendObjects,
