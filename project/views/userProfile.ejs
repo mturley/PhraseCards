@@ -27,20 +27,6 @@
                       </div>
                   <% } %>
           </div>
-
-          <div class="small-12 medium-12 large-12 columns search">
-            <h2>Find Friends</h2>
-            <form action="/search" method="get">
-              <div class="form-group">
-                <input type="text" class="form-control" name="name_string">
-              </div>
-              <button type="submit" class="button button-large button-success right">Search</button>
-            </form>
-            <div class="small-12 medium-12 large-12 ">
-              <% for (i = 0; i < searchUserAvatars.length; i++) { %>
-                <p><%= searchUsers[i].local.nickname %></p>
-                <a href=<%="profile/" + searchUsers[i]._id %>><img src= <%= searchUserAvatars[i] %>/><a>
-               <% } %>
             </div>
           </div> 
         </div>

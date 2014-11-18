@@ -43,7 +43,6 @@ module.exports = function(app,passport) {
         HTTPOptions = getHTTPOptions("/api/users/", 'GET', undefined);
       //the list of all of the users
       getObjects(HTTPOptions, function(searchUserObjects){
-        console.log(searchUserObjects);
         var friendAvatarList = [];
         for(i = 0; i< friendObjects.length; i++){
           friendAvatarList.push(gravatar.get(friendObjects[i].local.email))
@@ -53,6 +52,7 @@ module.exports = function(app,passport) {
         for(i = 0; i< searchUserObjects.length; i++){
           searchUserAvatarsList.push(gravatar.get(searchUserObjects[i].local.email))
         }
+        console.log(searchUserObjects)
 
         res.render('profile.ejs', {
         // get the user out of session and pass to template
@@ -78,7 +78,7 @@ module.exports = function(app,passport) {
         for(i = 0; i< friendObjects.length; i++){
           friendAvatarList.push(gravatar.get(friendObjects[i].local.email))
         }
-        res.render('profile.ejs', {
+        res.render('userProfile.ejs', {
         // get the userObject
         user : userObject,
         avatar : gravatar.get(userObject.local.email),
