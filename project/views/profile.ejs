@@ -40,7 +40,7 @@
                 <% for (i = 0; i < searchUserAvatars.length; i++) { %>
                   <li class="potential_friend">
                     <p><%= searchUsers[i].local.nickname %></p>
-                    <a href=<%="profile/" + searchUsers[i]._id %>><img src= <%= searchUserAvatars[i] %>/><a>
+                    <a href=<%="profile/" + searchUsers[i]._id %>><img src= <%= searchUserAvatars[i] %>/  style="width:10%"></a>
                   </li>
                 <% } %>
               </ul>
