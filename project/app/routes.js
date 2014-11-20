@@ -72,6 +72,7 @@ module.exports = function(app,passport) {
       //first get the user
      getObjects(HTTPOptions, function(userObject){
       //then get the friends of that user
+      var HTTPOptions = getHTTPOptions("/api/friends/", 'GET',{'user_id': req.params.user_id});
       getObjects(HTTPOptions, function(friendObjects){
         
         friendAvatarList = [];
