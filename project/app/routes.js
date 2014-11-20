@@ -183,7 +183,11 @@ module.exports = function(app,passport) {
       successRedirect : '/lobby', // redirect to the secure profile section
       failureRedirect : '/signup', // redirect back to the signup page if there is an error
       failureFlash : true // allow flash messages
-    }));
+    }))
+    .post('/connect/:contact_id', function(req, res){
+      var HTTPOptions = getHTTPOptions("/api/friends/connect/"+req.params.contact_id, 'PUT',  {'user_id': req.user._id});
+      postObjects(HTTPOptions);
+    });
 }
 
 //helper method for creating options for HTTP requests 
@@ -213,6 +217,13 @@ function getObjects(HTTPOptions, callback){
       }).on('error', function(e) {console.log("Got error: " + e.message);});
       objReq.end();  
 }
+
+function postObjects(HTTPOptions){
+ var objReq =  http.request(HTTPOptions, function(resp) {
+      }).on('error', function(e) {console.log("Got error: " + e.message);});
+      objReq.end();  
+}
+
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {

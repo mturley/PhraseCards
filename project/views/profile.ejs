@@ -46,15 +46,13 @@
                     
 
                     <% if(user.local.contacts[j].contact_id.toString() === searchUsers[i]._id.toString()){ isFriend = true%>
-                                      
-  <% console.log(searchUsers[i]._id.toString() + " " + searchUsers[i].local.nickname + " " + user.local.contacts[j].contact_id.toString() ) %>
-
-
                         <% } %>
                   <% } %>
 
                   <% if(!isFriend){ %>
+                  <form action=<%= "/connect/"+searchUsers[i]._id %> method="post">
                   <button type="submit" class="button button-large button-success right">Add Contact</button>
+                  </form>
                   <% } %>
 
                   </ul>
