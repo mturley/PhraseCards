@@ -16,7 +16,7 @@
             <h2>User's Friends</h2>
                   <% for (i = 0; i < friendAvatars.length; i++) { %>
                       <div class="small-6 medium-6 large-3 columns left">
-                      <a href=<%="profile/" + friends[i]._id %>><img src= <%= friendAvatars[i] %> /><a>
+                      <a href=<%=friends[i]._id %>><img src= <%= friendAvatars[i] %> /><a>
                       </div>
                   <% } %>
           </div>
