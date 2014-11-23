@@ -18,16 +18,36 @@ module.exports = function(io) {
     });
 
     socket.on('join', function(data) {
-      Game.findById(data.game_id,function(err,game){
+      Game.findById(data.game_id,function(err,game) {
         if(game) {
           _game_id = data.game_id
           _user_id = data.user_id
 
           socket.join(_game_id);
-          io.sockets.in(_game_id).emit('joined');
 
-          // TODO: add this player to the game object and save it to the db
-          // MIKE LEFT OFF HERE ON 11/23
+          if(game.players.length >= game.maxPlayers) {
+            socket.emit('join failed', 'Room is Full');
+          } else {
+            var newPlayer = {
+              user_id    : _user_id,
+              nickname   : data.nickname,
+              avatar     : data.avatar,
+              status     : 'joined',
+              statusDate : Date.now(),
+              score      : 0,
+              isCardCzar : false
+            };
+
+            // use findByIdAndUpdate instead of game fields and game.save() in case of race conditions
+            Game.findByIdAndUpdate(
+              _game_id,
+              {$push: {players: newPlayer}},
+              {safe: true, upsert: false},
+              function(err, game) {
+                io.sockets.in(_game_id).emit('player joined', newPlayer, game);
+              }
+            );
+          }
 
           // Not sure if we'll need the below block, included for context in case we want it
           // (will need changing if we do include it, do not uncomment as is)
@@ -46,9 +66,20 @@ module.exports = function(io) {
               });
             }
           */
+        } else {
+          socket.emit('join failed', 'No Such Room');
         }
       });
     }); // end 'join'
+
+    socket.on('disconnect', function(data) {
+      socket.leave(_game_id);
+
+      // TODO remove this player from the game in the database, and emit a state update!
+
+      // MIKE LEFT OFF HERE ON 11/23
+
+    }); // end 'disconnect'
 
   });
 
