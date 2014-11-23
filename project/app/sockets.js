@@ -11,9 +11,9 @@ module.exports = function(io) {
 
     var _game_id, _user_id; // global to this connection, will be set in 'join' below if this is a game page
 
-    socket.on('chat message', function(msg) {
+    socket.on('chat message', function(data) {
       if(_game_id) {
-        io.sockets.in(_game_id).emit('chat message', msg);
+        io.sockets.in(_game_id).emit('chat message', data);
       }
     });
 
