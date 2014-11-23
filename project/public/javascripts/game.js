@@ -9,7 +9,7 @@
   socket.on('connect', function() {
     socket.emit('join', {
       game_id  : window.currentGameId,
-      user_id  : window.loggedInUser._id
+      user_id  : window.loggedInUser._id,
       nickname : window.loggedInUser.nickname
       avatar   : window.loggedInUser.avatar
     });
