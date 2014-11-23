@@ -50,11 +50,10 @@
                   <% } %>
 
                   <% if(!isFriend){ %>
-                  <form action=<%= "/connect/"+searchUsers[i]._id %> method="post">
-                  <button type="submit" class="button button-large button-success right">Add Contact</button>
+                    <form action=<%= "/connect/"+searchUsers[i]._id %> method="post">
+                    <button type="submit" class="button button-large button-success right">Add Contact</button>
                   </form>
                   <% } %>
-
                   </ul>
                 <% } %>
               </ul>
