@@ -29,6 +29,6 @@ require('./config/passport')(passport);
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 var io = require('socket.io').listen(app.listen(port)); // start the app (http) server and the websocket server
-require('./app/sockets.js')(io, db); // set up socket server behavior
+require('./app/sockets.js')(io); // set up socket server behavior
 
 console.log('Magic happens on port ' + port);

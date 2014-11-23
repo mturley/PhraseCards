@@ -7,7 +7,7 @@
   
   var socket = io.connect();
   socket.on('connect', function() {
-    socket.emit('join', { gameId: window.currentGameId, userId: window.loggedInUser._id });
+    socket.emit('join', { game_id: window.currentGameId, user_id: window.loggedInUser._id });
   });
 
   $(function() {
