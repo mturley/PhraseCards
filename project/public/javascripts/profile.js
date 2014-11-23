@@ -8,7 +8,7 @@ $('.friend-filter').keyup(function (event){
         $('.potential_friend').show();
       }
     });
-});
+}); 
 
 
 
