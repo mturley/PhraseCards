@@ -3,80 +3,78 @@
 <div class="row">
   <div class="medium-8 columns">&nbsp;</div>
   <div class="medium-2 columns">
-  <!-- Profile picture -->  
+    <!-- Profile picture -->  
     <img style="width:70%" src= <%= avatar %> />
   </div>
-    <div class="medium-2 columns">
-    
+  <div class="medium-2 columns">
     <div class="row">
       <!-- Username -->
       <h1 style="color:white"><%= user.local.nickname %></h1>
     </div>
     <div class="row">
-    <!-- Link to log out and profile -->
-     <div class="medium-3 columns">
+      <!-- Link to log out and profile -->
+      <div class="medium-3 columns">
         <a href="/profile" style="color:white">Profile</a>
       </div>
       <div class="medium-6 columns">
         <a href="/logout" style="color:white">Log out</a>
       </div>
     </div>
-   </div>
+  </div>
 </div>
 
-  <!-- Blaze/Spacebars Templates Below This Line -->
-  <script type="text/spacebars" name="lobbyPanels">
-    {{#unless activeGames}}
-      Loading...
-    {{/unless}}
-    {{#each activeGames}}
-
-      <div class="medium-4 large-4 columns">
-        <div class="panel text-center">
-          <div class="row">
-            <div class="large-12 columns game">
-              <h3>{{title}}</h3>
-              <ul class="no-bullet">
-                {{#unless players}}
-                  <li>No Players Yet</li>
-                {{/unless}}
-                {{#each players}}
-                  <li>{{_id}}</li> <!-- TODO get actual player name in here somehow -->
-                {{/each}}
-              </ul>
-              <a href="/game/{{_id}}" class="button button-large expand"> Join </a>
-            </div>
+<div class="row lobby">
+  <div class="small-12 medium-12 large-12 columns">
+    <div id="lobby_panels_parent" class="large-12 columns lobby">
+      <!-- javascripts/lobby.js will render the lobbyPanels template here -->
+      <div id="new_game_panel" class="medium-4 large-4 columns">
+        <div class="panel new_game">
+          <div class="front animated">
+            <img src="images/new_game.png" class="clickable" />
+          </div>
+          <div class="back animated">
+            <form action="#">
+              <label for="room_name">Enter a room name:</label>
+              <input type="text" name="room_name">
+              <input type="submit" class="button button-large expand">
+            </form>
+            <a href="#" class="button alert expand cancel">Cancel</a>
           </div>
         </div>
       </div>
 
-    {{/each}}
-  </script>
-
-  <!-- Blaze/Spacebars Templates Above This Line / Page Structure Below This Line -->
-
-  <div class="row lobby">
-    <div class="small-12 medium-12 large-12 columns">
-      <div id="lobby_panels_parent" class="large-12 columns lobby">
-        <!-- javascripts/lobby.js will render the lobbyPanels template here -->
-        <div id="new_game_panel" class="medium-4 large-4 columns">
-          <div class="panel new_game">
-            <div class="front animated">
-              <img src="images/new_game.png" class="clickable" />
-            </div>
-            <div class="back animated">
-              <form action="#">
-                <label for="room_name">Enter a room name:</label>
-                <input type="text" name="room_name">
-                <input type="submit" class="button button-large expand">
-              </form>
-              <a href="#" class="button alert expand cancel">Cancel</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
     </div>
   </div>
+</div>
+
+<!-- Blaze/Spacebars Templates Below This Line -->
+
+<script type="text/spacebars" name="lobbyPanels">
+  {{#unless activeGames}}
+    Loading...
+  {{/unless}}
+  {{#each activeGames}}
+
+    <div class="medium-4 large-4 columns">
+      <div class="panel text-center">
+        <div class="row">
+          <div class="large-12 columns game">
+            <h3>{{title}}</h3>
+            <ul class="no-bullet">
+              {{#unless players}}
+                <li>No Players Yet</li>
+              {{/unless}}
+              {{#each players}}
+                <li>{{_id}}</li> <!-- TODO get actual player name in here somehow -->
+              {{/each}}
+            </ul>
+            <a href="/game/{{_id}}" class="button button-large expand"> Join </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  {{/each}}
+</script>
 
 <% include partials/footer %>
