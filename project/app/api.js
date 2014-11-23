@@ -144,10 +144,12 @@ module.exports = function(db) {
     .route('/games/:game_id')
       .get(function(req,res) {
         // Get a particular game's object
-        // TODO determine what data is loaded based on who is requesting??
-        var gameId = req.params.game_id;
-        res.json({ todo: "testing, get game with id: "+gameId});
-        // TODO fetch game details
+        Game.findById(req.params.game_id,function(err,game){
+          if(err) {
+            res.send(err);
+          }
+          res.json(game);
+        });
       })
       .put(function(req,res) {
         var gameId = req.params.game_id;
