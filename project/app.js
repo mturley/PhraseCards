@@ -26,20 +26,9 @@ app.set('views', path.join(__dirname, 'views'))
    .use('/api', require('./app/api')(db));
 
 require('./config/passport')(passport);
-
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
-var io = require('socket.io').listen(app.listen(port));
+var io = require('socket.io').listen(app.listen(port)); // start the app (http) server and the websocket server
+require('./app/sockets.js')(io, db); // set up socket server behavior
 
 console.log('Magic happens on port ' + port);
-
-// Incoming Socket Connections
-io.on('connection', function(socket){
-  socket.on('create', function (room) {
-    console.log('Joining :' + room);
-    socket.join(room);
-  });
-  socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
-  });
-});
