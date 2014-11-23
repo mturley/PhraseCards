@@ -132,49 +132,7 @@ module.exports = function(app,passport) {
       req.logout();
       res.redirect('/');
     })
-//     .post('/start_game', function (req, res) {
-
-//       var room    = randomId(),
-//           pid     = randomId(),
-//           num     = 6,   // STATIC CHANGE!!!!
-//           players = [{
-//             user_id    : req.user._id,
-//             score      : 0,
-//             isCardCzar : false
-//             status     : 'joined',
-//             statusDate : Date.now()
-//           }];
-
-//       for(var i=1; i<num; i++) {
-//         players.push({
-//           id           : req.user._id + '-' + i,
-//           score        : 0,
-//           isCardCzar   : false
-//           status       : 'open',
-//           statusDate   : Date.now()
-//         });
-//       }
-
-//       Game.create({
-//         title          : req.body.title,
-//         active         : true,
-//         currentRound   : 0,
-//         currentPhase   : 'waiting',
-//         room           : room,
-//         numPlayers     : num,
-//         players        : players,
-//         rounds         : [],
-//         story_id       : 1   // STATIC CHANGE!!!!
-//       },
-
-//       function( err, game ) {
-//          var data = game.toJSON();
-//          data.action = 'start';
-//          data.player = req.user._id;
-//          res.send( data );
-//       });
-//     })
-//     // process the login form
+    // process the login form
     .post('/', passport.authenticate('local-login', {
       successRedirect : '/lobby', // redirect to the secure profile section
       failureRedirect : '/', // redirect back to the signup page if there is an error

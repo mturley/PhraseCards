@@ -7,7 +7,7 @@ var express      = require('express'),
     routes       = require('./app/routes'),
     passport     = require('passport'),
     flash        = require('connect-flash'),
-    session      = require('express-session');
+    session      = require('express-session'),
     port         = process.env.PORT || 8080;
 
 
@@ -28,9 +28,7 @@ require('./app/routes.js')(app, passport); // load our routes and pass in our ap
 
 var io = require('socket.io').listen(app.listen(port));
 
-console.log('Magic happens on port ' + port);
-
-// Chat
+// Incoming Socket Connections
 io.on('connection', function(socket){
   socket.on('create', function (room) {
     console.log('Joining :' + room);
@@ -40,3 +38,5 @@ io.on('connection', function(socket){
     io.emit('chat message', msg);
   });
 });
+
+console.log('Magic happens on port ' + port);

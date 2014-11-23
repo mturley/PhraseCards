@@ -1,26 +1,17 @@
 // game.js
 // Frontend UI code for the /game page only
 
+(function() {
 
-// Replace dialog with data from form
+  "use strict";
+  
+  var socket = io.connect();
+  socket.on('connect', function() {
+    socket.emit('join', { gameId: window.currentGameId, userId: window.loggedInUser._id });
+  });
 
-// var game = new Game(), socket, dialog;
+  $(function() {
+    // DOM ready
+  });
 
-// game.start( { name: dialog.name, numPlayers: dialog.numPlayers } ).then(
-//   function( data ) {
-//     socket = io.connect();
-//     socket.on( 'connect', function() {
-//       socket.emit( 'join', { room: data.room, player: data.player } );
-//     });
-//   }
-// );
-
-
-
-
-
-$(function() {
-
-  console.log("game.js is loaded");
-
-});
+}());

@@ -1,23 +1,9 @@
 // lobby.js
 // Frontend UI code for the /lobby page only
 
-"use strict";
-
 (function() {
-
-
-  var socket = io.connect();
-
-
-  $('#joinRoom').click(function(){
-    console.log("joinRoom Clicked");
-    socket.emit('create', 'room1');
-  });
-
-
-
-
-
+  
+  "use strict";
 
   var LobbyUI = {
     activeGames: new Blaze.Var([]),

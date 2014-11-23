@@ -110,13 +110,27 @@ router
           if(count !== 0) {
             res.json({ success: false, message: "An active game room with that name already exists" });
           } else {
+            // Initialize Game in the database with default empty-game values
             var game = new Game();
             game.title = reqTitle;
             game.active = true;
             game.currentRound = 0;
             game.currentPhase = 'setup';
+            game.numPlayers = 6;
             game.players = [];
+            // Games start with 6 empty slots in the players array
+            for(var i=0; i<game.numPlayers; i++) {
+              game.players.push({
+                user_id: null,
+                name: 'Open',
+                status: 'open',
+                statusDate: Date.now(),
+                score: 0,
+                isCardCzar: false
+              });
+            }
             game.story_id = null;
+            // Save empty game to the database and respond with the new game id
             game.save(function (err, savedGame) {
               if(err) {
                 res.send(err);

@@ -8,10 +8,11 @@ var GameSchema = mongoose.Schema({
   currentPhase : { type: String, enum: ['setup', 'waiting', 'wordSubmission', 'wordSelection', 'review'] },
   players : [{
     user_id    : String,
-    score      : Number,
-    isCardCzar : Boolean,
+    name       : String,
     status     : String,
-    statusDate : Date
+    statusDate : Date,
+    score      : Number,
+    isCardCzar : Boolean
   }],
   rounds : [{
     cardCzar : String,

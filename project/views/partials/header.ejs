@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/lib/animate.css/animate.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    
     <% if(locals.user) { %>
       <script>
         window.loggedInUser = {
@@ -18,6 +19,13 @@
         };
       </script>
     <% } %>
+
+    <% if(locals.pageName === 'game') { %>
+      <script>
+        window.currentGameId = "<%= game_id %>";
+      </script>
+    <% } %>
+
   </head>
   <body>
   <% include nav %>
