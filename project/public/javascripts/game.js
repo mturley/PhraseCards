@@ -52,8 +52,12 @@
       }
     });
 
-    socket.on('player joined', function(player, game) {
-      // TODO update state with game object, maybe alert that a player has joined with player object
+    socket.on('player joined', function(user_id, game) {
+      // TODO update state with game object, maybe alert that a player has joined by lookup from user_id
+    });
+
+    socket.on('player left', function(user_id, game) {
+      // TODO update state with game object, maybe alert that a player has left by lookup from user_id
     });
 
     //// Game Actions ////

@@ -44,7 +44,7 @@ module.exports = function(io) {
               {$push: {players: newPlayer}},
               {safe: true, upsert: false},
               function(err, game) {
-                io.sockets.in(_game_id).emit('player joined', newPlayer, game);
+                io.sockets.in(_game_id).emit('player joined', _user_id, game);
               }
             );
           }
@@ -75,7 +75,15 @@ module.exports = function(io) {
     socket.on('disconnect', function(data) {
       socket.leave(_game_id);
 
-      // TODO remove this player from the game in the database, and emit a state update!
+      // remove this player from the game in the database, and emit a state update!
+      Game.findByIdAndUpdate(
+        _game_id,
+        {$pull: { "players": { user_id: _user_id } }},
+        {safe: true, upsert: false},
+        function(err, game) {
+          io.sockets.in(_game_id).emit('player left', _user_id, game);
+        }
+      );
 
       // MIKE LEFT OFF HERE ON 11/23
 
