@@ -55,23 +55,6 @@ module.exports = function(io) {
             );
           }
 
-          // Not sure if we'll need the below block, included for context in case we want it
-          // (will need changing if we do include it, do not uncomment as is)
-          /*
-            // Now, check if everyone is here
-            game.players.forEach(function( p ) {
-              if ( p.status == 'joined' )
-                 pcnt++;
-            });
-
-            // If so, update statuses, initialize
-            // and notify everyone the game can begin
-            if ( pcnt == game.numPlayers ) {
-              game.save(function( err, game ) {
-                 io.sockets.in( _room ).emit( 'ready' );
-              });
-            }
-          */
         } else {
           socket.emit('join failed', 'No Such Room');
         }
@@ -97,8 +80,6 @@ module.exports = function(io) {
           });
         }
       );
-
-      // MIKE LEFT OFF HERE ON 11/23
 
     }); // end 'disconnect'
 
