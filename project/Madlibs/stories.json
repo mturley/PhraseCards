@@ -115,4 +115,86 @@
         "suffix" : "behavior!"
       }
     ]
+  },
+  {
+    "name": "Halloween",
+    "tags": ["Halloween","holiday", "spooky", "fall", "trick", "treat"],
+    "storyChunks": [
+      {
+        "prefix" : "",
+        "wordType" : { "type" : "noun" },
+        "suffix" : "is tonight!"
+      },
+      {
+        "prefix" : "Everyones favorite holiday of the year, well maybe except for",
+        "wordType" : { "type" : "Yearly event" },
+        "suffix" : "."
+      },
+      {
+        "prefix" : "This year,",
+        "wordType" : { "type" : "person" },
+        "suffix" : "and I"
+      },
+      {
+        "prefix" : "will dress up as",
+        "wordType" : { "type" : "celebrity" },
+        "suffix" : "and a black cat, but"
+      },
+      {
+        "prefix" : "I think their costume is a bit",
+        "wordType" : { "type" : "adjective" },
+        "suffix" : "."
+      },
+      {
+        "prefix" : "The",
+        "wordType" : { "type" : "noun" },
+        "suffix" : "are carved, and"
+      },
+      {
+        "prefix" : "the moon has",
+        "wordType" : { "type" : "verb" },
+        "suffix" : ","
+      },
+      {
+        "prefix" : "its time to",
+        "wordType" : { "type" : "verb" },
+        "suffix" : "-or-Treat!"
+      },
+      {
+        "prefix" : "We",
+        "wordType" : { "type" : "verb" },
+        "suffix" : "on the door,"
+      },
+      {
+        "prefix" : "what kind of treats will we get?",
+        "wordType" : { "type" : "noun" },
+        "suffix" : ", really?"
+      },
+      {
+        "prefix" : "Everyone knows youre suppposed to give",
+        "wordType" : { "type" : "noun" },
+        "suffix" : "tonight..."
+      },
+      {
+        "prefix" : "After",
+        "wordType" : { "type" : "verb" },
+        "suffix" : "on door after door for hours,"
+      },
+      {
+        "prefix" : "We go back to our",
+        "wordType" : { "type" : "noun" },
+        "suffix" : " "
+      },
+      {
+        "prefix" : "to",
+        "wordType" : { "type" : "verb" },
+        "suffix" : "for the night."
+      },
+      {
+        "prefix" : "This",
+        "wordType" : { "type" : "noun" },
+        "suffix" : "was the best ever!"
+      }
+    ]
   }
+]
