@@ -1,5 +1,6 @@
-var User = require('./models/user'),
-    Game = require('./models/game');
+var gravatar = require('node-gravatar'),
+    User     = require('./models/user'),
+    Game     = require('./models/game');
 
 module.exports = function(io) {
 
@@ -44,7 +45,12 @@ module.exports = function(io) {
               {$push: {players: newPlayer}},
               {safe: true, upsert: false},
               function(err, game) {
-                io.sockets.in(_game_id).emit('player joined', _user_id, game);
+                io.sockets.in(_game_id).emit('game state changed', game);
+                io.sockets.in(_game_id).emit('player joined', {
+                  user_id  : newPlayer.user_id,
+                  nickname : newPlayer.nickname,
+                  avatar   : newPlayer.avatar
+                });
               }
             );
           }
@@ -81,7 +87,14 @@ module.exports = function(io) {
         {$pull: { "players": { user_id: _user_id } }},
         {safe: true, upsert: false},
         function(err, game) {
-          io.sockets.in(_game_id).emit('player left', _user_id, game);
+          io.sockets.in(_game_id).emit('game state changed', game);
+          User.findById(_user_id, function(err, userObject) {
+            if(userObject) io.sockets.in(_game_id).emit('player left', {
+              user_id  : userObject._id,
+              nickname : userObject.local.nickname,
+              avatar   : gravatar.get(userObject.local.email)
+            });
+          });
         }
       );
 
