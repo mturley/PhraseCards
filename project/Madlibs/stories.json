@@ -5,52 +5,52 @@
     "storyChunks": [
       {
         "prefix" : "It's snowing today, time to build a snowman! Building snowmen is a timeless winter tradition, and when enjoyed with a cup of hot",
-        "blank" : { "type" : "noun" },
+        "wordType" : { "type" : "noun" },
         "suffix" : "afterwards, it's a great family activity."
       },
       {
         "prefix" : "To build a snowman, you will need a lot of",
-        "blank" : { "type" : "plural noun" },
+        "wordType" : { "type" : "plural noun" },
         "suffix" : ","
       },
       {
         "prefix" : "Otherwise, the snowman might be too",
-        "blank" : { "type" : "adjective" },
+        "wordType" : { "type" : "adjective" },
         "suffix" : "."
       },
       {
         "prefix" : "Roll up a large",
-        "blank" : { "type" : "noun" },
+        "wordType" : { "type" : "noun" },
         "suffix" : ", and you've made his body!"
       },
       {
         "prefix" : "Then roll a smaller snowball for his",
-        "blank" : { "type" : "body part" },
+        "wordType" : { "type" : "body part" },
         "suffix" : ", and stick it on top."
       },
       {
         "prefix" : "Now that you've finished building, it's time to dress your snowman up. Wrap a",
-        "blank" : { "type" : "noun" },
+        "wordType" : { "type" : "noun" },
         "suffix" : "around his neck to keep him warm,"
       },
       {
         "prefix" : "stick a",
-        "blank" : { "type" : "noun" },
+        "wordType" : { "type" : "noun" },
         "suffix" : "on his face for a nose, and"
       },
       {
         "prefix" : "use two",
-        "blank" : { "type" : "plural noun" },
+        "wordType" : { "type" : "plural noun" },
         "suffix" : "for his eyes and he's complete!"
       },
       {
         "prefix" : "Sadly, your snowman won't last forever, eventually he will",
-        "blank" : { "type" : "verb" },
+        "wordType" : { "type" : "verb" },
         "suffix" : "."
       },
       {
         "prefix" : "Then it's time to make another! [WARNING: BUILDING SNOWMEN MAY RESULT IN",
-        "blank" : { "type" : "noun" },
+        "wordType" : { "type" : "noun" },
         "suffix" : "FIGHTS]"
       }
     ]
@@ -61,57 +61,57 @@
     "storyChunks": [
       {
         "prefix" : "It's a",
-        "blank" : { "type" : "day of the week" },
+        "wordType" : { "type" : "day of the week" },
         "suffix" : "night at UMass"
       },
       {
         "prefix" : "and that can mean only one thing,",
-        "blank" : { "type" : "noun" },
+        "wordType" : { "type" : "noun" },
         "suffix" : "!"
       },
       {
         "prefix" : "Grab a frisuffix and a bottle of",
-        "blank" : { "type" : "noun" },
+        "wordType" : { "type" : "noun" },
         "suffix" : "and"
       },
       {
         "prefix" : "take a walk to",
-        "blank" : { "type" : "Dorm/apartment area" },
+        "wordType" : { "type" : "Dorm/apartment area" },
         "suffix" : "."
       },
       {
         "prefix" : "There's sure to be a bunch of",
-        "blank" : { "type" : "adjective" },
+        "wordType" : { "type" : "adjective" },
         "suffix" : "party-goers around,"
       },
       {
         "prefix" : "ask them where the",
-        "blank" : { "type" : "noun" },
+        "wordType" : { "type" : "noun" },
         "suffix" : "is, if you dare."
       },
       {
         "prefix" : "When partying, always make sure to",
-        "blank" : { "type" : "verb" },
+        "wordType" : { "type" : "verb" },
         "suffix" : "this advice:"
       },
       {
         "prefix" : "Remember to never",
-        "blank" : { "type" : "verb" },
+        "wordType" : { "type" : "verb" },
         "suffix" : "on an empty stomach, and"
       },
       {
         "prefix" : "make sure to drink a lot of",
-        "blank" : { "type" : "plural noun" },
+        "wordType" : { "type" : "plural noun" },
         "suffix" : "afterwards to keep tomorrow morning's headache away."
       },
       {
         "prefix" : "Bring a frisuffix, because you never know how",
-        "blank" : { "type" : "adjective" },
+        "wordType" : { "type" : "adjective" },
         "suffix" : "you will get,"
       },
       {
         "prefix" : "and consider that even if you don't remember what happened last night, somebody will, so always be on your",
-        "blank" : { "type" : "adjective" },
+        "wordType" : { "type" : "adjective" },
         "suffix" : "behavior!"
       }
     ]
