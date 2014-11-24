@@ -5,52 +5,52 @@
     "storyChunks": [
       {
         "prefix" : "It's snowing today, time to build a snowman! Building snowmen is a timeless winter tradition, and when enjoyed with a cup of hot",
-        "wordType" : { "type" : "noun" },
+        "blank" : { "wordType" : "noun" },
         "suffix" : "afterwards, it's a great family activity."
       },
       {
         "prefix" : "To build a snowman, you will need a lot of",
-        "wordType" : { "type" : "plural noun" },
+        "blank" : { "wordType" : "plural noun" },
         "suffix" : ","
       },
       {
         "prefix" : "Otherwise, the snowman might be too",
-        "wordType" : { "type" : "adjective" },
+        "blank" : { "wordType" : "adjective" },
         "suffix" : "."
       },
       {
         "prefix" : "Roll up a large",
-        "wordType" : { "type" : "noun" },
+        "blank" : { "wordType" : "noun" },
         "suffix" : ", and you've made his body!"
       },
       {
         "prefix" : "Then roll a smaller snowball for his",
-        "wordType" : { "type" : "body part" },
+        "blank" : { "wordType" : "body part" },
         "suffix" : ", and stick it on top."
       },
       {
         "prefix" : "Now that you've finished building, it's time to dress your snowman up. Wrap a",
-        "wordType" : { "type" : "noun" },
+        "blank" : { "wordType" : "noun" },
         "suffix" : "around his neck to keep him warm,"
       },
       {
         "prefix" : "stick a",
-        "wordType" : { "type" : "noun" },
+        "blank" : { "wordType" : "noun" },
         "suffix" : "on his face for a nose, and"
       },
       {
         "prefix" : "use two",
-        "wordType" : { "type" : "plural noun" },
+        "blank" : { "wordType" : "plural noun" },
         "suffix" : "for his eyes and he's complete!"
       },
       {
         "prefix" : "Sadly, your snowman won't last forever, eventually he will",
-        "wordType" : { "type" : "verb" },
+        "blank" : { "wordType" : "verb" },
         "suffix" : "."
       },
       {
         "prefix" : "Then it's time to make another! [WARNING: BUILDING SNOWMEN MAY RESULT IN",
-        "wordType" : { "type" : "noun" },
+        "blank" : { "wordType" : "noun" },
         "suffix" : "FIGHTS]"
       }
     ]
@@ -61,57 +61,57 @@
     "storyChunks": [
       {
         "prefix" : "It's a",
-        "wordType" : { "type" : "day of the week" },
+        "blank" : { "wordType" : "day of the week" },
         "suffix" : "night at UMass"
       },
       {
         "prefix" : "and that can mean only one thing,",
-        "wordType" : { "type" : "noun" },
+        "blank" : { "wordType" : "noun" },
         "suffix" : "!"
       },
       {
         "prefix" : "Grab a frisuffix and a bottle of",
-        "wordType" : { "type" : "noun" },
+        "blank" : { "wordType" : "noun" },
         "suffix" : "and"
       },
       {
         "prefix" : "take a walk to",
-        "wordType" : { "type" : "Dorm/apartment area" },
+        "blank" : { "wordType" : "Dorm/apartment area" },
         "suffix" : "."
       },
       {
         "prefix" : "There's sure to be a bunch of",
-        "wordType" : { "type" : "adjective" },
+        "blank" : { "wordType" : "adjective" },
         "suffix" : "party-goers around,"
       },
       {
         "prefix" : "ask them where the",
-        "wordType" : { "type" : "noun" },
+        "blank" : { "wordType" : "noun" },
         "suffix" : "is, if you dare."
       },
       {
         "prefix" : "When partying, always make sure to",
-        "wordType" : { "type" : "verb" },
+        "blank" : { "wordType" : "verb" },
         "suffix" : "this advice:"
       },
       {
         "prefix" : "Remember to never",
-        "wordType" : { "type" : "verb" },
+        "blank" : { "wordType" : "verb" },
         "suffix" : "on an empty stomach, and"
       },
       {
         "prefix" : "make sure to drink a lot of",
-        "wordType" : { "type" : "plural noun" },
+        "blank" : { "wordType" : "plural noun" },
         "suffix" : "afterwards to keep tomorrow morning's headache away."
       },
       {
         "prefix" : "Bring a frisuffix, because you never know how",
-        "wordType" : { "type" : "adjective" },
+        "blank" : { "wordType" : "adjective" },
         "suffix" : "you will get,"
       },
       {
         "prefix" : "and consider that even if you don't remember what happened last night, somebody will, so always be on your",
-        "wordType" : { "type" : "adjective" },
+        "blank" : { "wordType" : "adjective" },
         "suffix" : "behavior!"
       }
     ]
@@ -122,77 +122,77 @@
     "storyChunks": [
       {
         "prefix" : "",
-        "wordType" : { "type" : "noun" },
+        "blank" : { "wordType" : "noun" },
         "suffix" : "is tonight!"
       },
       {
         "prefix" : "Everyones favorite holiday of the year, well maybe except for",
-        "wordType" : { "type" : "Yearly event" },
+        "blank" : { "wordType" : "Yearly event" },
         "suffix" : "."
       },
       {
         "prefix" : "This year,",
-        "wordType" : { "type" : "person" },
+        "blank" : { "wordType" : "person" },
         "suffix" : "and I"
       },
       {
         "prefix" : "will dress up as",
-        "wordType" : { "type" : "celebrity" },
+        "blank" : { "wordType" : "celebrity" },
         "suffix" : "and a black cat, but"
       },
       {
         "prefix" : "I think their costume is a bit",
-        "wordType" : { "type" : "adjective" },
+        "blank" : { "wordType" : "adjective" },
         "suffix" : "."
       },
       {
         "prefix" : "The",
-        "wordType" : { "type" : "noun" },
+        "blank" : { "wordType" : "noun" },
         "suffix" : "are carved, and"
       },
       {
         "prefix" : "the moon has",
-        "wordType" : { "type" : "verb" },
+        "blank" : { "wordType" : "verb" },
         "suffix" : ","
       },
       {
         "prefix" : "its time to",
-        "wordType" : { "type" : "verb" },
+        "blank" : { "wordType" : "verb" },
         "suffix" : "-or-Treat!"
       },
       {
         "prefix" : "We",
-        "wordType" : { "type" : "verb" },
+        "blank" : { "wordType" : "verb" },
         "suffix" : "on the door,"
       },
       {
         "prefix" : "what kind of treats will we get?",
-        "wordType" : { "type" : "noun" },
+        "blank" : { "wordType" : "noun" },
         "suffix" : ", really?"
       },
       {
         "prefix" : "Everyone knows youre suppposed to give",
-        "wordType" : { "type" : "noun" },
+        "blank" : { "wordType" : "noun" },
         "suffix" : "tonight..."
       },
       {
         "prefix" : "After",
-        "wordType" : { "type" : "verb" },
+        "blank" : { "wordType" : "verb" },
         "suffix" : "on door after door for hours,"
       },
       {
         "prefix" : "We go back to our",
-        "wordType" : { "type" : "noun" },
+        "blank" : { "wordType" : "noun" },
         "suffix" : " "
       },
       {
         "prefix" : "to",
-        "wordType" : { "type" : "verb" },
+        "blank" : { "wordType" : "verb" },
         "suffix" : "for the night."
       },
       {
         "prefix" : "This",
-        "wordType" : { "type" : "noun" },
+        "blank" : { "wordType" : "noun" },
         "suffix" : "was the best ever!"
       }
     ]

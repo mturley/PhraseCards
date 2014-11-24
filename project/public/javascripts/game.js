@@ -43,7 +43,7 @@
 
 
   $(document).ready(function() {
-  
+
     //// DOM-Dependent Socket Message Handlers ////
 
     socket.on('join failed', function(reason) {
@@ -66,6 +66,7 @@
     });
 
     socket.on('chat message', function(data) {
+      $('#message').val('');
       var $chatContainer = $('#chat_container');
       $chatContainer.append('<div class="chat_row animated zoomIn"><img src="' + data.avatar + '" alt="" class="round_img" />  '+ data.nickname + ': ' + data.message + "</div>");
       var element = $chatContainer.get(0);
