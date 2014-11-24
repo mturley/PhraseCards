@@ -44,7 +44,7 @@ router
         }
         user.local.email = req.body.email;
         user.local.username = req.body.username;
-        
+
         // save the user
         user.save(function(err) {
           if (err) {
@@ -67,7 +67,7 @@ router
 
 router
   .route('/search/:name_string')
-    .get(function(req,res){      
+    .get(function(req,res){
       //utilizes wildcard to find nicknames by anything matching given string
       User.find({'local.nickname': {$regex: req.params.name_string, $options: 'i'}}, function (err, users) {
         if (err) {
@@ -75,7 +75,7 @@ router
         }
           res.json(users);
       });
-      
+
     });
 
 // Game/Room/Lobby related API stuff below
@@ -156,8 +156,34 @@ router
     });
 
 router
+  .route('/stories')
+    .get(function(req,res) {
+      Story.find(function(err,stories){
+        if(err) {
+          res.send(err);
+        } else {
+          res.json(stories);
+        }
+      });
+    });
+
+router
+  .route('/stories/:story_id')
+    .get(function(req,res) {
+      Story.findById(req.params.story_id,function(err,story){
+        if(err) {
+          res.send(err);
+        }
+        res.json(story);
+      });
+    });
+
+
+
+
+router
   .route('/friends/connect/:user_id') //connect the current user and the target user
-    .put(function(req,res){  
+    .put(function(req,res){
         connectContact(req.headers.user_id, req.params.user_id,res);
         connectContact(req.params.user_id,req.headers.user_id,res);
         res.json({ message: 'Successfully connected' });
@@ -166,7 +192,7 @@ router
 
 router
   .route('/friends/') //get all of the current user's friends
-      .get(function(req,res){       
+      .get(function(req,res){
         //we get the user's id from the request headers
         User.find({"local.contacts.contact_id" : req.headers.user_id}, function (err, users) {
         if (err) {
@@ -174,13 +200,13 @@ router
           }
           res.json(users);
         });
-        
+
     });
 
 
 //adds add the second user's contact to the first user's list of contacts
 function connectContact(firstUserID, secondUserID,res){
-    
+
   User.findById(firstUserID,function(err,user){
     if(err) {
       res.send(err);
