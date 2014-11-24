@@ -140,11 +140,6 @@ router
         res.json(game);
       });
     })
-    .put(function(req,res) {
-      var gameId = req.params.game_id;
-      res.json({ todo: "testing, update game with id: "+gameId});
-      // TODO update game details
-    })
     .delete(function(req,res) {
       Game.remove({
         _id: req.params.game_id
