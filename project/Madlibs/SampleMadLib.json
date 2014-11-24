@@ -5,14 +5,14 @@
     {
       "prefix": "This will be the ",
       "blank": {
-        "type": "body part"
+        "wordType": "body part"
       },
       "suffix": " of a madlib."
     },
     {
       "prefix": "They should be written in a ",
       "blank": {
-        "type": "adjective"
+        "wordType": "adjective"
       },
       "suffix": " to parse format that includes brackets for fill-ins, and pipelines enclosing areas shown in the card-czar view"
     },

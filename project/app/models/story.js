@@ -1,5 +1,15 @@
 var mongoose = require('mongoose');
 
 var StorySchema = mongoose.Schema({
-		text   : String
-	});
+	name: String,
+  tags: [String],
+  storyChunks: [{
+    prefix: String,
+    blank: {
+      wordType: String
+    },
+    suffix: String
+  }]
+});
+
+module.exports = mongoose.model('Story', StorySchema);
