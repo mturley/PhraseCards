@@ -1,6 +1,7 @@
 var express = require('express'),
     router  = express.Router(),
     User    = require('./models/user'),
+    Story   = require('./models/story'),
     Game    = require('./models/game');
 
 
