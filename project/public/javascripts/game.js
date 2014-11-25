@@ -102,13 +102,14 @@
     //// DOM Event Handlers ////
 
     $('#chatform').submit(function() {
-      $('#message').val('');
+
       socket.emit('chat message', {
         user_id  : window.loggedInUser._id,
         nickname : window.loggedInUser.nickname,
         avatar   : window.loggedInUser.avatar,
         message  : $('#message').val()
       });
+      $('#message').val('');
       return false;
     });
 
