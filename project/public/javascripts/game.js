@@ -66,7 +66,6 @@
     });
 
     socket.on('chat message', function(data) {
-      $('#message').val('');
       var $chatContainer = $('#chat_container');
       $chatContainer.append('<div class="chat_row animated zoomIn"><img src="' + data.avatar + '" alt="" class="round_img" />  '+ data.nickname + ': ' + data.message + "</div>");
       var element = $chatContainer.get(0);
@@ -77,13 +76,13 @@
     //// DOM Event Handlers ////
 
     $('#chatform').submit(function() {
+      $('#message').val('');
       socket.emit('chat message', {
         user_id  : window.loggedInUser._id,
         nickname : window.loggedInUser.nickname,
         avatar   : window.loggedInUser.avatar,
         message  : $('#message').val()
       });
-      $('#message').val('');
       return false;
     });
 
