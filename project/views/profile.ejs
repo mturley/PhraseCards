@@ -39,7 +39,7 @@
               <ul id="friend">
                 <% for (i = 0; i < searchUsers.length; i++) { %>
                   <li class="potential_friend">
-                    <p><%= searchUsers[i].local.nickname %></p>
+                    <p class='friend_name'><%= searchUsers[i].local.nickname %></p>
                     <img src= <%= searchUserAvatars[i] %>/  style="width:10%"><a href=<%="profile/" + searchUsers[i]._id %>></a>
 
                   <% var isFriend = false; %>
