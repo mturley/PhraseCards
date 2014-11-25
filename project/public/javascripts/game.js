@@ -23,17 +23,30 @@
     }
   };
 
+
+  //// Blaze Template Helpers ////
+
+  Template.sidebar.players = function() {
+    return GameUI.model.get().players;
+  };
+
+  Template.sidebar.currentRound = function() {
+    return GameUI.model.get().currentRound + 1;
+  };
+
+
   //// Socket Connection Setup ////
 
   var socket = io.connect();
   socket.on('connect', function() {
     socket.emit('join', {
-      game_id  : window.currentGameId,
+      game_id  : window.currentGameId,     // these globals are set inline in views/partials/header.ejs
       user_id  : window.loggedInUser._id,
       nickname : window.loggedInUser.nickname,
       avatar   : window.loggedInUser.avatar
     });
   });
+
 
   //// Non-DOM-Dependent Socket Message Handlers ////
 
@@ -42,7 +55,20 @@
   });
 
 
+///////////////////////////////////////////////////////////////////////////////
+
+
   $(document).ready(function() {
+
+    //// Blaze Template Initializations ////
+
+    if(Template.sidebar) {
+      var parentNode = $("#sidebar_parent").get(0);
+      UI.insert(UI.render(Template.sidebar), parentNode);
+    }
+
+    // TODO more templates
+
 
     //// DOM-Dependent Socket Message Handlers ////
 

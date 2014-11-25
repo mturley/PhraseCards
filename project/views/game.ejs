@@ -1,6 +1,8 @@
 <% include partials/header %>
 
-<% include partials/sidebar %>
+<div id="sidebar_parent" class="medium-3 large-3 columns sidebar">
+  <!-- Blaze will populate this element with the "sidebar" template -->
+</div>
 
 <div class="medium-9 large-9 columns game_area">
   <div class="row timer">
@@ -48,5 +50,32 @@
       </div>
     </div>
   </div>
+
+<!-- Blaze/Spacebars Templates Below This Line -->
+
+<script type="text/spacebars" name="sidebar">
+  <div class="row">
+    <div class="large-12 columns logo"><img src="/images/logo.png" alt="" /></div>
+  </div>
+
+  {{#each players}}
+    <div class="row player">
+      <a href="/profile" target="_blank">
+        <div class="medium-3 large-3 columns">
+          <img src="{{avatar}}" alt="" class="round_img" />
+        </div>
+        <div class="medium-4 large-4 columns"><h4>{{nickname}}</h4></div>
+        <div class="medium-2 large-2 columns">
+          {{#if isCardCzar}} <img src="/images/czar.png" alt="" /> {{/if}}
+        </div>
+        <div class="medium-3 large-3 columns"><h4>{{score}}</h4></div>
+      </a>
+    </div>
+  {{/each}}
+
+  <div class="row">
+    <div class="large-12 columns round text-center"><h3>Round {{currentRound}}</h3></div>
+  </div>
+</script>
 
 <% include partials/footer %>
