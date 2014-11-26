@@ -177,6 +177,7 @@ router
 
 
 
+
 router
   .route('/friends/connect/:user_id') //connect the current user and the target user
     .put(function(req,res){
