@@ -27,7 +27,9 @@ img.clickable:hover {
   opacity: 1.0;
 }
 
-
+.img_rounded {
+  border-radius: 100%;
+}
 /* LOGIN */
 .home {
   margin-top: 60px;
@@ -85,6 +87,14 @@ form a, form label {
 .lobby h3, .lobby li {
   font-family: 'Lato', sans-serif!important;
   color: white;
+}
+
+.mini_profile h3 {
+  color: white;
+  margin: -5px 0 -8px -5px;
+}
+.mini_profile_links {
+  margin-left: -30px!important;
 }
 
 .panel {
