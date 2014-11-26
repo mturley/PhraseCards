@@ -66,9 +66,11 @@
             <ul class="no-bullet">
               {{#unless players}}
                 <li>No Players Yet</li>
+              {{else}}
+                <li>Active Players:</li>
               {{/unless}}
               {{#each players}}
-                <li>{{_id}}</li> <!-- TODO get actual player name in here somehow -->
+                <li>{{nickname}} ({{score}} points)</li>
               {{/each}}
             </ul>
             <a href="/game/{{_id}}" class="button button-large expand"> Join </a>
