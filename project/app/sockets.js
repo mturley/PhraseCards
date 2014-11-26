@@ -83,6 +83,14 @@ module.exports = function(io) {
 
     }); // end 'disconnect'
 
+    socket.on('ping', function() {
+      io.sockets.in(_game_id).emit('ping');
+    });
+
+    socket.on('pong', function(data) {
+      io.sockets.in(_game_id).emit('pong', data);
+    });
+
   });
 
 }

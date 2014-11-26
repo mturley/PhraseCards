@@ -54,6 +54,19 @@
     GameUI.updateModel(gameObject);
   });
 
+  // DEBUG: call ping() to see a list on console of connected clients in the same game room
+  window.ping = function() {
+    socket.emit('ping');
+  };
+
+  socket.on('ping', function() {
+    socket.emit('pong', window.loggedInUser);
+  });
+
+  socket.on('pong', function(data) {
+    console.log("PONG:", data.nickname);
+  });
+
 
 ///////////////////////////////////////////////////////////////////////////////
 
