@@ -54,9 +54,17 @@ module.exports = function(app,passport) {
         }
         //console.log(searchUserObjects)
 
+        // Only Send non-friends to profile find friends
+        var non_friends = [];
+        for(i = 0; i< searchUserObjects.length; i++){
+          if (friendObjects.indexOf(searchUserObjects[i].local._id)){
+            non_friends.push(searchUserObjects[i]);
+          }
+        }
+
         res.render('profile.ejs', {
         // get the user out of session and pass to template
-        searchUsers : searchUserObjects,
+        searchUsers : non_friends,
         searchUserAvatars : searchUserAvatarsList,
         user : req.user,
         avatar : gravatar.get(req.user.local.email),
@@ -74,7 +82,7 @@ module.exports = function(app,passport) {
       //then get the friends of that user
       var HTTPOptions = getHTTPOptions("/api/friends/", 'GET',{'user_id': req.params.user_id});
       getObjects(HTTPOptions, function(friendObjects){
-        
+
         friendAvatarList = [];
         for(i = 0; i< friendObjects.length; i++){
           friendAvatarList.push(gravatar.get(friendObjects[i].local.email))
@@ -149,7 +157,7 @@ module.exports = function(app,passport) {
     });
 }
 
-//helper method for creating options for HTTP requests 
+//helper method for creating options for HTTP requests
 //usage: URL and REST method(GET, POST, etc)
 //we need to pass the user's session id so that the api can use it in some instances
 function getHTTPOptions(URL, RESTMethod, optionalHeaders){
@@ -174,13 +182,13 @@ function getObjects(HTTPOptions, callback){
         callback(objectList);
       });
       }).on('error', function(e) {console.log("Got error: " + e.message);});
-      objReq.end();  
+      objReq.end();
 }
 
 function postObjects(HTTPOptions){
  var objReq =  http.request(HTTPOptions, function(resp) {
       }).on('error', function(e) {console.log("Got error: " + e.message);});
-      objReq.end();  
+      objReq.end();
 }
 
 

@@ -33,6 +33,13 @@ img.clickable:hover {
   margin-top: 60px;
 }
 
+.potential_friend h4 {
+  color: white;
+  font-family: 'Lato', sans-serif!important;
+  font-weight: 300;
+}
+
+
 .lead {
   font-family: 'Lato', sans-serif!important;
   font-weight: 300;

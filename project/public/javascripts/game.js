@@ -98,11 +98,8 @@
       element.scrollTop = element.scrollHeight;
     });
 
-
     //// DOM Event Handlers ////
-
     $('#chatform').submit(function() {
-
       socket.emit('chat message', {
         user_id  : window.loggedInUser._id,
         nickname : window.loggedInUser.nickname,
