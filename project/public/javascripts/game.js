@@ -35,6 +35,9 @@
   };
 
   Template.playArea.currentRound = Template.sidebar.currentRound;
+  Template.playArea.currentPhase = function() {
+    return GameUI.model.get().currentPhase;
+  };
 
 
   //// Socket Connection Setup ////

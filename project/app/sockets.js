@@ -1,10 +1,27 @@
+// sockets.js
+// Backend socket.io server code for the game
+
+"use strict";
+
 var gravatar = require('node-gravatar'),
     User     = require('./models/user'),
-    Game     = require('./models/game');
+    Game     = require('./models/game'),
+    Story    = require('./models/story');
+
+var Helpers = {
+  adaptStoryObject : function(story) {
+    // This function takes a story object as stored in the Story collection of the database,
+    // and adds the new fields necessary to assign it to the Game.adaptedStory property.
+    // See models/story.js and models/game.js for details about the objects' structure.
+    for(var i=0; i<story.storyChunks.length; i++) {
+      story.storyChunks[i].blank.submissions = [];
+      story.storyChunks[i].blank.winningSubmission = null;
+    }
+    return story;
+  }
+};
 
 module.exports = function(io) {
-
-  "use strict";
 
   io.sockets.on('connection', function(socket) {
     // Incoming WebSocket connection from a client
@@ -59,7 +76,7 @@ module.exports = function(io) {
           socket.emit('join failed', 'No Such Room');
         }
       });
-    }); // end 'join'
+    }); // end socket.on('join')
 
     socket.on('disconnect', function(data) {
       socket.leave(_game_id);
@@ -81,7 +98,7 @@ module.exports = function(io) {
         }
       );
 
-    }); // end 'disconnect'
+    }); // end socket.on('disconnect')
 
     socket.on('ping', function() {
       io.sockets.in(_game_id).emit('ping');
@@ -91,6 +108,6 @@ module.exports = function(io) {
       io.sockets.in(_game_id).emit('pong', data);
     });
 
-  });
+  }); // end io.sockets.on('connection')
 
-}
+}; // end module.exports

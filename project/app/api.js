@@ -111,11 +111,12 @@ router
             var game = new Game();
             game.title = reqTitle;
             game.active = true;
+            game.maxPlayers = 6;
             game.currentRound = 0;
             game.currentPhase = 'setup';
-            game.maxPlayers = 6;
             game.players = [];
             game.story_id = null;
+            game.adaptedStory = null;
             // Save empty game to the database and respond with the new game id
             game.save(function (err, savedGame) {
               if(err) {

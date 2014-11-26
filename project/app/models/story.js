@@ -1,14 +1,14 @@
 var mongoose = require('mongoose');
 
 var StorySchema = mongoose.Schema({
-	name: String,
-  tags: [String],
+  name : String,
+  tags : [String],
   storyChunks: [{
-    prefix: String,
-    blank: {
-      wordType: String
+    prefix : String,
+    blank  : {
+      wordType : String,
     },
-    suffix: String
+    suffix : String
   }]
 });
 
