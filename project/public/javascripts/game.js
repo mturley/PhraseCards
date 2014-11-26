@@ -34,6 +34,8 @@
     return GameUI.model.get().currentRound + 1;
   };
 
+  Template.playArea.currentRound = Template.sidebar.currentRound;
+
 
   //// Socket Connection Setup ////
 
@@ -78,6 +80,11 @@
     if(Template.sidebar) {
       var parentNode = $("#sidebar_parent").get(0);
       UI.insert(UI.render(Template.sidebar), parentNode);
+    }
+
+    if(Template.playArea) {
+      var parentNode = $("#playArea_parent").get(0);
+      UI.insert(UI.render(Template.playArea), parentNode);
     }
 
     // TODO more templates
