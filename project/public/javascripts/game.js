@@ -39,6 +39,10 @@
     return GameUI.model.get().currentPhase;
   };
 
+  Template.storyArea.story_id = function() {
+    return '5472bc84e5979740d4628a78';
+  };
+
 
   //// Socket Connection Setup ////
 
@@ -88,6 +92,11 @@
     if(Template.playArea) {
       var parentNode = $("#playArea_parent").get(0);
       UI.insert(UI.render(Template.playArea), parentNode);
+    }
+
+    if(Template.storyArea) {
+      var parentNode = $("#storyArea_parent").get(0);
+      UI.insert(UI.render(Template.storyArea), parentNode);
     }
 
     // TODO more templates
