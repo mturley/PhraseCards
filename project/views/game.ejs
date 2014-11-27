@@ -4,36 +4,8 @@
   <!-- Blaze will populate this element with the "sidebar" template -->
 </div>
 
-<div class="medium-9 large-9 columns game_area">
-  <div class="row timer">
-    <div class="medium-10 large-10 columns">&nbsp;</div>
-    <div class="medium-2 large-2 columns">
-      <div class="timer-container" id="timer-container"></div>
-    </div>
-  </div>
-  <div id="playArea_parent" class="row play_area  text-center">
-    <!-- Blaze will populate this element with the "playArea" template -->
-  </div>
-  <hr>
-  <div class="row">
-    <div id="storyArea_parent" class="medium-6 large-6 columns unselectable">
-      <!-- Blaze will populate this element with the "storyArea" template -->
-    </div>
-    <div class="medium-6 large-6 columns">
-        <div class="row chat">
-            <ul id="chat_container" class="no-bullet">
-            </ul>
-        <form action="" id="chatform" class="chat">
-        <div class="large-8 columns">
-          <input id="message" autocomplete="off" type="text"/>
-        </div>
-        <div class="large-4 columns">
-          <button class="button">Send</button>
-        </div>
-        </form>
-      </div>
-    </div>
-  </div>
+<div id="gameArea_parent" class="medium-9 large-9 columns game_area">
+
 </div>
 
 <!-- Blaze/Spacebars Templates Below This Line -->
@@ -84,6 +56,60 @@
 <script type="text/spacebars" name="storyArea">
   <h5>{{story_id}}</h5>
   <p>Thanksgiving<span class="blur" >is tonight!</span> Walking <span class="blur">elit. Cras porttitor consequat</span> Drone<span class="blur">, at lobortis lacus</span> Touchdown <span class="blur">vitae. Suspendisse eget dignissim lectus. Nunc</span> Digital <span class="blur">ex magna vitae, convallis</span> Facebook <span class="blur">est.</span></p>
+</script>
+
+<script type="text/spacebars" name="gameArea">
+  <div class="row timer">
+    <div class="medium-10 large-10 columns">&nbsp;</div>
+    <div class="medium-2 large-2 columns">
+      <div class="timer-container" id="timer-container"></div>
+    </div>
+  </div>
+  <div id="playArea_parent" class="row play_area  text-center">
+    <!-- Blaze will populate this element with the "playArea" template -->
+  </div>
+  <hr>
+  <div class="row">
+    <div id="storyArea_parent" class="medium-6 large-6 columns unselectable">
+      <!-- Blaze will populate this element with the "storyArea" template -->
+    </div>
+    <div class="medium-6 large-6 columns">
+        <div class="row chat">
+            <ul id="chat_container" class="no-bullet">
+            </ul>
+        <form action="" id="chatform" class="chat">
+        <div class="large-8 columns">
+          <input id="message" autocomplete="off" type="text"/>
+        </div>
+        <div class="large-4 columns">
+          <button class="button">Send</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/spacebars" name="waitingArea">
+  <div class="medium-6 medium-centered large-8 large-centered columns text-center waitingArea">
+    <img src="/images/clock.png"/>
+    <h2>Waiting Area</h2>
+    <h3>We Need {{playersNeeded}} more players to start</h3>
+  </div>
+  <div class="medium-6 medium-centered large-6 large-centered columns">
+    <div class="row chat">
+      <ul id="chat_container" class="no-bullet">
+      </ul>
+      <form action="" id="chatform" class="chat">
+        <div class="large-8 columns">
+          <input id="message" autocomplete="off" type="text"/>
+        </div>
+        <div class="large-4 columns">
+          <button class="button">Send</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </script>
 
 <% include partials/footer %>

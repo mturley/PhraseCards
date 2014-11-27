@@ -43,6 +43,14 @@
     return '5472bc84e5979740d4628a78';
   };
 
+  Template.gameArea.players = function() {
+    return GameUI.model.get().players;
+  };
+
+  Template.waitingArea.playersNeeded = function() {
+    return  (6 - GameUI.model.get().players.length);
+  };
+
 
   //// Socket Connection Setup ////
 
@@ -83,21 +91,42 @@
   $(document).ready(function() {
 
     //// Blaze Template Initializations ////
+    if (true) {
+      console.log(GameUI.model.get().currentPhase);
+      if(Template.waitingArea) {
+        var parentNode = $("#gameArea_parent").get(0);
+        UI.insert(UI.render(Template.waitingArea), parentNode);
+      }
 
-    if(Template.sidebar) {
-      var parentNode = $("#sidebar_parent").get(0);
-      UI.insert(UI.render(Template.sidebar), parentNode);
-    }
+      if(Template.sidebar) {
+        var parentNode = $("#sidebar_parent").get(0);
+        UI.insert(UI.render(Template.sidebar), parentNode);
+      }
 
-    if(Template.playArea) {
-      var parentNode = $("#playArea_parent").get(0);
-      UI.insert(UI.render(Template.playArea), parentNode);
-    }
+    }else {
 
-    if(Template.storyArea) {
-      var parentNode = $("#storyArea_parent").get(0);
-      UI.insert(UI.render(Template.storyArea), parentNode);
-    }
+      if(Template.sidebar) {
+        var parentNode = $("#sidebar_parent").get(0);
+        UI.insert(UI.render(Template.sidebar), parentNode);
+      }
+
+      if(Template.playArea) {
+        var parentNode = $("#playArea_parent").get(0);
+        UI.insert(UI.render(Template.playArea), parentNode);
+      }
+
+      if(Template.storyArea) {
+        var parentNode = $("#storyArea_parent").get(0);
+        UI.insert(UI.render(Template.storyArea), parentNode);
+      }
+
+      if(Template.gameArea) {
+        var parentNode = $("#gameArea_parent").get(0);
+        UI.insert(UI.render(Template.gameArea), parentNode);
+      }
+
+    };
+
 
     // TODO more templates
 
