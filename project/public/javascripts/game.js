@@ -34,10 +34,9 @@
     return GameUI.model.get().currentRound + 1;
   };
 
-  Template.playArea.currentRound = Template.sidebar.currentRound;
-  Template.playArea.currentPhase = function() {
-    return GameUI.model.get().currentPhase;
-  };
+  Template.gameArea.inSetupPhase = function() {
+    return GameUI.model.get().currentPhase === 'setup';
+  }
 
   Template.storyArea.story_id = function() {
     return '5472bc84e5979740d4628a78';
@@ -99,43 +98,15 @@
       https://groups.google.com/forum/#!topic/blazejs/64y_JqzgcIg
     */
 
-    if (true) {
-      console.log(GameUI.model.get().currentPhase);
-      if(Template.waitingArea) {
-        var parentNode = $("#gameArea_parent").get(0);
-        UI.insert(UI.render(Template.waitingArea), parentNode);
-      }
-      if(Template.sidebar) {
-        var parentNode = $("#sidebar_parent").get(0);
-        UI.insert(UI.render(Template.sidebar), parentNode);
-      }
+    if(Template.sidebar) {
+      var parentNode = $("#sidebar_parent").get(0);
+      UI.insert(UI.render(Template.sidebar), parentNode);
+    }
 
-    }else {
-
-      if(Template.sidebar) {
-        var parentNode = $("#sidebar_parent").get(0);
-        UI.insert(UI.render(Template.sidebar), parentNode);
-      }
-
-      if(Template.playArea) {
-        var parentNode = $("#playArea_parent").get(0);
-        UI.insert(UI.render(Template.playArea), parentNode);
-      }
-
-      if(Template.storyArea) {
-        var parentNode = $("#storyArea_parent").get(0);
-        UI.insert(UI.render(Template.storyArea), parentNode);
-      }
-
-      if(Template.gameArea) {
-        var parentNode = $("#gameArea_parent").get(0);
-        UI.insert(UI.render(Template.gameArea), parentNode);
-      }
-
-    };
-
-
-    // TODO more templates
+    if(Template.gameArea) {
+      var parentNode = $("#gameArea_parent").get(0);
+      UI.insert(UI.render(Template.gameArea), parentNode);
+    }
 
 
     //// DOM-Dependent Socket Message Handlers ////
