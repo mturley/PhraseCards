@@ -5,6 +5,14 @@ var express = require('express'),
     Game    = require('./models/game');
 
 
+router.route('/me').get(function(req, res) {
+  if(!req.user) {
+    res.status(403).json({ error: "You must log in to use this endpoint" });
+  } else {
+    res.json(req.user);
+  }
+});
+
 router
   .route('/users') //chaining post and get
     .post(function(req, res){
@@ -95,6 +103,7 @@ router
     })
     .post(function(req,res) {
       // Create a new game (used on lobby page)
+
       var reqTitle = req.body.title;
       if(!reqTitle || reqTitle === '') {
         res.status(400).send("Invalid Request: Game title required");
