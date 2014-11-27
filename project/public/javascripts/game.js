@@ -22,8 +22,21 @@
       this.model.set(gameObject); // update the blaze var, templates will patch themselves
       // do anything else we need to do every time new game data comes in
       console.log("Game model changed!", gameObject);
+    },
+    availableStories: new Blaze.Var([]);
+    reloadStories: function() {
+      $.ajax({
+        type : 'GET',
+        url  : '/api/stories'
+      }).done(function(data) {
+        GameUI.availableStories.set(data);
+      }).fail(function() {
+        console.log("AJAX FAILURE", arguments);
+      });
     }
   };
+
+  GameUI.reloadStories();
 
 
   //// Blaze Template Helpers ////
@@ -38,7 +51,11 @@
 
   Template.gameArea.inSetupPhase = function() {
     return GameUI.model.get().currentPhase === 'setup';
-  }
+  };
+
+  Template.gameArea.availableStories = function() {
+    return GameUI.availableStories.get();
+  };
 
   Template.storyArea.story_id = function() {
     return '5472bc84e5979740d4628a78';
