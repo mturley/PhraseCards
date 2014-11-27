@@ -53,10 +53,6 @@
     return GameUI.model.get().currentPhase === 'setup';
   };
 
-  Template.gameArea.availableStories = function() {
-    return GameUI.availableStories.get();
-  };
-
   Template.storyArea.story_id = function() {
     return '5472bc84e5979740d4628a78';
   };
@@ -67,6 +63,10 @@
 
   Template.waitingArea.playersNeeded = function() {
     return  (6 - GameUI.model.get().players.length);
+  };
+
+  Template.waitingArea.availableStories = function() {
+    return GameUI.availableStories.get();
   };
 
 

@@ -46,9 +46,9 @@
         <div class="timer-container" id="timer-container"></div>
       </div>
     </div>
-    
+
     {{> playArea}}
-    
+
     <hr>
     <div class="row">
 
@@ -99,8 +99,17 @@
     <h2>Waiting Area</h2>
     <h3>We Need {{playersNeeded}} more players to start</h3>
   </div>
-  <div class="medium-6 medium-centered large-6 large-centered columns">
-    {{> chatArea}}
+  <div class="row">
+    <div class="medium-6 large-6 columns">
+      <div class="row">
+        {{#each availableStories}}
+          history
+        {{/each}}
+      </div>
+    </div>
+    <div class="medium-6 medium-centered large-6 large-centered columns">
+      {{> chatArea}}
+    </div>
   </div>
 </script>
 
