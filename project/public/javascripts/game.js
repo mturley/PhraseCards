@@ -23,7 +23,7 @@
       // do anything else we need to do every time new game data comes in
       console.log("Game model changed!", gameObject);
     },
-    availableStories: new Blaze.Var([]);
+    availableStories: new Blaze.Var([]),
     reloadStories: function() {
       $.ajax({
         type : 'GET',
