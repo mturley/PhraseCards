@@ -167,7 +167,7 @@
       socket.emit('select story', { story_id : $(this).data('storyId') });
     });
 
-    $('#chatform').submit(function() {
+    $('#gameArea_parent').on('submit', '#chatform', function() {
       socket.emit('chat message', {
         user_id  : window.loggedInUser._id,
         nickname : window.loggedInUser.nickname,
