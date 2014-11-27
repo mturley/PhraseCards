@@ -46,7 +46,7 @@ var DBHelpers = {
         var adaptedStory = DBHelpers.adaptStoryObject(story);
         Game.findByIdAndUpdate(
           game_id,
-          {$set: { story_id: story_id, adaptedStory: adaptedStory }}
+          {$set: { story_id: story_id, adaptedStory: adaptedStory }},
           {safe: true, upsert: false},
           callback
         );
