@@ -103,10 +103,13 @@ router
     })
     .post(function(req,res) {
       // Create a new game (used on lobby page)
-
+      if(!req.user) {
+        res.status(403).json({ error: "Forbidden: You must log in to use this endpoint" });
+        return;
+      }
       var reqTitle = req.body.title;
       if(!reqTitle || reqTitle === '') {
-        res.status(400).send("Invalid Request: Game title required");
+        res.status(400).json({ error: "Bad Request: Game title required" });
         return;
       }
       Game.where({ active: true, title: reqTitle }).count(function (err, count) {
@@ -119,6 +122,7 @@ router
             // Initialize Game in the database with default empty-game values
             var game = new Game();
             game.title = reqTitle;
+            game.owner = req.user._id;
             game.active = true;
             game.maxPlayers = 6;
             game.currentRound = 0;

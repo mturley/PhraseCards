@@ -80,6 +80,12 @@
 
     //// Blaze Template Initializations ////
 
+    /*
+      For this page, we're using a reactive templating system called Blaze: http://meteor.github.io/blaze/
+      Blaze takes over the entire page by default, but the below code overrides that behavior to only use
+      Blaze on certain elements of the page.  This approach is based on the discussion found here:
+      https://groups.google.com/forum/#!topic/blazejs/64y_JqzgcIg
+    */
     if(Template.sidebar) {
       var parentNode = $("#sidebar_parent").get(0);
       UI.insert(UI.render(Template.sidebar), parentNode);
