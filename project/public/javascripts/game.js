@@ -9,6 +9,7 @@
     model: new Blaze.Var({
       title        : '',
       active       : true,
+      owner        : null,
       currentRound : 0,
       maxPlayers   : 6,
       currentPhase : 'setup',
