@@ -178,7 +178,7 @@ form a, form label {
 
 }
 .waitingArea {
-  padding-top: 120px;
+  padding: 60px 0;
   color: white;
 }
 
@@ -191,8 +191,12 @@ form a, form label {
   max-width: 128px;
 }
 
-.selectStory h4{
+.selectStory h4, .selectStory h3, .chatArea h3{
   color: white;
+}
+
+.selectStory .panel {
+  padding: 10px;
 }
 
 .timer {
