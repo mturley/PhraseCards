@@ -164,7 +164,7 @@
     //// DOM Event Handlers ////
 
     $('#gameArea_parent').on('click', '.select-story', function() {
-      socket.emit('select story', $(this).data('storyId'));
+      socket.emit('select story', { story_id : $(this).data('storyId') });
     });
 
     $('#chatform').submit(function() {
