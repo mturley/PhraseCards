@@ -53,8 +53,9 @@
     return GameUI.model.get().currentPhase === 'setup';
   };
 
+
   Template.storyArea.story_id = function() {
-    return '5472bc84e5979740d4628a78';
+    return GameUI.model.get().story_id;
   };
 
   Template.gameArea.players = function() {
@@ -67,6 +68,10 @@
 
   Template.waitingArea.availableStories = function() {
     return GameUI.availableStories.get();
+  };
+
+  Template.waitingArea.noStorySelected = function() {
+    return GameUI.model.get().story_id === null;
   };
 
 
@@ -157,6 +162,11 @@
     });
 
     //// DOM Event Handlers ////
+
+    $('gameArea_parent').on('click', '.select-story', function() {
+      socket.emit('select story', $(this).data('storyId'));
+    });
+
     $('#chatform').submit(function() {
       socket.emit('chat message', {
         user_id  : window.loggedInUser._id,

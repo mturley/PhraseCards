@@ -191,6 +191,10 @@ form a, form label {
   max-width: 128px;
 }
 
+.selectStory h4{
+  color: white;
+}
+
 .timer {
   margin-top: 20px;
 }

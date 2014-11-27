@@ -100,16 +100,38 @@
     <h3>We Need {{playersNeeded}} more players to start</h3>
   </div>
   <div class="row">
-    <div class="medium-6 large-6 columns">
-      <div class="row">
+   {{#if noStorySelected}}
+
+      <div class="medium-6 large-6 columns">
+      <h3>Select a story...</h3>
+      <hr>
         {{#each availableStories}}
-          history
+          <div class="large-12 columns selectStory">
+            <div class="panel">
+              <div class="row">
+                <div class="large-8 columns">
+                  <h4>{{name}}</h4>
+                  {{#each tags}} <span class="label secondary">{{this}}</span> {{/each}}
+                </div>
+                <div class="large-4 columns">
+                  <button class="button select-story" data-story-id="{{_id}}">Select</button>
+                </div>
+              </div>
+            </div>
+          </div>
         {{/each}}
+
       </div>
-    </div>
-    <div class="medium-6 medium-centered large-6 large-centered columns">
-      {{> chatArea}}
-    </div>
+      <div class="medium-6 large-6 columns">
+        {{> chatArea}}
+      </div>
+
+    {{else}}
+       <div class="medium-6 medium-centered large-6 large-centered columns">
+        {{> chatArea}}
+      </div>
+
+    {{/if}}
   </div>
 </script>
 
