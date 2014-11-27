@@ -8,14 +8,15 @@
   var GameUI = {
     model: new Blaze.Var({
       title        : '',
-      active       : true,
       owner        : null,
+      active       : true,
       currentRound : 0,
       maxPlayers   : 6,
       currentPhase : 'setup',
       players      : [],
       rounds       : [],
-      story_id     : null
+      story_id     : null,
+      adaptedStory : null
     }),
     updateModel: function(gameObject) {
       this.model.set(gameObject); // update the blaze var, templates will patch themselves
