@@ -53,6 +53,10 @@
     return GameUI.model.get().currentPhase === 'setup';
   };
 
+  Template.gameArea.noStorySelected = function() {
+    return GameUI.model.get().story_id === null;
+  };
+
   Template.gameArea.availableStories = function() {
     return GameUI.availableStories.get();
   };
