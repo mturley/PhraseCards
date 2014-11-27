@@ -58,7 +58,7 @@
   };
 
   Template.storyArea.story_id = function() {
-    return '5472bc84e5979740d4628a78';
+    return GameUI.model.get().story_id;
   };
 
   Template.gameArea.players = function() {
@@ -157,6 +157,11 @@
     });
 
     //// DOM Event Handlers ////
+
+    $('gameArea_parent').on('click', '.select-story', function() {
+      socket.emit('select story', $(this).data('storyId'));
+    });
+
     $('#chatform').submit(function() {
       socket.emit('chat message', {
         user_id  : window.loggedInUser._id,
