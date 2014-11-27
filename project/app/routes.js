@@ -41,35 +41,35 @@ module.exports = function(app,passport) {
       var HTTPOptions = getHTTPOptions("/api/friends/", 'GET',{'user_id': req.user._id});
       getObjects(HTTPOptions, function(friendObjects){
         HTTPOptions = getHTTPOptions("/api/users/", 'GET', undefined);
-      //the list of all of the users
-      getObjects(HTTPOptions, function(searchUserObjects){
-        var friendAvatarList = [];
-        for(i = 0; i< friendObjects.length; i++){
-          friendAvatarList.push(gravatar.get(friendObjects[i].local.email))
-        }
-
-        var searchUserAvatarsList = [];
-        for(i = 0; i< searchUserObjects.length; i++){
-          searchUserAvatarsList.push(gravatar.get(searchUserObjects[i].local.email))
-        }
-        //console.log(searchUserObjects)
-
-        // Only Send non-friends to profile find friends
-        var non_friends = [];
-        for(i = 0; i< searchUserObjects.length; i++){
-          if (friendObjects.indexOf(searchUserObjects[i].local._id)){
-            non_friends.push(searchUserObjects[i]);
+        //the list of all of the users
+        getObjects(HTTPOptions, function(searchUserObjects){
+          var friendAvatarList = [];
+          for(i = 0; i< friendObjects.length; i++){
+            friendAvatarList.push(gravatar.get(friendObjects[i].local.email))
           }
-        }
 
-        res.render('profile.ejs', {
-        // get the user out of session and pass to template
-        searchUsers : non_friends,
-        searchUserAvatars : searchUserAvatarsList,
-        user : req.user,
-        avatar : gravatar.get(req.user.local.email),
-        friends : friendObjects,
-        friendAvatars : friendAvatarList
+          var searchUserAvatarsList = [];
+          for(i = 0; i< searchUserObjects.length; i++){
+            searchUserAvatarsList.push(gravatar.get(searchUserObjects[i].local.email))
+          }
+          //console.log(searchUserObjects)
+
+          // Only Send non-friends to profile find friends
+          var non_friends = [];
+          for(i = 0; i< searchUserObjects.length; i++){
+            if (friendObjects.indexOf(searchUserObjects[i].local._id)){
+              non_friends.push(searchUserObjects[i]);
+            }
+          }
+
+          res.render('profile.ejs', {
+            // get the user out of session and pass to template
+            searchUsers : non_friends,
+            searchUserAvatars : searchUserAvatarsList,
+            user : req.user,
+            avatar : gravatar.get(req.user.local.email),
+            friends : friendObjects,
+            friendAvatars : friendAvatarList
           });
         });
       });
