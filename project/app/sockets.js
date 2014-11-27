@@ -8,7 +8,7 @@ var gravatar = require('node-gravatar'),
     Game     = require('./models/game'),
     Story    = require('./models/story');
 
-var Helpers = {
+var DBHelpers = {
   adaptStoryObject : function(story) {
     // This function takes a story object as stored in the Story collection of the database,
     // and adds the new fields necessary to assign it to the Game.adaptedStory property.
@@ -18,6 +18,25 @@ var Helpers = {
       story.storyChunks[i].blank.winningSubmission = null;
     }
     return story;
+  },
+  addPlayerToGame : function(game_id, newPlayer, callback) { // callback takes (err, game)
+    // newPlayer must be an object structured as an element of the Game.players array
+    // see models/game.js for structure details
+    // (using findByIdAndUpdate instead of game fields and game.save() in case of race conditions)
+    Game.findByIdAndUpdate(
+      game_id,
+      {$push: {players: newPlayer}},
+      {safe: true, upsert: false},
+      callback
+    );
+  },
+  removePlayerFromGame : function(game_id, user_id, callback) { // callback takes (err, game)
+    Game.findByIdAndUpdate(
+      game_id,
+      {$pull: { "players": { user_id: user_id } }},
+      {safe: true, upsert: false},
+      callback
+    );
   }
 };
 
@@ -56,20 +75,14 @@ module.exports = function(io) {
               isCardCzar : false
             };
 
-            // use findByIdAndUpdate instead of game fields and game.save() in case of race conditions
-            Game.findByIdAndUpdate(
-              _game_id,
-              {$push: {players: newPlayer}},
-              {safe: true, upsert: false},
-              function(err, game) {
-                io.sockets.in(_game_id).emit('game state changed', game);
-                io.sockets.in(_game_id).emit('player joined', {
-                  user_id  : newPlayer.user_id,
-                  nickname : newPlayer.nickname,
-                  avatar   : newPlayer.avatar
-                });
-              }
-            );
+            DBHelpers.addPlayerToGame(_game_id, newPlayer, function(err, game) {
+              io.sockets.in(_game_id).emit('game state changed', game);
+              io.sockets.in(_game_id).emit('player joined', {
+                user_id  : newPlayer.user_id,
+                nickname : newPlayer.nickname,
+                avatar   : newPlayer.avatar
+              });
+            });
           }
 
         } else {
@@ -82,21 +95,16 @@ module.exports = function(io) {
       socket.leave(_game_id);
 
       // remove this player from the game in the database, and emit a state update!
-      Game.findByIdAndUpdate(
-        _game_id,
-        {$pull: { "players": { user_id: _user_id } }},
-        {safe: true, upsert: false},
-        function(err, game) {
-          io.sockets.in(_game_id).emit('game state changed', game);
-          User.findById(_user_id, function(err, userObject) {
-            if(userObject) io.sockets.in(_game_id).emit('player left', {
-              user_id  : userObject._id,
-              nickname : userObject.local.nickname,
-              avatar   : gravatar.get(userObject.local.email)
-            });
+      DBHelpers.removePlayerFromGame(_game_id, _user_id, function(err, game) {
+        io.sockets.in(_game_id).emit('game state changed', game);
+        User.findById(_user_id, function(err, userObject) {
+          if(userObject) io.sockets.in(_game_id).emit('player left', {
+            user_id  : userObject._id,
+            nickname : userObject.local.nickname,
+            avatar   : gravatar.get(userObject.local.email)
           });
-        }
-      );
+        });
+      });
 
     }); // end socket.on('disconnect')
 
