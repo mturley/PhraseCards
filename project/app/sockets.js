@@ -9,16 +9,6 @@ var gravatar = require('node-gravatar'),
     Story    = require('./models/story');
 
 var DBHelpers = {
-  adaptStoryObject : function(story) {
-    // This function takes a story object as stored in the Story collection of the database,
-    // and adds the new fields necessary to assign it to the Game.adaptedStory property.
-    // See models/story.js and models/game.js for details about the objects' structure.
-    for(var i=0; i<story.storyChunks.length; i++) {
-      story.storyChunks[i].blank.submissions = [];
-      story.storyChunks[i].blank.winningSubmission = null;
-    }
-    return story;
-  },
   addPlayerToGame : function(game_id, newPlayer, callback) { // callback takes (err, game)
     // newPlayer must be an object structured as an element of the Game.players array
     // see models/game.js for structure details
@@ -37,6 +27,34 @@ var DBHelpers = {
       {safe: true, upsert: false},
       callback
     );
+  },
+  adaptStoryObject : function(story) {
+    // This function takes a story object as stored in the Story collection of the database,
+    // and adds the new fields necessary to assign it to the Game.adaptedStory property.
+    // See models/story.js and models/game.js for details about the objects' structure.
+    for(var i=0; i<story.storyChunks.length; i++) {
+      story.storyChunks[i].blank.submissions = [];
+      story.storyChunks[i].blank.winningSubmission = null;
+    }
+    return story;
+  },
+  selectStoryForGame : function(game_id, story_id, callback) {
+    Story.findById(story_id, function(err,story) {
+      if(err) {
+        callback(err, null);
+      } else {
+        var adaptedStory = DBHelpers.adaptStoryObject(story);
+        Game.findByIdAndUpdate(
+          game_id,
+          {$set: { story_id: story_id, adaptedStory: adaptedStory }}
+          {safe: true, upsert: false},
+          callback
+        );
+      }
+    });
+  },
+  changeGamePhase : function(game_id, newPhase, callback) {
+    // TODO
   }
 };
 
@@ -90,6 +108,12 @@ module.exports = function(io) {
         }
       });
     }); // end socket.on('join')
+
+    socket.on('select story', function(data) {
+      DBHelpers.selectStoryForGame(_game_id, data.story_id, function(err, game) {
+        io.sockets.in(_game_id).emit('game state changed', game);
+      });
+    });
 
     socket.on('disconnect', function(data) {
       socket.leave(_game_id);
