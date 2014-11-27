@@ -78,25 +78,24 @@ module.exports = function(app,passport) {
     .get('/profile/:user_id', isLoggedIn, function(req, res) {
       var HTTPOptions = getHTTPOptions("/api/users/"+req.params.user_id, 'GET',  {'user_id': req.user._id});
       //first get the user
-     getObjects(HTTPOptions, function(userObject){
-      //then get the friends of that user
-      var HTTPOptions = getHTTPOptions("/api/friends/", 'GET',{'user_id': req.params.user_id});
-      getObjects(HTTPOptions, function(friendObjects){
+      getObjects(HTTPOptions, function(userObject) {
+        //then get the friends of that user
+        var HTTPOptions = getHTTPOptions("/api/friends/", 'GET',{'user_id': req.params.user_id});
+        getObjects(HTTPOptions, function(friendObjects){
 
-        friendAvatarList = [];
-        for(i = 0; i< friendObjects.length; i++){
-          friendAvatarList.push(gravatar.get(friendObjects[i].local.email))
-        }
-        res.render('userProfile.ejs', {
-        // get the userObject
-        user : userObject,
-        avatar : gravatar.get(userObject.local.email),
-        friends : friendObjects,
-        friendAvatars : friendAvatarList
+          friendAvatarList = [];
+          for(i = 0; i< friendObjects.length; i++){
+            friendAvatarList.push(gravatar.get(friendObjects[i].local.email))
+          }
+          res.render('userProfile.ejs', {
+            // get the userObject
+            user : userObject,
+            avatar : gravatar.get(userObject.local.email),
+            friends : friendObjects,
+            friendAvatars : friendAvatarList
+          });
         });
       });
-    });
-
     })
     .get('/lobby', isLoggedIn, function(req, res) {
       res.render('lobby.ejs', {

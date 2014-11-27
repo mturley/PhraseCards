@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 
 var GameSchema = mongoose.Schema({
   title        : String,
+  owner        : String,
   active       : Boolean,
   maxPlayers   : Number,
   currentRound : Number,
