@@ -13,12 +13,21 @@ var DBHelpers = {
     // newPlayer must be an object structured as an element of the Game.players array
     // see models/game.js for structure details
     // (using findByIdAndUpdate instead of game fields and game.save() in case of race conditions)
-    Game.findByIdAndUpdate(
-      game_id,
-      {$push: {players: newPlayer}},
-      {safe: true, upsert: false},
-      callback
-    );
+    Game.findById(game_id, function(err, game) {
+      var playerAlreadyInGame = game.players.some(function(player) {
+        return player.user_id === newPlayer.user_id;
+      });
+      if(playerAlreadyInGame) {
+        callback(null, game);
+      } else {
+        Game.findByIdAndUpdate(
+          game_id,
+          {$push: {players: newPlayer}},
+          {safe: true, upsert: false},
+          callback
+        );
+      }
+    });
   },
   removePlayerFromGame : function(game_id, user_id, callback) { // callback takes (err, game)
     Game.findByIdAndUpdate(
