@@ -4,7 +4,6 @@ var express = require('express'),
     Story   = require('./models/story'),
     Game    = require('./models/game');
 
-
 router.route('/me').get(function(req, res) {
   if(!req.user) {
     res.status(403).json({ error: "You must log in to use this endpoint" });
