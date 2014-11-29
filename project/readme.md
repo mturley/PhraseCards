@@ -1,4 +1,5 @@
-## 326 Project
+![alt text](https://github.com/umass-cs-326/team-phrase-cards/blob/master/docs/logo.png "Phrase Cards Logo")
+
 
 #### View on heroku
 [Click Here](https://powerful-sands-7248.herokuapp.com/)
