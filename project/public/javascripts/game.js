@@ -94,19 +94,6 @@
     GameUI.updateModel(gameObject);
   });
 
-  // DEBUG: call ping() to see a list on console of connected clients in the same game room
-  window.ping = function() {
-    socket.emit('ping');
-  };
-
-  socket.on('ping', function() {
-    socket.emit('pong', window.loggedInUser);
-  });
-
-  socket.on('pong', function(data) {
-    console.log("PONG:", data.nickname);
-  });
-
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -161,6 +148,22 @@
       element.scrollTop = element.scrollHeight;
     });
 
+    socket.on('timer started', function(data) {
+      console.log("TIMER STARTED: ", data.timerName, data.durationSeconds+" sec");
+      // TODO
+    });
+
+    socket.on('timer tick', function(data) {
+      console.log("TIMER TICK: ", data.timerName, data.remainingSeconds+" sec left");
+      // TODO
+    });
+
+    socket.on('timer ended', function(data) {
+      console.log("TIMER ENDED: ", data.timerName);
+      // TODO
+    })
+
+
     //// DOM Event Handlers ////
 
     $('#gameArea_parent').on('click', '.select-story', function() {
@@ -179,5 +182,45 @@
     });
 
   }); // end document ready
+
+
+  // DEBUGGING ONLY BELOW -- DO NOT USE IN GAME
+
+  window.DEBUG = {
+    // call DEBUG.ping() to see a list on console of connected clients in the same game room
+    ping: function() {
+      socket.emit('ping');
+    },
+    timerStart: function(timerName, durationSeconds) {
+      socket.emit('timer start', {
+        game_id         : window.currentGameId,
+        timerName       : timerName,
+        durationSeconds : durationSeconds
+      });
+    },
+    timerEnd: function(timerName) {
+      socket.emit('timer end', {
+        game_id   : window.currentGameId,
+        timerName : timerName
+      });
+    },
+    timerCancel: function(timerName) {
+      socket.emit('timer cancel', {
+        game_id   : window.currentGameId,
+        timerName : timerName
+      });
+    },
+  };
+
+  socket.on('ping', function() {
+    socket.emit('pong', window.loggedInUser);
+  });
+
+  socket.on('pong', function(data) {
+    console.log("PONG:", data.nickname);
+  });
+
+  // DEBUGGING ONLY ABOVE -- DO NOT USE IN GAME
+
 
 }());

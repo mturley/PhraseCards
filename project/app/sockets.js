@@ -67,13 +67,85 @@ var DBHelpers = {
   }
 };
 
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+////  socket.io-dependent code below in module.exports (passed connection established in app.js)  ////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
 module.exports = function(io) {
+
+  // The Timers singleton object keeps track of timers for all games, emitting events once a second for each duration.
+  // Call Timers.start(game_id, timerName, durationSeconds, callback) to start a timer
+  // Call Timers.end(game_id, timerName) to stop a timer and call its callback
+  // Call Timers.cancel(game_id, timerName) to stop a timer without calling its callback
+  var Timers = {
+    timers: {}, // timers[game_id][timerName] = { remainingSeconds, callback, intervalID }
+    start: function(game_id, timerName, durationSeconds, callback) {
+      if(!this.timers[game_id]) {
+        // If we don't already have a timers dictionary for this game, create one
+        this.timers[game_id] = {};
+      }
+      if(!this.timers[game_id][timerName]) {
+        // If we don't already have a timer running for this game with this name, start one
+        // (we can call Timers.start with the same name multiple times and only get one timer)
+        io.sockets.in(game_id).emit('timer started', {
+          timerName       : timerName,
+          durationSeconds : durationSeconds
+        });
+        var timer = this.timers[game_id][timerName] = {};
+        timer.remainingSeconds = durationSeconds;
+        timer.callback = callback;
+        timer.intervalID = setInterval(function() {
+          timer.remainingSeconds--;
+          io.sockets.in(game_id).emit('timer tick', {
+            timerName        : timerName,
+            remainingSeconds : timer.remainingSeconds
+          });
+          if(timer.remainingSeconds <= 0) {
+            Timers.end(game_id, timerName);
+          }
+        }, 1000);
+      }
+    },
+    end: function(game_id, timerName) {
+      if(this.timers[game_id] && this.timers[game_id][timerName]) {
+        var timer = this.timers[game_id][timerName];
+        clearInterval(timer.intervalID);
+        timer.callback();
+        Timers.cancel(game_id, timerName);
+      }
+    },
+    cancel: function(game_id, timerName) {
+      if(this.timers[game_id] && this.timers[game_id][timerName]) {
+        var timer = this.timers[game_id][timerName];
+        clearInterval(timer.intervalID); // may be redundant, but if already cleared this is a no-op
+        io.sockets.in(game_id).emit('timer ended', {
+          timerName : timerName
+        });
+        delete this.timers[game_id][timerName];
+        if(Object.keys(this.timers[game_id]).length === 0) {
+          delete this.timers[game_id];
+        }
+      }
+    }
+  };
+
+
+
+
+  /////////////////////////////////////////////////////////////////////////////
+  ////                     SOCKET EVENT HANDLERS BELOW                     ////
+  /////////////////////////////////////////////////////////////////////////////
+
+
+
 
   io.sockets.on('connection', function(socket) {
     // Incoming WebSocket connection from a client
     // Note that `socket` inside this function refers to the open socket connection with a particular user
 
-    var _game_id, _user_id; // global to this connection, will be set in 'join' below if this is a game page
+    var _game_id, _user_id; // global to this connection, will be set in 'join' below
 
     socket.on('chat message', function(data) {
       if(_game_id) {
@@ -141,6 +213,25 @@ module.exports = function(io) {
 
     }); // end socket.on('disconnect')
 
+
+    // DEBUGGING ONLY BELOW -- DO NOT USE IN GAME
+
+    socket.on('timer start', function(data) {
+      Timers.start(_game_id, data.timerName, data.durationSeconds, function() {
+        console.log("DING DING DING: ", data.timerName, "in game", _game_id);
+      });
+    });
+
+    socket.on('timer end', function(data) {
+      Timers.end(_game_id, data.timerName);
+      console.log("TIMER ENDED", data.timerName, "in game", _game_id);
+    });
+
+    socket.on('timer cancel', function(data) {
+      Timers.cancel(_game_id, data.timerName);
+      console.log("TIMER CANCELLED", data.timerName, "in game", _game_id);
+    });
+
     socket.on('ping', function() {
       io.sockets.in(_game_id).emit('ping');
     });
@@ -148,6 +239,8 @@ module.exports = function(io) {
     socket.on('pong', function(data) {
       io.sockets.in(_game_id).emit('pong', data);
     });
+
+    // DEBUGGING ONLY ABOVE -- DO NOT USE IN GAME
 
   }); // end io.sockets.on('connection')
 
