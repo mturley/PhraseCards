@@ -66,6 +66,11 @@
     return (game.maxPlayers - game.players.length);
   };
 
+  Template.waitingArea.gameReady = function() {
+    var game = GameUI.model.get();
+    return (game.players.length >= game.minPlayers && game.story_id != null);
+  };
+
   Template.waitingArea.availableStories = function() {
     return GameUI.availableStories.get();
   };
