@@ -4,55 +4,28 @@ body {
   color: white;
 }
 
-.fa-bars {
+h1, h2, h3, h4, h5, p,
+.lead, .word, .subheader,
+.lobby li, #clock-seconds {
+  font-family: 'Lato'!important;
   color: white;
-  margin-left: 20px;
+}
+
+/* Home Page  ------------------------------------------------- */
+.home {
+  margin-top: 60px;
 }
 
 .login {
   padding-top: 40px;
 }
 
-img {
-  width: 100%;
-  height: auto;
-}
-
-img.clickable {
-  opacity: 0.5;
-  cursor: pointer;
-}
-
-img.clickable:hover {
-  opacity: 1.0;
-}
-
-.img_rounded {
-  border-radius: 100%;
-}
-/* LOGIN */
-.home {
-  margin-top: 60px;
-}
-
-.potential_friend h4 {
-  color: white;
-  font-family: 'Lato', sans-serif!important;
-  font-weight: 300;
-}
-
-
-.lead {
-  font-family: 'Lato', sans-serif!important;
-  font-weight: 300;
-}
-input[type="email"], input[type="email"]:focus,
-.login input[type="text"],
-.login input[type="password"],
-.play_area input[type="text"],
-.chat input[type="text"],
-.back input[type="text"],
-.search input[type="text"] {
+input[type="email"],
+input[type="email"]:focus,
+input[type="text"],
+input[type="text"]:focus,
+input[type="password"],
+input[type="password"]:focus {
   font-size: 32px;
   height: 48px;
   color: white;
@@ -71,28 +44,21 @@ form a, form label {
   opacity: 0.5;
 }
 
-
-/* ABOUT */
+/* ABOUT  ------------------------------------------------- */
 .about {
   padding: 40px 0 0 0;
 }
 
-
-/* LOBBY */
+/* LOBBY  ------------------------------------------------- */
 .lobby {
   padding: 80px 0 0 0;
-
-}
-
-.lobby h3, .lobby li {
-  font-family: 'Lato', sans-serif!important;
-  color: white;
 }
 
 .mini_profile h3 {
   color: white;
   margin: -5px 0 -5px -5px;
 }
+
 .mini_profile_links {
   margin-left: -35px!important;
 }
@@ -124,16 +90,15 @@ form a, form label {
   max-height: 323px;
 }
 
-/*STORY PICKER*/
-.story_choice p, .story_choice h3, .story_choice h2{
-  font-family: 'Lato', sans-serif!important;
-  color: white;
+#new_game_panel {
+  float: left!important;
 }
+
+/*STORY PICKER  -------------------------------------------------  */
 .story_choice h2 {
   margin-bottom: 90px;
 }
-.story_choice h3 {
-}
+
 .story_info {
   font-size: 1.4em;
   margin-bottom: 0;
@@ -144,7 +109,7 @@ form a, form label {
 }
 
 
-/* SIDEBAR */
+/* SIDEBAR -------------------------------------------------  */
 
 .logo {
   margin: 40px 0 40px 0;
@@ -158,6 +123,7 @@ form a, form label {
 }
 
 .player h4 {
+  color: black;
   font-family: 'Lato', sans-serif!important;
 }
 
@@ -176,26 +142,15 @@ form a, form label {
   margin-top: 10px;
 }
 
-/* MAIN GAME AREA */
-.game_area {
 
-}
+/* MAIN GAME AREA ------------------------------------------------- */
 .waitingArea {
   padding: 60px 0;
   color: white;
 }
 
-.waitingArea h2, .waitingArea h3 {
-  font-family: 'Lato', sans-serif!important;
-  font-weight: 300;
-  color: white;
-}
 .waitingArea img {
   max-width: 128px;
-}
-
-.selectStory h4, .selectStory h3, .chatArea h3{
-  color: white;
 }
 
 .selectStory .panel {
@@ -206,13 +161,11 @@ form a, form label {
   margin-top: 20px;
 }
 
-
 .timer-container {
   max-width: 60px;
 }
 
- #clock-seconds {
-  font-family: 'Lato', sans-serif!important;
+#clock-seconds {
   font-weight: 200;
   font-size: 1.6em;
   position: absolute;
@@ -221,8 +174,7 @@ form a, form label {
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  }
-
+}
 
 .play_area {
   font-size: 42px;
@@ -231,17 +183,18 @@ form a, form label {
 }
 
 .play_area h2 {
-  color: white;
   margin: 20px 0 80px 0;
 }
+
 .play_area .button {
   margin-left: 10px;
 
 }
 
 .play_area input {
-margin-top: 20px;
+  margin-top: 20px;
 }
+
 .card {
   color:white;
   padding: 20px 2px;
@@ -258,12 +211,6 @@ margin-top: 20px;
   font-size: 0.6em;
 }
 
-.card h4, .card h5 {
-  font-family: 'Lato', sans-serif!important;
-  font-weight: 200;
-  color: white;
-}
-
 .cardHolder {
   float: left!important;
 }
@@ -275,14 +222,11 @@ margin-top: 20px;
 }
 .word {
   font-size: .4em;
-  color: white;
-  font-family: 'Lato', sans-serif!important;
 }
 .not_in {
   background: #007298;
   border: none;
 }
-
 
 .blur {
   color: transparent;
@@ -294,15 +238,11 @@ margin-top: 20px;
   position:   relative;
   width:      100%;
   height:     140px;
-  /*I want overflow as hidden but still arrow and mouse scrollable*/
-  /* I will find another way to fix the box showing in firefox if
-  we set overflow to auto it breaks the javascript update scroll. - Colby */
   overflow-x: hidden;
   margin-bottom: 30px;
   word-wrap: break-word;
 }
 
-/*not working*/
 #chat_scrolling {
   height: 140px;
   width: (100% + 18px); /* +18px for scrollbar width */
@@ -323,10 +263,10 @@ margin-top: 20px;
   margin: 8px 0;
 }
 
-
 .chat {
   margin-top: 40px;
 }
+
 
 /* PROFILE */
 .profile {
@@ -334,19 +274,18 @@ margin-top: 20px;
   font-family: 'Lato', sans-serif!important;
 }
 
-.profile h2, .profile h3, .subheader {
-  font-family: 'Lato', sans-serif!important;
-  color: white;
-}
 .profile h2 {
   font-size: 22px;
 }
+
 .profile img{
   border-radius: 100%;
 }
+
 .search {
   padding-top: 40px;
 }
+
 .friends img {
   margin: 4px 0;
   border-radius: 100%;
@@ -359,4 +298,24 @@ margin-top: 20px;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+
+/* Image Helpers ------------------------------------------------- */
+img {
+  width: 100%;
+  height: auto;
+}
+
+img.clickable {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+img.clickable:hover {
+  opacity: 1.0;
+}
+
+.img_rounded {
+  border-radius: 100%;
 }
