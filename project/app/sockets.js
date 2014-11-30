@@ -242,6 +242,22 @@ module.exports = function(io) {
       });
     });
 
+    socket.on('start game', function(data) {
+      DBHelpers.changeGamePhase(_game_id, 'wordSubmission', function(err, game) {
+        io.sockets.in(_game_id).emit('game state changed', game);
+        // TODO start timer for word submission phase
+        // TODO ensure the word submission state is rendered properly
+        // TODO handle word submission events from the client
+        // TODO when timer runs out or all players have submitted words, move to wordSelection phase
+        // TODO start timer for word selection phase
+        // TODO ensure the word selection state is rendered properly
+        // TODO handle word selection events from the client
+        // TODO when timer runs out or czar selects a word, move to next round and wordSubmission phase
+        //      (or, if no more storyChunks, review phase!)
+        // TODO handle giving out points
+      });
+    });
+
     socket.on('change phase', function(data) {
       DBHelpers.changeGamePhase(_game_id, data.newPhase, function(err, game) {
         io.sockets.in(_game_id).emit('game state changed', game);

@@ -51,6 +51,24 @@
 
   ////
 
+  Template.gameArea.inSetupPhase = function() {
+    return GameUI.model.get().currentPhase === 'setup';
+  };
+
+  Template.gameArea.inSubmissionPhase = function() {
+    return GameUI.model.get().currentPhase === 'wordSubmission';
+  };
+
+  Template.gameArea.inSelectionPhase = function() {
+    return GameUI.model.get().currentPhase === 'wordSelection';
+  };
+
+  Template.gameArea.players = function() {
+    return GameUI.model.get().players;
+  };
+
+  ////
+
   Template.waitingArea.notEnoughPlayers = function() {
     var game = GameUI.model.get();
     return game.players.length < game.minPlayers;
@@ -80,24 +98,6 @@
 
   Template.waitingArea.noStorySelected = function() {
     return GameUI.model.get().story_id === null;
-  };
-
-  ////
-
-  Template.gameArea.inSetupPhase = function() {
-    return GameUI.model.get().currentPhase === 'setup';
-  };
-
-  Template.gameArea.inSubmissionPhase = function() {
-    return GameUI.model.get().currentPhase === 'wordSubmission';
-  };
-
-  Template.gameArea.inSelectionPhase = function() {
-    return GameUI.model.get().currentPhase === 'wordSelection';
-  };
-
-  Template.gameArea.players = function() {
-    return GameUI.model.get().players;
   };
 
   ////
@@ -222,10 +222,6 @@
 
     //// DOM Event Handlers ////
 
-    $('#gameArea_parent').on('click', '.select-story', function() {
-      socket.emit('select story', { story_id : $(this).data('storyId') });
-    });
-
     $('#gameArea_parent').on('submit', '#chatform', function() {
       socket.emit('chat message', {
         user_id  : window.loggedInUser._id,
@@ -235,6 +231,16 @@
       });
       $('#message').val('');
       return false;
+    });
+
+    $('#gameArea_parent').on('click', '.select-story', function() {
+      socket.emit('select story', { story_id : $(this).data('storyId') });
+    });
+
+    $('#gameArea_parent').on('click', '.start-game', function() {
+      if(Template.gameArea.inSetupPhase() && Template.waitingArea.gameReady()) {
+        socket.emit('start game');
+      }
     });
 
   }); // end document ready
