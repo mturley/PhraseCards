@@ -65,23 +65,44 @@
 
 
 <script type="text/spacebars" name="playArea">
-  <div class="row play_area  text-center">
-    <div class="large-12 columns">
-      <h2>Something a person would wear _________ .</h2>
-      <div class="row">
-        <div class="small-6 large-centered columns">
-          <div class="row collapse">
-            <div class="small-10 columns">
-              <input type="text" placeholder="">
-            </div>
-            <div class="small-2 columns">
-              <a href="#" class="button ">Submit</a>
+  {{#if iAmCzar}}
+    <div class="row play_area  text-center">
+      <div class="large-12 columns">
+        <h2>Something a person would wear _________ .</h2>
+        <div class="row">
+          <div class="small-12 columns">
+            <div class="row">
+              // {{#each currentCards}}
+              <div class="small-6 medium-2 large-2 columns card">
+              // {{this.name}}
+                Word here
+              </div>
+             // {{/each}}
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  {{else}}
+    <div class="row play_area  text-center">
+      <div class="large-12 columns">
+        <h2>Something a person would wear _________ .</h2>
+        <div class="row">
+          <div class="small-6 large-centered columns">
+            <div class="row collapse">
+              <div class="small-10 columns">
+                <input type="text" placeholder="">
+              </div>
+              <div class="small-2 columns">
+                <a href="#" class="button ">Submit</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  {{/if}}
 </script>
 
 
