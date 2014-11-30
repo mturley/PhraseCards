@@ -69,6 +69,32 @@ var DBHelpers = {
       {safe: true, upsert: false},
       callback // gets passed (err, game), game is then used to emit a 'game state update'
     );
+  },
+  randomizeCzar : function(game_id, callback) {
+    Game.findById(game_id, function(err, game) {
+      var numPlayers = game.players.length;
+      var oldCzarIndex = null;
+      for(var i=0; i<numPlayers; i++) {
+        if(game.players[i].isCardCzar) {
+          oldCzarIndex = i;
+          break;
+        }
+      }
+      var newCzarIndex = Math.round(Math.random() * (numPlayers - 1));
+
+      var setFields = {};
+      setFields['players.'+newCzarIndex+'.isCardCzar'] = true;
+      if(oldCzarIndex !== null && oldCzarIndex !== newCzarIndex) {
+        setFields['players.'+oldCzarIndex+'.isCardCzar'] = false;
+      }
+
+      Game.findByIdAndUpdate(
+        game_id,
+        {$set: setFields},
+        {safe: true, upsert: false},
+        callback
+      );
+    });
   }
 }; // end DbHelpers
 
@@ -203,6 +229,12 @@ module.exports = function(io) {
 
     socket.on('change phase', function(data) {
       DBHelpers.changeGamePhase(_game_id, data.newPhase, function(err, game) {
+        io.sockets.in(_game_id).emit('game state changed', game);
+      });
+    });
+
+    socket.on('randomize czar', function() {
+      DbHelpers.randomizeCzar(_game_id, function(err, game) {
         io.sockets.in(_game_id).emit('game state changed', game);
       });
     });

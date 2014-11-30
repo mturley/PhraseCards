@@ -267,6 +267,9 @@
       socket.emit('change phase', {
         newPhase : newPhase
       });
+    },
+    randomizeCzar: function() {
+      socket.emit('randomize czar');
     }
   }; // end DEBUG
 
