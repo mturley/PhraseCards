@@ -103,7 +103,7 @@
     var czar = $.grep(GameUI.model.get().players, function(player) {
       return player.isCardCzar;
     })[0];
-    return czar.user_id === window.loggedInUser._id;
+    return czar && czar.user_id === window.loggedInUser._id;
   };
 
   Template.playArea.currentBlankType = function() {
