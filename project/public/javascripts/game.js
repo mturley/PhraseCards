@@ -111,6 +111,16 @@
     return game.adaptedStory.storyChunks[game.currentRound].blank.wordType;
   };
 
+  Template.playArea.currentCards = function() {
+    var game = GameUI.model.get();
+    return game.adaptedStory.storyChunks[game.currentRound].blank.submissions;
+  };
+
+  Template.playArea.winningCard = function() {
+    var game = GameUI.model.get();
+    return game.adaptedStory.storyChunks[game.currentRound].blank.winningSubmission;
+  };
+
   ////
 
   Template.storyArea.story_id = function() {
