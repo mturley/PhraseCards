@@ -270,6 +270,12 @@
     },
     randomizeCzar: function() {
       socket.emit('randomize czar');
+    },
+    submitWord: function(word) {
+      socket.emit('submit word', {
+        user_id : window.loggedInUser._id,
+        word    : word
+      });
     }
   }; // end DEBUG
 

@@ -95,6 +95,21 @@ var DBHelpers = {
         callback
       );
     });
+  },
+  submitWord : function(game_id, user_id, word, callback) {
+    Game.findById(game_id, function(err, game) {
+      var pushFields = {};
+      pushFields["adaptedStory.storyChunks."+game.currentRound+".blank.submissions"] = {
+        user_id : user_id,
+        word    : word
+      };
+      Game.findByIdAndUpdate(
+        game_id,
+        {$push: pushFields},
+        {safe: true, upsert: false},
+        callback
+      );
+    });
   }
 }; // end DbHelpers
 
@@ -235,6 +250,12 @@ module.exports = function(io) {
 
     socket.on('randomize czar', function() {
       DBHelpers.randomizeCzar(_game_id, function(err, game) {
+        io.sockets.in(_game_id).emit('game state changed', game);
+      });
+    });
+
+    socket.on('submit word', function(data) {
+      DBHelpers.submitWord(_game_id, data.user_id, data.word, function(err, game) {
         io.sockets.in(_game_id).emit('game state changed', game);
       });
     });
