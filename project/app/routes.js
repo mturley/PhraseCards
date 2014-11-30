@@ -152,7 +152,9 @@ module.exports = function(app,passport) {
     }))
     .post('/connect/:contact_id', function(req, res){
       var HTTPOptions = getHTTPOptions("/api/friends/connect/"+req.params.contact_id, 'PUT',  {'user_id': req.user._id});
-      postObjects(HTTPOptions);
+      postObjects(HTTPOptions, function(){
+              res.redirect('/profile');
+      });
     });
 }
 
@@ -184,10 +186,11 @@ function getObjects(HTTPOptions, callback){
       objReq.end();
 }
 
-function postObjects(HTTPOptions){
+function postObjects(HTTPOptions, callback){
  var objReq =  http.request(HTTPOptions, function(resp) {
       }).on('error', function(e) {console.log("Got error: " + e.message);});
       objReq.end();
+      callback();
 }
 
 
