@@ -234,7 +234,7 @@ module.exports = function(io) {
     });
 
     socket.on('randomize czar', function() {
-      DbHelpers.randomizeCzar(_game_id, function(err, game) {
+      DBHelpers.randomizeCzar(_game_id, function(err, game) {
         io.sockets.in(_game_id).emit('game state changed', game);
       });
     });
