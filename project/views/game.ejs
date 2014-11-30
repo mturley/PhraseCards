@@ -72,11 +72,28 @@
         <div class="row">
           <div class="small-12 columns">
             <div class="row">
+            <div class="small-6 medium-2 large-2 columns card">
+              <h4>WordHere</h4>
+            </div>
+            <div class="small-6 medium-2 large-2 columns card">
+                <h4>WordHere</h4>
+                <img src="http://placehold.it/60x60"/>
+                <h5>Player Name</h5>
+                <span class="score">+500</span>
+              </div>
+            {{#unless winningCard}}
               {{#each currentCards}}
               <div class="small-6 medium-2 large-2 columns card">
                 <h4>{{this.word}}</h4>
               </div>
               {{/each}}
+            {{else}}
+              <div class="small-6 medium-4 medium-centered large-4 large-centered columns card">
+                <h4>Winning Card</h4>
+                <h5>Player Name</h5>
+                <span class="score">+500</span>
+              </div>
+            {{/unless}}
             </div>
           </div>
         </div>
