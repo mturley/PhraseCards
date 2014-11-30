@@ -72,12 +72,11 @@
         <div class="row">
           <div class="small-12 columns">
             <div class="row">
-              // {{#each currentCards}}
+              {{#each currentCards}}
               <div class="small-6 medium-2 large-2 columns card">
-              // {{this.name}}
-                Word here
+                <h4>{{this.word}}</h4>
               </div>
-             // {{/each}}
+              {{/each}}
             </div>
           </div>
         </div>
@@ -115,8 +114,7 @@
 
 
 <script type="text/spacebars" name="waitingArea">
-  <div class="row">
-    <div class="medium-6 large-6 columns waitingArea">
+    <div class="medium-6 large-6 columns text-center waitingArea">
       <img src="/images/clock.png"/>
       <h2>Waiting Area</h2>
       {{#if gameReady}}
@@ -147,16 +145,13 @@
       {{/if}}
     </div>
     <div class="medium-6 large-6 columns text-center chatArea">
-      <h3>Chat...</h3>
-
       {{> chatArea}}
     </div>
-  </div>
 </script>
 
 
 <script type="text/spacebars" name="chatArea">
-  <div class="row chat">
+  <div class="row chat text-left">
     <ul id="chat_container" class="no-bullet">
     </ul>
     <form action="" id="chatform" class="chat">
@@ -164,7 +159,7 @@
         <input id="message" autocomplete="off" type="text"/>
       </div>
       <div class="large-4 columns">
-        <button class="button">Send</button>
+        <button class="button button-large expand">Send Message</button>
       </div>
     </form>
   </div>
