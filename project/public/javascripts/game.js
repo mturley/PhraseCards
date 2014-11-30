@@ -85,6 +85,14 @@
     return GameUI.model.get().currentPhase === 'setup';
   };
 
+  Template.gameArea.inSubmissionPhase = function() {
+    return GameUI.model.get().currentPhase === 'wordSubmission';
+  };
+
+  Template.gameArea.inSelectionPhase = function() {
+    return GameUI.model.get().currentPhase === 'wordSelection';
+  };
+
   Template.gameArea.players = function() {
     return GameUI.model.get().players;
   };
