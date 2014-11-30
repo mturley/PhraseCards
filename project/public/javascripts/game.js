@@ -49,21 +49,21 @@
     return GameUI.model.get().currentRound + 1;
   };
 
-  Template.gameArea.inSetupPhase = function() {
-    return GameUI.model.get().currentPhase === 'setup';
-  };
+  ////
 
-
-  Template.storyArea.story_id = function() {
-    return GameUI.model.get().story_id;
-  };
-
-  Template.gameArea.players = function() {
-    return GameUI.model.get().players;
+  Template.waitingArea.notEnoughPlayers = function() {
+    var game = GameUI.model.get();
+    return game.players.length < game.minPlayers;
   };
 
   Template.waitingArea.playersNeeded = function() {
-    return  (6 - GameUI.model.get().players.length);
+    var game = GameUI.model.get();
+    return (game.minPlayers - game.players.length);
+  };
+
+  Template.waitingArea.slotsLeft = function() {
+    var game = GameUI.model.get();
+    return (game.maxPlayers - game.players.length);
   };
 
   Template.waitingArea.availableStories = function() {
@@ -72,6 +72,22 @@
 
   Template.waitingArea.noStorySelected = function() {
     return GameUI.model.get().story_id === null;
+  };
+
+  ////
+
+  Template.gameArea.inSetupPhase = function() {
+    return GameUI.model.get().currentPhase === 'setup';
+  };
+
+  Template.gameArea.players = function() {
+    return GameUI.model.get().players;
+  };
+
+  ////
+
+  Template.storyArea.story_id = function() {
+    return GameUI.model.get().story_id;
   };
 
 

@@ -124,6 +124,7 @@ router
             game.title = reqTitle;
             game.owner = req.user._id;
             game.active = true;
+            game.minPlayers = 3;
             game.maxPlayers = 6;
             game.currentRound = 0;
             game.currentPhase = 'setup';

@@ -4,6 +4,7 @@ var GameSchema = mongoose.Schema({
   title        : String,
   owner        : String,
   active       : Boolean,
+  minPlayers   : Number,
   maxPlayers   : Number,
   currentRound : Number,
   currentPhase : { type: String, enum: ['setup', 'wordSubmission', 'wordSelection', 'review'] },

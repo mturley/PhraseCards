@@ -97,7 +97,12 @@
   <div class="medium-6 medium-centered large-8 large-centered columns text-center waitingArea">
     <img src="/images/clock.png"/>
     <h2>Waiting Area</h2>
-    <h3>We Need {{playersNeeded}} more players to start</h3>
+    {{#if notEnoughPlayers}}
+      <h3>We need {{playersNeeded}} more player(s) to start</h3>
+    {{else}}
+      <h3>{{slotsLeft}} more player slots available</h3>
+      <button class="button start-game">Start Game Now</button>
+    {{/if}}
   </div>
   <div class="row">
    {{#if noStorySelected}}
