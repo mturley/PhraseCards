@@ -63,7 +63,15 @@
   };
 
   Template.waitingArea.playersNeeded = function() {
-    return  (6 - GameUI.model.get().players.length);
+    return  (3 - GameUI.model.get().players.length);
+  };
+
+  Template.waitingArea.gameReady = function() {
+    if (GameUI.model.get().players.length >= 3 && GameUI.model.get().story_id != null) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   Template.waitingArea.availableStories = function() {
