@@ -61,8 +61,16 @@ var DBHelpers = {
         );
       }
     });
+  },
+  changeGamePhase : function(game_id, newPhase, callback) {
+    Game.findByIdAndUpdate(
+      game_id,
+      {$set: { currentPhase : newPhase }},
+      {safe: true, upsert: false},
+      callback // gets passed (err, game), game is then used to emit a 'game state update'
+    );
   }
-};
+}; // end DbHelpers
 
 
 
@@ -189,6 +197,12 @@ module.exports = function(io) {
 
     socket.on('select story', function(data) {
       DBHelpers.selectStoryForGame(_game_id, data.story_id, function(err, game) {
+        io.sockets.in(_game_id).emit('game state changed', game);
+      });
+    });
+
+    socket.on('change phase', function(data) {
+      DBHelpers.changeGamePhase(_game_id, data.newPhase, function(err, game) {
         io.sockets.in(_game_id).emit('game state changed', game);
       });
     });

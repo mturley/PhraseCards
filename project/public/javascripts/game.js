@@ -231,7 +231,12 @@
         timerName : timerName
       });
     },
-  };
+    changePhase: function(newPhase) {
+      socket.emit('change phase', {
+        newPhase : newPhase
+      });
+    }
+  }; // end DEBUG
 
   socket.on('ping', function() {
     socket.emit('pong', window.loggedInUser);
