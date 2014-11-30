@@ -10,7 +10,7 @@
       title        : '',
       owner        : null,
       active       : true,
-      currentRound : 0,
+      currentRound : null,
       maxPlayers   : 6,
       currentPhase : 'setup',
       players      : [],
@@ -46,7 +46,9 @@
   };
 
   Template.sidebar.currentRound = function() {
-    return GameUI.model.get().currentRound + 1;
+    var round = GameUI.model.get().currentRound;
+    if(round) return round + 1;
+    return null;
   };
 
   ////

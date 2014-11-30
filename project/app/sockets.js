@@ -8,11 +8,22 @@ var gravatar = require('node-gravatar'),
     Game     = require('./models/game'),
     Story    = require('./models/story');
 
+var Constants = {
+  // Durations are in seconds
+  SUBMISSION_PHASE_DURATION = 30,
+  SELECTION_PHASE_DURATION = 10
+};
+
+// IMPORTANT NOTE ABOUT DATABASE CONCURRENCY:
+//   Any update operations on the Game collection in response to socket events must be performed ATOMICALLY!!
+//   This is important so that concurrent player actions (frequent!) do not clobber each other's changes.
+//   This means NOT using mongoose's convenient Game.find(..., function(err, game) { ... game.save(); }) pattern.
+//   Instead, use Game.findByIdAndUpdate, and use standard mongodb query syntax ($set, $push, etc);
+//   http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate
 var DBHelpers = {
   addPlayerToGame : function(game_id, newPlayer, callback) { // callback takes (err, game)
     // newPlayer must be an object structured as an element of the Game.players array
     // see models/game.js for structure details
-    // (using findByIdAndUpdate instead of game fields and game.save() in case of race conditions)
     Game.findById(game_id, function(err, game) {
       var playerAlreadyInGame = game.players.some(function(player) {
         return player.user_id === newPlayer.user_id;
@@ -47,7 +58,7 @@ var DBHelpers = {
     }
     return story;
   },
-  selectStoryForGame : function(game_id, story_id, callback) {
+  selectStoryForGame : function(game_id, story_id, callback) { // callback takes (err, game)
     Story.findById(story_id, function(err,story) {
       if(err) {
         callback(err, null);
@@ -62,7 +73,7 @@ var DBHelpers = {
       }
     });
   },
-  changeGamePhase : function(game_id, newPhase, callback) {
+  changeGamePhase : function(game_id, newPhase, callback) { // callback takes (err, game)
     Game.findByIdAndUpdate(
       game_id,
       {$set: { currentPhase : newPhase }},
@@ -70,7 +81,21 @@ var DBHelpers = {
       callback // gets passed (err, game), game is then used to emit a 'game state update'
     );
   },
-  randomizeCzar : function(game_id, callback) {
+  changeCzarByPlayerIndex : function(game_id, oldCzarIndex, newCzarIndex, callback) { // callback takes (err, game)
+    var setFields = {};
+    setFields['players.'+newCzarIndex+'.isCardCzar'] = true;
+    if(oldCzarIndex !== null && oldCzarIndex !== newCzarIndex) {
+      setFields['players.'+oldCzarIndex+'.isCardCzar'] = false;
+    }
+
+    Game.findByIdAndUpdate(
+      game_id,
+      {$set: setFields},
+      {safe: true, upsert: false},
+      callback
+    );
+  },
+  randomizeCzar : function(game_id, callback) { // callback takes (err, game)
     Game.findById(game_id, function(err, game) {
       var numPlayers = game.players.length;
       var oldCzarIndex = null;
@@ -81,22 +106,24 @@ var DBHelpers = {
         }
       }
       var newCzarIndex = Math.round(Math.random() * (numPlayers - 1));
-
-      var setFields = {};
-      setFields['players.'+newCzarIndex+'.isCardCzar'] = true;
-      if(oldCzarIndex !== null && oldCzarIndex !== newCzarIndex) {
-        setFields['players.'+oldCzarIndex+'.isCardCzar'] = false;
-      }
-
-      Game.findByIdAndUpdate(
-        game_id,
-        {$set: setFields},
-        {safe: true, upsert: false},
-        callback
-      );
+      DBHelpers.changeCzarByPlayerIndex(game_id, oldCzarIndex, newCzarIndex, callback);
     });
   },
-  submitWord : function(game_id, user_id, word, callback) {
+  nextCzar : function(game_id, callback) { // callback takes (err, game)
+    Game.findById(game_id, function(err, game) {
+      var numPlayers = game.players.length;
+      var oldCzarIndex = null;
+      for(var i=0; i<numPlayers; i++) {
+        if(game.players[i].isCardCzar) {
+          oldCzarIndex = i;
+          break;
+        }
+      }
+      var newCzarIndex = (oldCzarIndex + 1) % numPlayers;
+      DBHelpers.changeCzarByPlayerIndex(game_id, oldCzarIndex, newCzarIndex, callback);
+    });
+  },
+  submitWord : function(game_id, user_id, word, callback) { // callback takes (err, game)
     Game.findById(game_id, function(err, game) {
       var pushFields = {};
       pushFields["adaptedStory.storyChunks."+game.currentRound+".blank.submissions"] = {
@@ -122,9 +149,9 @@ var DBHelpers = {
 module.exports = function(io) {
 
   // The Timers singleton object keeps track of timers for all games, emitting events once a second for each duration.
-  // Call Timers.start(game_id, timerName, durationSeconds, callback) to start a timer
-  // Call Timers.end(game_id, timerName) to stop a timer and call its callback
-  // Call Timers.cancel(game_id, timerName) to stop a timer without calling its callback
+  // * Call Timers.start(game_id, timerName, durationSeconds, callback) to start a timer
+  // * Call Timers.end(game_id, timerName) to stop a timer and call its callback
+  // * Call Timers.cancel(game_id, timerName) to stop a timer without calling its callback
   var Timers = {
     timers: {}, // timers[game_id][timerName] = { remainingSeconds, callback, intervalID }
     start: function(game_id, timerName, durationSeconds, callback) {
@@ -243,18 +270,21 @@ module.exports = function(io) {
     });
 
     socket.on('start game', function(data) {
-      DBHelpers.changeGamePhase(_game_id, 'wordSubmission', function(err, game) {
-        io.sockets.in(_game_id).emit('game state changed', game);
-        // TODO start timer for word submission phase
-        // TODO ensure the word submission state is rendered properly
-        // TODO handle word submission events from the client
-        // TODO when timer runs out or all players have submitted words, move to wordSelection phase
-        // TODO start timer for word selection phase
-        // TODO ensure the word selection state is rendered properly
-        // TODO handle word selection events from the client
-        // TODO when timer runs out or czar selects a word, move to next round and wordSubmission phase
-        //      (or, if no more storyChunks, review phase!)
-        // TODO handle giving out points
+      DBHelpers.randomizeCzar(_game_id, function() {
+        DBHelpers.changeGamePhase(_game_id, 'wordSubmission', function(err, game) {
+          io.sockets.in(_game_id).emit('game state changed', game);
+
+          // TODO start timer for word submission phase
+          // TODO ensure the word submission state is rendered properly
+          // TODO handle word submission events from the client
+          // TODO when timer runs out or all players have submitted words, move to wordSelection phase
+          // TODO start timer for word selection phase
+          // TODO ensure the word selection state is rendered properly
+          // TODO handle word selection events from the client
+          // TODO when timer runs out or czar selects a word, move to next round and wordSubmission phase
+          //      (or, if no more storyChunks, review phase!)
+          // TODO handle giving out points
+        });
       });
     });
 
@@ -267,6 +297,7 @@ module.exports = function(io) {
     socket.on('randomize czar', function() {
       DBHelpers.randomizeCzar(_game_id, function(err, game) {
         io.sockets.in(_game_id).emit('game state changed', game);
+        io.sockets.in(_game_id).emit('czar changed');
       });
     });
 
@@ -278,7 +309,6 @@ module.exports = function(io) {
 
     socket.on('disconnect', function(data) {
       socket.leave(_game_id);
-
       // remove this player from the game in the database, and emit a state update!
       DBHelpers.removePlayerFromGame(_game_id, _user_id, function(err, game) {
         io.sockets.in(_game_id).emit('game state changed', game);
@@ -289,8 +319,17 @@ module.exports = function(io) {
             avatar   : gravatar.get(userObject.local.email)
           });
         });
+        var gameHasCzar = game.players.filter(function(player) {
+          return player.isCardCzar;
+        }).length > 0;
+        if(!gameHasCzar) {
+          // the player who left was the czar, we need a new one
+          DBHelpers.randomizeCzar(_game_id, function(err, game) {
+            io.sockets.in(_game_id).emit('game state changed', game);
+            io.sockets.in(_game_id).emit('czar changed');
+          });
+        }
       });
-
     }); // end socket.on('disconnect')
 
 

@@ -125,7 +125,7 @@ router
             game.active = true;
             game.minPlayers = 3;
             game.maxPlayers = 6;
-            game.currentRound = 0;
+            game.currentRound = null;
             game.currentPhase = 'setup';
             game.players = [];
             game.story_id = null;
