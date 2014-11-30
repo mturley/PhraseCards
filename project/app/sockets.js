@@ -61,9 +61,6 @@ var DBHelpers = {
         );
       }
     });
-  },
-  changeGamePhase : function(game_id, newPhase, callback) {
-    // TODO
   }
 };
 
