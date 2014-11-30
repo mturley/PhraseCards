@@ -99,6 +99,20 @@
 
   ////
 
+  Template.playArea.iAmCzar = function() {
+    var czar = $.grep(GameUI.model.get().players, function(player) {
+      return player.isCardCzar;
+    })[0];
+    return czar.user_id === window.loggedInUser._id;
+  };
+
+  Template.playArea.currentBlankType = function() {
+    var game = GameUI.model.get();
+    return game.adaptedStory.storyChunks[game.currentRound].blank.wordType;
+  };
+
+  ////
+
   Template.storyArea.story_id = function() {
     return GameUI.model.get().story_id;
   };
