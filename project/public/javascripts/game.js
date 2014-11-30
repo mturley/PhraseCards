@@ -58,7 +58,10 @@
 
   Template.waitingArea.playersNeeded = function() {
     var game = GameUI.model.get();
-    return (game.minPlayers - game.players.length);
+    var numNeeded = game.minPlayers - game.players.length;
+    var plural = "";
+    if(numNeeded > 1) plural = "s";
+    return "We need at least "+numNeeded+" more player"+plural+" to start";
   };
 
   Template.waitingArea.slotsLeft = function() {
