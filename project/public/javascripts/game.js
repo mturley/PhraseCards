@@ -339,6 +339,20 @@
       }
     });
 
+    $('#gameArea_parent').on('submit', '#card-submission-form', function(event) {
+      event.preventDefault();
+      var $input = $("#card-input");
+      var word = $input.val();
+      if(word !== '') {
+        $input.attr('disabled','disabled');
+        $input.val('');
+        socket.emit('submit word', {
+          user_id : window.loggedInUser._id,
+          word    : word
+        });
+      }
+    });
+
   }); // end document ready
 
 
