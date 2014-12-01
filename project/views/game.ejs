@@ -78,16 +78,16 @@
     {{#if iAmCzar}}
 
       <h2>{{currentStoryChunkPrefix}} __________ {{currentStoryChunkSuffix}}</h2>
-      <h3>Waiting for Players to submit cards</h3>
+      <h3><i class="fa fa-spinner fa-spin"></i> Waiting for Players to submit cards</h3>
       {{> submittedCards}}
 
     {{else}}
 
       {{#if iSubmittedACard}}
-        <h2>Waiting for Other Players to submit cards</h2>
+        <h2><i class="fa fa-spinner fa-spin"></i> Waiting for Other Players to submit cards</h2>
         {{> submittedCards}}
       {{else}}
-        <h1>{{currentBlankType}}</h1>
+        <h2>{{currentBlankType}}</h2>
         {{> cardSubmissionForm}}
       {{/if}}
 
@@ -106,7 +106,7 @@
       {{/unless}}
 
     {{else}}
-      <h1>{{currentBlankType}}</h1>
+      <h2>{{currentBlankType}}</h2>
       {{> submittedCards}}
 
     {{/if}}
@@ -181,11 +181,9 @@
 <script type="text/spacebars" name="endArea">
   <div class="row">
     <div class="small=12 medium-12 medium-centered large-12 large-centered text-center endArea columns">
-      <h2>End of Game</h2>
-      <hr>
       <div class="row">
         <div class="small-6 medium-4 medium-centered large-4 large-centered columns animated zoomIn">
-          <h3>Winner</h3>
+          <h3><i class="fa fa-trophy"></i> Winner</h3>
           <hr>
           <h4>{{winningPlayerName}}</h4>
           <h5>{{winningScore}}</h5>
@@ -221,34 +219,26 @@
 
 
 <script type="text/spacebars" name="waitingArea">
-    <div class="medium-6 large-6 columns text-center waitingArea">
+    <div class="medium-6 large-6 columns text-center storySelect">
+      <i class="fa fa-book"></i>
       {{#if noStorySelected}}
         <h3>Select a story...</h3>
         {{#each availableStories}}
           <div class="large-12 columns">
             <div class="row">
-              <div class="large-8 columns">
-                <h4>{{name}}</h4>
-              </div>
-              <div class="large-4 columns">
-                <button class="button select-story" data-story-id="{{_id}}">Select</button>
+              <div class="large-12 columns">
+                <button class="button button-large expand select-story" data-story-id="{{_id}}">{{name}}</button>
               </div>
             </div>
           </div>
         {{/each}}
       {{else}}
-        <br /><br /><br /><br />
         <h3>Selected Story:</h3>
         <h2>{{storyName}}</h2>
-      {{/if}}
-      {{#if gameReady}}
-        <br />
-        <button class="button start-game">Start Game Now</button>
       {{/if}}
     </div>
     <div class="medium-6 large-6 columns text-center waitingArea">
       <img src="/images/clock.png"/>
-      <h2>Waiting Area</h2>
 
       {{#if notEnoughPlayers}}
         <h3>{{playersNeeded}}</h3>
@@ -257,6 +247,14 @@
         {{#if noStorySelected}}
           <h3>Select a story to proceed</h3>
         {{/if}}
+      {{/if}}
+      {{#if gameReady}}
+      <div class="row">
+        <div class="medium-12 large-12 columns">
+        <button class="button button-large expand start-game">Start Game Now</button>
+        </div>
+      </div>
+
       {{/if}}
       {{> chatArea}}
     </div>
@@ -272,7 +270,7 @@
         <input id="message" autocomplete="off" type="text"/>
       </div>
       <div class="large-4 columns">
-        <button class="button button-large expand">Send Message</button>
+        <button class="button button-large expand"><i class="fa fa-comments-o"></i> Send Message</button>
       </div>
     </form>
   </div>
