@@ -98,8 +98,12 @@
     {{#if iAmCzar}}
 
       <h2>{{currentStoryChunkPrefix}} __________ {{currentStoryChunkSuffix}}</h2>
-      <h3>Select a winning card</h3>
-      {{> cardSelectionForm}}
+      {{#unless winningCard}}
+        <h3>Select a winning card</h3>
+        {{> cardSelectionForm}}
+      {{else}}
+        <h3>Selected "{{winningCard.word}}"</h3>
+      {{/unless}}
 
     {{else}}
       <h1>{{currentBlankType}}</h1>
@@ -145,7 +149,7 @@
       <div class="row">
         <div class="small-12 medium-10 medium-centered large-10 large-centered columns card animated zoomIn">
           <h4>{{this.word}}</h4>
-          <a href="#" class="button button-large success expand selectCard">Select</a>
+          <a href="#" class="button button-large success expand selectCard" data-submission-id="{{this._id}}">Select</a>
         </div>
       </div>
     </div>

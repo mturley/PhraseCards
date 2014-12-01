@@ -166,6 +166,27 @@ var DBHelpers = {
         callback
       );
     });
+  },
+  selectWord : function(game_id, submissionId, callback) { // callback takes (err, game)
+    Game.findById(game_id, function(err, game) {
+      var matches = game.adaptedStory.storyChunks[game.currentRound].blank.submissions.filter(function(submission) {
+        return submission._id.toString() === submissionId;
+      });
+      if(matches.length === 1) {
+        var submission = matches[0];
+        var setFields = {};
+        setFields["adaptedStory.storyChunks."+game.currentRound+".blank.winningSubmission"] = {
+          user_id : submission.user_id,
+          word    : submission.word
+        };
+        Game.findByIdAndUpdate(
+          game_id,
+          {$set: setFields},
+          {safe: true, upsert: false},
+          callback
+        );
+      }
+    });
   }
 }; // end DbHelpers
 
@@ -406,6 +427,12 @@ module.exports = function(io) {
         io.sockets.in(_game_id).emit('game state changed', game);
       });
     });
+
+    socket.on('select word', function(data) {
+      DBHelpers.selectWord(_game_id, data.submissionId, function(err, game) {
+        io.sockets.in(_game_id).emit('game state changed', game);
+      });
+    })
 
     socket.on('disconnect', function(data) {
       socket.leave(_game_id);

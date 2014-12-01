@@ -189,11 +189,13 @@
 
   Template.cardSelectionForm.currentCards = Template.submittedCards.currentCards;
 
-  Template.reviewArea.winningCard = function() {
+  Template.playArea.winningCard = function() {
     var game = GameUI.model.get();
     if(!game.adaptedStory || game.currentRound === null) return null;
     return game.adaptedStory.storyChunks[game.currentRound].blank.winningSubmission;
   };
+
+  Template.reviewArea.winningCard = Template.playArea.winningCard;
 
   ////
 
@@ -331,6 +333,14 @@
           word    : word
         });
       }
+    });
+
+    $('#gameArea_parent').on('click', 'a.selectCard', function(event) {
+      event.preventDefault();
+      var submissionId = $(this).data('submissionId');
+      socket.emit('select word', {
+        submissionId: submissionId
+      });
     });
 
   }); // end document ready
