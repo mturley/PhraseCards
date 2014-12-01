@@ -210,11 +210,6 @@
 
 <script type="text/spacebars" name="waitingArea">
     <div class="medium-6 large-6 columns text-center waitingArea">
-      {{#if gameReady}}
-        <br />
-        <button class="button start-game">Start Game Now</button>
-      {{/if}}
-
       {{#if noStorySelected}}
         <h3>Select a story...</h3>
         {{#each availableStories}}
@@ -230,8 +225,13 @@
           </div>
         {{/each}}
       {{else}}
+        <br /><br /><br /><br />
         <h3>Selected Story:</h3>
         <h2>{{storyName}}</h2>
+      {{/if}}
+      {{#if gameReady}}
+        <br />
+        <button class="button start-game">Start Game Now</button>
       {{/if}}
     </div>
     <div class="medium-6 large-6 columns text-center waitingArea">
