@@ -87,6 +87,7 @@
         <h2>Waiting for Other Players to submit cards</h2>
         {{> submittedCards}}
       {{else}}
+        <h1>{{currentBlankType}}</h1>
         {{> cardSubmissionForm}}
       {{/if}}
 
@@ -126,7 +127,6 @@
 </script>
 
 <script type="text/spacebars" name="cardSubmissionForm">
-  <h2>Something a person would wear _________ .</h2>
   <div class="row collapse">
     <div class="small-10 columns">
       <input type="text" placeholder="">
