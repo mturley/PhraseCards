@@ -216,7 +216,6 @@
       {{/if}}
 
       {{#if noStorySelected}}
-        <hr>
         <h3>Select a story...</h3>
         {{#each availableStories}}
           <div class="large-12 columns">
@@ -230,6 +229,9 @@
             </div>
           </div>
         {{/each}}
+      {{else}}
+        <h3>Selected Story:</h3>
+        <h2>{{storyName}}</h2>
       {{/if}}
     </div>
     <div class="medium-6 large-6 columns text-center waitingArea">

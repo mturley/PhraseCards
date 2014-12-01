@@ -127,6 +127,12 @@
     return GameUI.model.get().story_id === null;
   };
 
+  Template.waitingArea.storyName = function() {
+    var game = GameUI.model.get();
+    if(!game.adaptedStory) return '';
+    return game.adaptedStory.name;
+  };
+
   ////
 
   Template.playArea.inSubmissionPhase = function() {
