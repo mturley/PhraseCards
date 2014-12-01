@@ -74,7 +74,7 @@
 </script>
 
 <script type="text/spacebars" name="playArea">
-  {{#if isSubmissionPhase}}
+  {{#if inSubmissionPhase}}
     {{#if iAmCzar}}
 
       <h1>You are the Card Czar this round</h1>
@@ -93,7 +93,7 @@
     {{/if}}
   {{/if}}
 
-  {{#if isSelectionPhase}}
+  {{#if inSelectionPhase}}
     {{#if iAmCzar}}
 
       <h1>You are the Card Czar this round</h1>
@@ -108,7 +108,7 @@
     {{/if}}
   {{/if}}
 
-  {{#if isReviewPhase}}
+  {{#if inReviewPhase}}
     {{> reviewArea}}
   {{/if}}
 
