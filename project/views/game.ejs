@@ -41,48 +41,100 @@
 <script type="text/spacebars" name="gameArea">
   {{#if inSetupPhase}}
     {{> waitingArea}}
+  {{else}}
+    {{#if inEndPhase}}
+      {{> endArea}}
+    {{else}}
+
+      <div class="row timer">
+        <div class="medium-10 large-10 columns">&nbsp;</div>
+        <div class="medium-2 large-2 columns">
+          <div class="timer-container" id="timer-container">
+            <header id="clock-seconds"></header>
+          </div>
+        </div>
+      </div>
+
+      <div class="row play_area  text-center">
+        <div class="large-12 columns">
+          {{> playArea}}
+        </div>
+      </div>
+
+      <hr>
+      <div class="row">
+        {{> storyArea}}
+        <div class="medium-6 large-6 columns">
+          {{> chatArea}}
+        </div>
+      </div>
+
+    {{/if}}
+  {{/if}}
+</script>
+
+<script type="text/spacebars" name="playArea">
+  {{#if isSubmissionPhase}}
+    {{#if iAmCzar}}
+
+      <h1>You are the Card Czar this round</h1>
+      <h2>Waiting for Players to submit cards</h2>
+      {{> submittedCards}}
+
+    {{else}}
+
+      {{#if iSubmittedACard}}
+        <h2>Waiting for Other Players to submit cards</h2>
+        {{> submittedCards}}
+      {{else}}
+        {{> cardSubmissionForm}}
+      {{/if}}
+
+    {{/if}}
   {{/if}}
 
-  {{#if inSubmissionPhase}}
-    {{> submissionArea}}
+  {{#if isSelectionPhase}}
+    {{#if iAmCzar}}
+
+      <h1>You are the Card Czar this round</h1>
+      <h2>Select a winning card</h2>
+      {{> cardSelectionForm}}
+
+    {{else}}
+
+      <h1>Waiting for Card Czar to select a winning word</h1>
+      {{> submittedCards}}
+
+    {{/if}}
   {{/if}}
 
-  {{#if inSelectionPhase}}
-    {{> timerArea}}
-    {{> playArea}}
-    {{> bottomArea}}
-  {{/if}}
-
-  {{#if inReviewPhase}}
+  {{#if isReviewPhase}}
     {{> reviewArea}}
   {{/if}}
 
-  {{#if inEndPhase}}
-    {{> endArea}}
-  {{/if}}
 </script>
 
-<script type="text/spacebars" name="timerArea">
-  <div class="row timer">
-    <div class="medium-10 large-10 columns">&nbsp;</div>
-    <div class="medium-2 large-2 columns">
-      <div class="timer-container" id="timer-container"></div>
+<script type="text/spacebars" name="submittedCards">
+  {{#each currentCards}}
+    <div class="small-6 medium-2 large-2 columns cardHolder">
+      <div class="row">
+        <div class="small-12 medium-10 medium-centered large-10 large-centered columns card animated zoomIn">
+          <h4>{{this.word}}</h4>
+        </div>
+      </div>
     </div>
-  </div>
+  {{/each}}
 </script>
 
-<script type="text/spacebars" name="bottomArea">
-  <hr>
-  <div class="row">
-    {{> storyArea}}
-    <div class="medium-6 large-6 columns">
-      {{> chatArea}}
-    </div>
-  </div>
+<script type="text/spacebars" name="cardSubmissionForm">
+  <h2>Something a person would wear _________ .</h2>
+  [[TEXT FIELD AND BUTTON HERE]]
 </script>
 
-<script type="text/spacebars" name="submissionArea">
-  <h2>submissionArea</h2>
+<script type="text/spacebars" name="cardSelectionForm">
+  {{#each currentCards}}
+    [[CARD HERE WITH CHOOSE/SELECT/WHATEVER BUTTON]]
+  {{/each}}
 </script>
 
 <script type="text/spacebars" name="reviewArea">
@@ -110,61 +162,6 @@
 <script type="text/spacebars" name="endArea">
   <h2>endArea</h2>
 </script>
-
-<script type="text/spacebars" name="playArea">
-  {{#if iAmCzar}}
-    <div class="row play_area  text-center">
-      <div class="large-12 columns">
-        <h2>Something a person would wear _________ .</h2>
-        <div class="row">
-          <div class="small-12 columns">
-            <div class="row">
-            {{#unless winningCard}}
-              {{#each currentCards}}
-
-              <div class="small-6 medium-2 large-2 columns cardHolder">
-                <div class="row">
-                  <div class="small-12 medium-10 medium-centered large-10 large-centered columns card animated zoomIn">
-                    <h4>{{this.word}}</h4>
-                  </div>
-                </div>
-              </div>
-              {{/each}}
-            {{else}}
-              <div class="small-6 medium-4 medium-centered large-4 large-centered columns card">
-                <h4>WordHere</h4>
-                <img src="http://placehold.it/60x60"/>
-                <h5>Player Name</h5>
-                <span class="score">+500</span>
-              </div>
-            {{/unless}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  {{else}}
-    <div class="row play_area  text-center">
-      <div class="large-12 columns">
-        <h2>Something a person would wear _________ .</h2>
-        <div class="row">
-          <div class="small-6 large-centered columns">
-            <div class="row collapse">
-              <div class="small-10 columns">
-                <input type="text" placeholder="">
-              </div>
-              <div class="small-2 columns">
-                <a href="#" class="button ">Submit</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  {{/if}}
-</script>
-
 
 <script type="text/spacebars" name="storyArea">
   <div class="medium-6 large-6 columns unselectable">

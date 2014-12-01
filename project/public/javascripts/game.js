@@ -61,18 +61,6 @@
     return GameUI.model.get().currentPhase === 'setup';
   };
 
-  Template.gameArea.inSubmissionPhase = function() {
-    return GameUI.model.get().currentPhase === 'wordSubmission';
-  };
-
-  Template.gameArea.inSelectionPhase = function() {
-    return GameUI.model.get().currentPhase === 'wordSelection';
-  };
-
-  Template.gameArea.inReviewPhase = function() {
-    return GameUI.model.get().currentPhase === 'review';
-  };
-
   Template.gameArea.inEndPhase = function() {
     return GameUI.model.get().currentPhase === 'end';
   };
@@ -116,6 +104,18 @@
 
   ////
 
+  Template.playArea.inSubmissionPhase = function() {
+    return GameUI.model.get().currentPhase === 'wordSubmission';
+  };
+
+  Template.playArea.inSelectionPhase = function() {
+    return GameUI.model.get().currentPhase === 'wordSelection';
+  };
+
+  Template.playArea.inReviewPhase = function() {
+    return GameUI.model.get().currentPhase === 'review';
+  };
+
   Template.playArea.iAmCzar = function() {
     var czar = $.grep(GameUI.model.get().players, function(player) {
       return player.isCardCzar;
@@ -123,17 +123,27 @@
     return czar && czar.user_id === window.loggedInUser._id;
   };
 
+  Template.playArea.iSubmittedACard = function() {
+    var game = GameUI.model.get();
+    var matches = game.adaptedStory.storyChunks[game.currentRound].submissions.filter(function(submission) {
+      return submission.user_id === window.loggedInUser._id;
+    });
+    return matches.length > 0;
+  }
+
   Template.playArea.currentBlankType = function() {
     var game = GameUI.model.get();
     return game.adaptedStory.storyChunks[game.currentRound].blank.wordType;
   };
 
-  Template.playArea.currentCards = function() {
+  Template.submittedCards.currentCards = function() {
     var game = GameUI.model.get();
     return game.adaptedStory.storyChunks[game.currentRound].blank.submissions;
   };
 
-  Template.playArea.winningCard = function() {
+  Template.cardSelectionForm.currentCards = Template.submittedCards.currentCards;
+
+  Template.reviewArea.winningCard = function() {
     var game = GameUI.model.get();
     return game.adaptedStory.storyChunks[game.currentRound].blank.winningSubmission;
   };
@@ -144,6 +154,9 @@
     return GameUI.model.get().story_id;
   };
 
+  Template.timerArea.rendered = function() {
+    console.log("TimerArea Rendered!");
+  };
 
   //// Socket Connection Setup ////
 
