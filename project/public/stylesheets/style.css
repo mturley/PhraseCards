@@ -54,6 +54,10 @@ form a, form label {
   padding: 80px 0 0 0;
 }
 
+.mini_profile {
+  margin-top: 12px;
+}
+
 .mini_profile h3 {
   color: white;
   margin: -5px 0 -5px -5px;
@@ -79,7 +83,7 @@ form a, form label {
 }
 
 .new_game {
-  min-height: 323px;
+  min-height: 348px;
 }
 
 .back {
@@ -91,6 +95,7 @@ form a, form label {
 }
 
 #new_game_panel {
+
   float: left!important;
 }
 
@@ -203,12 +208,45 @@ form a, form label {
   border-radius: 5px;
   float: left!important;
 }
+
+.reviewArea {
+  margin-top: 80px;
+}
+
+.reviewCard {
+  color:white;
+  padding: 20px 2px;
+  background: black;
+  min-height: 211px;
+  border-radius: 5px;
+  margin-bottom: 80px;
+}
+
+.reviewCard img {
+  max-width: 80px;
+  border-radius: 100%;
+}
+
+.reviewCard h4 {
+  font-size: 1em;
+}
+
+.reviewCard .score {
+  color: #5FCF80;
+  font-size: 2em;
+  margin: 0;
+}
+
 .card img {
   max-width: 40px;
   border-radius: 100%;
 }
 .card h4 {
   font-size: 0.6em;
+}
+
+.nextRound {
+  margin-top: 80px;
 }
 
 .cardHolder {
@@ -268,7 +306,7 @@ form a, form label {
 }
 
 
-/* PROFILE */
+/* PROFILE ------------------------------------------------- */
 .profile {
   margin-top: 80px;
   font-family: 'Lato', sans-serif!important;
