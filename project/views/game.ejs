@@ -210,18 +210,6 @@
 
 <script type="text/spacebars" name="waitingArea">
     <div class="medium-6 large-6 columns text-center waitingArea">
-      <img src="/images/clock.png"/>
-      <h2>Waiting Area</h2>
-
-      {{#if notEnoughPlayers}}
-        <h3>{{playersNeeded}}</h3>
-      {{else}}
-        <h3>{{slotsLeft}} more player slots available</h3>
-        {{#if noStorySelected}}
-          <h3>Select a story to proceed</h3>
-        {{/if}}
-      {{/if}}
-
       {{#if gameReady}}
         <br />
         <button class="button start-game">Start Game Now</button>
@@ -244,7 +232,18 @@
         {{/each}}
       {{/if}}
     </div>
-    <div class="medium-6 large-6 columns text-center chatArea">
+    <div class="medium-6 large-6 columns text-center chatArea waitingArea">
+      <img src="/images/clock.png"/>
+      <h2>Waiting Area</h2>
+
+      {{#if notEnoughPlayers}}
+        <h3>{{playersNeeded}}</h3>
+      {{else}}
+        <h3>{{slotsLeft}} more player slots available</h3>
+        {{#if noStorySelected}}
+          <h3>Select a story to proceed</h3>
+        {{/if}}
+      {{/if}}
       {{> chatArea}}
     </div>
 </script>
