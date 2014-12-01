@@ -125,7 +125,7 @@
 
   Template.playArea.iSubmittedACard = function() {
     var game = GameUI.model.get();
-    if(!game.adaptedStory) return false;
+    if(!game.adaptedStory || !game.currentRound) return false;
     var matches = game.adaptedStory.storyChunks[game.currentRound].blank.submissions.filter(function(submission) {
       return submission.user_id === window.loggedInUser._id;
     });
@@ -134,13 +134,13 @@
 
   Template.playArea.currentBlankType = function() {
     var game = GameUI.model.get();
-    if(!game.adaptedStory) return '';
+    if(!game.adaptedStory || !game.currentRound) return '';
     return game.adaptedStory.storyChunks[game.currentRound].blank.wordType;
   };
 
   Template.submittedCards.currentCards = function() {
     var game = GameUI.model.get();
-    if(!game.adaptedStory) return [];
+    if(!game.adaptedStory || !game.currentRound) return [];
     return game.adaptedStory.storyChunks[game.currentRound].blank.submissions;
   };
 
@@ -148,7 +148,7 @@
 
   Template.reviewArea.winningCard = function() {
     var game = GameUI.model.get();
-    if(!game.adaptedStory) return null;
+    if(!game.adaptedStory || !game.currentRound) return null;
     return game.adaptedStory.storyChunks[game.currentRound].blank.winningSubmission;
   };
 
