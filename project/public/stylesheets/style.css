@@ -210,7 +210,7 @@ form a, form label {
 }
 
 .reviewArea {
-  margin-top: 80px;
+  margin-top: 20px;
 }
 
 .reviewCard {
@@ -228,13 +228,17 @@ form a, form label {
 }
 
 .reviewCard h4 {
-  font-size: 1em;
+  font-size: 0.8em;
 }
 
 .reviewCard .score {
   color: #5FCF80;
-  font-size: 2em;
+  font-size: 1.2em;
   margin: 0;
+}
+
+.storyReview {
+  margin-top: 60px!important;
 }
 
 .card img {
