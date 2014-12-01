@@ -77,8 +77,8 @@
   {{#if inSubmissionPhase}}
     {{#if iAmCzar}}
 
-      <h1>You are the Card Czar this round</h1>
-      <h2>Waiting for Players to submit cards</h2>
+      <h2>{{currentStoryChunkPrefix}} __________ {{currentStoryChunkSuffix}}</h2>
+      <h3>Waiting for Players to submit cards</h3>
       {{> submittedCards}}
 
     {{else}}
@@ -96,12 +96,12 @@
   {{#if inSelectionPhase}}
     {{#if iAmCzar}}
 
-      <h1>You are the Card Czar this round</h1>
-      <h2>Select a winning card</h2>
+      <h2>{{currentStoryChunkPrefix}} __________ {{currentStoryChunkSuffix}}</h2>
+      <h3>Select a winning card</h3>
       {{> cardSelectionForm}}
 
     {{else}}
-      <h1>{{currentStoryChunkPrefix}} __________ {{currentStoryChunkSuffix}}</h1>
+      <h1>{{currentBlankType}}</h1>
       {{> submittedCards}}
 
     {{/if}}
