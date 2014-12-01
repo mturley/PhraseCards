@@ -32,6 +32,9 @@ var DBHelpers = {
       if(playerAlreadyInGame) {
         callback(null, game);
       } else {
+        if(game.players.length === 0 && game.currentPhase !== 'setup') {
+          newPlayer.isCardCzar = true;
+        }
         Game.findByIdAndUpdate(
           game_id,
           {$push: {players: newPlayer}},
@@ -132,18 +135,20 @@ var DBHelpers = {
   nextCzar : function(game_id, callback) { // callback takes (err, game)
     Game.findById(game_id, function(err, game) {
       var numPlayers = game.players.length;
-      var oldCzarIndex = null;
-      for(var i=0; i<numPlayers; i++) {
-        if(game.players[i].isCardCzar) {
-          oldCzarIndex = i;
-          break;
+      if(numPlayers > 0) {
+        var oldCzarIndex = null;
+        for(var i=0; i<numPlayers; i++) {
+          if(game.players[i].isCardCzar) {
+            oldCzarIndex = i;
+            break;
+          }
         }
-      }
-      if(oldCzarIndex !== null) {
-        var newCzarIndex = (oldCzarIndex + 1) % numPlayers;
-        DBHelpers.changeCzarByPlayerIndex(game_id, oldCzarIndex, newCzarIndex, callback);
-      } else {
-        DBHelpers.randomizeCzar(game_id, callback);
+        if(oldCzarIndex !== null) {
+          var newCzarIndex = (oldCzarIndex + 1) % numPlayers;
+          DBHelpers.changeCzarByPlayerIndex(game_id, oldCzarIndex, newCzarIndex, callback);
+        } else {
+          DBHelpers.randomizeCzar(game_id, callback);
+        }
       }
     });
   },
@@ -419,7 +424,7 @@ module.exports = function(io) {
         }).length > 0;
         if(!gameHasCzar) {
           // the player who left was the czar, we need a new one
-          DBHelpers.randomizeCzar(_game_id, function(err, game) {
+          DBHelpers.nextCzar(_game_id, function(err, game) {
             io.sockets.in(_game_id).emit('game state changed', game);
             io.sockets.in(_game_id).emit('czar changed');
           });
