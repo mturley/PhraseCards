@@ -125,7 +125,7 @@
 
   Template.playArea.iSubmittedACard = function() {
     var game = GameUI.model.get();
-    if(!game.story_id) return false;
+    if(!game.adaptedStory) return false;
     var matches = game.adaptedStory.storyChunks[game.currentRound].blank.submissions.filter(function(submission) {
       return submission.user_id === window.loggedInUser._id;
     });
