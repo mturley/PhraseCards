@@ -33,6 +33,27 @@
       }).fail(function() {
         console.log("AJAX FAILURE", arguments);
       });
+    },
+    timer: null,
+    updateTimer: function(remainingSeconds, durationSeconds) {
+      if(this.timer === null) {
+        var element = $("#timer-container").get(0);
+        this.timer = new ProgressBar.Circle(element, {
+          duration: 200,
+          color: "#008CBA",
+          trailColor: "#45ACF1",
+          strokeWidth: 8
+        });
+      }
+      this.timer.animate(remainingSeconds / durationSeconds, function() {
+        $("#clock-seconds").html(remainingSeconds);
+      });
+    },
+    destroyTimer: function() {
+      if(this.timer) {
+        this.timer.destroy();
+        this.timer = null;
+      }
     }
   };
 
@@ -67,6 +88,10 @@
 
   Template.gameArea.players = function() {
     return GameUI.model.get().players;
+  };
+
+  Template.gameArea.destroyed = function() {
+    GameUI.destroyTimer();
   };
 
   ////
@@ -233,12 +258,12 @@
 
     socket.on('timer started', function(data) {
       console.log("TIMER STARTED: ", data.timerName, data.durationSeconds+" sec");
-      // TODO
+      GameUI.updateTimer(data.durationSeconds, data.durationSeconds);
     });
 
     socket.on('timer tick', function(data) {
       console.log("TIMER TICK: ", data.timerName, data.remainingSeconds+" sec left");
-      // TODO
+      GameUI.updateTimer(data.remainingSeconds, data.durationSeconds);
     });
 
     socket.on('timer ended', function(data) {

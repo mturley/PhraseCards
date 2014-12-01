@@ -177,7 +177,7 @@ module.exports = function(io) {
   // * Call Timers.end(game_id, timerName) to stop a timer and call its callback
   // * Call Timers.cancel(game_id, timerName) to stop a timer without calling its callback
   var Timers = {
-    timers: {}, // timers[game_id][timerName] = { remainingSeconds, paused, callback, intervalID }
+    timers: {}, // timers[game_id][timerName] = { durationSeconds, remainingSeconds, paused, callback, intervalID }
     start: function(game_id, timerName, durationSeconds, callback) {
       if(!this.timers[game_id]) {
         // If we don't already have a timers dictionary for this game, create one
@@ -191,6 +191,7 @@ module.exports = function(io) {
           durationSeconds : durationSeconds
         });
         var timer = this.timers[game_id][timerName] = {};
+        timer.durationSeconds = durationSeconds;
         timer.remainingSeconds = durationSeconds;
         timer.paused = false;
         timer.callback = callback;
@@ -199,6 +200,7 @@ module.exports = function(io) {
             timer.remainingSeconds--;
             io.sockets.in(game_id).emit('timer tick', {
               timerName        : timerName,
+              durationSeconds  : timer.durationSeconds,
               remainingSeconds : timer.remainingSeconds
             });
             if(timer.remainingSeconds <= 0) {
