@@ -128,12 +128,26 @@
 
 <script type="text/spacebars" name="cardSubmissionForm">
   <h2>Something a person would wear _________ .</h2>
-  [[TEXT FIELD AND BUTTON HERE]]
+  <div class="row collapse">
+    <div class="small-10 columns">
+      <input type="text" placeholder="">
+    </div>
+    <div class="small-2 columns">
+      <a href="#" class="button ">Submit</a>
+    </div>
+  </div>
 </script>
 
 <script type="text/spacebars" name="cardSelectionForm">
   {{#each currentCards}}
-    [[CARD HERE WITH CHOOSE/SELECT/WHATEVER BUTTON]]
+    <div class="small-6 medium-2 large-2 columns cardHolder">
+      <div class="row">
+        <div class="small-12 medium-10 medium-centered large-10 large-centered columns card animated zoomIn">
+          <h4>{{this.word}}</h4>
+          <a href="#" class="button button-large success selectCard">Select</a>
+        </div>
+      </div>
+    </div>
   {{/each}}
 </script>
 
