@@ -237,6 +237,11 @@ form a, form label {
   margin: 0;
 }
 
+.selectCard {
+  margin-top: 40px;
+  margin-left: 0px!important;
+}
+
 .storyReview {
   margin-top: 60px!important;
 }
