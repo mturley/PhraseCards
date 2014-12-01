@@ -51,6 +51,10 @@
     return null;
   };
 
+  Template.sidebar.numRounds = function() {
+    return GameUI.model.get().adaptedStory.storyChunks.length;
+  };
+
   ////
 
   Template.gameArea.inSetupPhase = function() {

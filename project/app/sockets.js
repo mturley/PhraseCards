@@ -10,8 +10,9 @@ var gravatar = require('node-gravatar'),
 
 var Constants = {
   // Durations are in seconds
-  SUBMISSION_PHASE_DURATION = 30,
-  SELECTION_PHASE_DURATION = 10
+  SUBMISSION_PHASE_DURATION : 30,
+  SELECTION_PHASE_DURATION  : 10,
+  REVIEW_PHASE_DURATION     : 5
 };
 
 // IMPORTANT NOTE ABOUT DATABASE CONCURRENCY:
@@ -73,12 +74,31 @@ var DBHelpers = {
       }
     });
   },
-  changeGamePhase : function(game_id, newPhase, callback) { // callback takes (err, game)
+  setGameRound : function(game_id, newRound, callback) { // callback takes (err, game)
+    Game.findByIdAndUpdate(
+      game_id,
+      {$set: { currentRound : newRound }},
+      {safe: true, upsert: false},
+      callback
+    );
+  },
+  setGamePhase : function(game_id, newPhase, callback) { // callback takes (err, game)
     Game.findByIdAndUpdate(
       game_id,
       {$set: { currentPhase : newPhase }},
       {safe: true, upsert: false},
-      callback // gets passed (err, game), game is then used to emit a 'game state update'
+      callback
+    );
+  },
+  setGameRoundAndPhase : function(game_id, newRound, newPhase, callback) { // callback takes (err, game)
+    Game.findByIdAndUpdate(
+      game_id,
+      {$set: {
+        currentRound : newRound,
+        currentPhase : newPhase
+      }},
+      {safe: true, upsert: false},
+      callback
     );
   },
   changeCzarByPlayerIndex : function(game_id, oldCzarIndex, newCzarIndex, callback) { // callback takes (err, game)
@@ -119,8 +139,12 @@ var DBHelpers = {
           break;
         }
       }
-      var newCzarIndex = (oldCzarIndex + 1) % numPlayers;
-      DBHelpers.changeCzarByPlayerIndex(game_id, oldCzarIndex, newCzarIndex, callback);
+      if(oldCzarIndex !== null) {
+        var newCzarIndex = (oldCzarIndex + 1) % numPlayers;
+        DBHelpers.changeCzarByPlayerIndex(game_id, oldCzarIndex, newCzarIndex, callback);
+      } else {
+        DBHelpers.randomizeCzar(game_id, callback);
+      }
     });
   },
   submitWord : function(game_id, user_id, word, callback) { // callback takes (err, game)
@@ -205,6 +229,62 @@ module.exports = function(io) {
   };
 
 
+  var GameManager = {
+    startNextRound: function(game_id) {
+      Game.findById(game_id, function(err, game) {
+        var newRound = (game.currentRound === null ? 0 : game.currentRound + 1);
+        if(newRound > game.adaptedStory.storyChunks.length) {
+          GameManager.endGame(game_id);
+        } else {
+          DBHelpers.nextCzar(game_id, function() {
+            DBHelpers.setGameRoundAndPhase(game_id, newRound, 'wordSubmission', function(err, game) {
+              io.sockets.in(game_id).emit('game state changed', game);
+              io.sockets.in(game_id).emit('czar changed');
+              Timers.start(game_id, 'wordSubmission', Constants.SUBMISSION_PHASE_DURATION, function() {
+                // TODO check if there are no submitted words, if so, wait until one is submitted first?
+                GameManager.startSelectionPhase(game_id);
+              });
+            });
+          });
+        }
+      });
+    },
+    startSelectionPhase: function(game_id) {
+      DBHelpers.setGamePhase(game_id, 'wordSelection', function(err, game) {
+        io.sockets.in(game_id).emit('game state changed', game);
+        Timers.start(game_id, 'wordSelection', Constants.SELECTION_PHASE_DURATION, function() {
+          // TODO check if there's a winning word, if not, select one randomly first
+          GameManager.startReviewPhase(game_id);
+        });
+      });
+    },
+    startReviewPhase: function(game_id) {
+      DBHelpers.setGamePhase(game_id, 'review', function(err, game) {
+        io.sockets.in(game_id).emit('game state changed', game);
+        // TODO award points to the submitter of the winning word
+        Timers.start(game_id, 'review', Constants.REVIEW_PHASE_DURATION, function() {
+          GameManager.startNextRound(game_id);
+        });
+      });
+    },
+    endGame: function(game_id) {
+      DBHelpers.setGameRoundAndPhase(game_id, null, 'end', function(err, game) {
+        io.sockets.in(game_id).emit('game state changed', game);
+      });
+    }
+  };
+
+
+          // TODO start timer for word submission phase
+          // TODO ensure the word submission state is rendered properly
+          // TODO handle word submission events from the client
+          // TODO when timer runs out or all players have submitted words, move to wordSelection phase
+          // TODO start timer for word selection phase
+          // TODO ensure the word selection state is rendered properly
+          // TODO handle word selection events from the client
+          // TODO when timer runs out or czar selects a word, move to next round and wordSubmission phase
+          //      (or, if no more storyChunks, review phase!)
+          // TODO handle giving out points
 
 
   /////////////////////////////////////////////////////////////////////////////
@@ -269,27 +349,16 @@ module.exports = function(io) {
       });
     });
 
-    socket.on('start game', function(data) {
-      DBHelpers.randomizeCzar(_game_id, function() {
-        DBHelpers.changeGamePhase(_game_id, 'wordSubmission', function(err, game) {
-          io.sockets.in(_game_id).emit('game state changed', game);
-
-          // TODO start timer for word submission phase
-          // TODO ensure the word submission state is rendered properly
-          // TODO handle word submission events from the client
-          // TODO when timer runs out or all players have submitted words, move to wordSelection phase
-          // TODO start timer for word selection phase
-          // TODO ensure the word selection state is rendered properly
-          // TODO handle word selection events from the client
-          // TODO when timer runs out or czar selects a word, move to next round and wordSubmission phase
-          //      (or, if no more storyChunks, review phase!)
-          // TODO handle giving out points
-        });
+    socket.on('start game', function() {
+      Game.findById(_game_id, function(err, game) {
+        if(game.currentPhase === 'setup') {
+          GameManager.startNextRound(_game_id);
+        }
       });
     });
 
     socket.on('change phase', function(data) {
-      DBHelpers.changeGamePhase(_game_id, data.newPhase, function(err, game) {
+      DBHelpers.setGamePhase(_game_id, data.newPhase, function(err, game) {
         io.sockets.in(_game_id).emit('game state changed', game);
       });
     });
