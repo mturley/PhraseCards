@@ -192,7 +192,27 @@
   Template.playArea.winningCard = function() {
     var game = GameUI.model.get();
     if(!game.adaptedStory || game.currentRound === null) return null;
-    return game.adaptedStory.storyChunks[game.currentRound].blank.winningSubmission;
+    return game.adaptedStory.storyChunks[game.currentRound].blank.winningSubmission.word;
+  };
+
+  Template.reviewArea.winningUserName = function() {
+    // TODO
+  };
+
+  Template.endArea.winningPlayerName = function() {
+    // TODO
+  };
+
+  Template.endArea.winningScore = function() {
+    // TODO
+  };
+
+  Template.endArea.storyName = function() {
+    // TODO
+  };
+
+  Template.endArea.storyChunks = function() {
+    // TODO
   };
 
   Template.reviewArea.winningCard = Template.playArea.winningCard;
@@ -206,7 +226,7 @@
   Template.storyArea.currentStory = function() {
     var game = GameUI.model.get();
     if(!game.adaptedStory || game.currentRound === null) return '';
-    return game.adaptedStory.storyChunks[game.currentRound];
+    return game.adaptedStory.storyChunks;
   };
 
   //// Socket Connection Setup ////
