@@ -41,30 +41,57 @@
 <script type="text/spacebars" name="gameArea">
   {{#if inSetupPhase}}
     {{> waitingArea}}
-  {{else}}
-    <div class="row timer">
-      <div class="medium-10 large-10 columns">&nbsp;</div>
-      <div class="medium-2 large-2 columns">
-        <div class="timer-container" id="timer-container"></div>
-      </div>
-    </div>
+  {{/if}}
 
+  {{#if inSubmissionPhase}}
+    {{> submissionArea}}
+  {{/if}}
+
+  {{#if inSelectionPhase}}
+    {{> timerArea}}
     {{> playArea}}
+    {{> bottomArea}}
+  {{/if}}
 
-    <hr>
-    <div class="row">
+  {{#if inReviewPhase}}
+    {{> reviewArea}}
+  {{/if}}
 
-      {{> storyArea}}
-
-      <div class="medium-6 large-6 columns">
-
-        {{> chatArea}}
-
-      </div>
-    </div>
+  {{#if inEndPhase}}
+    {{> endArea}}
   {{/if}}
 </script>
 
+<script type="text/spacebars" name="timerArea">
+  <div class="row timer">
+    <div class="medium-10 large-10 columns">&nbsp;</div>
+    <div class="medium-2 large-2 columns">
+      <div class="timer-container" id="timer-container"></div>
+    </div>
+  </div>
+</script>
+
+<script type="text/spacebars" name="bottomArea">
+  <hr>
+  <div class="row">
+    {{> storyArea}}
+    <div class="medium-6 large-6 columns">
+      {{> chatArea}}
+    </div>
+  </div>
+</script>
+
+<script type="text/spacebars" name="submissionArea">
+  <h2>submissionArea</h2>
+</script>
+
+<script type="text/spacebars" name="reviewArea">
+  <h2>reviewArea</h2>
+</script>
+
+<script type="text/spacebars" name="endArea">
+  <h2>endArea</h2>
+</script>
 
 <script type="text/spacebars" name="playArea">
   {{#if iAmCzar}}
