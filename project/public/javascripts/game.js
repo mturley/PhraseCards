@@ -156,7 +156,7 @@
 
   Template.playArea.iSubmittedACard = function() {
     var game = GameUI.model.get();
-    if(!game.adaptedStory || !game.currentRound) return false;
+    if(!game.adaptedStory || game.currentRound === null) return false;
     var matches = game.adaptedStory.storyChunks[game.currentRound].blank.submissions.filter(function(submission) {
       return submission.user_id === window.loggedInUser._id;
     });
@@ -165,19 +165,19 @@
 
   Template.playArea.currentStoryChunkPrefix = function() {
     var game = GameUI.model.get();
-    if(!game.adaptedStory || !game.currentRound) return '';
+    if(!game.adaptedStory || game.currentRound === null) return '';
     return game.adaptedStory.storyChunks[game.currentRound].prefix;
   };
 
   Template.playArea.currentBlankType = function() {
     var game = GameUI.model.get();
-    if(!game.adaptedStory || !game.currentRound) return '';
+    if(!game.adaptedStory || game.currentRound === null) return '';
     return game.adaptedStory.storyChunks[game.currentRound].blank.wordType;
   };
 
   Template.submittedCards.currentCards = function() {
     var game = GameUI.model.get();
-    if(!game.adaptedStory || !game.currentRound) return [];
+    if(!game.adaptedStory || game.currentRound === null) return [];
     return game.adaptedStory.storyChunks[game.currentRound].blank.submissions;
   };
 
@@ -185,7 +185,7 @@
 
   Template.reviewArea.winningCard = function() {
     var game = GameUI.model.get();
-    if(!game.adaptedStory || !game.currentRound) return null;
+    if(!game.adaptedStory || game.currentRound === null) return null;
     return game.adaptedStory.storyChunks[game.currentRound].blank.winningSubmission;
   };
 
@@ -197,7 +197,7 @@
 
   Template.storyArea.currentStory = function() {
     var game = GameUI.model.get();
-    if(!game.adaptedStory || !game.currentRound) return '';
+    if(!game.adaptedStory || game.currentRound === null) return '';
     return game.adaptedStory.storyChunks[game.currentRound];
   };
 
