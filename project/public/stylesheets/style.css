@@ -314,7 +314,9 @@ form a, form label {
   margin-top: 40px;
 }
 
-
+.chatArea img {
+  max-width: 40px;
+}
 /* PROFILE ------------------------------------------------- */
 .profile {
   margin-top: 80px;
