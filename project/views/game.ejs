@@ -158,9 +158,9 @@
       <div class="row">
         <div class="small-6 medium-6 large-6 columns">
           <div class="small-12 medium-10 medium-centered large-8 large-centered columns reviewCard  animated zoomIn">
-            <h4>WordHere</h4>
+            <h4>{{winningCard}}</h4>
             <img src="http://placehold.it/60x60"/>
-            <h5>Player Name</h5>
+            <h5>{{winningUserName}}</h5>
             <span class="score">+500</span>
           </div>
         </div>
@@ -181,15 +181,19 @@
         <div class="small-6 medium-4 medium-centered large-4 large-centered columns animated zoomIn">
           <h3>Winner</h3>
           <hr>
-          <h4>Player Name</h4>
-          <h5>9,999</h5>
+          <h4>{{winningPlayerName}}</h4>
+          <h5>{{winningScore}}</h5>
           <hr>
         </div>
       </div>
       <div class="row storyReview">
         <div class="small-12 medium-6 large-6 columns text-left">
-          <h4>Story Name</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at <span data-tooltip aria-haspopup="true" class="has-tip" title="Player Name">pellentesque</span> turpis, vitae molestie lorem. Aliquam ac urna tempus nunc dignissim cursus. Aenean et <span data-tooltip aria-haspopup="true" class="has-tip" title="Player Name">justo</span> maximus, efficitur massa ut, ornare magna. Donec congue consectetur ipsum <span data-tooltip aria-haspopup="true" class="has-tip" title="Player Name">sed</span> scelerisque. Vestibulum malesuada erat lacinia purus dignissim, in <span data-tooltip aria-haspopup="true" class="has-tip" title="Player name">malesuada</span> dolor egestas. Donec <span data-tooltip aria-haspopup="true" class="has-tip" title="Player Name">aliquet</span> neque ut tempor consequat. Duis eget sem in dui porttitor vulputate. Quisque id metus id nibh <span data-tooltip aria-haspopup="true" class="has-tip" title="Player Name">venenatis</span> egestas at in purus. Praesent <span data-tooltip aria-haspopup="true" class="has-tip" title="Player Name">vitae</span> condimentum tellus, vel egestas sem. Vivamus molestie blandit arcu, eget lobortis dui <span data-tooltip aria-haspopup="true" class="has-tip" title="Player Name">ultricies</span> sit amet. Morbi tristique sem eget pellentesque gravida. Sed eget congue tellus. Nullam consectetur porttitor velit quis pharetra.</p>
+          <h4>{{storyName}}</h4>
+          <p>
+            {{#each storyChunk}}
+              // Write out story
+            {{/each}}
+          </p>
         </div>
         <div class="small-12 medium-6 large-6 columns text-left">
           {{> chatArea}}
@@ -202,7 +206,10 @@
 <script type="text/spacebars" name="storyArea">
   <div class="medium-6 large-6 columns unselectable">
     <h5>{{story_id}}</h5>
-    <p>Thanksgiving<span class="blur" >is tonight!</span> Walking <span class="blur">elit. Cras porttitor consequat</span> Drone<span class="blur">, at lobortis lacus</span> Touchdown <span class="blur">vitae. Suspendisse eget dignissim lectus. Nunc</span> Digital <span class="blur">ex magna vitae, convallis</span> Facebook <span class="blur">est.</span></p>
+    <p>
+      {{#each currentStory}}
+        // Write out story
+      {{/each}}</p>
   </div>
 </script>
 
