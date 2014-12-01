@@ -304,7 +304,7 @@ form a, form label {
   margin-right: 10px;
 }
 
-.chat_row,  {
+.chat_row, .chatArea ul li {
   width: 100%;
   line-height: 38px;
   margin: 8px 0;
