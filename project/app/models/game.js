@@ -17,11 +17,6 @@ var GameSchema = mongoose.Schema({
     score      : Number,
     isCardCzar : Boolean
   }],
-  rounds : [{           // TODO remove?
-    cardCzar : String,  //
-    winner   : String,  // (may not need Game.rounds)
-    sentence : String   //
-  }],                   //
   story_id : String,
   // adaptedStory is a mutated version of the Story schema with fields for player data.
   // this object is used to track player word submissions and render the final story.
