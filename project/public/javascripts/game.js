@@ -154,10 +154,6 @@
     return GameUI.model.get().story_id;
   };
 
-  Template.timerArea.rendered = function() {
-    console.log("TimerArea Rendered!");
-  };
-
   //// Socket Connection Setup ////
 
   var socket = io.connect();
