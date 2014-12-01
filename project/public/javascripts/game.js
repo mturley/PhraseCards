@@ -157,6 +157,12 @@
     return matches.length > 0;
   }
 
+  Template.playArea.currentStoryChunkPrefix = function() {
+    var game = GameUI.model.get();
+    if(!game.adaptedStory || !game.currentRound) return '';
+    return game.adaptedStory.storyChunks[game.currentRound].prefix;
+  };
+
   Template.playArea.currentBlankType = function() {
     var game = GameUI.model.get();
     if(!game.adaptedStory || !game.currentRound) return '';
@@ -181,6 +187,12 @@
 
   Template.storyArea.story_id = function() {
     return GameUI.model.get().story_id;
+  };
+
+  Template.storyArea.currentStory = function() {
+    var game = GameUI.model.get();
+    if(!game.adaptedStory || !game.currentRound) return '';
+    return game.adaptedStory.storyChunks[game.currentRound];
   };
 
   //// Socket Connection Setup ////
