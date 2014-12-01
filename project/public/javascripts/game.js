@@ -47,7 +47,7 @@
 
   Template.sidebar.currentRound = function() {
     var round = GameUI.model.get().currentRound;
-    if(round) return round + 1;
+    if(round !== null) return round + 1;
     return null;
   };
 
@@ -299,7 +299,10 @@
         user_id : window.loggedInUser._id,
         word    : word
       });
-    }
+    },
+    resetGame: function() {
+      socket.emit('reset game');
+    },
   }; // end DEBUG
 
   socket.on('ping', function() {

@@ -225,6 +225,13 @@ module.exports = function(io) {
           delete this.timers[game_id];
         }
       }
+    },
+    cancelAll: function(game_id) {
+      if(this.timers[game_id]) {
+        Object.keys(this.timers[game_id]).forEach(function(timerName) {
+          Timers.cancel(game_id, timerName);
+        });
+      }
     }
   };
 
@@ -233,7 +240,7 @@ module.exports = function(io) {
     startNextRound: function(game_id) {
       Game.findById(game_id, function(err, game) {
         var newRound = (game.currentRound === null ? 0 : game.currentRound + 1);
-        if(newRound > game.adaptedStory.storyChunks.length) {
+        if(newRound >= game.adaptedStory.storyChunks.length) {
           GameManager.endGame(game_id);
         } else {
           DBHelpers.nextCzar(game_id, function() {
@@ -274,7 +281,7 @@ module.exports = function(io) {
     }
   };
 
-  
+
 
 
   /////////////////////////////////////////////////////////////////////////////
@@ -416,6 +423,23 @@ module.exports = function(io) {
 
     socket.on('pong', function(data) {
       io.sockets.in(_game_id).emit('pong', data);
+    });
+
+    socket.on('reset game', function() {
+      Timers.cancelAll(_game_id);
+      Game.findByIdAndUpdate(
+        _game_id,
+        {$set: {
+          currentRound : null,
+          currentPhase : 'setup',
+          story_id     : null,
+          adaptedStory : null
+        }},
+        {safe: true, upsert: false},
+        function(err, game) {
+          io.sockets.in(_game_id).emit('game state changed', game);
+        }
+      );
     });
 
     // DEBUGGING ONLY ABOVE -- DO NOT USE IN GAME
