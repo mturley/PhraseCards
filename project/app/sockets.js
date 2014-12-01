@@ -177,7 +177,7 @@ module.exports = function(io) {
   // * Call Timers.end(game_id, timerName) to stop a timer and call its callback
   // * Call Timers.cancel(game_id, timerName) to stop a timer without calling its callback
   var Timers = {
-    timers: {}, // timers[game_id][timerName] = { remainingSeconds, callback, intervalID }
+    timers: {}, // timers[game_id][timerName] = { remainingSeconds, paused, callback, intervalID }
     start: function(game_id, timerName, durationSeconds, callback) {
       if(!this.timers[game_id]) {
         // If we don't already have a timers dictionary for this game, create one
@@ -192,15 +192,18 @@ module.exports = function(io) {
         });
         var timer = this.timers[game_id][timerName] = {};
         timer.remainingSeconds = durationSeconds;
+        timer.paused = false;
         timer.callback = callback;
         timer.intervalID = setInterval(function() {
-          timer.remainingSeconds--;
-          io.sockets.in(game_id).emit('timer tick', {
-            timerName        : timerName,
-            remainingSeconds : timer.remainingSeconds
-          });
-          if(timer.remainingSeconds <= 0) {
-            Timers.end(game_id, timerName);
+          if(!timer.paused) {
+            timer.remainingSeconds--;
+            io.sockets.in(game_id).emit('timer tick', {
+              timerName        : timerName,
+              remainingSeconds : timer.remainingSeconds
+            });
+            if(timer.remainingSeconds <= 0) {
+              Timers.end(game_id, timerName);
+            }
           }
         }, 1000);
       }
@@ -230,6 +233,30 @@ module.exports = function(io) {
       if(this.timers[game_id]) {
         Object.keys(this.timers[game_id]).forEach(function(timerName) {
           Timers.cancel(game_id, timerName);
+        });
+      }
+    },
+    pause: function(game_id, timerName) {
+      if(this.timers[game_id] && this.timers[game_id][timerName]) {
+        this.timers[game_id][timerName].paused = true;
+      }
+    },
+    pauseAll: function(game_id) {
+      if(this.timers[game_id]) {
+        Object.keys(this.timers[game_id]).forEach(function(timerName) {
+          Timers.pause(game_id, timerName);
+        });
+      }
+    },
+    resume: function(game_id, timerName) {
+      if(this.timers[game_id] && this.timers[game_id][timerName]) {
+        this.timers[game_id][timerName].paused = false;
+      }
+    },
+    resumeAll: function(game_id) {
+      if(this.timers[game_id]) {
+        Object.keys(this.timers[game_id]).forEach(function(timerName) {
+          Timers.resume(game_id, timerName);
         });
       }
     }
@@ -415,6 +442,14 @@ module.exports = function(io) {
     socket.on('timer cancel', function(data) {
       Timers.cancel(_game_id, data.timerName);
       console.log("TIMER CANCELLED", data.timerName, "in game", _game_id);
+    });
+
+    socket.on('timer pause all', function() {
+      Timers.pauseAll(_game_id);
+    });
+
+    socket.on('timer resume all', function() {
+      Timers.resumeAll(_game_id);
     });
 
     socket.on('ping', function() {

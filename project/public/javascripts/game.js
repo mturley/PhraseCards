@@ -299,6 +299,12 @@
         timerName : timerName
       });
     },
+    timerPause: function() {
+      socket.emit('timer pause all');
+    },
+    timerResume: function() {
+      socket.emit('timer resume all');
+    },
     changePhase: function(newPhase) {
       socket.emit('change phase', {
         newPhase : newPhase
