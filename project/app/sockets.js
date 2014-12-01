@@ -274,17 +274,7 @@ module.exports = function(io) {
     }
   };
 
-
-          // TODO start timer for word submission phase
-          // TODO ensure the word submission state is rendered properly
-          // TODO handle word submission events from the client
-          // TODO when timer runs out or all players have submitted words, move to wordSelection phase
-          // TODO start timer for word selection phase
-          // TODO ensure the word selection state is rendered properly
-          // TODO handle word selection events from the client
-          // TODO when timer runs out or czar selects a word, move to next round and wordSubmission phase
-          //      (or, if no more storyChunks, review phase!)
-          // TODO handle giving out points
+  
 
 
   /////////////////////////////////////////////////////////////////////////////
