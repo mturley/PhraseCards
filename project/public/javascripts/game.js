@@ -169,6 +169,12 @@
     return game.adaptedStory.storyChunks[game.currentRound].prefix;
   };
 
+  Template.playArea.currentStoryChunkSuffix = function() {
+    var game = GameUI.model.get();
+    if(!game.adaptedStory || game.currentRound === null) return '';
+    return game.adaptedStory.storyChunks[game.currentRound].suffix;
+  };
+
   Template.playArea.currentBlankType = function() {
     var game = GameUI.model.get();
     if(!game.adaptedStory || game.currentRound === null) return '';
