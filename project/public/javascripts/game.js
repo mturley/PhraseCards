@@ -231,6 +231,19 @@
     return game.adaptedStory.storyChunks;
   };
 
+  Template.storyArea.currentStoryChunk = function() {
+    var game = GameUI.model.get();
+    if(!game.adaptedStory || game.currentRound === null) return '';
+    if(game.adaptedStory.storyChunks[game.currentRound]._id === this._id) return true;
+  };
+
+  Template.storyArea.currentRound = function() {
+    var game = GameUI.model.get();
+    if(!game.adaptedStory || game.currentRound === null) return '';
+    return game.currentRound;
+  };
+
+
   Template.storyArea.currentStoryName = function() {
     var game = GameUI.model.get();
     if(!game.adaptedStory) return '';

@@ -212,7 +212,12 @@
     <h5>{{currentStoryName}}</h5>
     <p>
       {{#each currentStory}}
-        <span class="blur">{{this.prefix}} </span> ___________ <span class="blur">{{this.suffix}} </span>
+        {{#if currentStoryChunk}}
+          <br><br>Round {{currentRound}} <i class="fa fa-hand-o-right"></i> <span class="blur_large">{{this.prefix}} </span> ___________ <span class="blur_large">{{this.suffix}} </span><br><br>
+        {{else}}
+          <span class="blur">{{this.prefix}} </span> ___________ <span class="blur">{{this.suffix}} </span>
+        {{/if}}
+
       {{/each}}</p>
   </div>
 </script>

@@ -318,6 +318,15 @@ form a, form label {
   text-shadow: 0 0 15px rgba(0,0,0,0.5);
 }
 
+.blur_large {
+  color: transparent;
+  background: #27648D;
+  padding: 5px;
+  text-shadow: 0 0 10px rgba(255,255, 255,0.5);
+  border-radius: 5px;
+  margin: 0 4px;
+}
+
 #chat_container {
   font-size: 18px;
   position:   relative;
