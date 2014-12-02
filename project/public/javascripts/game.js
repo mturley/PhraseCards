@@ -194,8 +194,7 @@
     if(!game.adaptedStory || game.currentRound === null) return null;
     var winner = game.adaptedStory.storyChunks[game.currentRound].blank.winningSubmission;
     if(winner !== null) {
-     // return winner.word;
-     return 'Demo';
+      return winner.word;
     }
     return null;
   };
