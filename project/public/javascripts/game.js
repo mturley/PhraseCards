@@ -193,16 +193,35 @@
     var game = GameUI.model.get();
     if(!game.adaptedStory || game.currentRound === null) return null;
     var winner = game.adaptedStory.storyChunks[game.currentRound].blank.winningSubmission;
-    if(winner !== null) return winner.word;
+    if(winner !== null) {
+     // return winner.word;
+     return 'Demo';
+    }
     return null;
   };
 
-  Template.reviewArea.winningUserName = function() {
-    // TODO
+  Template.reviewArea.winningAvatar = function() {
+    var players = GameUI.model.get().players;
+    var topScorer = {};
+    for(var i = 0; i < players.length; i++){
+      if(players[i].score > topScorer.score){
+        topScorer = players[i];
+      }
+    }
+    console.log(topScorer);
+    return topScorer.avatar;
   };
 
-  Template.endArea.winningPlayerName = function() {
-    // TODO
+  Template.reviewArea.winningPlayerName = function() {
+    var players = GameUI.model.get().players;
+    var topScorer = {};
+    for(var i = 0; i < players.length; i++){
+      if(players[i].score > topScorer.score){
+        topScorer = players[i];
+      }
+    }
+    console.log(topScorer);
+    return topScorer.nickname;
   };
 
   Template.endArea.winningScore = function() {
