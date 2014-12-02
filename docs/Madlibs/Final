@@ -1,0 +1,23 @@
+ "name": "Final Exam",
+    "tags": ["final","exam", "test", "school"],
+    "storyChunks": [
+      {
+        "prefix" : "It's a",
+        "blank" : { "wordType" : "day of the week" },
+        "suffix" : "night at UMass"
+      },
+	]
+
+It's finals week at [school name], and you're walking to your last exam of the year. The tests in [college class] are always hard, but this time your teacher has promised an especially [adjective] final.
+You walk into the building, find a seat, and pull out your trusty [noun], it's time to begin. When you open up the first page, you realize the exam is only one question!
+1. What is the meaning of (noun)?
+A) To (verb) your enemies, to see them driven before you, and to hear the lamentations of their (Plural noun).
+B) The number (number).
+C) To seek the Holy (Noun)!
+D) The meaning of life is [Any word], obviously...
+
+After pondering the question for some time, you decide on (letter), and turn your test in to the teacher. He casts you a(n) (adjective) gaze, and exclaims, "You are the first student to have chosen this answer in the history of forever. By the powers vested in me, I grant you the greatest of all test grades: (letter) Plus!"
+
+
+
+
