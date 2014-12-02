@@ -193,7 +193,8 @@
     var game = GameUI.model.get();
     if(!game.adaptedStory || game.currentRound === null) return null;
     var winner = game.adaptedStory.storyChunks[game.currentRound].blank.winningSubmission;
-    if(winner !== null) {
+    console.log("WINNING CARD WINNER VAR: ",winner);
+    if(winner) {
       return winner.word;
     }
     return null;
