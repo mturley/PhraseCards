@@ -23,6 +23,17 @@
       // do anything else we need to do every time new game data comes in
       console.log("Game model changed!", gameObject);
     },
+    getWinningPlayerThisRound: function() {
+      var game = this.model.get();
+      if(!game.adaptedStory || game.currentRound === null) return null;
+      var winningCard = game.adaptedStory.storyChunks[game.currentRound].blank.winningSubmission;
+      if(!winningCard) return null;
+      var matchingPlayers = game.players.filter(function(player) {
+        return player.user_id === winningCard.user_id;
+      });
+      if(matchingPlayers.length < 1) return null;
+      return matchingPlayers[0];
+    },
     availableStories: new Blaze.Var([]),
     reloadStories: function() {
       $.ajax({
