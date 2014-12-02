@@ -192,7 +192,9 @@
   Template.playArea.winningCard = function() {
     var game = GameUI.model.get();
     if(!game.adaptedStory || game.currentRound === null) return null;
-    return game.adaptedStory.storyChunks[game.currentRound].blank.winningSubmission.word;
+    var winner = game.adaptedStory.storyChunks[game.currentRound].blank.winningSubmission;
+    if(winner !== null) return winner.word;
+    return null;
   };
 
   Template.reviewArea.winningUserName = function() {
