@@ -231,6 +231,12 @@
     return game.adaptedStory.storyChunks;
   };
 
+  Template.storyArea.currentStoryName = function() {
+    var game = GameUI.model.get();
+    if(!game.adaptedStory) return '';
+    return game.adaptedStory.name;
+  };
+
   //// Socket Connection Setup ////
 
   var socket = io.connect();

@@ -209,10 +209,10 @@
 
 <script type="text/spacebars" name="storyArea">
   <div class="medium-6 large-6 columns unselectable">
-    <h5>{{story_id}}</h5>
+    <h5>{{currentStoryName}}</h5>
     <p>
       {{#each currentStory}}
-        // Write out story
+        <span class="blur">{{this.prefix}} </span> ___________ <span class="blur">{{this.suffix}} </span>
       {{/each}}</p>
   </div>
 </script>
