@@ -256,20 +256,26 @@
 
   Template.storyArea.currentStory = function() {
     var game = GameUI.model.get();
-    if(!game.adaptedStory || game.currentRound === null) return '';
+    if(!game.adaptedStory || game.currentRound === null) return [];
     return game.adaptedStory.storyChunks;
+  };
+
+  Template.storyArea.currentStorySoFar = function() {
+    var game = GameUI.model.get();
+    if(!game.adaptedStory || game.currentRound === null) return [];
+    return game.adaptedStory.storyChunks.slice(0,game.currentRound+1);
   };
 
   Template.storyArea.currentStoryChunk = function() {
     var game = GameUI.model.get();
-    if(!game.adaptedStory || game.currentRound === null) return '';
+    if(!game.adaptedStory || game.currentRound === null) return false;
     if(game.adaptedStory.storyChunks[game.currentRound]._id === this._id) return true;
   };
 
   Template.storyArea.currentRound = function() {
     var game = GameUI.model.get();
     if(!game.adaptedStory || game.currentRound === null) return '';
-    return game.currentRound;
+    return game.currentRound + 1;
   };
 
 
