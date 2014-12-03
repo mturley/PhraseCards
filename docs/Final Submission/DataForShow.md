@@ -5,7 +5,6 @@
 # Not Implemented
 - Card Against Humanity
 - Did not implement our own avatar feature. We used Gravatar instead.
-- 
 
 # Future Work
 - Custom Stories (Player Submitted Stories)
