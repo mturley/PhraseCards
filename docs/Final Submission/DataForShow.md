@@ -1,6 +1,7 @@
 # Overview
 <p>
-
+Phrase Cards started as a (noun) of Cards Against Humanity, but after realizing that game was (adjective), we decided to combine it with MadLibs to make our project (Awesome)!
+In Phrase Cards, up to 4 players complete to see who is the (adjective-est) ad-libber by having their submissions for each fill-in voted on by their peers.
 </p>
 
 # Problems
