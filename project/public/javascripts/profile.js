@@ -9,3 +9,4 @@ $('.friend-filter').keyup(function (event){
     }
   });
 });
+//For future content we want to only show a few at a time but this wold be implemented in the future.  
