@@ -3,8 +3,8 @@
 - 
 
 # Not Implemented
-- 
-- 
+- Custom Stories (Player Submitted Stories)
+- Different Game Modes
 
 # Future Work
 - 
@@ -17,3 +17,4 @@
 - Commercial?
 - screancast of these slides
 - Video2: voice and video of sorse code
+
