@@ -125,6 +125,7 @@ form a, form label {
   padding: 20px;
   height: 100vh;
   background: white;
+  position: fixed;
 }
 
 .player h4 {
