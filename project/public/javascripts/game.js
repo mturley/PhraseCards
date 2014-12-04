@@ -555,6 +555,18 @@
         timerName : timerName
       });
     },
+    timerHold: function(timerName) {
+      socket.emit('timer hold', {
+        game_id   : window.currentGameId,
+        timerName : timerName
+      });
+    },
+    timerReleaseHold: function(timerName) {
+      socket.emit('timer release hold', {
+        game_id   : window.currentGameId,
+        timerName : timerName
+      });
+    },
     timerPause: function() {
       socket.emit('timer pause all');
     },

@@ -231,7 +231,16 @@ module.exports = function(io) {
   // The Timers singleton object keeps track of timers for all games, emitting events once a second for each duration.
   // * Call Timers.start(game_id, timerName, durationSeconds, callback) to start a timer
   // * Call Timers.end(game_id, timerName) to stop a timer and call its callback
+  // * Call Timers.hold(game_id, timerName) to prevent a timer from calling its callback temporarily
+  // * Call Timers.releaseHold(game_id, timerName) to re-enable the callback
+  //     (Note that the "hold" on a timer doesn't stop its countdown, but at the end of the countdown,
+  //      the callback will wait for the hold to be released before executing).
   // * Call Timers.cancel(game_id, timerName) to stop a timer without calling its callback
+  // * Call Timers.cancelAll(game_id) to cancel all timers in a game
+  // * Call Timers.pause(game_id, timerName) to pause a timer's countdown
+  // * Call Timers.pauseAll(game_id) to pause all timers in a game
+  // * Call Timers.resume(game_id, timerName) to resume a timer's countdown
+  // * Call Timers.resumeAll(game_id) to resume all paused timers in a game
   var Timers = {
     timers: {}, // timers[game_id][timerName] = { durationSeconds, remainingSeconds, paused, callback, intervalID }
     start: function(game_id, timerName, durationSeconds, callback) {
@@ -250,20 +259,33 @@ module.exports = function(io) {
         timer.durationSeconds = durationSeconds;
         timer.remainingSeconds = durationSeconds;
         timer.paused = false;
+        timer.hasHold = false;
         timer.callback = callback;
         timer.intervalID = setInterval(function() {
           if(!timer.paused) {
-            timer.remainingSeconds--;
-            io.sockets.in(game_id).emit('timer tick', {
-              timerName        : timerName,
-              durationSeconds  : timer.durationSeconds,
-              remainingSeconds : timer.remainingSeconds
-            });
-            if(timer.remainingSeconds <= 0) {
+            if(timer.remainingSeconds > 0) {
+              timer.remainingSeconds--;
+              io.sockets.in(game_id).emit('timer tick', {
+                timerName        : timerName,
+                durationSeconds  : timer.durationSeconds,
+                remainingSeconds : timer.remainingSeconds
+              });
+            }
+            if(timer.remainingSeconds <= 0 && !timer.hasHold) {
               Timers.end(game_id, timerName);
             }
           }
         }, 1000);
+      }
+    },
+    hold: function(game_id, timerName) {
+      if(this.timers[game_id] && this.timers[game_id][timerName]) {
+        this.timers[game_id][timerName].hasHold = true;
+      }
+    }
+    releaseHold: function(game_id, timerName) {
+      if(this.timers[game_id] && this.timers[game_id][timerName]) {
+        this.timers[game_id][timerName].hasHold = false;
       }
     },
     end: function(game_id, timerName) {
@@ -559,6 +581,16 @@ module.exports = function(io) {
     socket.on('timer cancel', function(data) {
       Timers.cancel(_game_id, data.timerName);
       console.log("TIMER CANCELLED", data.timerName, "in game", _game_id);
+    });
+
+    socket.on('timer hold', function(data) {
+      Timers.hold(_game_id, data.timerName);
+      console.log("TIMER HELD", data.timerName, "in game", _game_id);
+    });
+
+    socket.on('timer release hold', function(data) {
+      Timers.releaseHold(_game_id, data.timerName);
+      console.log("TIMER RELEASED HOLD", data.timerName, "in game", _game_id);
     });
 
     socket.on('timer pause all', function() {
