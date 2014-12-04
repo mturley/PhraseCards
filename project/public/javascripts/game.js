@@ -253,6 +253,14 @@
 
   Template.reviewArea.winningCard = Template.playArea.winningCard;
 
+  Template.reviewArea.nextRoundButton = function() {
+    var game = GameUI.model.get();
+    if(game.currentRound >= game.adaptedStory.storyChunks.length - 1) {
+      return "Read Finished Story";
+    }
+    return "Start Next Round";
+  };
+
   ////
 
   Template.storyArea.story_id = function() {
@@ -492,6 +500,11 @@
       socket.emit('select word', {
         submissionId: submissionId
       });
+    });
+
+    $('#gameArea_parent').on('click', '.start-next-round', function(event) {
+      event.preventDefault();
+      socket.emit('start next round');
     });
 
     function callAlert(message){

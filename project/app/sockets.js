@@ -10,9 +10,8 @@ var gravatar = require('node-gravatar'),
 
 var Constants = {
   // Durations are in seconds
-  SUBMISSION_PHASE_DURATION : 10,
-  SELECTION_PHASE_DURATION  : 10,
-  REVIEW_PHASE_DURATION     : 5
+  SUBMISSION_PHASE_DURATION : 30,
+  SELECTION_PHASE_DURATION  : 10
 };
 
 
@@ -338,30 +337,37 @@ module.exports = function(io) {
 
 
   var GameManager = {
+    flags: {},
     startNextRound: function(game_id) {
-      Game.findById(game_id, function(err, game) {
-        var newRound = (game.currentRound === null ? 0 : game.currentRound + 1);
-        if(newRound >= game.adaptedStory.storyChunks.length) {
-          GameManager.endGame(game_id);
-        } else {
-          DBHelpers.nextCzar(game_id, function() {
-            DBHelpers.setGameRoundAndPhase(game_id, newRound, 'wordSubmission', function(err, game) {
-              io.sockets.in(game_id).emit('game state changed', game);
-              io.sockets.in(game_id).emit('czar changed');
-              Timers.start(game_id, 'wordSubmission', Constants.SUBMISSION_PHASE_DURATION, function() {
-                // TODO check if there are no submitted words, if so, wait until one is submitted first?
-                GameManager.startSelectionPhase(game_id);
+      if(!this.flags[game_id]) this.flags[game_id] = {};
+      if(!this.flags[game_id]['starting round']) {
+        this.flags[game_id]['starting round'] = true;
+        Game.findById(game_id, function(err, game) {
+          var newRound = (game.currentRound === null ? 0 : game.currentRound + 1);
+          if(newRound >= game.adaptedStory.storyChunks.length) {
+            delete GameManager.flags[game_id]['starting round'];
+            GameManager.endGame(game_id);
+          } else {
+            DBHelpers.nextCzar(game_id, function() {
+              DBHelpers.setGameRoundAndPhase(game_id, newRound, 'wordSubmission', function(err, game) {
+                io.sockets.in(game_id).emit('game state changed', game);
+                delete GameManager.flags[game_id]['starting round'];
+                io.sockets.in(game_id).emit('czar changed');
+                Timers.start(game_id, 'wordSubmission', Constants.SUBMISSION_PHASE_DURATION, function() {
+                  // TODO check if there are no submitted words, if so, wait until one is submitted first?
+                  GameManager.startSelectionPhase(game_id);
+                });
               });
             });
-          });
-        }
-      });
+          }
+        });
+      }
     },
     startSelectionPhase: function(game_id) {
       DBHelpers.setGamePhase(game_id, 'wordSelection', function(err, game) {
         io.sockets.in(game_id).emit('game state changed', game);
         Timers.start(game_id, 'wordSelection', Constants.SELECTION_PHASE_DURATION, function() {
-          // Check if there's a winning word, if not, select one randomly first\
+          // Check if there's a winning word, if not, select one randomly first
           var blank = game.adaptedStory.storyChunks[game.currentRound].blank;
           if(!blank.winningSubmission.word) {
             var random = Math.round(Math.random() * (blank.submissions.length - 1));
@@ -380,9 +386,7 @@ module.exports = function(io) {
       DBHelpers.setGamePhase(game_id, 'review', function(err, game) {
         io.sockets.in(game_id).emit('game state changed', game);
         // TODO award points to the submitter of the winning word
-        Timers.start(game_id, 'review', Constants.REVIEW_PHASE_DURATION, function() {
-          GameManager.startNextRound(game_id);
-        });
+
       });
     },
     endGame: function(game_id) {
@@ -501,7 +505,11 @@ module.exports = function(io) {
         io.sockets.in(_game_id).emit('game state changed', game);
         Timers.end('wordSelection');
       });
-    })
+    });
+
+    socket.on('start next round', function() {
+      GameManager.startNextRound(_game_id);
+    });
 
     socket.on('disconnect', function(data) {
       socket.leave(_game_id);
