@@ -325,7 +325,7 @@
 
   Template.endArea.currentStory = function() {
     var game = GameUI.model.get();
-    if(!game.adaptedStory || game.currentRound === null) return [];
+    if(!game.adaptedStory) return [];
     return game.adaptedStory.storyChunks;
   };
 
