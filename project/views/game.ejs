@@ -215,7 +215,7 @@
           <h4>{{storyName}}</h4>
           <p>
             {{#each currentStory}}
-              {{this.prefix}} {{this.blank.winningSubmission.word}} {{this.suffix}}
+              {{this.prefix}} <span class="winning-word"> {{this.blank.winningSubmission.word}} </span> {{this.suffix}}
             {{/each}}
           </p>
         </div>
@@ -233,9 +233,22 @@
     <p>
       {{#each currentStorySoFar}}
         {{#if currentStoryChunk}}
-          <br><br>Round {{currentRound}} <i class="fa fa-hand-o-right"></i> <span class="blur_large">{{this.prefix}} </span> ___________ <span class="blur_large">{{this.suffix}} </span><br><br>
+          <br><br>Round {{currentRound}} <i class="fa fa-hand-o-right"></i>
+          <span class="blur_large">{{this.prefix}} </span>
+          {{#if this.blank.winningSubmission}}
+            {{this.blank.winningSubmission.word}}
+          {{else}}
+            ___________ 
+          {{/if}}
+          <span class="blur_large">{{this.suffix}} </span><br><br>
         {{else}}
-          <span class="blur">{{this.prefix}} </span> ___________ <span class="blur">{{this.suffix}} </span>
+          <span class="blur">{{this.prefix}} </span>
+          {{#if this.blank.winningSubmission}}
+            {{this.blank.winningSubmission.word}}
+          {{else}}
+            ___________ 
+          {{/if}}
+          <span class="blur">{{this.suffix}} </span>
         {{/if}}
 
       {{/each}}</p>

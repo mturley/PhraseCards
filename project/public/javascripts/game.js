@@ -44,7 +44,7 @@
       if(matchingPlayers.length < 1) return null;
       return matchingPlayers[0];
     },
-    getTopScoringPlayer: function() {
+    getTopScoringPlayers: function() {
       var players = GameUI.model.get().players;
       var topScorer = { score: 0 };
       for(var i = 0; i < players.length; i++){
@@ -52,7 +52,9 @@
           topScorer = players[i];
         }
       }
-      return topScorer;
+      return players.filter(function(player) {
+        return player.score === topScorer.score;
+      });
     },
     availableStories: new Blaze.Var([]),
     reloadStories: function() {
@@ -306,11 +308,13 @@
   ////
 
   Template.endArea.winningPlayerName = function() { // winner of the whole game!
-    return GameUI.getTopScoringPlayer().nickname;
+    var winners = GameUI.getTopScoringPlayers();
+    if(winners.length === 1) return winners[0].nickname;
+    return "Tie: "+winners.join(", ");
   };
 
   Template.endArea.winningScore = function() {
-    return GameUI.getTopScoringPlayer().score;
+    return GameUI.getTopScoringPlayers()[0].score;
   };
 
   Template.endArea.storyName = function() {
