@@ -389,9 +389,9 @@ module.exports = function(io) {
     startSelectionPhase: function(game_id) {
       DBHelpers.setGamePhase(game_id, 'wordSelection', function(err, game) {
         io.sockets.in(game_id).emit('game state changed', game);
-        var blank = game.adaptedStory.storyChunks[game.currentRound].blank;
         Timers.start(game_id, 'wordSelection', Constants.SELECTION_PHASE_DURATION, function() {
           // Check if there's a winning word, if not, select one randomly first
+          var blank = game.adaptedStory.storyChunks[game.currentRound].blank;
           if(!blank.winningSubmission.word) {
             var random = Math.round(Math.random() * (blank.submissions.length - 1));
             var submissionId = blank.submissions[random]._id.toString();
@@ -404,6 +404,7 @@ module.exports = function(io) {
           }
         });
         // If there's only one submission anyway, just go ahead and move on
+        var blank = game.adaptedStory.storyChunks[game.currentRound].blank;
         if(blank.submissions.length === 1) Timers.end(game_id, 'wordSelection');
       });
     },
