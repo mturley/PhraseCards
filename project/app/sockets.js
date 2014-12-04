@@ -366,9 +366,9 @@ module.exports = function(io) {
     startSelectionPhase: function(game_id) {
       DBHelpers.setGamePhase(game_id, 'wordSelection', function(err, game) {
         io.sockets.in(game_id).emit('game state changed', game);
+        var blank = game.adaptedStory.storyChunks[game.currentRound].blank;
         Timers.start(game_id, 'wordSelection', Constants.SELECTION_PHASE_DURATION, function() {
           // Check if there's a winning word, if not, select one randomly first
-          var blank = game.adaptedStory.storyChunks[game.currentRound].blank;
           if(!blank.winningSubmission.word) {
             var random = Math.round(Math.random() * (blank.submissions.length - 1));
             var submissionId = blank.submissions[random]._id.toString();
@@ -380,6 +380,8 @@ module.exports = function(io) {
             GameManager.startReviewPhase(game_id);
           }
         });
+        // If there's only one submission anyway, just go ahead and move on
+        if(blank.submissions.length === 1) Timers.end(game_id, 'wordSelection');
       });
     },
     startReviewPhase: function(game_id) {
@@ -495,7 +497,7 @@ module.exports = function(io) {
         // After submitting a word, if everyone but the czar has submitted a word, move on.
         var blank = game.adaptedStory.storyChunks[game.currentRound].blank;
         if(blank.submissions.length === game.players.length - 1) {
-          Timers.end('wordSubmission');
+          Timers.end(_game_id, 'wordSubmission');
         }
       });
     });
@@ -503,7 +505,7 @@ module.exports = function(io) {
     socket.on('select word', function(data) {
       DBHelpers.selectWord(_game_id, data.submissionId, function(err, game) {
         io.sockets.in(_game_id).emit('game state changed', game);
-        Timers.end('wordSelection');
+        Timers.end(_game_id, 'wordSelection');
       });
     });
 
