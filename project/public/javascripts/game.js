@@ -524,6 +524,8 @@
       setTimeout(function(){$('.alert-box').addClass('zoomOut');}, 6000);
     }
 
+    window.onscroll(function(){$(".sidebar").style.height = window.height + "px";});
+
   }); // end document ready
 
 
