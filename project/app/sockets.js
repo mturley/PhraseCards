@@ -10,7 +10,7 @@ var gravatar = require('node-gravatar'),
 
 var Constants = {
   // Durations are in seconds
-  SUBMISSION_PHASE_DURATION : 30,
+  SUBMISSION_PHASE_DURATION : 10,
   SELECTION_PHASE_DURATION  : 10,
   REVIEW_PHASE_DURATION     : 5
 };
@@ -363,9 +363,9 @@ module.exports = function(io) {
         Timers.start(game_id, 'wordSelection', Constants.SELECTION_PHASE_DURATION, function() {
           // Check if there's a winning word, if not, select one randomly first\
           var blank = game.adaptedStory.storyChunks[game.currentRound].blank;
-          if(!blank.winningSubmission) {
+          if(!blank.winningSubmission.word) {
             var random = Math.round(Math.random() * (blank.submissions.length - 1));
-            var submissionId = blank.submissions[random]._id;
+            var submissionId = blank.submissions[random]._id.toString();
             DBHelpers.selectWord(game_id, submissionId, function(err, game) {
               io.sockets.in(game_id).emit('game state changed', game);
               GameManager.startReviewPhase(game_id);
