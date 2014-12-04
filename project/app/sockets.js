@@ -402,17 +402,19 @@ module.exports = function(io) {
         io.sockets.in(game_id).emit('game state changed', game);
         Timers.start(game_id, 'wordSelection', Constants.SELECTION_PHASE_DURATION, function() {
           // Check if there's a winning word, if not, select one randomly first
-          var blank = game.adaptedStory.storyChunks[game.currentRound].blank;
-          if(!blank.winningSubmission.word) {
-            var random = Math.round(Math.random() * (blank.submissions.length - 1));
-            var submissionId = blank.submissions[random]._id.toString();
-            DBHelpers.selectWord(game_id, submissionId, function(err, game) {
-              io.sockets.in(game_id).emit('game state changed', game);
+          Game.findById(game_id, function(err, game) {
+            var blank = game.adaptedStory.storyChunks[game.currentRound].blank;
+            if(!blank.winningSubmission.word) {
+              var random = Math.round(Math.random() * (blank.submissions.length - 1));
+              var submissionId = blank.submissions[random]._id.toString();
+              DBHelpers.selectWord(game_id, submissionId, function(err, game) {
+                io.sockets.in(game_id).emit('game state changed', game);
+                GameManager.startReviewPhase(game_id);
+              });
+            } else {
               GameManager.startReviewPhase(game_id);
-            });
-          } else {
-            GameManager.startReviewPhase(game_id);
-          }
+            }
+          });
         });
         // If there's only one submission anyway, just go ahead and move on
         var blank = game.adaptedStory.storyChunks[game.currentRound].blank;
@@ -545,6 +547,7 @@ module.exports = function(io) {
 
     socket.on('select word', function(data) {
       DBHelpers.selectWord(_game_id, data.submissionId, function(err, game) {
+        var blank = game.adaptedStory.storyChunks[game.currentRound].blank;
         io.sockets.in(_game_id).emit('game state changed', game);
         Timers.end(_game_id, 'wordSelection');
       });
