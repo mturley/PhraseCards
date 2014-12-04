@@ -488,12 +488,18 @@ module.exports = function(io) {
     socket.on('submit word', function(data) {
       DBHelpers.submitWord(_game_id, data.user_id, data.word, function(err, game) {
         io.sockets.in(_game_id).emit('game state changed', game);
+        // After submitting a word, if everyone but the czar has submitted a word, move on.
+        var blank = game.adaptedStory.storyChunks[game.currentRound].blank;
+        if(blank.submissions.length === game.players.length - 1) {
+          Timers.end('wordSubmission');
+        }
       });
     });
 
     socket.on('select word', function(data) {
       DBHelpers.selectWord(_game_id, data.submissionId, function(err, game) {
         io.sockets.in(_game_id).emit('game state changed', game);
+        Timers.end('wordSelection');
       });
     })
 
