@@ -5,6 +5,16 @@
 
   "use strict";
 
+
+  /////////////////////////////////////////////////////////////////////////////
+  //  _   _ ___    ____    _  _____  _       __  __  ___  ____  _____ _      //
+  // | | | |_ _|  |  _ \  / \|_   _|/ \     |  \/  |/ _ \|  _ \| ____| |     //
+  // | | | || |   | | | |/ _ \ | | / _ \    | |\/| | | | | | | |  _| | |     //
+  // | |_| || |   | |_| / ___ \| |/ ___ \   | |  | | |_| | |_| | |___| |___  //
+  //  \___/|___|  |____/_/   \_\_/_/   \_\  |_|  |_|\___/|____/|_____|_____| //
+  //                                                                         //
+  /////////////////////////////////////////////////////////////////////////////
+
   var GameUI = {
     model: new Blaze.Var({
       title        : '',
@@ -33,6 +43,16 @@
       });
       if(matchingPlayers.length < 1) return null;
       return matchingPlayers[0];
+    },
+    getTopScoringPlayer: function() {
+      var players = GameUI.model.get().players;
+      var topScorer = { score: 0 };
+      for(var i = 0; i < players.length; i++){
+        if(players[i].score > topScorer.score){
+          topScorer = players[i];
+        }
+      }
+      return topScorer;
     },
     availableStories: new Blaze.Var([]),
     reloadStories: function() {
@@ -70,6 +90,20 @@
 
   GameUI.reloadStories();
 
+
+
+
+
+
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
+  //  _____ _____ __  __ ____  _        _  _____ _____    _   _ _____ _     ____  _____ ____  ____    //
+  // |_   _| ____|  \/  |  _ \| |      / \|_   _| ____|  | | | | ____| |   |  _ \| ____|  _ \/ ___|   //
+  //   | | |  _| | |\/| | |_) | |     / _ \ | | |  _|    | |_| |  _| | |   | |_) |  _| | |_) \___ \   //
+  //   | | | |___| |  | |  __/| |___ / ___ \| | | |___   |  _  | |___| |___|  __/| |___|  _ < ___) |  //
+  //   |_| |_____|_|  |_|_|   |_____/_/   \_\_| |_____|  |_| |_|_____|_____|_|   |_____|_| \_\____/   //
+  //                                                                                                  //
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
 
   //// Blaze Template Helpers ////
 
@@ -211,39 +245,11 @@
   };
 
   Template.reviewArea.winningAvatar = function() {
-    var players = GameUI.model.get().players;
-    var topScorer = {};
-    for(var i = 0; i < players.length; i++){
-      if(players[i].score > topScorer.score){
-        topScorer = players[i];
-      }
-    }
-    console.log(topScorer);
-    return topScorer.avatar;
+    return GameUI.getWinningPlayerThisRound().avatar;
   };
 
-  Template.reviewArea.winningPlayerName = function() {
-    var players = GameUI.model.get().players;
-    var topScorer = {};
-    for(var i = 0; i < players.length; i++){
-      if(players[i].score > topScorer.score){
-        topScorer = players[i];
-      }
-    }
-    console.log(topScorer);
-    return topScorer.nickname;
-  };
-
-  Template.endArea.winningScore = function() {
-    // TODO
-  };
-
-  Template.endArea.storyName = function() {
-    // TODO
-  };
-
-  Template.endArea.storyChunks = function() {
-    // TODO
+  Template.reviewArea.winningPlayerName = function() { // winner of the current round!
+    return GameUI.getWinningPlayerThisRound().nickname;
   };
 
   Template.reviewArea.winningCard = Template.playArea.winningCard;
@@ -278,12 +284,48 @@
     return game.currentRound + 1;
   };
 
-
   Template.storyArea.currentStoryName = function() {
     var game = GameUI.model.get();
     if(!game.adaptedStory) return '';
     return game.adaptedStory.name;
   };
+
+  ////
+
+  Template.endArea.winningPlayerName = function() { // winner of the whole game!
+    return GameUI.getTopScoringPlayer().nickname;
+  };
+
+  Template.endArea.winningScore = function() {
+    return GameUI.getTopScoringPlayer().score;
+  };
+
+  Template.endArea.storyName = function() {
+    var game = GameUI.model.get();
+    if(!game.adaptedStory) return '';
+    return game.adaptedStory.name;
+  };
+
+  Template.endArea.storyChunks = Template.storyArea.currentStory;
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////
+//  ____   ___   ____ _  _______ _____    ____  _____ _____ _   _ ____   //
+// / ___| / _ \ / ___| |/ / ____|_   _|  / ___|| ____|_   _| | | |  _ \  //
+// \___ \| | | | |   | ' /|  _|   | |    \___ \|  _|   | | | | | | |_) | //
+//  ___) | |_| | |___| . \| |___  | |     ___) | |___  | | | |_| |  __/  //
+// |____/ \___/ \____|_|\_\_____| |_|    |____/|_____| |_|  \___/|_|     //
+//                                                                       //
+///////////////////////////////////////////////////////////////////////////
+
+
 
   //// Socket Connection Setup ////
 
@@ -305,7 +347,20 @@
   });
 
 
-///////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+  ////////////////////////////////////////////////////////////
+  //  ____   ___  __  __    ____  _____    _    ______   __ //
+  // |  _ \ / _ \|  \/  |  |  _ \| ____|  / \  |  _ \ \ / / //
+  // | | | | | | | |\/| |  | |_) |  _|   / _ \ | | | \ V /  //
+  // | |_| | |_| | |  | |  |  _ <| |___ / ___ \| |_| || |   //
+  // |____/ \___/|_|  |_|  |_| \_\_____/_/   \_\____/ |_|   //
+  //                                                        //
+  ////////////////////////////////////////////////////////////
+
 
 
   $(document).ready(function() {
@@ -330,14 +385,30 @@
     }
 
 
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    //  _______     _______ _   _ _____    _   _    _    _   _ ____  _     _____ ____  ____   //
+    // | ____\ \   / / ____| \ | |_   _|  | | | |  / \  | \ | |  _ \| |   | ____|  _ \/ ___|  //
+    // |  _|  \ \ / /|  _| |  \| | | |    | |_| | / _ \ |  \| | | | | |   |  _| | |_) \___ \  //
+    // | |___  \ V / | |___| |\  | | |    |  _  |/ ___ \| |\  | |_| | |___| |___|  _ < ___) | //
+    // |_____|  \_/  |_____|_| \_| |_|    |_| |_/_/   \_\_| \_|____/|_____|_____|_| \_\____/  //
+    //                                                                                        //
+    ////////////////////////////////////////////////////////////////////////////////////////////
+
+
     //// DOM-Dependent Socket Message Handlers ////
 
     socket.on('join failed', function(reason) {
       // TODO alert user that they couldn't join, and either leave or use spectator mode
       if(reason === 'No Such Room') {
-        // TODO
+        alert("No Such Game!");
+        document.location = "/lobby";
       } else if(reason === 'Room is Full') {
-        // TODO
+        alert("This room is full!");
+        document.location = "/lobby";
       }
     });
 
@@ -421,6 +492,20 @@
 
   }); // end document ready
 
+
+
+
+
+
+
+/////////////////////////////////////
+//  ____  _____ ____  _   _  ____  //
+// |  _ \| ____| __ )| | | |/ ___| //
+// | | | |  _| |  _ \| | | | |  _  //
+// | |_| | |___| |_) | |_| | |_| | //
+// |____/|_____|____/ \___/ \____| //
+//                                 //
+/////////////////////////////////////
 
   // DEBUGGING ONLY BELOW -- DO NOT USE IN GAME
 
