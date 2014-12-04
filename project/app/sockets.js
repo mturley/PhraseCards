@@ -438,24 +438,26 @@ module.exports = function(io) {
       socket.leave(_game_id);
       // remove this player from the game in the database, and emit a state update!
       DBHelpers.removePlayerFromGame(_game_id, _user_id, function(err, game) {
-        io.sockets.in(_game_id).emit('game state changed', game);
-        User.findById(_user_id, function(err, userObject) {
-          if(userObject) io.sockets.in(_game_id).emit('player left', {
-            user_id  : userObject._id,
-            nickname : userObject.local.nickname,
-            avatar   : gravatar.get(userObject.local.email)
-          });
-        });
-        if(game.currentPhase !== 'setup') {
-          var gameHasCzar = game.players.filter(function(player) {
-            return player.isCardCzar;
-          }).length > 0;
-          if(!gameHasCzar) {
-            // the player who left was the czar, we need a new one
-            DBHelpers.nextCzar(_game_id, function(err, game) {
-              io.sockets.in(_game_id).emit('game state changed', game);
-              io.sockets.in(_game_id).emit('czar changed');
+        if(game) {
+          io.sockets.in(_game_id).emit('game state changed', game);
+          User.findById(_user_id, function(err, userObject) {
+            if(userObject) io.sockets.in(_game_id).emit('player left', {
+              user_id  : userObject._id,
+              nickname : userObject.local.nickname,
+              avatar   : gravatar.get(userObject.local.email)
             });
+          });
+          if(game.currentPhase !== 'setup') {
+            var gameHasCzar = game.players.filter(function(player) {
+              return player.isCardCzar;
+            }).length > 0;
+            if(!gameHasCzar) {
+              // the player who left was the czar, we need a new one
+              DBHelpers.nextCzar(_game_id, function(err, game) {
+                io.sockets.in(_game_id).emit('game state changed', game);
+                io.sockets.in(_game_id).emit('czar changed');
+              });
+            }
           }
         }
       });
