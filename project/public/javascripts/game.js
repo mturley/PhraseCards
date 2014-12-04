@@ -68,6 +68,7 @@
     timer: null,
     updateTimer: function(remainingSeconds, durationSeconds) {
       if(this.timer === null) {
+        $("#timer-container").empty().html('<header id="clock-seconds"></header>');
         var element = $("#timer-container").get(0);
         this.timer = new ProgressBar.Circle(element, {
           duration: 200,
