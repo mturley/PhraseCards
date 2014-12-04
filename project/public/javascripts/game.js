@@ -15,7 +15,7 @@
   //                                                                         //
   /////////////////////////////////////////////////////////////////////////////
 
-  var GameUI = {
+  window.GameUI = {
     model: new Blaze.Var({
       title        : '',
       owner        : null,
@@ -81,10 +81,9 @@
       });
     },
     destroyTimer: function() {
-      if(this.timer) {
-        this.timer.destroy();
-        this.timer = null;
-      }
+      this.updateTimer(0,0);
+      $("#timer-container").empty();
+      this.timer = null;
     }
   };
 
