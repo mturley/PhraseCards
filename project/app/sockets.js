@@ -198,6 +198,17 @@ var DBHelpers = {
         );
       }
     });
+  },
+  awardPointsToPlayer: function(game_id, user_id, numPoints, callback) {
+    Game.findOneAndUpdate(
+      {
+        _id     : game_id,
+        players : { $elemMatch: { user_id : user_id } }
+      },
+      {$inc: { "players.$.score" : numPoints }},
+      {safe: true, upsert: false},
+      callback
+    );
   }
 }; // end DbHelpers
 
@@ -411,8 +422,10 @@ module.exports = function(io) {
     startReviewPhase: function(game_id) {
       DBHelpers.setGamePhase(game_id, 'review', function(err, game) {
         io.sockets.in(game_id).emit('game state changed', game);
-        // TODO award points to the submitter of the winning word
-
+        var roundWinnerId = game.adaptedStory.storyChunks[game.currentRound].blank.winningSubmission.user_id;
+        DBHelpers.awardPointsToPlayer(game_id, roundWinnerId, 500, function(err, game) {
+          io.sockets.in(game_id).emit('game state changed', game);
+        });
       });
     },
     endGame: function(game_id) {
@@ -519,6 +532,9 @@ module.exports = function(io) {
       DBHelpers.submitWord(_game_id, data.user_id, data.word, function(err, game) {
         io.sockets.in(_game_id).emit('game state changed', game);
         Timers.releaseHold(_game_id, 'wordSubmission');
+        DBHelpers.awardPointsToPlayer(_game_id, data.user_id, 100, function(err, game) {
+          io.sockets.in(_game_id).emit('game state changed', game);
+        });
         // After submitting a word, if everyone but the czar has submitted a word, move on.
         var blank = game.adaptedStory.storyChunks[game.currentRound].blank;
         if(blank.submissions.length === game.players.length - 1) {
