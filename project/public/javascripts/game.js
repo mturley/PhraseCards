@@ -451,12 +451,15 @@
     //// DOM Event Handlers ////
 
     $('#gameArea_parent').on('submit', '#chatform', function() {
-      socket.emit('chat message', {
-        user_id  : window.loggedInUser._id,
-        nickname : window.loggedInUser.nickname,
-        avatar   : window.loggedInUser.avatar,
-        message  : $('#message').val()
-      });
+      var message = $('#message').val();
+      if(message !== '') {
+        socket.emit('chat message', {
+          user_id  : window.loggedInUser._id,
+          nickname : window.loggedInUser.nickname,
+          avatar   : window.loggedInUser.avatar,
+          message  : message
+        });
+      }
       $('#message').val('');
       return false;
     });
