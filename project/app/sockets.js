@@ -520,3 +520,14 @@ module.exports = function(io) {
   }); // end io.sockets.on('connection')
 
 }; // end module.exports
+
+
+//  _______________________
+// < everything will be ok >
+//  -----------------------
+//         \   ^__^
+//          \  (oo)\_______
+//             (__)\       )\/\
+//                 ||----w |
+//                 ||     ||
+//
