@@ -379,6 +379,7 @@ module.exports = function(io) {
                   // TODO check if there are no submitted words, if so, wait until one is submitted first?
                   GameManager.startSelectionPhase(game_id);
                 });
+                Timers.hold(game_id, 'wordSubmission'); // hold the timer until we have at least one submission
               });
             });
           }
@@ -516,6 +517,7 @@ module.exports = function(io) {
     socket.on('submit word', function(data) {
       DBHelpers.submitWord(_game_id, data.user_id, data.word, function(err, game) {
         io.sockets.in(_game_id).emit('game state changed', game);
+        Timers.releaseHold(_game_id, 'wordSubmission');
         // After submitting a word, if everyone but the czar has submitted a word, move on.
         var blank = game.adaptedStory.storyChunks[game.currentRound].blank;
         if(blank.submissions.length === game.players.length - 1) {
