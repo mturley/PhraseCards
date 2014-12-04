@@ -159,6 +159,12 @@ form a, form label {
   max-width: 128px;
 }
 
+.winning-word {
+  text-decoration: underline;
+  font-weight: 800;
+  font-size: 1.2em;
+}
+
 .alert-box {
   position: fixed;
   top: 20;
@@ -334,6 +340,7 @@ form a, form label {
   border-radius: 5px;
   margin: 0 4px;
 }
+
 
 #chat_container {
   font-size: 18px;
