@@ -159,7 +159,10 @@ form a, form label {
 }
 
 .alert-box {
-  margin-top: 40px;
+  position: fixed;
+  top: 20;
+  min-width: 800px;
+  right: 10%;
 }
 
 .storySelect {
