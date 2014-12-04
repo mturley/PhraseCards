@@ -282,7 +282,7 @@ module.exports = function(io) {
       if(this.timers[game_id] && this.timers[game_id][timerName]) {
         this.timers[game_id][timerName].hasHold = true;
       }
-    }
+    },
     releaseHold: function(game_id, timerName) {
       if(this.timers[game_id] && this.timers[game_id][timerName]) {
         this.timers[game_id][timerName].hasHold = false;
