@@ -1,6 +1,6 @@
 <% include partials/header %>
 
-<div id="sidebar_parent" class="medium-3 large-3 columns sidebar">
+<div id="sidebar_parent" class="medium-3 large-3 columns sidebar" >
   <!-- Blaze will populate this element with the "sidebar" template -->
 </div>
 
@@ -70,7 +70,18 @@
       <div class="row">
         {{> storyArea}}
         <div class="medium-6 large-6 columns">
-          {{> chatArea}}
+          <div class="row chat text-left chatArea">
+            <ul id="chat_container" class="no-bullet">
+            </ul>
+            <form action="" id="chatform" class="chat">
+              <div class="large-8 columns">
+                <input id="message" autocomplete="off" type="text"/>
+              </div>
+              <div class="large-4 columns">
+                <button class="button button-large expand"><i class="fa fa-comments-o"></i> Send Message</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
 
