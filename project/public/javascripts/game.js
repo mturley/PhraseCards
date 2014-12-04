@@ -237,19 +237,18 @@
   Template.playArea.winningCard = function() {
     var game = GameUI.model.get();
     if(!game.adaptedStory || game.currentRound === null) return null;
-    var winner = game.adaptedStory.storyChunks[game.currentRound].blank.winningSubmission;
-    if(winner) {
-      return winner.word;
-    }
-    return null;
+    var card = game.adaptedStory.storyChunks[game.currentRound].blank.winningSubmission;
+    return (card ? card.word : '');
   };
 
   Template.reviewArea.winningAvatar = function() {
-    return GameUI.getWinningPlayerThisRound().avatar;
+    var player = GameUI.getWinningPlayerThisRound();
+    return (player ? player.avatar : '');
   };
 
   Template.reviewArea.winningPlayerName = function() { // winner of the current round!
-    return GameUI.getWinningPlayerThisRound().nickname;
+    var player = GameUI.getWinningPlayerThisRound();
+    return (player ? player.nickname : '');
   };
 
   Template.reviewArea.winningCard = Template.playArea.winningCard;
@@ -450,12 +449,15 @@
     //// DOM Event Handlers ////
 
     $('#gameArea_parent').on('submit', '#chatform', function() {
-      socket.emit('chat message', {
-        user_id  : window.loggedInUser._id,
-        nickname : window.loggedInUser.nickname,
-        avatar   : window.loggedInUser.avatar,
-        message  : $('#message').val()
-      });
+      var message = $('#message').val();
+      if(message !== '') {
+        socket.emit('chat message', {
+          user_id  : window.loggedInUser._id,
+          nickname : window.loggedInUser.nickname,
+          avatar   : window.loggedInUser.avatar,
+          message  : message
+        });
+      }
       $('#message').val('');
       return false;
     });
