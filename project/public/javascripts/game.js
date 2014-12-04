@@ -310,7 +310,11 @@
   Template.endArea.winningPlayerName = function() { // winner of the whole game!
     var winners = GameUI.getTopScoringPlayers();
     if(winners.length === 1) return winners[0].nickname;
-    return "Tie: "+winners.join(", ");
+    var winnerNames = []''
+    for(var i=0; i<winners.length; i++) {
+      winnerNames.push(winners[i].nickname);
+    }
+    return "Tie: "+winnerNames.join(", ");
   };
 
   Template.endArea.winningScore = function() {
