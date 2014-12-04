@@ -413,14 +413,14 @@
 
     socket.on('player joined', function(data) {
       console.log("Player Joined: ", data);
-      // TODO alert that a player has joined the game
-      callAlert('joined the room.', data);
+      var message = data.nickname + ' joined the room.';
+      callAlert(message);
     });
 
     socket.on('player left', function(data) {
       console.log("Player Left: ", data);
-      // TODO alert that a player has left the game
-      callAlert('left the room.', data);
+      var message = data.nickname + ' left the room.';
+      callAlert(message);
     });
 
     socket.on('chat message', function(data) {
@@ -494,8 +494,8 @@
       });
     });
 
-    function callAlert(message, data){
-      $('.alert_parent').append('<div data-alert class="alert-box info radius animated zoomIn">' + data.nickname + ' ' + message + '<a href="#" class="close">&times;</a></div>');
+    function callAlert(message){
+      $('.alert_parent').append('<div data-alert class="alert-box info radius animated zoomIn">' + message + '<a href="#" class="close">&times;</a></div>');
       setTimeout(function(){$('.alert-box').addClass('zoomOut');}, 6000);
     }
 
