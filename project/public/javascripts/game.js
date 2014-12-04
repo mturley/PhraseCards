@@ -15,7 +15,7 @@
   //                                                                         //
   /////////////////////////////////////////////////////////////////////////////
 
-  window.GameUI = {
+  var GameUI = {
     model: new Blaze.Var({
       title        : '',
       owner        : null,
