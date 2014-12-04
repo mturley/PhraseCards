@@ -415,11 +415,15 @@
     socket.on('player joined', function(data) {
       console.log("Player Joined: ", data);
       // TODO alert that a player has joined the game
+      $('.alert_parent').append('<div data-alert class="alert-box info radius animated zoomIn">' + data.nickname + ' joined the room.<a href="#" class="close">&times;</a></div>');
+      setTimeout(function(){$('.alert-box').hide();}, 6000);
     });
 
     socket.on('player left', function(data) {
       console.log("Player Left: ", data);
       // TODO alert that a player has left the game
+      $('.alert_parent').append('<div data-alert class="alert-box info radius animated zoomIn">' + data.nickname + ' left the room.<a href="#" class="close">&times;</a></div>');
+      setTimeout(function(){$('.alert-box').hide();}, 6000);
     });
 
     socket.on('chat message', function(data) {
