@@ -209,6 +209,16 @@ var DBHelpers = {
       {safe: true, upsert: false},
       callback
     );
+  },
+  recordGameWinner: function(game_id, user_id, callback) {
+    User.findByIdAndUpdate(
+      user_id,
+      {$push: { game_history: {
+        game_id : game_id
+      }}},
+      {safe: true, upsert: false},
+      callback
+    )
   }
 }; // end DbHelpers
 
@@ -433,6 +443,19 @@ module.exports = function(io) {
     endGame: function(game_id) {
       DBHelpers.setGameRoundAndPhase(game_id, null, 'end', function(err, game) {
         io.sockets.in(game_id).emit('game state changed', game);
+        var players = GameUI.model.get().players;
+        var topScorer = { score: 0 };
+        for(var i = 0; i < players.length; i++){
+          if(players[i].score > topScorer.score){
+            topScorer = players[i];
+          }
+        }
+        var winners = players.filter(function(player) {
+          return player.score === topScorer.score;
+        });
+        winners.forEach(function(player) {
+          DBHelpers.recordGameWinner(game_id, player.user_id);
+        });
       });
     }
   };
