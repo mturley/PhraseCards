@@ -456,8 +456,8 @@
 
     socket.on('timer ended', function(data) {
       console.log("TIMER ENDED: ", data.timerName);
-      // TODO
-    })
+      GameUI.destroyTimer();
+    });
 
 
     //// DOM Event Handlers ////
