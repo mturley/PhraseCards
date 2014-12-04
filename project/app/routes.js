@@ -1,9 +1,9 @@
 var gravatar = require('node-gravatar');
-var http = require('https');
+var http = require('http');
 var url = require('url');
 
 // TODO  need a better way to get hostname rather than hardcode
-var hostname = "https://powerful-sands-7248.herokuapp.com";
+var hostname = "http://localhost:8080";
 
 module.exports = function(app,passport) {
   app
