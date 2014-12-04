@@ -319,6 +319,12 @@
     return game.adaptedStory.name;
   };
 
+  Template.endArea.currentStory = function() {
+    var game = GameUI.model.get();
+    if(!game.adaptedStory || game.currentRound === null) return [];
+    return game.adaptedStory.storyChunks;
+  };
+
   Template.endArea.storyChunks = Template.storyArea.currentStory;
 
 
