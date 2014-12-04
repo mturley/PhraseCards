@@ -251,6 +251,12 @@
     return (player ? player.nickname : '');
   };
 
+  Template.reviewArea.currentRound = function() {
+    var round = GameUI.model.get().currentRound;
+    if(round !== null) return round + 1;
+    return null;
+  };
+
   Template.reviewArea.winningCard = Template.playArea.winningCard;
 
   Template.reviewArea.nextRoundButton = function() {
