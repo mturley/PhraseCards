@@ -361,8 +361,18 @@ module.exports = function(io) {
       DBHelpers.setGamePhase(game_id, 'wordSelection', function(err, game) {
         io.sockets.in(game_id).emit('game state changed', game);
         Timers.start(game_id, 'wordSelection', Constants.SELECTION_PHASE_DURATION, function() {
-          // TODO check if there's a winning word, if not, select one randomly first
-          GameManager.startReviewPhase(game_id);
+          // Check if there's a winning word, if not, select one randomly first\
+          var blank = game.adaptedStory.storyChunks[game.currentRound].blank;
+          if(!blank.winningSubmission) {
+            var random = Math.round(Math.random() * (blank.submissions.length - 1));
+            var submissionId = blank.submissions[random]._id;
+            DBHelpers.selectWord(game_id, submissionId, function(err, game) {
+              io.sockets.in(game_id).emit('game state changed', game);
+              GameManager.startReviewPhase(game_id);
+            });
+          } else {
+            GameManager.startReviewPhase(game_id);
+          }
         });
       });
     },
