@@ -11,9 +11,20 @@ var gravatar = require('node-gravatar'),
 var Constants = {
   // Durations are in seconds
   SUBMISSION_PHASE_DURATION : 30,
-  SELECTION_PHASE_DURATION  : 10,
-  REVIEW_PHASE_DURATION     : 5
+  SELECTION_PHASE_DURATION  : 10
 };
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//  ____    _  _____  _    ____    _    ____  _____    _   _ _____ _     ____  _____ ____  ____   //
+// |  _ \  / \|_   _|/ \  | __ )  / \  / ___|| ____|  | | | | ____| |   |  _ \| ____|  _ \/ ___|  //
+// | | | |/ _ \ | | / _ \ |  _ \ / _ \ \___ \|  _|    | |_| |  _| | |   | |_) |  _| | |_) \___ \  //
+// | |_| / ___ \| |/ ___ \| |_) / ___ \ ___) | |___   |  _  | |___| |___|  __/| |___|  _ < ___) | //
+// |____/_/   \_\_/_/   \_\____/_/   \_\____/|_____|  |_| |_|_____|_____|_|   |_____|_| \_\____/  //
+//                                                                                                //
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 // IMPORTANT NOTE ABOUT DATABASE CONCURRENCY:
 //   Any update operations on the Game collection in response to socket events must be performed ATOMICALLY!!
@@ -187,8 +198,22 @@ var DBHelpers = {
         );
       }
     });
+  },
+  awardPointsToPlayer: function(game_id, user_id, numPoints, callback) {
+    Game.findOneAndUpdate(
+      {
+        _id     : game_id,
+        players : { $elemMatch: { user_id : user_id } }
+      },
+      {$inc: { "players.$.score" : numPoints }},
+      {safe: true, upsert: false},
+      callback
+    );
   }
 }; // end DbHelpers
+
+
+
 
 
 
@@ -198,10 +223,35 @@ var DBHelpers = {
 
 module.exports = function(io) {
 
+
+
+
+
+
+
+  //////////////////////////////////////////
+  //  _____ ___ __  __ _____ ____  ____   //
+  // |_   _|_ _|  \/  | ____|  _ \/ ___|  //
+  //   | |  | || |\/| |  _| | |_) \___ \  //
+  //   | |  | || |  | | |___|  _ < ___) | //
+  //   |_| |___|_|  |_|_____|_| \_\____/  //
+  //                                      //
+  //////////////////////////////////////////
+
+
   // The Timers singleton object keeps track of timers for all games, emitting events once a second for each duration.
   // * Call Timers.start(game_id, timerName, durationSeconds, callback) to start a timer
   // * Call Timers.end(game_id, timerName) to stop a timer and call its callback
+  // * Call Timers.hold(game_id, timerName) to prevent a timer from calling its callback temporarily
+  // * Call Timers.releaseHold(game_id, timerName) to re-enable the callback
+  //     (Note that the "hold" on a timer doesn't stop its countdown, but at the end of the countdown,
+  //      the callback will wait for the hold to be released before executing).
   // * Call Timers.cancel(game_id, timerName) to stop a timer without calling its callback
+  // * Call Timers.cancelAll(game_id) to cancel all timers in a game
+  // * Call Timers.pause(game_id, timerName) to pause a timer's countdown
+  // * Call Timers.pauseAll(game_id) to pause all timers in a game
+  // * Call Timers.resume(game_id, timerName) to resume a timer's countdown
+  // * Call Timers.resumeAll(game_id) to resume all paused timers in a game
   var Timers = {
     timers: {}, // timers[game_id][timerName] = { durationSeconds, remainingSeconds, paused, callback, intervalID }
     start: function(game_id, timerName, durationSeconds, callback) {
@@ -220,20 +270,33 @@ module.exports = function(io) {
         timer.durationSeconds = durationSeconds;
         timer.remainingSeconds = durationSeconds;
         timer.paused = false;
+        timer.hasHold = false;
         timer.callback = callback;
         timer.intervalID = setInterval(function() {
           if(!timer.paused) {
-            timer.remainingSeconds--;
-            io.sockets.in(game_id).emit('timer tick', {
-              timerName        : timerName,
-              durationSeconds  : timer.durationSeconds,
-              remainingSeconds : timer.remainingSeconds
-            });
-            if(timer.remainingSeconds <= 0) {
+            if(timer.remainingSeconds > 0) {
+              timer.remainingSeconds--;
+              io.sockets.in(game_id).emit('timer tick', {
+                timerName        : timerName,
+                durationSeconds  : timer.durationSeconds,
+                remainingSeconds : timer.remainingSeconds
+              });
+            }
+            if(timer.remainingSeconds <= 0 && !timer.hasHold) {
               Timers.end(game_id, timerName);
             }
           }
         }, 1000);
+      }
+    },
+    hold: function(game_id, timerName) {
+      if(this.timers[game_id] && this.timers[game_id][timerName]) {
+        this.timers[game_id][timerName].hasHold = true;
+      }
+    },
+    releaseHold: function(game_id, timerName) {
+      if(this.timers[game_id] && this.timers[game_id][timerName]) {
+        this.timers[game_id][timerName].hasHold = false;
       }
     },
     end: function(game_id, timerName) {
@@ -291,41 +354,79 @@ module.exports = function(io) {
   };
 
 
+
+
+
+
+
+  ///////////////////////////////////////////////////////////////////////////////////
+  //   ____    _    __  __ _____    __  __    _    _   _    _    ____ _____ ____   //
+  //  / ___|  / \  |  \/  | ____|  |  \/  |  / \  | \ | |  / \  / ___| ____|  _ \  //
+  // | |  _  / _ \ | |\/| |  _|    | |\/| | / _ \ |  \| | / _ \| |  _|  _| | |_) | //
+  // | |_| |/ ___ \| |  | | |___   | |  | |/ ___ \| |\  |/ ___ \ |_| | |___|  _ <  //
+  //  \____/_/   \_\_|  |_|_____|  |_|  |_/_/   \_\_| \_/_/   \_\____|_____|_| \_\ //
+  //                                                                               //
+  ///////////////////////////////////////////////////////////////////////////////////
+
+
   var GameManager = {
+    flags: {},
     startNextRound: function(game_id) {
-      Game.findById(game_id, function(err, game) {
-        var newRound = (game.currentRound === null ? 0 : game.currentRound + 1);
-        if(newRound >= game.adaptedStory.storyChunks.length) {
-          GameManager.endGame(game_id);
-        } else {
-          DBHelpers.nextCzar(game_id, function() {
-            DBHelpers.setGameRoundAndPhase(game_id, newRound, 'wordSubmission', function(err, game) {
-              io.sockets.in(game_id).emit('game state changed', game);
-              io.sockets.in(game_id).emit('czar changed');
-              Timers.start(game_id, 'wordSubmission', Constants.SUBMISSION_PHASE_DURATION, function() {
-                // TODO check if there are no submitted words, if so, wait until one is submitted first?
-                GameManager.startSelectionPhase(game_id);
+      if(!this.flags[game_id]) this.flags[game_id] = {};
+      if(!this.flags[game_id]['starting round']) {
+        this.flags[game_id]['starting round'] = true;
+        Game.findById(game_id, function(err, game) {
+          var newRound = (game.currentRound === null ? 0 : game.currentRound + 1);
+          if(newRound >= game.adaptedStory.storyChunks.length) {
+            delete GameManager.flags[game_id]['starting round'];
+            GameManager.endGame(game_id);
+          } else {
+            DBHelpers.nextCzar(game_id, function() {
+              DBHelpers.setGameRoundAndPhase(game_id, newRound, 'wordSubmission', function(err, game) {
+                io.sockets.in(game_id).emit('game state changed', game);
+                delete GameManager.flags[game_id]['starting round'];
+                io.sockets.in(game_id).emit('czar changed');
+                Timers.start(game_id, 'wordSubmission', Constants.SUBMISSION_PHASE_DURATION, function() {
+                  // TODO check if there are no submitted words, if so, wait until one is submitted first?
+                  GameManager.startSelectionPhase(game_id);
+                });
+                Timers.hold(game_id, 'wordSubmission'); // hold the timer until we have at least one submission
               });
             });
-          });
-        }
-      });
+          }
+        });
+      }
     },
     startSelectionPhase: function(game_id) {
       DBHelpers.setGamePhase(game_id, 'wordSelection', function(err, game) {
         io.sockets.in(game_id).emit('game state changed', game);
         Timers.start(game_id, 'wordSelection', Constants.SELECTION_PHASE_DURATION, function() {
-          // TODO check if there's a winning word, if not, select one randomly first
-          GameManager.startReviewPhase(game_id);
+          // Check if there's a winning word, if not, select one randomly first
+          Game.findById(game_id, function(err, game) {
+            var blank = game.adaptedStory.storyChunks[game.currentRound].blank;
+            if(!blank.winningSubmission.word) {
+              var random = Math.round(Math.random() * (blank.submissions.length - 1));
+              var submissionId = blank.submissions[random]._id.toString();
+              DBHelpers.selectWord(game_id, submissionId, function(err, game) {
+                io.sockets.in(game_id).emit('game state changed', game);
+                GameManager.startReviewPhase(game_id);
+              });
+            } else {
+              GameManager.startReviewPhase(game_id);
+            }
+          });
         });
+        // If there's only one submission anyway, just go ahead and move on
+        var blank = game.adaptedStory.storyChunks[game.currentRound].blank;
+        if(blank.submissions.length === 1) Timers.end(game_id, 'wordSelection');
       });
     },
     startReviewPhase: function(game_id) {
       DBHelpers.setGamePhase(game_id, 'review', function(err, game) {
         io.sockets.in(game_id).emit('game state changed', game);
-        // TODO award points to the submitter of the winning word
-        Timers.start(game_id, 'review', Constants.REVIEW_PHASE_DURATION, function() {
-          GameManager.startNextRound(game_id);
+        var roundWinnerId = game.adaptedStory.storyChunks[game.currentRound].blank.winningSubmission.user_id;
+        DBHelpers.awardPointsToPlayer(game_id, roundWinnerId, 500, function(err, game) {
+          io.sockets.in(game_id).emit('game state changed', game);
         });
       });
     },
@@ -339,11 +440,18 @@ module.exports = function(io) {
 
 
 
-  /////////////////////////////////////////////////////////////////////////////
-  ////                     SOCKET EVENT HANDLERS BELOW                     ////
-  /////////////////////////////////////////////////////////////////////////////
 
 
+
+
+  ///////////////////////////////////////////////////////////////////////////////////
+  //  ____   ___   ____ _  _______ _____    _______     _______ _   _ _____ ____   //
+  // / ___| / _ \ / ___| |/ / ____|_   _|  | ____\ \   / / ____| \ | |_   _/ ___|  //
+  // \___ \| | | | |   | ' /|  _|   | |    |  _|  \ \ / /|  _| |  \| | | | \___ \  //
+  //  ___) | |_| | |___| . \| |___  | |    | |___  \ V / | |___| |\  | | |  ___) | //
+  // |____/ \___/ \____|_|\_\_____| |_|    |_____|  \_/  |_____|_| \_| |_| |____/  //
+  //                                                                               //
+  ///////////////////////////////////////////////////////////////////////////////////
 
 
   io.sockets.on('connection', function(socket) {
@@ -425,37 +533,54 @@ module.exports = function(io) {
     socket.on('submit word', function(data) {
       DBHelpers.submitWord(_game_id, data.user_id, data.word, function(err, game) {
         io.sockets.in(_game_id).emit('game state changed', game);
+        Timers.releaseHold(_game_id, 'wordSubmission');
+        DBHelpers.awardPointsToPlayer(_game_id, data.user_id, 100, function(err, game) {
+          io.sockets.in(_game_id).emit('game state changed', game);
+        });
+        // After submitting a word, if everyone but the czar has submitted a word, move on.
+        var blank = game.adaptedStory.storyChunks[game.currentRound].blank;
+        if(blank.submissions.length === game.players.length - 1) {
+          Timers.end(_game_id, 'wordSubmission');
+        }
       });
     });
 
     socket.on('select word', function(data) {
       DBHelpers.selectWord(_game_id, data.submissionId, function(err, game) {
+        var blank = game.adaptedStory.storyChunks[game.currentRound].blank;
         io.sockets.in(_game_id).emit('game state changed', game);
+        Timers.end(_game_id, 'wordSelection');
       });
-    })
+    });
+
+    socket.on('start next round', function() {
+      GameManager.startNextRound(_game_id);
+    });
 
     socket.on('disconnect', function(data) {
       socket.leave(_game_id);
       // remove this player from the game in the database, and emit a state update!
       DBHelpers.removePlayerFromGame(_game_id, _user_id, function(err, game) {
-        io.sockets.in(_game_id).emit('game state changed', game);
-        User.findById(_user_id, function(err, userObject) {
-          if(userObject) io.sockets.in(_game_id).emit('player left', {
-            user_id  : userObject._id,
-            nickname : userObject.local.nickname,
-            avatar   : gravatar.get(userObject.local.email)
-          });
-        });
-        if(game.currentPhase !== 'setup') {
-          var gameHasCzar = game.players.filter(function(player) {
-            return player.isCardCzar;
-          }).length > 0;
-          if(!gameHasCzar) {
-            // the player who left was the czar, we need a new one
-            DBHelpers.nextCzar(_game_id, function(err, game) {
-              io.sockets.in(_game_id).emit('game state changed', game);
-              io.sockets.in(_game_id).emit('czar changed');
+        if(game) {
+          io.sockets.in(_game_id).emit('game state changed', game);
+          User.findById(_user_id, function(err, userObject) {
+            if(userObject) io.sockets.in(_game_id).emit('player left', {
+              user_id  : userObject._id,
+              nickname : userObject.local.nickname,
+              avatar   : gravatar.get(userObject.local.email)
             });
+          });
+          if(game.currentPhase !== 'setup') {
+            var gameHasCzar = game.players.filter(function(player) {
+              return player.isCardCzar;
+            }).length > 0;
+            if(!gameHasCzar) {
+              // the player who left was the czar, we need a new one
+              DBHelpers.nextCzar(_game_id, function(err, game) {
+                io.sockets.in(_game_id).emit('game state changed', game);
+                io.sockets.in(_game_id).emit('czar changed');
+              });
+            }
           }
         }
       });
@@ -478,6 +603,16 @@ module.exports = function(io) {
     socket.on('timer cancel', function(data) {
       Timers.cancel(_game_id, data.timerName);
       console.log("TIMER CANCELLED", data.timerName, "in game", _game_id);
+    });
+
+    socket.on('timer hold', function(data) {
+      Timers.hold(_game_id, data.timerName);
+      console.log("TIMER HELD", data.timerName, "in game", _game_id);
+    });
+
+    socket.on('timer release hold', function(data) {
+      Timers.releaseHold(_game_id, data.timerName);
+      console.log("TIMER RELEASED HOLD", data.timerName, "in game", _game_id);
     });
 
     socket.on('timer pause all', function() {
@@ -518,3 +653,14 @@ module.exports = function(io) {
   }); // end io.sockets.on('connection')
 
 }; // end module.exports
+
+
+//  _______________________
+// < everything will be ok >
+//  -----------------------
+//         \   ^__^
+//          \  (oo)\_______
+//             (__)\       )\/\
+//                 ||----w |
+//                 ||     ||
+//

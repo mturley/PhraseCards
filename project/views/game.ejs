@@ -1,8 +1,13 @@
 <% include partials/header %>
 
-<div id="sidebar_parent" class="medium-3 large-3 columns sidebar">
+<div id="sidebar_parent" class="medium-3 large-3 columns sidebar" >
   <!-- Blaze will populate this element with the "sidebar" template -->
 </div>
+
+<div class="medium-3 large-3 columns sidebar_spacer" >
+  &nbsp;
+</div>
+
 
 <div id="gameArea_parent" class="medium-9 large-9 columns game_area">
   <!-- Blaze will populate this element with the "gameArea" template -->
@@ -39,6 +44,11 @@
 
 
 <script type="text/spacebars" name="gameArea">
+  <div class="row">
+    <div class="large-12 columns alert_parent">
+    </div>
+  </div>
+
   {{#if inSetupPhase}}
     {{> waitingArea}}
   {{else}}
@@ -50,7 +60,6 @@
         <div class="medium-10 large-10 columns">&nbsp;</div>
         <div class="medium-2 large-2 columns">
           <div class="timer-container" id="timer-container">
-            <header id="clock-seconds"></header>
           </div>
         </div>
       </div>
@@ -65,7 +74,18 @@
       <div class="row">
         {{> storyArea}}
         <div class="medium-6 large-6 columns">
-          {{> chatArea}}
+          <div class="row chat text-left chatArea">
+            <ul id="chat_container" class="no-bullet">
+            </ul>
+            <form action="" id="chatform" class="chat">
+              <div class="large-8 columns">
+                <input id="message" autocomplete="off" type="text"/>
+              </div>
+              <div class="large-4 columns">
+                <button class="button button-large expand"><i class="fa fa-comments-o"></i> Send Message</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
 
@@ -122,7 +142,7 @@
   {{#each currentCards}}
     <div class="small-6 medium-2 large-2 columns cardHolder">
       <div class="row">
-        <div class="small-12 medium-10 medium-centered large-10 large-centered columns card animated zoomIn">
+        <div class="small-12 medium-10 medium-centered large-10 large-centered columns card animated flipInY">
           <h4>{{this.word}}</h4>
         </div>
       </div>
@@ -159,7 +179,7 @@
 <script type="text/spacebars" name="reviewArea">
   <div class="row">
     <div class="small=12 medium-8 medium-centered large-8 large-centered text-center reviewArea columns">
-      <h2>End of Round 1</h2>
+      <h2>End of Round {{currentRound}}</h2>
       <hr>
       <div class="row">
         <div class="small-6 medium-6 large-6 columns">
@@ -171,7 +191,7 @@
           </div>
         </div>
         <div class="small-6 medium-6 large-6 columns">
-          <a href="#" class="button buton-large">Start Next Round</a>
+          <a href="#" class="button buton-large start-next-round">{{nextRoundButton}}</a>
         </div>
       </div>
     </div>
@@ -194,8 +214,8 @@
         <div class="small-12 medium-6 large-6 columns text-left">
           <h4>{{storyName}}</h4>
           <p>
-            {{#each storyChunk}}
-              // Write out story
+            {{#each currentStory}}
+              {{this.prefix}} <span class="winning-word"> {{this.blank.winningSubmission.word}} </span> {{this.suffix}}
             {{/each}}
           </p>
         </div>
@@ -213,9 +233,22 @@
     <p>
       {{#each currentStorySoFar}}
         {{#if currentStoryChunk}}
-          <br><br>Round {{currentRound}} <i class="fa fa-hand-o-right"></i> <span class="blur_large">{{this.prefix}} </span> ___________ <span class="blur_large">{{this.suffix}} </span><br><br>
+          <br><br>Round {{currentRound}} <i class="fa fa-hand-o-right"></i>
+          <span class="blur_large">{{this.prefix}} </span>
+          {{#if this.blank.winningSubmission}}
+            {{this.blank.winningSubmission.word}}
+          {{else}}
+            ___________ 
+          {{/if}}
+          <span class="blur_large">{{this.suffix}} </span><br><br>
         {{else}}
-          <span class="blur">{{this.prefix}} </span> ___________ <span class="blur">{{this.suffix}} </span>
+          <span class="blur">{{this.prefix}} </span>
+          {{#if this.blank.winningSubmission}}
+            {{this.blank.winningSubmission.word}}
+          {{else}}
+            ___________ 
+          {{/if}}
+          <span class="blur">{{this.suffix}} </span>
         {{/if}}
 
       {{/each}}</p>

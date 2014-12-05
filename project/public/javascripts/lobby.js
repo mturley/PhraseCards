@@ -15,7 +15,6 @@
         LobbyUI.activeGames.set(data);
       }).fail(function() {
         console.log("AJAX FAILURE", arguments);
-        alert("GET /api/games failed!  TODO: properly Foundation-styled error alert.");
       });
     },
     createAndJoinGame: function(withTitle) {
@@ -31,7 +30,6 @@
         }
       }).fail(function() {
         console.log("AJAX FAILURE", arguments);
-        alert("POST /api/games failed!  TODO: properly Foundation-styled error alert.");
       });
     }
   };

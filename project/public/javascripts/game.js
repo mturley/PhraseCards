@@ -5,7 +5,17 @@
 
   "use strict";
 
-  var GameUI = {
+
+  /////////////////////////////////////////////////////////////////////////////
+  //  _   _ ___    ____    _  _____  _       __  __  ___  ____  _____ _      //
+  // | | | |_ _|  |  _ \  / \|_   _|/ \     |  \/  |/ _ \|  _ \| ____| |     //
+  // | | | || |   | | | |/ _ \ | | / _ \    | |\/| | | | | | | |  _| | |     //
+  // | |_| || |   | |_| / ___ \| |/ ___ \   | |  | | |_| | |_| | |___| |___  //
+  //  \___/|___|  |____/_/   \_\_/_/   \_\  |_|  |_|\___/|____/|_____|_____| //
+  //                                                                         //
+  /////////////////////////////////////////////////////////////////////////////
+
+  window.GameUI = {
     model: new Blaze.Var({
       title        : '',
       owner        : null,
@@ -34,6 +44,18 @@
       if(matchingPlayers.length < 1) return null;
       return matchingPlayers[0];
     },
+    getTopScoringPlayers: function() {
+      var players = GameUI.model.get().players;
+      var topScorer = { score: 0 };
+      for(var i = 0; i < players.length; i++){
+        if(players[i].score > topScorer.score){
+          topScorer = players[i];
+        }
+      }
+      return players.filter(function(player) {
+        return player.score === topScorer.score;
+      });
+    },
     availableStories: new Blaze.Var([]),
     reloadStories: function() {
       $.ajax({
@@ -48,6 +70,7 @@
     timer: null,
     updateTimer: function(remainingSeconds, durationSeconds) {
       if(this.timer === null) {
+        $("#timer-container").empty().html('<header id="clock-seconds"></header>');
         var element = $("#timer-container").get(0);
         this.timer = new ProgressBar.Circle(element, {
           duration: 200,
@@ -61,15 +84,28 @@
       });
     },
     destroyTimer: function() {
-      if(this.timer) {
-        this.timer.destroy();
-        this.timer = null;
-      }
+      this.updateTimer(0,0);
+      $("#timer-container").empty();
+      this.timer = null;
     }
   };
 
   GameUI.reloadStories();
 
+
+
+
+
+
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
+  //  _____ _____ __  __ ____  _        _  _____ _____    _   _ _____ _     ____  _____ ____  ____    //
+  // |_   _| ____|  \/  |  _ \| |      / \|_   _| ____|  | | | | ____| |   |  _ \| ____|  _ \/ ___|   //
+  //   | | |  _| | |\/| | |_) | |     / _ \ | | |  _|    | |_| |  _| | |   | |_) |  _| | |_) \___ \   //
+  //   | | | |___| |  | |  __/| |___ / ___ \| | | |___   |  _  | |___| |___|  __/| |___|  _ < ___) |  //
+  //   |_| |_____|_|  |_|_|   |_____/_/   \_\_| |_____|  |_| |_|_____|_____|_|   |_____|_| \_\____/   //
+  //                                                                                                  //
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
 
   //// Blaze Template Helpers ////
 
@@ -203,50 +239,35 @@
   Template.playArea.winningCard = function() {
     var game = GameUI.model.get();
     if(!game.adaptedStory || game.currentRound === null) return null;
-    var winner = game.adaptedStory.storyChunks[game.currentRound].blank.winningSubmission;
-    if(winner) {
-      return winner.word;
-    }
-    return null;
+    var card = game.adaptedStory.storyChunks[game.currentRound].blank.winningSubmission;
+    return (card ? card.word : '');
   };
 
   Template.reviewArea.winningAvatar = function() {
-    var players = GameUI.model.get().players;
-    var topScorer = {};
-    for(var i = 0; i < players.length; i++){
-      if(players[i].score > topScorer.score){
-        topScorer = players[i];
-      }
-    }
-    console.log(topScorer);
-    return topScorer.avatar;
+    var player = GameUI.getWinningPlayerThisRound();
+    return (player ? player.avatar : '');
   };
 
-  Template.reviewArea.winningPlayerName = function() {
-    var players = GameUI.model.get().players;
-    var topScorer = {};
-    for(var i = 0; i < players.length; i++){
-      if(players[i].score > topScorer.score){
-        topScorer = players[i];
-      }
-    }
-    console.log(topScorer);
-    return topScorer.nickname;
+  Template.reviewArea.winningPlayerName = function() { // winner of the current round!
+    var player = GameUI.getWinningPlayerThisRound();
+    return (player ? player.nickname : '');
   };
 
-  Template.endArea.winningScore = function() {
-    // TODO
-  };
-
-  Template.endArea.storyName = function() {
-    // TODO
-  };
-
-  Template.endArea.storyChunks = function() {
-    // TODO
+  Template.reviewArea.currentRound = function() {
+    var round = GameUI.model.get().currentRound;
+    if(round !== null) return round + 1;
+    return null;
   };
 
   Template.reviewArea.winningCard = Template.playArea.winningCard;
+
+  Template.reviewArea.nextRoundButton = function() {
+    var game = GameUI.model.get();
+    if(game.currentRound >= game.adaptedStory.storyChunks.length - 1) {
+      return "Read Finished Story";
+    }
+    return "Start Next Round";
+  };
 
   ////
 
@@ -278,12 +299,60 @@
     return game.currentRound + 1;
   };
 
-
   Template.storyArea.currentStoryName = function() {
     var game = GameUI.model.get();
     if(!game.adaptedStory) return '';
     return game.adaptedStory.name;
   };
+
+  ////
+
+  Template.endArea.winningPlayerName = function() { // winner of the whole game!
+    var winners = GameUI.getTopScoringPlayers();
+    if(winners.length === 1) return winners[0].nickname;
+    var winnerNames = [];
+    for(var i=0; i<winners.length; i++) {
+      winnerNames.push(winners[i].nickname);
+    }
+    return "Tie: "+winnerNames.join(", ");
+  };
+
+  Template.endArea.winningScore = function() {
+    return GameUI.getTopScoringPlayers()[0].score;
+  };
+
+  Template.endArea.storyName = function() {
+    var game = GameUI.model.get();
+    if(!game.adaptedStory) return '';
+    return game.adaptedStory.name;
+  };
+
+  Template.endArea.currentStory = function() {
+    var game = GameUI.model.get();
+    if(!game.adaptedStory) return [];
+    return game.adaptedStory.storyChunks;
+  };
+
+  Template.endArea.storyChunks = Template.storyArea.currentStory;
+
+
+
+
+
+
+
+
+
+  ///////////////////////////////////////////////////////////////////////////
+  //  ____   ___   ____ _  _______ _____    ____  _____ _____ _   _ ____   //
+  // / ___| / _ \ / ___| |/ / ____|_   _|  / ___|| ____|_   _| | | |  _ \  //
+  // \___ \| | | | |   | ' /|  _|   | |    \___ \|  _|   | | | | | | |_) | //
+  //  ___) | |_| | |___| . \| |___  | |     ___) | |___  | | | |_| |  __/  //
+  // |____/ \___/ \____|_|\_\_____| |_|    |____/|_____| |_|  \___/|_|     //
+  //                                                                       //
+  ///////////////////////////////////////////////////////////////////////////
+
+
 
   //// Socket Connection Setup ////
 
@@ -305,7 +374,20 @@
   });
 
 
-///////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+  ////////////////////////////////////////////////////////////
+  //  ____   ___  __  __    ____  _____    _    ______   __ //
+  // |  _ \ / _ \|  \/  |  |  _ \| ____|  / \  |  _ \ \ / / //
+  // | | | | | | | |\/| |  | |_) |  _|   / _ \ | | | \ V /  //
+  // | |_| | |_| | |  | |  |  _ <| |___ / ___ \| |_| || |   //
+  // |____/ \___/|_|  |_|  |_| \_\_____/_/   \_\____/ |_|   //
+  //                                                        //
+  ////////////////////////////////////////////////////////////
+
 
 
   $(document).ready(function() {
@@ -330,25 +412,43 @@
     }
 
 
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    //  _______     _______ _   _ _____    _   _    _    _   _ ____  _     _____ ____  ____   //
+    // | ____\ \   / / ____| \ | |_   _|  | | | |  / \  | \ | |  _ \| |   | ____|  _ \/ ___|  //
+    // |  _|  \ \ / /|  _| |  \| | | |    | |_| | / _ \ |  \| | | | | |   |  _| | |_) \___ \  //
+    // | |___  \ V / | |___| |\  | | |    |  _  |/ ___ \| |\  | |_| | |___| |___|  _ < ___) | //
+    // |_____|  \_/  |_____|_| \_| |_|    |_| |_/_/   \_\_| \_|____/|_____|_____|_| \_\____/  //
+    //                                                                                        //
+    ////////////////////////////////////////////////////////////////////////////////////////////
+
+
     //// DOM-Dependent Socket Message Handlers ////
 
     socket.on('join failed', function(reason) {
       // TODO alert user that they couldn't join, and either leave or use spectator mode
       if(reason === 'No Such Room') {
-        // TODO
+        alert("No Such Game!");
+        document.location = "/lobby";
       } else if(reason === 'Room is Full') {
-        // TODO
+        alert("This room is full!");
+        document.location = "/lobby";
       }
     });
 
     socket.on('player joined', function(data) {
       console.log("Player Joined: ", data);
-      // TODO alert that a player has joined the game
+      var message = data.nickname + ' joined the room.';
+      callAlert(message);
     });
 
     socket.on('player left', function(data) {
       console.log("Player Left: ", data);
-      // TODO alert that a player has left the game
+      var message = data.nickname + ' left the room.';
+      callAlert(message);
     });
 
     socket.on('chat message', function(data) {
@@ -370,19 +470,22 @@
 
     socket.on('timer ended', function(data) {
       console.log("TIMER ENDED: ", data.timerName);
-      // TODO
-    })
+      GameUI.destroyTimer();
+    });
 
 
     //// DOM Event Handlers ////
 
     $('#gameArea_parent').on('submit', '#chatform', function() {
-      socket.emit('chat message', {
-        user_id  : window.loggedInUser._id,
-        nickname : window.loggedInUser.nickname,
-        avatar   : window.loggedInUser.avatar,
-        message  : $('#message').val()
-      });
+      var message = $('#message').val();
+      if(message !== '') {
+        socket.emit('chat message', {
+          user_id  : window.loggedInUser._id,
+          nickname : window.loggedInUser.nickname,
+          avatar   : window.loggedInUser.avatar,
+          message  : message
+        });
+      }
       $('#message').val('');
       return false;
     });
@@ -419,8 +522,32 @@
       });
     });
 
+    $('#gameArea_parent').on('click', '.start-next-round', function(event) {
+      event.preventDefault();
+      socket.emit('start next round');
+    });
+
+    function callAlert(message){
+      $('.alert_parent').append('<div data-alert class="alert-box info radius animated zoomIn">' + message + '<a href="#" class="close">&times;</a></div>');
+      setTimeout(function(){$('.alert-box').addClass('zoomOut');}, 6000);
+    }
+
   }); // end document ready
 
+
+
+
+
+
+
+  /////////////////////////////////////
+  //  ____  _____ ____  _   _  ____  //
+  // |  _ \| ____| __ )| | | |/ ___| //
+  // | | | |  _| |  _ \| | | | |  _  //
+  // | |_| | |___| |_) | |_| | |_| | //
+  // |____/|_____|____/ \___/ \____| //
+  //                                 //
+  /////////////////////////////////////
 
   // DEBUGGING ONLY BELOW -- DO NOT USE IN GAME
 
@@ -444,6 +571,18 @@
     },
     timerCancel: function(timerName) {
       socket.emit('timer cancel', {
+        game_id   : window.currentGameId,
+        timerName : timerName
+      });
+    },
+    timerHold: function(timerName) {
+      socket.emit('timer hold', {
+        game_id   : window.currentGameId,
+        timerName : timerName
+      });
+    },
+    timerReleaseHold: function(timerName) {
+      socket.emit('timer release hold', {
         game_id   : window.currentGameId,
         timerName : timerName
       });
@@ -485,3 +624,14 @@
 
 
 }());
+
+
+//  _____________________
+// < believe in yourself >
+//  ---------------------
+//         \   ^__^
+//          \  (oo)\_______
+//             (__)\       )\/\
+//                 ||----w |
+//                 ||     ||
+//

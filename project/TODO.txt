@@ -1,7 +1,5 @@
 - Finish filling in helpers and templates for all views of the game (mini story, end area, review area, etc)
 - Tighten up the GameManager:
-  - let game proceed if all players have submitted a word
   - make game wait if nobody has submitted a word
-  - if the card czar doesn't select a winning word, select one at random
 - Pretty up views, make everything really clearly usable
 - Playtest the game

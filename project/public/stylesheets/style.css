@@ -121,10 +121,11 @@ form a, form label {
 }
 
 .sidebar {
-  height: 100%;
   color: #333;
   padding: 20px;
+  height: 100vh;
   background: white;
+  position: fixed;
 }
 
 .player h4 {
@@ -150,7 +151,7 @@ form a, form label {
 
 /* MAIN GAME AREA ------------------------------------------------- */
 .waitingArea {
-  padding: 60px 0;
+  padding: 80px 0;
   color: white;
 }
 
@@ -158,10 +159,23 @@ form a, form label {
   max-width: 128px;
 }
 
+.winning-word {
+  text-decoration: underline;
+  font-weight: 800;
+  font-size: 1.2em;
+}
+
+.alert-box {
+  position: fixed;
+  top: 20;
+  min-width: 800px;
+  right: 10%;
+}
+
 .storySelect {
   background: #27648D;
   border-radius: 5px;
-  margin-top: 40px;
+  margin-top: 80px;
 }
 .storySelect i {
   font-size: 10em;
@@ -326,6 +340,7 @@ form a, form label {
   border-radius: 5px;
   margin: 0 4px;
 }
+
 
 #chat_container {
   font-size: 18px;
