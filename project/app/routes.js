@@ -3,7 +3,7 @@ var http = require('http');
 var url = require('url');
 
 // TODO  need a better way to get hostname rather than hardcode
-var hostname = "http://localhost:8080";
+var hostname = "http://powerful-sands-7248.herokuapp.com";
 
 module.exports = function(app,passport) {
   app
