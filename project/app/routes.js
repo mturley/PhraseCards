@@ -179,9 +179,14 @@ function getObjects(HTTPOptions, callback){
  var objReq =  http.request(HTTPOptions, function(resp) {
         resp.setEncoding('utf8');
         resp.on('data', function(data){
-        var objectList = JSON.parse(data);
-        callback(objectList);
-      });
+          try {
+            var objectList = JSON.parse(data);
+            callback(objectList);
+          } catch(err) {
+            console.log("GOT ERROR: ",err);
+            callback([]);
+          }
+        });
       }).on('error', function(e) {console.log("Got error: " + e.message);});
       objReq.end();
 }
